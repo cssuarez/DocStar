@@ -1,0 +1,665 @@
+﻿<html>
+<head>
+    <title>Test HTML Page</title>
+    <style type="text/css">
+        .tableContainer_1 table.scroll {
+            width: 100%;
+            border-spacing: 0;
+            border: 2px solid black;
+        }
+
+            .tableContainer_1 table.scroll th,
+            .tableContainer_1 table.scroll td,
+            .tableContainer_1 table.scroll tr,
+            .tableContainer_1 table.scroll thead,
+            .tableContainer_1 table.scroll tbody {
+                display: block;
+            }
+
+                .tableContainer_1 table.scroll thead tr {
+                    /* fallback */
+                    width: 97%;
+                    /* minus scroll bar width */
+                    width: -webkit-calc(100% - 16px);
+                    width: -moz-calc(100% - 16px);
+                    width: calc(100% - 16px);
+                }
+
+                .tableContainer_1 table.scroll tr:after {
+                    content: ' ';
+                    display: block;
+                    visibility: hidden;
+                    clear: both;
+                }
+
+            .tableContainer_1 table.scroll tbody {
+                height: 100px;
+                overflow-y: auto;
+                overflow-x: hidden;
+            }
+
+                .tableContainer_1 table.scroll tbody td,
+                .tableContainer_1 table.scroll thead th {
+                    width: 19%;
+                    float: left;
+                    border-right: 1px solid black;
+                }
+
+        .tableContainer_1thead tr th {
+            height: 30px;
+            line-height: 30px;
+            /*text-align: left;*/
+        }
+
+        .tableContainer_1tbody {
+            border-top: 2px solid black;
+        }
+
+        .tableContainer_1 tbody td:last-child, thead th:last-child {
+            border-right: none !important;
+        }
+
+
+        html > body div.tableContainer {
+            overflow: hidden;
+            width: 756px;
+        }
+
+            html > body div.tableContainer table {
+                width: 756px;
+            }
+
+            div.tableContainer table {
+                float: left;
+                width: 740px;
+            }
+
+        html > body tbody.scrollContent {
+            display: block;
+            height: 262px;
+            overflow: auto;
+            width: 100%;
+        }
+
+        html > body thead.fixedHeader tr {
+            display: block;
+        }
+
+        html > body thead.fixedHeader th {
+            width: 200px;
+        }
+
+        thead.fixedHeader th {
+            background: #C96;
+            border-left: 1px solid #EB8;
+            border-right: 1px solid #B74;
+            border-top: 1px solid #EB8;
+            font-weight: normal;
+            padding: 4px 3px;
+            text-align: left;
+        }
+
+        tbody.scrollContent td, tbody.scrollContent tr.normalRow td {
+            background: #FFF;
+            border-bottom: none;
+            border-left: none;
+            border-right: 1px solid #CCC;
+            border-top: 1px solid #DDD;
+            padding: 2px 3px 3px 4px;
+        }
+
+        tbody.scrollContent tr.alternateRow td {
+            background: #EEE;
+            border-bottom: none;
+            border-left: none;
+            border-right: 1px solid #CCC;
+            border-top: 1px solid #DDD;
+            padding: 2px 3px 3px 4px;
+        }
+
+        html > body tbody.scrollContent td {
+            width: 200px;
+        }
+
+        .tableContainer_2 .outer {
+            font: normal 14px/18px 'latomedium', arial, sans-serif;
+            position: relative;
+            padding: 50px 0 30px 0;
+            width: 650px;
+            background: #eee;
+            margin: 0 0 50px 0;
+        }
+
+        .tableContainer_2 .innera {
+            overflow: auto;
+            width: 650px;
+            height: 200px;
+            background: #eee;
+        }
+
+        .tableContainer_2 .outer thead tr {
+            position: absolute;
+            top: 20px;
+            height: 20px;
+            left: 0;
+        }
+
+        .tableContainer_2 .outer th {
+            background: #724a10;
+            color: #fff;
+        }
+
+        .tableContainer_2 .outer tfoot td {
+            position: absolute;
+            width: 648px;
+            text-align: center;
+            background: #f0c992;
+            border: 1px solid #000;
+            color: #000;
+            bottom: 0;
+            left: 0;
+        }
+
+        .tableContainer_2 .outer th, .outer td {
+            width: 25%;
+            text-align: left;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body style="height: 100px; width: 99%;">
+
+
+    <div class="myTableContainer">
+        <div class="outer">
+            <div class="header">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Col 1 Header</th>
+                            <th>Col 2 Header</th>
+                            <th>Col 3 Header</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="tbody">
+                <table>
+                    <tbody>
+                        <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                        <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                        <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                        <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                        <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                        <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                        <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                        <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                        <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                        <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                        <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                        <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                        <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                        <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                        <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                        <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                        <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                        <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                        <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                        <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                        <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                        <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                        <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                        <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                        <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                        <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                        <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                        <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                        <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                        <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="footer">
+                <table>
+                    <tfoot><tr><td colspan="3">Footer</td></tr></tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="tableContainer_1">
+        <table class="scroll">
+            <thead>
+                <tr>
+                    <th>Col 1 Header</th>
+                    <th>Col 2 Header</th>
+                    <th>Col 3 Header</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+                <tr><td>col 1</td><td>col 2</td><td>col3</td></tr>
+            </tbody>
+            <tfoot><tr><td colspan="3">Footer</td></tr></tfoot>
+        </table>
+    </div>
+
+    <div id="tableContainer" class="tableContainer">
+        <table border="0" cellpadding="0" cellspacing="0" class="scrollTable">
+            <thead class="fixedHeader">
+                <tr class="alternateRow">
+                    <th><a href="#">Header 1</a></th>
+                    <th><a href="#">Header 2</a></th>
+                    <th><a href="#">Header 3</a></th>
+                </tr>
+            </thead>
+            <tbody class="scrollContent">
+                <tr class="normalRow">
+                    <td>Cell Content 1</td>
+                    <td>Cell Content 2</td>
+                    <td>Cell Content 3</td>
+                </tr>
+                <tr class="alternateRow">
+                    <td>More Cell Content 1</td>
+                    <td>More Cell Content 2</td>
+                    <td>More Cell Content 3</td>
+                </tr>
+                <tr class="normalRow">
+                    <td>Even More Cell Content 1</td>
+                    <td>Even More Cell Content 2</td>
+                    <td>Even More Cell Content 3</td>
+                </tr>
+                <tr class="alternateRow">
+                    <td>And Repeat 1</td>
+                    <td>And Repeat 2</td>
+                    <td>And Repeat 3</td>
+                </tr>
+                <tr class="normalRow">
+                    <td>Cell Content 1</td>
+                    <td>Cell Content 2</td>
+                    <td>Cell Content 3</td>
+                </tr>
+                <tr class="alternateRow">
+                    <td>More Cell Content 1</td>
+                    <td>More Cell Content 2</td>
+                    <td>More Cell Content 3</td>
+                </tr>
+                <tr class="normalRow">
+                    <td>Even More Cell Content 1</td>
+                    <td>Even More Cell Content 2</td>
+                    <td>Even More Cell Content 3</td>
+                </tr>
+                <tr class="alternateRow">
+                    <td>And Repeat 1</td>
+                    <td>And Repeat 2</td>
+                    <td>And Repeat 3</td>
+                </tr>
+                <tr class="normalRow">
+                    <td>Cell Content 1</td>
+                    <td>Cell Content 2</td>
+                    <td>Cell Content 3</td>
+                </tr>
+                <tr class="alternateRow">
+                    <td>More Cell Content 1</td>
+                    <td>More Cell Content 2</td>
+                    <td>More Cell Content 3</td>
+                </tr>
+                <tr class="normalRow">
+                    <td>Even More Cell Content 1</td>
+                    <td>Even More Cell Content 2</td>
+                    <td>Even More Cell Content 3</td>
+                </tr>
+                <tr class="alternateRow">
+                    <td>And Repeat 1</td>
+                    <td>And Repeat 2</td>
+                    <td>And Repeat 3</td>
+                </tr>
+                <tr class="normalRow">
+                    <td>Cell Content 1</td>
+                    <td>Cell Content 2</td>
+                    <td>Cell Content 3</td>
+                </tr>
+                <tr class="alternateRow">
+                    <td>More Cell Content 1</td>
+                    <td>More Cell Content 2</td>
+                    <td>More Cell Content 3</td>
+                </tr>
+                <tr class="normalRow">
+                    <td>Even More Cell Content 1</td>
+                    <td>Even More Cell Content 2</td>
+                    <td>Even More Cell Content 3</td>
+                </tr>
+                <tr class="alternateRow">
+                    <td>And Repeat 1</td>
+                    <td>And Repeat 2</td>
+                    <td>And Repeat 3</td>
+                </tr>
+                <tr class="normalRow">
+                    <td>Cell Content 1</td>
+                    <td>Cell Content 2</td>
+                    <td>Cell Content 3</td>
+                </tr>
+                <tr class="alternateRow">
+                    <td>More Cell Content 1</td>
+                    <td>More Cell Content 2</td>
+                    <td>More Cell Content 3</td>
+                </tr>
+                <tr class="normalRow">
+                    <td>Even More Cell Content 1</td>
+                    <td>Even More Cell Content 2</td>
+                    <td>Even More Cell Content 3</td>
+                </tr>
+                <tr class="alternateRow">
+                    <td>And Repeat 1</td>
+                    <td>And Repeat 2</td>
+                    <td>And Repeat 3</td>
+                </tr>
+                <tr class="normalRow">
+                    <td>Cell Content 1</td>
+                    <td>Cell Content 2</td>
+                    <td>Cell Content 3</td>
+                </tr>
+                <tr class="alternateRow">
+                    <td>More Cell Content 1</td>
+                    <td>More Cell Content 2</td>
+                    <td>More Cell Content 3</td>
+                </tr>
+                <tr class="normalRow">
+                    <td>Even More Cell Content 1</td>
+                    <td>Even More Cell Content 2</td>
+                    <td>Even More Cell Content 3</td>
+                </tr>
+                <tr class="alternateRow">
+                    <td>And Repeat 1</td>
+                    <td>And Repeat 2</td>
+                    <td>And Repeat 3</td>
+                </tr>
+                <tr class="normalRow">
+                    <td>Cell Content 1</td>
+                    <td>Cell Content 2</td>
+                    <td>Cell Content 3</td>
+                </tr>
+                <tr class="alternateRow">
+                    <td>More Cell Content 1</td>
+                    <td>More Cell Content 2</td>
+                    <td>More Cell Content 3</td>
+                </tr>
+                <tr class="normalRow">
+                    <td>Even More Cell Content 1</td>
+                    <td>Even More Cell Content 2</td>
+                    <td>Even More Cell Content 3</td>
+                </tr>
+                <tr class="alternateRow">
+                    <td>And Repeat 1</td>
+                    <td>And Repeat 2</td>
+                    <td>And Repeat 3</td>
+                </tr>
+                <tr class="normalRow">
+                    <td>Cell Content 1</td>
+                    <td>Cell Content 2</td>
+                    <td>Cell Content 3</td>
+                </tr>
+                <tr class="alternateRow">
+                    <td>More Cell Content 1</td>
+                    <td>More Cell Content 2</td>
+                    <td>More Cell Content 3</td>
+                </tr>
+                <tr class="normalRow">
+                    <td>Even More Cell Content 1</td>
+                    <td>Even More Cell Content 2</td>
+                    <td>Even More Cell Content 3</td>
+                </tr>
+                <tr class="alternateRow">
+                    <td>And Repeat 1</td>
+                    <td>And Repeat 2</td>
+                    <td>And Repeat 3</td>
+                </tr>
+                <tr class="normalRow">
+                    <td>Cell Content 1</td>
+                    <td>Cell Content 2</td>
+                    <td>Cell Content 3</td>
+                </tr>
+                <tr class="alternateRow">
+                    <td>More Cell Content 1</td>
+                    <td>More Cell Content 2</td>
+                    <td>More Cell Content 3</td>
+                </tr>
+                <tr class="normalRow">
+                    <td>Even More Cell Content 1</td>
+                    <td>Even More Cell Content 2</td>
+                    <td>Even More Cell Content 3</td>
+                </tr>
+                <tr class="alternateRow">
+                    <td>And Repeat 1</td>
+                    <td>And Repeat 2</td>
+                    <td>And Repeat 3</td>
+                </tr>
+                <tr class="normalRow">
+                    <td>Cell Content 1</td>
+                    <td>Cell Content 2</td>
+                    <td>Cell Content 3</td>
+                </tr>
+                <tr class="alternateRow">
+                    <td>More Cell Content 1</td>
+                    <td>More Cell Content 2</td>
+                    <td>More Cell Content 3</td>
+                </tr>
+                <tr class="normalRow">
+                    <td>Even More Cell Content 1</td>
+                    <td>Even More Cell Content 2</td>
+                    <td>Even More Cell Content 3</td>
+                </tr>
+                <tr class="alternateRow">
+                    <td>And Repeat 1</td>
+                    <td>And Repeat 2</td>
+                    <td>And Repeat 3</td>
+                </tr>
+                <tr class="normalRow">
+                    <td>Cell Content 1</td>
+                    <td>Cell Content 2</td>
+                    <td>Cell Content 3</td>
+                </tr>
+                <tr class="alternateRow">
+                    <td>More Cell Content 1</td>
+                    <td>More Cell Content 2</td>
+                    <td>More Cell Content 3</td>
+                </tr>
+                <tr class="normalRow">
+                    <td>Even More Cell Content 1</td>
+                    <td>Even More Cell Content 2</td>
+                    <td>Even More Cell Content 3</td>
+                </tr>
+                <tr class="alternateRow">
+                    <td>End of Cell Content 1</td>
+                    <td>End of Cell Content 2</td>
+                    <td>End of Cell Content 3</td>
+                </tr>
+            </tbody>
+            <tfoot><tr><td colspan="3">Footer</td></tr></tfoot>
+        </table>
+    </div>
+
+    <div class="tableContainer_2">
+        <div class="outer">
+            <div class="innera">
+                <table summary="This table lists flights arriving at Bristol International Airport.">
+                    <caption>ARRIVALS TO BRISTOL - ENGLAND</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">FROM</th>
+                            <th scope="col">STA</th>
+                            <th scope="col">ETA</th>
+                            <th scope="col" class="nd">Notes</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5">DATE : 19th OCTOBER 2005</td>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        <tr>
+                            <td>ISLE OF MAN</td>
+                            <td>11:40</td>
+                            <td>11:42</td>
+                            <td>LANDED AT 11:43</td>
+                        </tr>
+                        <tr class="dk">
+                            <td>PARIS-CDG</td>
+                            <td>11:45</td>
+                            <td>11:57</td>
+                            <td>LANDED AT 11:58</td>
+                        </tr>
+                        <tr>
+                            <td>BELFAST CITY</td>
+                            <td>11:45</td>
+                            <td>11:40</td>
+                            <td>LANDED AT 11:41</td>
+                        </tr>
+                        <tr class="dk">
+                            <td>GUERNSEY</td>
+                            <td>11:55</td>
+                            <td>11:38</td>
+                            <td>LANDED AT 11:37</td>
+                        </tr>
+                        <tr>
+                            <td>PISA</td>
+                            <td>12:05</td>
+                            <td>12:18</td>
+                            <td>LANDED AT 12:17</td>
+                        </tr>
+                        <tr class="dk">
+                            <td>MALAGA</td>
+                            <td>12:15</td>
+                            <td>11:55</td>
+                            <td>LANDED AT 11:55</td>
+                        </tr>
+                        <tr>
+                            <td>ALICANTE</td>
+                            <td>12:35</td>
+                            <td>12:12</td>
+                            <td>LANDED AT 12:14</td>
+                        </tr>
+                        <tr class="dk">
+                            <td>VALENCIA</td>
+                            <td>12:40</td>
+                            <td>12:49</td>
+                            <td>LANDED AT 12:48</td>
+                        </tr>
+                        <tr>
+                            <td>GLASGOW</td>
+                            <td>12:50</td>
+                            <td>12:41</td>
+                            <td>LANDED AT 14:08</td>
+                        </tr>
+                        <tr class="dk">
+                            <td>DUBLIN</td>
+                            <td>13:00</td>
+                            <td>12:52</td>
+                            <td>LANDED AT 12:51</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">EZY 6046</th>
+                            <td>PALMA</td>
+                            <td>13:20</td>
+                            <td>16:31</td>
+                            <td>LANDED AT 16:31</td>
+                        </tr>
+                        <tr class="dk">
+                            <td>DUBLIN</td>
+                            <td>13:40</td>
+                            <td>13:33</td>
+                            <td>LANDED AT 13:32</td>
+                        </tr>
+                        <tr>
+                            <td>BUDAPEST</td>
+                            <td>13:40</td>
+                            <td>13:38</td>
+                            <td>LANDED AT 13:40</td>
+                        </tr>
+                        <tr class="dk">
+                            <td>JERSEY</td>
+                            <td>13:50</td>
+                            <td>13:36</td>
+                            <td>LANDED AT 13:38</td>
+                        </tr>
+                        <tr>
+                            <td>ZURICH</td>
+                            <td>13:55</td>
+                            <td>13:31</td>
+                            <td>LANDED AT 13:31</td>
+                        </tr>
+                        <tr class="dk">
+                            <td>ABERDEEN</td>
+                            <td>14:10</td>
+                            <td>14:19</td>
+                            <td>LANDED AT 14:18</td>
+                        </tr>
+                        <tr>
+                            <td>JERSEY</td>
+                            <td>14:10</td>
+                            <td>13:47</td>
+                            <td>LANDED AT 13:48</td>
+                        </tr>
+                        <tr class="dk">
+                            <td>BERLIN-SCHOF</td>
+                            <td>14:50</td>
+                            <td>14:54</td>
+                            <td>LANDED AT 14:55</td>
+                        </tr>
+                        <tr>
+                            <td>PARIS-CDG</td>
+                            <td>14:55</td>
+                            <td>14:42</td>
+                            <td>LANDED AT 14:43</td>
+                        </tr>
+                        <tr class="dk">
+                            <td>NICE</td>
+                            <td>15:15</td>
+                            <td>18:22</td>
+                            <td>LANDED AT 18:21</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">KL 1053</th>
+                            <td>AMSTERDAM</td>
+                            <td>15:15</td>
+                            <td>14:57</td>
+                            <td>LANDED AT 14:57</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
