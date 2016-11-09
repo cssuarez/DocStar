@@ -1,0 +1,27 @@
+﻿@using Astria.Framework.Utility;
+<div class="preAdditionalSelectedHTML inlineblock fleft">
+    <div class="inlineblock fleft ctbIconContainer">
+        <span title="@Constants.i18n("reorder")" class="inlineblock sPngIB handleIcon"></span>
+    </div>
+</div>
+<div class="inlineblock fleft limitLabelWidth">
+    <span class="no_text_select" title="{{=it.fieldName}}">{{=it.fieldName}}</span>
+</div>
+<div class="additionalSelectedHTML inlineblock">
+    {{ if(it.displayShowHide) { }}
+    {{ if(it.showField) { }}
+    <div title="{{=it.showFieldTooltip}}" class="inlineblock fleft spacingLeftRightSmall ctbIconContainer">
+        <span class="fleft sPngIB showEyeIcon"></span>
+    </div>
+    {{ } else { }}
+    <div title="{{=it.hideFieldTooltip}}" class="inlineblock fleft spacingLeftRightSmall ctbIconContainer">
+        <span class="fleft sPngIB hideEyeIcon"></span>
+    </div>
+    {{ } }}
+    {{ } else { }}
+    <div class="inlineblock fleft spacingLeftRightSmall ctbIconContainer">
+        <span class="fleft inlineblock">&nbsp;</span>
+    </div>
+    {{ } }}
+</div>
+

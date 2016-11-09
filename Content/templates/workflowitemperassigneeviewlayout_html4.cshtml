@@ -1,0 +1,17 @@
+﻿@using Astria.Framework.Utility
+<td class="customGridDataCell">
+    @*subgrid Header*@
+    <span class="subgridExpand ui-icon ui-icon-triangle-1-{{=it.subGridExpanded ? 's' : 'e'}}"></span>
+</td>
+{{
+var idx = 0;
+var length = it.cells.length;
+for (idx; idx < length; idx++) {
+    var cell = it.cells[idx];
+}}
+<td data-cellid="{{=cell.valueId}}" class="customGridDataCell customGridEditCell">
+    <div class="valueContainer">
+        {{=cell.value || '&nbsp;'}}
+    </div>
+</td>
+{{ } }}

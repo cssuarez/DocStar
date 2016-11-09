@@ -1,0 +1,149 @@
+﻿@using Astria.Framework.Utility;
+<div id="container_pawnsConfig" class="container_sec_class_container">
+    <div id="pawnsRuleDTO">
+        <div id="seletRuledv" class="pawnItems">
+            <span class="captionLabel spacingTop">@Constants.i18n("pawnsSelectRule"):</span>
+            <select id="rules" class="fleft" name="RuleName">
+                {{
+                    var idx = 0;
+                    var length = it.rulesData.length;
+                    for(idx; idx < length; idx++) {
+                    var rule = it.rulesData[idx];
+                }}
+                        {{= Utility.safeHtmlValue(rule.Id, { attrs: {id: rule.Id,selected: it.selectedData.Id === rule.Id ? 'selected' : undefined}, tag:'option', text: rule.RuleName, value: rule.Id})}}
+                {{
+                    }
+                }}
+            </select>
+            <input type="hidden" name="RuleNameValidation" />
+        </div>
+        <div id="detailLeveldv" class="pawnItems">
+            <span class="captionLabel">@Constants.i18n("pawnsDetailLevel"):</span>
+            <div id="detailLevel" class="fleft">
+                {{ 
+                    var isDetailed = it.selectedData.IsDetailed; 
+                }}
+                <label>
+                    {{= Utility.safeHtmlValue('summary' , {attrs: {'type': 'radio', name: "DetailLevel", checked: !isDetailed ? 'checked' : undefined }, tag:'input', 'class': 'fleft radioLabelSpacing' })}}
+                    <span class="inlineblock fleft spacingLeftRight">@Constants.i18n("pawnsDetailLevelSummary")</span>
+                </label>
+                <label>
+                    {{= Utility.safeHtmlValue('full', {attrs: {'type': 'radio', name: "DetailLevel", checked: isDetailed ? 'checked' : undefined }, tag:'input', 'class': 'fleft radioLabelSpacing' })}}
+                    <span class="inlineblock fleft spacingLeftRight">@Constants.i18n("pawnsDetailLevelFull")</span>
+                </label>
+                <span class="ui-icon ui-icon-help inlineblock" title="@Constants.i18n("detailLevelHelp")"></span>
+            </div>
+        </div>
+        <div id="columnsChooserdv" class="inlineblock fullWidth">
+            <span class="captionLabel">@Constants.i18n("displayColumns"):</span>
+            <div class="inlineblock spacingTopBottom">
+                <select multiple="multiple" class="multiselect" id="rulecolumn" name="Columns" style="display: none;">
+                    {{ for(i = 0; i < it.listfields.length; i++) { }}
+                        <option value="{{=it.listfields[i].ActualName}}">{{=it.listfields[i].DisplayName}}</option>
+                    {{ } }}
+                </select>
+            </div>
+            <input type="hidden" name="DetailLevelValidation" />
+        </div>
+        <div id="sortdv" class="pawnItems">
+            <span class="captionLabel spacingTop">@Constants.i18n("pawnsSort"):</span>
+            <select id="sort" class="fleft spacingRight" name="Sort">
+                {{ for(i = 0; i < it.listfields.length; i++) { 
+                    var selected = it.selectedData.Sort === it.listfields[i].ActualName ? 'selected="selected"' : ''; 
+                }}
+                    <option value="{{=it.listfields[i].ActualName}}" {{=selected}}>{{=it.listfields[i].DisplayName}}</option>
+                {{ } }}
+            </select>
+            <select id="sortOrder" class="fleft" name="SortDescending">
+                {{
+                    if(it.selectedData.SortDescending) { }}
+                        <option value="@Constants.i18n("pawnsSortAsc")">@Constants.i18n("pawnsSortAsc")</option>
+                        <option value="@Constants.i18n("pawnsSortDesc")" selected="selected">@Constants.i18n("pawnsSortDesc")</option>
+                {{  } else { }}
+                        <option value="@Constants.i18n("pawnsSortAsc")" selected="selected">@Constants.i18n("pawnsSortAsc")</option>
+                        <option value="@Constants.i18n("pawnsSortDesc")">@Constants.i18n("pawnsSortDesc")</option>
+                {{  } }}
+
+            </select>
+        </div>
+        <div id="filterexcludegroupdv" class="pawnItems">
+            <span class="captionLabel spacingtop" title='@Constants.i18n("excludeGroupsDesc")'>@Constants.i18n("excludeGroups"):</span>   
+            {{= Utility.safeHtmlValue('true' , {attrs: {'type': 'checkbox', name: "ExcludeGroups", checked: it.selectedData.ExcludeGroups ? 'checked' : undefined }, tag:'input'})}}
+        </div>
+        <div id="senddv" class="pawnItems">
+            <span class="captionLabel">@Constants.i18n("pawnsSend"):</span>
+            <div id="sendoption" class="fleft">
+                {{ var newOnly = it.selectedData.NewOnly; }}
+                <label>
+                    {{= Utility.safeHtmlValue('all' , {attrs: {'type': 'radio', name: "NewOnly", checked: !newOnly ? 'checked' : undefined }, tag:'input', 'class': 'fleft radioLabelSpacing' })}}
+                    <span class="inlineblock fleft spacingLeftRight" ">@Constants.i18n("pawnsSendAll")</span>
+                </label>
+                <label>
+                    {{= Utility.safeHtmlValue('NewOnly', {attrs: {'type': 'radio', name: "NewOnly", checked: newOnly ? 'checked' : undefined }, tag:'input', 'class': 'fleft radioLabelSpacing' })}}
+                    <span class="inlineblock fleft spacingLeftRight">@Constants.i18n("pawnsSendNewOnly")</span>
+                </label>
+            </div>
+        </div>
+        <div id="sendEmailForzeroItemdv" class="pawnItems">
+            <span class="captionLabel posRel inlineblock spacingBottom fullWidth">@Constants.i18n("pawnsSendEmailZero")</span>
+            {{ var sendEmailForZeroItem = it.selectedData.SendEmailForZeroItem; }}
+            <label class="inlineblock fleft posRel">
+                {{= Utility.safeHtmlValue('yes', {attrs: {'type': 'radio', name: "SendEmailForZeroItem", checked: sendEmailForZeroItem ? 'checked' : undefined }, tag:'input', 'class': 'fleft radioLabelSpacing' })}}
+                <span class="inlineblock fleft spacingLeftRight">@Constants.i18n("yes")</span>
+            </label>
+            <label class="inlineblock fleft posRel">
+                {{= Utility.safeHtmlValue('no' , {attrs: {'type': 'radio', name: "SendEmailForZeroItem", checked: !sendEmailForZeroItem ? 'checked' : undefined }, tag:'input', 'class': 'fleft radioLabelSpacing' })}}
+                <span class="inlineblock fleft spacingLeftRight" ">@Constants.i18n("no")</span>
+            </label>
+        </div>
+        <div class="fleft inlineblock">
+            <fieldset>
+                <legend>@Constants.i18n("workItemsFilters")</legend>
+                <div id="filterqueuedv" class="pawnItems">
+                    <span class="captionLabel spacingTop">@Constants.i18n("pawnsQueue"):</span>
+                    <select id="filterqueue" class="fleft" name="QueueId">
+                        <option value="@Constants.i18n("emptyGuid")">@Constants.i18n("all")</option>
+                        {{ 
+                            var idx = 0;
+                            var length = it.listuq.length;
+                            for(var idx = 0; idx < length; idx++ ) {
+                                var item = it.listuq[idx];
+                        }}
+                        {{= Utility.safeHtmlValue(item.Id, {attrs: {selected: it.selectedData.QueueId === item.Id ? 'selected' : undefined}, tag:'option', text: item.Username })}}
+                        {{ } }}
+                    </select>
+                </div>
+                <div id="filterworkflowdv" class="pawnItems">
+                    <span class="captionLabel spacingTop">@Constants.i18n("pawnsWorkflow"):</span>
+                    <select id="filterworkflow" class="fleft" name="WorkFlowId">
+                        <option value="@Constants.i18n("emptyGuid")">@Constants.i18n("workflow_all")</option>
+                        {{
+                            var idx = 0;
+                            var length = it.listwf.length;
+                            for(var idx = 0; idx < length; idx++ ) {
+                                var item = it.listwf[idx];
+                        }}
+                        {{= Utility.safeHtmlValue(item.Id, {attrs: {selected: it.selectedData.WorkFlowId === item.Id ? 'selected' : undefined}, tag:'option', text: item.Name })}}
+                        {{ } }}
+                    </select>
+                </div>
+            </fieldset>
+        </div>
+        <div id="lastSentdv" class="pawnItems">
+            <span class="captionLabel">@Constants.i18n("pawnsLastSent"):</span>
+            <span id="lastSent" class="fleft">{{=it.selectedData.LastSent || Constants.c.notAvailable}}</span>
+        </div>
+        
+        <div id="resultlimitdv" class="pawnItems">
+            <span class="captionLabel spacingTop">@Constants.i18n("pawnsResultLimit"):</span>
+            {{= Utility.safeHtmlValue(it.selectedData.ResultLimit || 50, {attrs:{id: 'resultLimit', maxlength:4, name: 'ResultLimit'}, tag:'input', 'class': 'fleft' })}}
+        </div>
+    </div>
+    <div id="scheduledv">
+        <div id="ruleSchedule">
+        </div>
+        <input type="hidden" name="DateTimeError" />
+    </div>
+    <div><span id="statusMsg"></span></div>
+</div>
+

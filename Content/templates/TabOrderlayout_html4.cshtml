@@ -1,0 +1,50 @@
+﻿@using Astria.Framework.Utility;
+<img class="throbber loadingThrobberHorizontalPosCenter" src="@System.Web.Mvc.UrlHelper.GenerateContentUrl("~/Content/themes/default/throbber.gif", new HttpContextWrapper(HttpContext.Current))" alt="" />
+<div id="contentTypeBuilderTabs">
+    <ul style="display:none;">
+        <li id="contentTypeBuilderTab" class="leftMostTabBorder"><a href="#contentTypeBuilderTabs_ContentTypeBuilder">@Constants.i18n("contentTypeBuilder")</a></li>
+    </ul>
+    <div id="contentTypeBuilderTabs_ContentTypeBuilder">
+        <div class="contentTypeContainer">
+            <div class="displayTable fullWidth spacingTopBottom" style="display:none;">
+                <div class="displayTableCell">
+                    @* Don't allow hiding of the content type yet. *@
+                    @*<div title="@Constants.i18n("hideField")" class="displayTableCell showEyeIcon sPngIB fleft"></div>*@
+                </div>
+                <div class="displayTableCell fieldLabelContainer">
+                    <span>@Constants.i18n("contentType")</span>
+                </div>
+                <div class="displayTableCell fullWidth">
+                    <select name="Name" class="metaselect">
+                    </select>
+                </div>
+                {{if(it.displayDelete) { }}
+                <div class="displayTableCell verticalAlignMiddle">
+                    <span class="ui-icon ui-icon-close" title="@Constants.i18n("delete")"></span>
+                </div>
+                {{ } }}
+            </div>
+            {{ if(it.canView) { }}
+            <div class="displayTable" style="display:none;">
+                <div class="displayTableCell"></div>
+                <div class="displayTableCell fieldLabelContainer">
+                    <span>@Constants.i18n("contentTypeSecurityClass")</span>
+                </div>
+                <div class="displayTableCell fullWidth">
+                    <select name="SecurityClassId" class="metaselect">
+                    </select>
+                </div>
+            </div>
+            {{ } else { }}
+            <div class="fullWidth" style="display:none;">
+                <span class="AlignCenter inlineblock">{{=it.insufficientPermissionsMessage}}</span>
+            </div>
+            {{ } }}
+        </div>
+        <div class="ctbFieldsContainer fullWidth spacingTopSmall">
+            @* Render field elements for editing/creating fields for a content type *@
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,47 @@
+﻿@using Astria.Framework.Utility;
+
+<div class="ctbDisplayFieldsContainer" style="display:none">
+    <label>
+        <input type="checkbox" />
+        <span class="spacingLeftSmall">@Constants.i18n("displayAllFields")</span>
+    </label>
+</div>
+<div class="ctbNewFieldContainer displayTable" style="display:none;">
+    <div class="displayTableCell"></div>
+    <div class="displayTableCell fieldLabelContainer">
+        <span>@Constants.i18n("addField")</span>
+    </div>
+    <div class="displayTableCell fullWidth">
+        <select class="ctbNew" style="display: none;"></select>
+    </div>
+    <div class="displayTableCell verticalAlignMiddle">
+        <span class="ui-icon ui-icon-plus" title="@Constants.i18n("addField")"></span>
+    </div>
+</div>
+<div class="ctbFieldSettingsContainer">
+    <ul>
+        @* Render Field settings here *@
+    </ul>
+</div>
+<div class="displayTable relatedContainer spacingTopBottom" style="display:none;">
+    <div class="displayTableCell fieldLabelContainer">
+        <span class="linkIcon sPng inlineblock"></span>
+        <span>@Constants.i18n("relateOn")</span>
+    </div>
+    <div class="displayTableCell">
+        <div class="displayTableRow">
+            <label>
+                <input type="radio" name="RelateOn" value="{{= Constants.fro.AnyRelatedField }}" {{=it.anySelected}} {{=it.relatedFieldsDisabled}} />
+                <span class="radioLabelSpacing">@Constants.i18n("anyRelatedField")</span>
+            </label>
+        </div>
+        <div class="displayTableRow">
+            <label>
+                <input type="radio" name="RelateOn" value="{{= Constants.fro.AllRelatedFields }}" {{=it.allSelected}} {{=it.relatedFieldsDisabled}} />
+                <span class="radioLabelSpacing">@Constants.i18n("AllRelatedFields")</span>
+            </label>
+        </div>
+    </div>
+</div>
+
+

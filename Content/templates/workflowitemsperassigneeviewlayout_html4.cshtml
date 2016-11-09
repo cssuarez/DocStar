@@ -1,0 +1,31 @@
+﻿@using Astria.Framework.Utility;
+<table class="customGridTable">
+    <thead>
+        @*Headers*@
+        <tr>
+            <th class="customGridHeader subgridExpandHeader">
+                &nbsp;
+            </th>
+            <th class="customGridHeader" data-columnid="AssigneeName" style="width: 75%;">
+                @Constants.i18n("assignee")
+            </th>
+            <th class="customGridHeader" data-columnid="Count" style="width: 25%;">
+                @Constants.i18n("count")
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @* Render WorkflowItemPerAssigneeView's Here *@
+    </tbody>
+    <tfoot>
+        @*Footers*@
+        <tr class="customGridPager">
+            @* Refresh Control *@
+            <td colspan="3">
+                <div class="fleft customGridPagerButton">
+                    <span class="refreshGrid ui-icon ui-icon-refresh"></span>
+                </div>
+            </td>
+        </tr>
+    </tfoot>
+</table>

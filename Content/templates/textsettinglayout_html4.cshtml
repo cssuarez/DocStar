@@ -1,0 +1,95 @@
+﻿@using Astria.Framework.Utility;
+@* Font Type *@
+<div>
+    {{if(it.displayLabels) { }}
+    <label>
+        <span>@Constants.i18n("fontType")</span>
+        <select name="FontType">
+            {{
+            var i = 0;
+            var length = it.fonts.length;
+            for (i; i < length; i++) {
+                var f = it.fonts[i];
+            }}
+            <option value="{{=f.Value}}" {{=f.Selected}} {{=f.Style}}>{{=f.Value}}</option>
+            {{ } }}
+        </select>
+    </label>
+    {{ } else { }}
+    <select name="FontType">
+            {{
+            i = 0;
+            length = it.fonts.length;
+            for (i; i < length; i++) {
+                var f = it.fonts[i];
+            }}
+            <option value="{{=f.Value}}" {{=f.Selected}} {{=f.Style}}>{{=f.Value}}</option>
+            {{ } }}
+    </select>
+    {{ } }}
+</div>
+@* Font Size *@
+<div>
+    {{if(it.displayLabels) { }}
+    <label>
+        <span>@Constants.i18n("fontSize")</span>
+        <select name="FontSize">            
+            {{
+            i = 0;
+            length = it.sizes.length;
+            for (i; i < length; i++) {
+                var s = it.sizes[i];
+            }}
+            <option value="{{=s.Value}}" {{=s.Selected}}>{{=s.Value}}</option>
+            {{ } }}
+        </select>
+    </label>
+    {{ } else { }}
+    <select name="FontSize">
+            {{
+            i = 0;
+            length = it.sizes.length;
+            for (i; i < length; i++) {
+                var s = it.sizes[i];
+            }}
+            <option value="{{=s.Value}}" {{=s.Selected}}>{{=s.Value}}</option>
+            {{ } }}
+    </select>
+    {{ } }}
+</div>
+@* Alignment *@
+<div class="fontAlignments fright">
+    <div class="toggle_btn custom_button {{=it.Alignment === 'left' ? 'pressed' : ''}}">
+        <span class="alignLeftIcon wysiwygGifIB" title="@Constants.i18n("alignLeft")"></span>
+        <input type="hidden" name="Alignment" value="left" />
+    </div>
+    <div class="toggle_btn custom_button {{=it.Alignment === 'center' ? 'pressed' : ''}}">
+        <span class="alignCenterIcon wysiwygGifIB" title="@Constants.i18n("alignCenter")"></span>
+        <input type="hidden" name="Alignment" value="center" />
+    </div>
+    <div class="toggle_btn custom_button {{=it.Alignment === 'right' ? 'pressed' : ''}}">
+        <span class="alignRightIcon wysiwygGifIB" title="@Constants.i18n("alignRight")"></span>
+        <input type="hidden" name="Alignment" value="right" />
+    </div>
+</div>
+@* Font Styles *@
+<div class="fontStyles fright spacingLeftRightSmall">
+    <div class="toggle_btn custom_button {{=it.Bold ? 'pressed' : ''}}">
+        <span class="fontStyleBold" title="@Constants.i18n("bold")"></span>
+        <input type="hidden" value="{{=Constants.fs.Bold}}" />
+    </div>
+    <div class="toggle_btn custom_button {{=it.Italic ? 'pressed' : ''}}">
+        <span class="fontStyleItalic" title="@Constants.i18n("italic")"></span>
+        <input type="hidden" value="{{=Constants.fs.Italic}}" />
+    </div>
+    <div class="toggle_btn custom_button {{=it.Underline ? 'pressed' : ''}}">
+        <span class="fontStyleUnderline" title="@Constants.i18n("underline")"></span>
+        <input type="hidden" value="{{=Constants.fs.Underline}}" />
+    </div>
+</div>
+@* Font Color *@
+<div class="fontColors fright spacingRightSmall">
+    <span class="fontColor">
+        @* Create a jpicker and set the font color (black by default) after it has been rendered *@
+    </span>
+</div>

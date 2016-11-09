@@ -1,0 +1,37 @@
+﻿@using Astria.Framework.Utility;
+<div class="displayTableRow">
+    @* List of boolean custom fields, with the current watch selected *@
+    <div class="displayTableCell">
+        <select name="CustomFieldId">
+            @* 
+        Allow a blank option, this will allow a user to also remove a watch, rather than clicking the hover 'x' below 
+        This will also prevent a user from accidentally saving a watch for a custom field that would be auto selected
+    *@
+            <option></option>
+            @* Fill out list of custom fields based on determined boolean custom fields *@
+            {{= it.booleanCustomFieldsHTML}}
+        </select>
+    </div>
+    <div class="displayTableCell">
+        @* Whether or not to perform the highlight when the value is determined to be true or false *@
+        <input type="checkbox" name="IsTrue" />
+    </div>
+    @* How to evaluate the selected custom fields value(s), ANY are true/false OR ALL true/false *@
+    @* Any - if 'Any' of the custom field values are true/false, this evaluates to true *@
+    <div class="displayTableCell">
+        <div class="AlignCenter">
+            <input type="radio" name="{{="Grouping_" + it.viewId}}" value="any" />
+            <span class="radioLabelSpacing">@Constants.i18n("any")</span>
+            @* All - if 'All' of the custom field values are true/false, this evaluates to true *@
+            <input type="radio" name="{{="Grouping_" + it.viewId}}" value="all"/>
+            <span class="radioLabelSpacing">@Constants.i18n("all")</span>
+        </div>
+    </div>
+    @* Provide a palette of colors for a user to pick for highlighting *@
+    <div class="colorPicker displayTableCell">
+    </div>
+    @* Allow removal of any field via a hover 'x' *@
+    <div class="displayTableCell">
+        <span style="display: none;" class="ui-icon ui-icon-circle-close fright deleteWatch"></span>
+    </div>
+</div>

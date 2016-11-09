@@ -1,0 +1,64 @@
+﻿@using Astria.Framework.Utility;
+<div class="accordion_title accordion_title_{{=it.workItemsClosed}}">
+    <div class="accordion_title_contents">
+        <div class="title_arrow"></div>
+        <span class="anchor">@Constants.i18n("workItems")</span> <span class="swoosh"></span>
+        <span class="PawnsViewContainer">
+            @* Render Pawns View Here *@
+        </span>
+    </div>
+</div>
+<div class="accordionContainer">
+    <div class="accordion {{=it.workItemsClosed}}">
+        <div class="filtersContainer">
+            <div class="filter">
+                <span>@Constants.i18n("workflow"):</span>
+                <select class="workflowFilter shadow">
+                    <option value="@Constants.i18n("emptyGuid")">@Constants.i18n("workflow_all")</option>
+                    {{
+                        var idx = 0;
+                        var length = it.listwf.length;
+                        for(idx; idx < length; idx++) {
+                            var wf = it.listwf[idx];
+                            var wfId = wf.Id;
+                            var wfName = wf.Name;
+                            var selected = it.wfFilterId === wfId ? 'selected' : undefined;
+                    }}
+                    {{= Utility.safeHtmlValue(wfId, { tag: 'option', text: wfName, attrs: {title: wfName, selected: selected } } ) }}
+                    {{ } }}
+                </select>
+            </div>
+            <div class="filter">
+                <span>@Constants.i18n("queue"):</span>
+                <select class="queueFilter shadow">
+                    {{ if(it.isAdmin || it.isWfAdmin) { }}
+                    <option value="@Constants.i18n("emptyGuid")">@Constants.i18n("all")</option>
+                    {{ } }}
+                    {{
+                        var idx = 0;
+                        var length = it.listuq.length;
+                        for(idx; idx < length; idx++) {
+                            var user = it.listuq[idx];
+                            var userId = user.Id;
+                            var userName = user.Username;
+                            var selected = undefined;
+                            if(it.qFilterId) {
+                                selected = it.qFilterId === userId ? 'selected' : undefined;
+                            }
+                            else {
+                                selected = it.currUserId === userId ? 'selected': undefined;
+                            }
+                    }}
+                    {{=Utility.safeHtmlValue(userId, { tag: 'option', text: userName, attrs: {title: userName, selected: selected } } ) }}
+                    {{ } }}
+                </select>
+            </div>
+        </div>
+        <div class="SearchResultsGridViewContainer">
+            @* Render Search Results View Here *@
+        </div>
+        <div id="wfItem_err_cont">
+            <input type="hidden" name="wfItems_err" />
+        </div>
+    </div>
+</div>

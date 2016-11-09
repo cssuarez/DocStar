@@ -1,0 +1,25 @@
+﻿@using Astria.Framework.Utility;
+@* header row for labels to each of the watch columns (field name, true/false check, grouping - all/any, color) *@
+<div class="fullWidth posRel spacingBottomSmall">
+    <div class="watchFieldLabel fleft">
+        <span class="AlignCenter inlineblock">@Constants.i18n("field")</span>
+    </div>
+    <div class="watchTrueOrFalseLabel fleft">
+        <span class="AlignCenter inlineblock">@Constants.i18n("trueOrFalse")</span>
+    </div>
+    <div class="watchGroupingLabel fleft">
+        <span class="AlignCenter inlineblock">@Constants.i18n("grouping")</span>
+    </div>
+    <div class="watchColorLabel fleft">
+        <span class="AlignCenter inlineblock">@Constants.i18n("color")</span>
+    </div>
+</div>
+@* Container for watches *@
+<div class="watchLibraryView fullWidth inlineblock">
+    <div class="watchContainer fullWidth displayTable">
+    </div>
+</div>
+@* Add button to add a new watch *@
+<div class="fullWidth inlineblock spacingTopBottom">
+    <span class="addWatch custom_button short_btn fright posAbs">@Constants.i18n("add")</span>
+</div>

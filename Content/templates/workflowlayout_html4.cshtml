@@ -1,0 +1,33 @@
+﻿@using Astria.Framework.Utility;
+<div id="workflow_layout">
+    <div class="resize-document WorkflowViewLeft">
+        <div class="WorkflowViewAccordions">
+            <div class="WorkflowItemsViewContainer {{=it.workItemsState === 'closed' ? 'isClosed' : ''}} {{=it.wiFirstOpen ? 'isFirstOpen' : ''}}" data-accid="work_items">
+                @* Render WorkflowItemsView Here *@
+            </div>
+            <div class="ApprovalRequestItemsViewContainer {{=it.appReqState === 'closed' ? 'isClosed' : ''}} {{=it.arFirstOpen ? 'isFirstOpen' : ''}}" data-accid="approval_requests">
+                @* Render ApprovalRequestItemsView Here *@
+            </div>
+            @* Render Dashboard View Here *@
+            <div class="DashboardViewContainer {{=it.dashboardState === 'closed' ? 'isClosed' : ''}} {{=it.dbFirstOpen ? 'isFirstOpen' : ''}} {{=it.allClosed ? 'allClosed' : '' }}" data-accid="dashboard">
+                @* Render DashboardView Here *@
+            </div>
+        </div>
+    </div>
+    <div class="document_preview light_shadow_left WorkflowViewRight">
+        <div class="DocumentPreviewContainer">
+        </div>
+    </div>
+    <div id="resetWfDoc" style="display: none;">
+        <div class="inlineblock">
+            <span>@Constants.i18n("clearChatMsg"):</span>
+            <input id="clearChatCheckbox" class="clearChat" type="checkbox" />
+
+        </div>
+        <div class="inlineblock">
+            <span class="success_message" style="display: none">@Constants.i18n("resetSuccess")</span>
+            <img id="reset_throbber" style="display: none;" alt="" src="@System.Web.Mvc.UrlHelper.GenerateContentUrl("~/Content/themes/default/throbber.gif", new HttpContextWrapper(HttpContext.Current))" />
+            <input name="reset_err_msg" type="hidden" />
+        </div>
+    </div>
+</div>

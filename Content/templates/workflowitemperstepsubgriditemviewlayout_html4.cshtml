@@ -1,0 +1,13 @@
+﻿@using Astria.Framework.Utility
+{{
+var idx = 0;
+var length = it.cells.length;
+for (idx; idx < length; idx++) {
+    var cell = it.cells[idx];
+}}
+<td class="customGridDataCell customGridEditCell">
+    <div class="valueContainer">
+        {{=Utility.safeHtmlString(cell.value) || '&nbsp;'}}
+    </div>
+</td>
+{{ } }}

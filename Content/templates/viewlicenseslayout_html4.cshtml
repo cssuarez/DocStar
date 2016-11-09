@@ -1,0 +1,148 @@
+﻿@using Astria.Framework.Utility;
+<h2>@Constants.i18n("editReadOnlyUser")</h2>
+{{ if (!it.list.isEmpty()) {
+        var enabled = 'selected="selected"';
+        var disabled = '';
+        var gatewayPermissions = 0;
+        if (it.selected.get('Active') === "false" || it.selected.get('Active') === false ) {
+            disabled = enabled;
+            enabled = '';
+        }     
+        var hasCreateEdit = Utility.checkGP(it.gp, Constants.gp.Create_Edit_Users);     
+        var hasDelete = Utility.checkGP(it.gp, Constants.gp.Delete_Users);
+        
+    }}
+<div id="user_layout" class="left">
+    <fieldset>
+        <legend>@Constants.i18n("userTitle")</legend>
+        <ol class="unstyledList">
+            <li>
+                <label>@Constants.i18n("selectUser"):</label>
+                <select name="Id">
+                    {{ it.list.each(function(item) { }}
+                    {{ if (hasCreateEdit || item.get("Id") !== Constants.c.emptyGuid && !hasCreateEdit) { }}
+                        {{ if (it.selected.get("Username") === item.get("Username")) { }}
+                            <option value="{{= it.selected.get('Id') }}" selected="selected">{{= item.get('Username') }}</option>
+                    {{ } else { }}
+                            <option value="{{= item.get('Id') }}">{{= item.get('Username') }}</option>
+                    {{ } }}
+                    {{ } }}
+                {{ }); }}
+                </select>
+            </li>
+            <li>
+                <label>@Constants.i18n("username"):</label>
+                <input type="text" name="Username" value="{{= it.selected.get('Username') }}" />
+            </li>
+            <li class="passwordListItem enabledIndependent ">{{  if(it.selected.get('Id') !== Constants.c.emptyGuid) { }}
+                    <label>@Constants.i18n("changePassword"):</label>
+                {{  } else { }}                    
+                    <label>@Constants.i18n("password"):</label>
+                {{  } }}
+                <input type="password" name="Password" />
+
+            </li>
+            <li class="passwordListItem enabledIndependent">
+                <label>@Constants.i18n("password_reenter"):</label>
+                <input type="password" name="password_reenter" value="" />
+            </li>
+        </ol>
+    </fieldset>
+
+</div>
+<div class="right">
+    <fieldset>
+        <legend>@Constants.i18n("groupsTitle")</legend>
+        {{ var roles = it.selected.get("RoleMembership"); }}            
+        <select name="RoleMembership" multiple="multiple"  style="width: 300px; height: 145px;">
+            {{ it.listr.each(function(item) { }}
+                {{ var dr =  _.detect(roles, function(r){ 
+                        return r === item.get("Id"); 
+                    }); 
+                }}
+                {{ if ($.isEmptyObject(dr)) { 
+                }}
+                    <option value="{{= item.get('Id') }}">{{= item.get('Name') }}</option>
+            {{ } else { }}
+                    <option selected="selected" value="{{= item.get('Id') }}">{{= item.get('Name') }} </option>
+            {{ } }}
+            {{ }); }}
+        </select>
+    </fieldset>
+</div>
+<div class="buttons" style="width: 387px;">
+    {{ if(hasCreateEdit) { }}
+    <input type="button" name="save_user" value="@Constants.i18n("save")" />
+    {{ } }}
+    {{ if(hasDelete) { }}
+    <input type="button" name="delete_user" value="@Constants.i18n("delete")" />
+    {{ } }}
+    <input type="button" name="create_guest_user" id="create_guest_user" value="@Constants.i18n("createReadOnlyUser")" />
+    <input type="button" name="upgrade_user" id="upgrade_user" value="@Constants.i18n("readOnlyUpgradeUser")" />
+    <input type="hidden" name="user_Error" />
+</div>
+<div id="readOnlyUserMain" style="display: none">
+    <div id="readOnlyUser_layout" class="left">
+        <fieldset>
+            <legend>@Constants.i18n("userTitle")</legend>
+            <ol class="unstyledList">
+                <li>
+                    <label>@Constants.i18n("usernameMultiple"):</label>
+                    <textarea rows="5" style="width: 300px;" name="ReadOnlyUsersName" id="readOnlyUsersName" />
+                </li>
+                <li>
+                    <label>@Constants.i18n("requireNewPassword"):</label>
+                    <input type="checkbox" name="RequireNewPassword" checked="checked" />
+                </li>
+                <li>
+
+                    <label>@Constants.i18n("sendEmail"):</label>
+                    <input type="checkbox" name="SendEmail" checked="checked" />
+                </li>
+                <li>
+                    <div id="dvSubject">
+                        <label>@Constants.i18n("subject"):</label>
+                        <input type="text" style="width: 300px;" name="Subject" id="subject" />
+                    </div>
+                </li>
+                <li>
+                    <div id="dvBody">
+                        <label>@Constants.i18n("body"):</label>
+                        <textarea rows="5" style="width: 300px;" name="Body" id="body" />
+                    </div>
+                </li>
+            </ol>
+        </fieldset>
+
+    </div>
+    <div class="right" style="height: 200px;">
+        <fieldset>
+            <legend>@Constants.i18n("groupsTitle")</legend>
+            {{ var roles = it.selected.get("RoleMembership"); }}            
+        <select name="RoleMembershipReadOnly" multiple="multiple" style="width: 300px; height: 145px; float:right">
+            {{ it.listr.each(function(item) { }}
+                {{ var dr =  _.detect(roles, function(r){ 
+                        return r === item.get("Id"); 
+                    }); 
+                }}
+                {{ if ($.isEmptyObject(dr)) { 
+                }}
+                    <option value="{{= item.get('Id') }}">{{= item.get('Name') }}</option>
+            {{ } else { }}
+                    <option value="{{= item.get('Id') }}">{{= item.get('Name') }} </option>
+            {{ } }}
+            {{ }); }}
+        </select>
+        </fieldset>
+    </div>
+    <input type="hidden" name="createReadOnlyUserError" />
+</div>
+{{  } else { }}
+<span class="error">{{ if(it.list.errorMsg === null) { }}
+{{= Constants.c.noDataReturnedFromServer }}
+{{ } else { }}
+{{= it.list.errorMsg }}
+{{ } }}
+</span>
+{{ } }}
+

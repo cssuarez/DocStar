@@ -1,0 +1,23 @@
+﻿@using Astria.Framework.Utility;
+@* Take up space of the number of columns before actual column data *@
+<td colspan="1"></td>
+<td colspan="2">
+    @* Number of columns in parent grid - number of columns specified above. In this case 1, the subgrid expander column) *@
+    <table class="customGridTable">
+        <thead>
+            @*Headers*@
+            <tr>
+                <th class="customGridHeader" style="width: 75%;">
+                    @Constants.i18n("workflowName")
+                </th>
+                <th class="customGridHeader" style="width: 25%;">
+                    @Constants.i18n("count")
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @* Render WorkflowItemPerStepSubgridItemView's Here *@
+        </tbody>
+        @* No Footer *@
+    </table>
+</td>

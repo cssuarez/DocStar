@@ -1,0 +1,47 @@
+﻿@* Render a select list with available Systray Connections *@
+@using Astria.Framework.Utility;
+{{
+    var systrayConnection = it;
+    var systrayConnections = $('#systrayConnections').val();
+    if(systrayConnections) {
+        systrayConnections = JSON.parse(systrayConnections);
+    }
+    var i = 0;
+    var length = systrayConnections.length;
+    var emptyValue = JSON.stringify({});
+}}
+<select class="systrayConnection fullWidth">
+    <option selected="selected" value="noSelection"></option>
+    {{ if(systrayConnection && $.isEmptyObject(systrayConnection)) { }}
+        <option value="{{=emptyValue}}" selected="selected">@Constants.i18n("noConnectionSelection")</option>
+    {{ } else { }}
+        <option value="{{=emptyValue}}">@Constants.i18n("noConnectionSelection")</option>
+    {{ } }}
+    {{  
+        for(i; i < length; i++) { 
+            if (systrayConnections[i].Hub === 0)
+            {
+                var title = Constants.c.ipaddress + ': ' + systrayConnections[i].IPAddress + '\n' + Constants.c.machineId + ': ' + systrayConnections[i].MachineId;
+                var value = systrayConnections[i];
+                var text = systrayConnections[i].MachineName;
+                var conn = ClientService.getSystrayConnection(systrayConnection);
+                if(conn && conn.MachineName === systrayConnections[i].MachineName && conn.IPAddress === systrayConnections[i].IPAddress) {
+    }}
+                    <option title="{{=title}}" data-connectionid="{{=value.ConnectionId}}" data-machinename="{{= value.MachineName}}" data-machineid="{{=value.MachineId}}" data-ipaddress="{{=value.IPAddress}}" data-userid="{{=value.UserId}}" selected="selected">{{=text}}</option>
+    {{      
+                } 
+                else {
+    }}
+                    <option title="{{=title}}" data-connectionid="{{=value.ConnectionId}}" data-machinename="{{= value.MachineName}}" data-machineid="{{=value.MachineId}}" data-ipaddress="{{=value.IPAddress}}" data-userid="{{=value.UserId}}">{{=text}}</option>
+    {{
+                } 
+            }
+        }
+    }}
+</select>
+<div class="spacingTopBottom fullWidth inlineblock">
+    <a class="custom_button long_btn shadow fright" href="{{= window.clientServiceInstallUri}}" target="_blank" title="@Constants.i18n("clientInstallTT")">@Constants.i18n("installUpdatedClient")</a>
+</div>
+<div class="spacingTopBottom fullWidth inlineblock">
+    <a class="guidedHelpCapture" title="@Constants.i18n("help")">@Constants.i18n("help")</a>
+</div>
