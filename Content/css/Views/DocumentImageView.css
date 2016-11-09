@@ -1,0 +1,132 @@
+﻿.DocumentImageView {
+    /*width: 100%;
+    display: block;
+    height: 102%;
+    right: 0;
+    top: -3px;
+    margin: 0 0 0 5px;*/
+}
+
+    .DocumentImageView .anno_menu_cont {
+        border: none;
+    }
+
+        .DocumentImageView .anno_menu_cont.collapse.pressed {
+            background-position: -66px -207px;
+        }
+
+        .DocumentImageView .anno_menu_cont.collapse {
+            border: 1px solid #000;
+            display: inline-block;
+            height: 20px;
+            position: relative;
+            background-position: -66px -178px;
+        }
+
+            .DocumentImageView .anno_menu_cont.collapse:active {
+                background-image: url("../../../Content/images/s.png");
+                background-position: -66px -207px;
+            }
+
+            .DocumentImageView .anno_menu_cont.collapse .collapsedAnnotationMenuButton {
+                padding: 5px;
+                position: relative;
+                top: -2px;
+            }
+
+    .DocumentImageView .viewer_menubar .vert_seperator_hidable {
+        display: block;
+        float: left;
+        margin: 0 2px 0 5px;
+    }
+
+    .DocumentImageView .viewer_menubar .view_menu {
+        float: left;
+        position: relative;
+        margin: 0 0 0 3px;
+    }
+
+    .DocumentImageView .viewer_menubar .viewer_navigation, .DocumentImageView .viewer_menubar .rotate_menu {
+        float: left;
+        display: inline-block;
+        margin-left: 6px;
+        margin: 3px 0 0 6px;
+    }
+
+    .DocumentImageView .viewer_menubar .displayNone, .DocumentImageView .viewer_menubar div.displayNone {
+        display: none;
+    }
+
+    .DocumentImageView .viewer_menubar .viewer_results_type {
+        float: left;
+        margin: 0 1px;
+        position: relative;
+    }
+
+    .DocumentImageView .viewer_menubar .navControl {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        float: left;
+        height: 16px;
+        position: relative;
+    }
+
+    .DocumentImageView .viewer_menubar input {
+        float: left;
+        height: 12px;
+        margin: 0px 3px;
+        position: relative;
+        text-align: center;
+        top: -3px;
+        width: 40px;
+    }
+
+    .DocumentImageView .viewer_menubar .rotate_menu .rotateControl {
+        float: left;
+        cursor: pointer;
+    }
+
+    .DocumentImageView .viewer_image {
+        background-image: url(../../../Content/images/transparent.png);
+        border: 1px solid #000;
+        display: inline-block;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 5px;
+        left: 0px;
+        margin: 32px 0 0 0;
+    }
+
+        .DocumentImageView .viewer_image.thumbnailleft {
+            margin-left: 165px;
+        }
+
+        .DocumentImageView .viewer_image.thumbnailright {
+            margin-right: 165px;
+        }
+
+        .DocumentImageView .viewer_image .fullIframe {
+            height: 100%;
+            width: 100%;
+        }
+
+            .DocumentImageView .viewer_image .fullIframe.hideNative {
+                display: none;
+            }
+
+        .DocumentImageView .viewer_image .iconIframe {
+            height: 34px;
+            width: 34px;
+        }
+
+        .DocumentImageView .viewer_image .downloadNativeDocument {
+            top: -10px;
+            position: relative;
+        }
+
+    .DocumentImageView iframe.download {
+        display: none;
+    }

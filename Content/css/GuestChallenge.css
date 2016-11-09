@@ -1,0 +1,11 @@
+﻿#challengeData {
+    top: calc(50% - 50px);
+    position: absolute;
+    left: calc(50% - 150px);
+}
+
+.submitMessage {
+    color: white;
+    font-weight: bold;
+    margin-top: 5px;
+}

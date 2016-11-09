@@ -1,0 +1,132 @@
+﻿.DashboardView {
+    /*display: table-row;*/
+    height: 100%;
+}
+
+    .DashboardView .header {
+        border-bottom: 3px solid #F1B71A;
+        display: inline-block;
+        height: 30px;
+        width: 100%;
+    }
+
+    .DashboardView .db_wfItems {
+        /*display: table-row;*/
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+
+        .DashboardView .db_wfItems > div {
+            /*display: table-cell;*/
+            width: 100%;
+            height: 100%;
+        }
+
+            .DashboardView .db_wfItems > div > div {
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                right: 0px;
+                bottom: 0px;
+            }
+
+    .DashboardView .header_title, .DashboardView .header_item, .DashboardView .header_item_right {
+        display: inline-block;
+        float: left;
+        height: 20px;
+        margin: 0 10px 0;
+        position: relative;
+    }
+
+    .DashboardView .db_tabs {
+        margin: 0 5px;
+        position: relative;
+        top: 3px;
+    }
+
+    .DashboardView .header_item {
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#BDBABA');
+        background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#BDBABA));
+        background: -moz-linear-gradient(top, #FFFFFF, #BDBABA); /* for firefox 3.6+ */
+        background: linear-gradient(to bottom, #FFFFFF 0, #BDBABA 100%); /* W3C (IE10) maybe others soon.*/
+        border: 1px solid #B3B5B7;
+        border-top-left-radius: 5px;
+        cursor: pointer;
+        line-height: 20px;
+        margin: 5px 0 0;
+        padding: 0;
+    }
+
+        .DashboardView .header_item.selected {
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FBEDC3', endColorstr='#F1B71A');
+            background: -webkit-gradient(linear, left top, left bottom, from(#FBEDC3), to(#F1B71A));
+            background: -moz-linear-gradient(top, #FBEDC3, #F1B71A); /* for firefox 3.6+ */
+            background: linear-gradient(to bottom, #FBEDC3 0, #F1B71A 100%); /* W3C (IE10) maybe others soon.*/
+            border-bottom: 1px solid #F1B71A;
+        }
+
+    .DashboardView .header_item_right {
+        position: absolute;
+        right: -5px;
+        top: 1px;
+    }
+
+    .DashboardView .refresh {
+        display: inline-block;
+    }
+
+    .DashboardView .header_item span {
+        display: inline-block;
+        height: 100%;
+        margin: 0 5px;
+        position: relative;
+        width: 100%;
+    }
+
+    .DashboardView .db_group {
+        /*display: table;*/
+        width: 100%;
+        height: 100%;
+    }
+
+    .DashboardView .wfItemsGroup {
+        height: 50%;
+        margin: 1% 0;
+        width: 99%;
+    }
+
+.wfItemsGroup fieldset {
+    height: 100%;
+    padding: 0;
+    position: relative;
+    width: 99%;
+}
+
+.wfItemsGroup .wfItemsGroup_container {
+    height: 100%;
+    overflow: auto;
+    position: relative;
+    width: 100%;
+}
+
+.wfItemsGroup ul, .wfItemsGroup li {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+    .wfItemsGroup ul span {
+        display: inline-block;
+        margin: 0 0 0 15px;
+        overflow: hidden;
+        white-space: nowrap;
+        width: 40%;
+    }
+
+.wfItemsGroup span.group_title {
+    font-weight: bold;
+    margin: 0 0 0 5px;
+    text-align: left;
+    white-space: nowrap;
+}

@@ -1,0 +1,90 @@
+﻿html, body {
+    height: 99%;
+    border: none;
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Tahoma;
+    font-size: 11px;
+}
+
+#buzzContentEditor {
+    clear: left;
+    overflow: auto;
+    width: 100%;
+}
+
+#buzzSchedule .clearfix {
+    clear: both;
+    overflow: auto;
+}
+
+#buzzSchedule .unstyledList {
+    text-align: left;
+    list-style: none;
+    padding: 0;
+}
+
+    #buzzSchedule .unstyledList label {
+        float: left;
+        position: relative;
+        text-align: right;
+        display: inline-block;
+        width: 140px;
+        padding-right: 5px;
+        top: 3px;
+    }
+
+    #buzzSchedule .unstyledList li {
+        display: inline-block;
+        padding-bottom: 5px;
+    }
+
+    #buzzSchedule .unstyledList .buttons {
+        width: auto;
+        padding-left: 12em;
+    }
+
+#buzzSchedule span {
+    width: 145px;
+    display: inline-block;
+    text-align: right;
+}
+
+    #buzzSchedule span.warningErrorClass {
+        width: 100%;
+        position: relative;
+    }
+
+#buzzSchedule .buzz_left_block {
+    float: left;
+    width: 40%;
+}
+
+    #buzzSchedule .buzz_left_block ol {
+        width: 325px;
+    }
+
+    #buzzSchedule .buzz_left_block select {
+        display: inline-block;
+        width: 150px;
+    }
+
+#buzzSchedule .buzz_right_block {
+    display: inline-block;
+    float: left;
+    width: 59%;
+}
+
+#buzzSchedule input.hasDatepicker {
+    float: none;
+}
+
+select.buzzScheduleElement {
+    width: 135px;
+    height: 132px;
+}
+
+.warningErrorClass {
+    color: #a60000;
+    padding-left: 3px;
+}

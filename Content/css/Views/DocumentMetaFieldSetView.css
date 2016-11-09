@@ -1,0 +1,29 @@
+﻿.DocumentMetaFieldSetView {
+    height: 22px;
+}
+
+    .DocumentMetaFieldSetView.mismatch {
+        background: #FFF;
+    }
+
+        .DocumentMetaFieldSetView.mismatch td {
+            border-top: 2px solid #FF0000;
+            border-bottom: 2px solid #FF0000;
+        }
+
+            .DocumentMetaFieldSetView.mismatch td:first-child {
+                border-left: 2px solid #FF0000;
+            }
+
+            .DocumentMetaFieldSetView.mismatch td:last-child {
+                border-right: 2px solid #FF0000;
+            }
+
+    .DocumentMetaFieldSetView td.mismatch {
+        color: #FF0000;
+        font-weight: bold;
+    }
+
+    .DocumentMetaFieldSetView .deleteSet {
+        margin-right: 9px;
+    }

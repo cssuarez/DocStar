@@ -1,0 +1,327 @@
+﻿html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4986C0', endColorstr='#041B32');
+    background: -webkit-gradient(linear, left top, left bottom, from(#4986C0), to(#041B32));
+    background: -moz-linear-gradient(top, #4986C0, #041B32); /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #4986C0 0, #041B32 100%); /* W3C (IE10) maybe others soon.*/
+    border: none;
+    font-family: Verdana, Tahoma;
+    font-size: 75%;
+    font-size: 11px;
+    margin: 0;
+    padding: 0;
+}
+
+#layout {
+    width: 100%;
+    height: 100%;
+}
+
+#header {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4986C0', endColorstr='#041B32');
+    background: -webkit-gradient(linear, left top, left bottom, from(#4986C0), to(#041B32));
+    background: -moz-linear-gradient(top, #4986C0, #041B32); /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #4986C0 0, #041B32 100%); /* W3C (IE10) maybe others soon.*/
+    height: 45px;
+    margin: 0 0 0 0;
+    position: relative;
+}
+
+    #header .small_docstar_logo {
+        background-image: url("../../Content/images/s.png");
+        background-position: 0 -233px;
+        height: 30px;
+        left: 0;
+        position: absolute;
+        top: 5px;
+        width: 150px;
+    }
+
+#two_col {
+    height: 100%;
+    width: 100%;
+}
+
+#col_border_top {
+    background: #FFBE0D;
+    border-bottom: 1px solid black;
+    height: 4px;
+    position: relative;
+    width: 100%;
+}
+
+#browse {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6DB8FD', endColorstr='#022241');
+    background: -webkit-gradient(linear, left top, left bottom, from(#6DB8FD), to(#022241));
+    background: -moz-linear-gradient(top, #6DB8FD, #022241); /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #6DB8FD 0, #022241 100%); /* W3C (IE10) maybe others soon.*/
+    height: 100%;
+    position: relative;
+    width: 170px;
+    float: left;
+    -moz-box-shadow: 2px 0 2px #CCC;
+    -webkit-box-shadow: 2px 0 2px #CCC;
+    box-shadow: 2px 0 2px #CCC;
+}
+
+#main, #tabs, #tab_panel_container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+#link_pass_container {
+    display: table;
+    height: 80%;
+    margin: auto;
+    position: relative;
+    vertical-align: middle;
+}
+
+#inner_link_pass_container {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+}
+
+#link_pass_contents {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F9F9F9', endColorstr='#FFFFFF');
+    -moz-border-radius: 6px 6px 6px 6px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#F9F9F9), to(#FFFFFF));
+    background: -moz-linear-gradient(top, #F9F9F9, #FFFFFF); /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #F9F9F9 0%, #FFFFFF 100%); /* W3C (IE10) maybe others soon.*/
+    border-radius: 6px 6px 6px 6px;
+    display: table-cell;
+    height: 175px;
+    vertical-align: middle;
+    width: 450px;
+}
+
+    #link_pass_contents p {
+        left: 15px;
+        position: relative;
+        top: 10px;
+        width: 45%;
+    }
+
+#pass_items {
+    float: left;
+    min-height: 70px;
+    height: auto;
+    left: 20%;
+    position: relative;
+    width: 60%;
+    padding: 15px 0 0;
+}
+
+    #pass_items .errors {
+        position: absolute;
+        width: 100%;
+        top: 60px;
+        left: 10px;
+    }
+
+#link_pass_label {
+    width: 100%;
+    position: relative;
+    left: 10px;
+    top: 5px;
+}
+
+#link_pass, #link_submit {
+    color: #FFF;
+    float: left;
+    position: relative;
+}
+
+#link_pass_label {
+    left: 10px;
+    position: relative;
+    top: -5px;
+    width: 100%;
+}
+
+#link_pass {
+    color: #000;
+    left: 10px;
+    margin: 0 0 5px 0;
+}
+
+#link_submit {
+    background-image: url("../../Content/images/s.png");
+    background-position: -66px -178px;
+    border: 1px solid #000000;
+    cursor: default;
+    height: 25px;
+    left: 25px;
+    line-height: 25px;
+    position: relative;
+    text-align: center;
+    top: -3px;
+    width: 70px;
+}
+
+    #link_submit:active {
+        background-image: url("../../Content/images/s.png");
+        background-position: -66px -207px;
+    }
+
+#link_submitted, #link_downloading {
+    display: none;
+    height: 25px;
+    position: relative;
+    text-align: center;
+    top: 5px;
+    width: 100%;
+}
+
+#download {
+    position: absolute;
+    height: 0;
+    width: 0;
+    visibility: hidden;
+    border: none;
+}
+
+#iprint {
+    position: absolute;
+    height: 0;
+    width: 0;
+    border: none;
+}
+
+span.progress {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.progressCont {
+    height: 21px;
+    line-height: 21px;
+    text-align: center;
+    position: relative;
+    float: left;
+    width: 100%;
+    display: none;
+}
+
+    .progressCont .progress {
+        width: 0;
+        height: 100%;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#B7D9EA', endColorstr='#7CBBDA');
+        background: -webkit-gradient(linear, left top, left bottom, from(#B7D9EA), to(#7CBBDA));
+        background: -moz-linear-gradient(top, #B7D9EA, #7CBBDA); /* for firefox 3.6+ */
+        background: linear-gradient(to bottom, #B7D9EA 0, #7CBBDA 100%); /* W3C (IE10) maybe others soon.*/
+        display: inline-block;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .progressCont .progressStatus {
+        position: relative;
+    }
+
+    .progressCont .progressIndeterminate {
+        width: 56px;
+        height: 22px;
+        display: inline-block;
+        background-image: url("Content/images/indeterminate_progress.gif");
+    }
+
+    .progressCont .displayNone {
+        display: none;
+    }
+
+/* #region Password Management Layout */
+
+#passwordManagmentDTO .unstyledList label {
+    display: inline-block;
+    float: left;
+    padding-right: 10px;
+    position: relative;
+    text-align: right;
+    top: 3px;
+    width: 200px;
+}
+
+#passwordManagmentDTO .unstyledList select, #passwordManagmentDTO .unstyledList input {
+    width: 80px;
+}
+
+    #passwordManagmentDTO .unstyledList input[type='checkbox'] {
+        width: auto;
+    }
+
+#pass_management_success .success_message {
+    display: none;
+    position: relative;
+    width: 300px;
+}
+
+#pass_management_reset .reset_message {
+    display: none;
+    position: relative;
+    width: 300px;
+}
+
+#pass_expired {
+    font-size: 13px;
+}
+
+    #pass_expired p, #pass_expired span.warningErrorClass, #pass_expired h1, #pass_expired h2 {
+        text-align: center;
+    }
+
+    #pass_expired #pass_expired_reset label {
+        display: inline-block;
+        padding-right: 10px;
+        position: relative;
+        text-align: right;
+        width: 425px;
+    }
+
+body.passwordExpired {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F9F9F9', endColorstr='#FFFFFF');
+    background: -webkit-gradient(linear, left top, left bottom, from(#F9F9F9), to(#FFFFFF));
+    background: -moz-linear-gradient(top, #F9F9F9, #FFFFFF); /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #F9F9F9 0, #FFFFFF 100%); /* W3C (IE10) maybe others soon.*/
+}
+
+
+.left_labeled_layout {
+    list-style: none;
+}
+
+    .left_labeled_layout label {
+        display: inline-block;
+        float: left;
+        margin: 4px 0 0;
+        text-align: right;
+        width: 120px;
+    }
+
+    .left_labeled_layout li {
+        height: 20px;
+        margin: 0 0 5px;
+    }
+
+#pass_success .success_message {
+    display: none;
+    left: 130px;
+    position: relative;
+    width: 300px;
+}
+
+.warningErrorClass {
+    color: #A60000;
+    padding-left: 3px;
+}
+
+/* #endregion Password Management Layout*/

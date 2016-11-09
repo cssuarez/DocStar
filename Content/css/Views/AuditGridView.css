@@ -1,0 +1,18 @@
+﻿.AuditGridView {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+    .AuditGridView .customGridTable {
+        height: 100%;
+    }
+
+        .AuditGridView .customGridTable .narrow {
+            width: 45px;
+        }
+
+/*Workaround until we redo the admin pages.*/
+#admin_action .AuditGridView .customGridPagerNavigation .navigateToPage {
+    width: 40px;
+}

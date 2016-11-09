@@ -1,0 +1,51 @@
+﻿.ctbContentTypeData {
+    border-collapse: separate;
+    border-spacing: 5px;
+    width: 100%;
+}
+
+    .ctbContentTypeData .ui-icon.ui-icon-close {
+        cursor: pointer;
+    }
+
+    .ctbContentTypeData .ui-combobox {
+        display: inline-block;
+        width: 100%;
+    }
+
+        .ctbContentTypeData .ui-combobox input {
+            margin: 0;
+        }
+
+    .ctbContentTypeData .additionalSelectedHTML {
+        display: inline-block;
+        margin: 0 0 0 5px;
+        position: absolute;
+        right: 0px;
+        top: 5px;
+    }
+
+    .ctbContentTypeData .preAdditionalSelectedHTML {
+        position: relative;
+        top: 5px;
+    }
+
+        .ctbContentTypeData .preAdditionalSelectedHTML > div {
+            margin: 0 5px;
+        }
+
+.ctbIconContainer {
+    width: 16px;
+    min-width: 16px;
+    vertical-align: middle;
+}
+
+    .ctbIconContainer span {
+        min-width: 16px;
+    }
+
+        .ctbIconContainer span.ui-icon {
+            cursor: pointer;
+            position: relative;
+            left: -5px;
+        }

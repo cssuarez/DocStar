@@ -1,0 +1,5 @@
+﻿.ContentTypeReplacementView span, .ContentTypeReplacementView select {
+    display: inline-block;
+    margin: 5px 0;
+    width: 100%;
+}

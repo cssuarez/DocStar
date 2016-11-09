@@ -1,0 +1,23 @@
+body
+{
+    font-family: Verdana,Tahoma;
+    font-size: 11px;
+}
+
+.item
+{
+    margin: 2px 0 0 0;
+}
+
+.label
+{
+    text-align: right;
+    width: 153px;
+    float: left;
+    padding: 0 6px;
+}
+
+.button
+{
+    width: 83px;
+}

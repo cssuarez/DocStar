@@ -1,0 +1,24 @@
+﻿.DocumentImageThumbnailsView .thumbs_cont {
+    border: 1px solid #000;
+    overflow: hidden;
+    max-height: 100%;
+    min-height: 425px;
+    min-width: 160px;
+    width: 160px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: 32px 0 3px 0;
+}
+
+    .DocumentImageThumbnailsView .thumbs_cont.thumbnailleft {
+        left: 0;
+    }
+
+    .DocumentImageThumbnailsView .thumbs_cont.thumbnailright {
+        right: 0;
+    }
+
+.DocumentImageThumbnailsView .ps-scrollbar-x-rail {
+    display: none;
+}

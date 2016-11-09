@@ -1,0 +1,142 @@
+﻿html, body, #login_div {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font: normal 12px Tahoma, Verdana;
+}
+
+body {
+    text-align: center;
+}
+
+#inner_login {
+    vertical-align: middle;
+    display: table-cell;
+    width: 100%;
+}
+
+#login_form_container {
+    width: 550px;
+    margin: 0 auto;
+    height: 209px;
+}
+
+#login_error {
+    display: none;
+    color: red;
+}
+
+#login_div {
+    vertical-align: middle;
+    display: table;
+    height: 100%;
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    /*margin-top: 8%;  	background-color: white; 	-moz-border-radius: 20px; 	-webkit-border-radius: 20px; 	-khtml-border-radius: 20px; 	border-radius: 20px; */
+    min-width: 400px;
+    text-align: right;
+}
+
+    #login_div input[type="text"], #login_div input[type="password"] {
+        width: 11em;
+        margin-left: 1em;
+    }
+
+    #login_div label {
+        width: 4.5em;
+        float: left;
+        text-align: right;
+    }
+
+    #login_div ol {
+        list-style: none;
+    }
+
+    #login_div li {
+        padding-bottom: .5em;
+    }
+
+#login, #demo_pitch {
+    float: left;
+}
+
+#demo_pitch {
+    width: 40%;
+    border-right: 1px dotted #555;
+    padding: 10px 10px;
+    height: 100%;
+}
+
+#login {
+    padding-top: 40px;
+    width: 49%;
+}
+
+#agreement {
+    font-size: 11px;
+    padding-left: 20px;
+    clear: both;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.fadein {
+    display: none;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#h1_fade {
+    text-align: right;
+    height: 30px;
+}
+
+.authmessage {
+    color: Red;
+    float: left;
+    width: 100%;
+    text-align: center;
+}
+
+#sso_indicator_container, .ssoFailed {
+    display: none;
+}
+
+.ssoFailed {
+    color: red;
+    text-align: left;
+    width: 100%;
+}
+
+#ssoMessageContainer {
+    float: left;
+}
+
+#failedSsoDialog {
+    text-align: left;
+}
+
+#ssoButton {
+    width: 151px;
+}
+
+#rememberMe, #rememberUsername {
+    float: left;
+    margin-left: 75px;
+}
+
+#login #rememberMe {
+    padding-bottom: 0px;
+}
+
+.fullWidth {
+    width: 100%;
+}
+
+.fullHeight {
+    height: 100%;
+}

@@ -1,0 +1,38 @@
+﻿.DocumentImageThumbnailView {
+}
+
+    .DocumentImageThumbnailView div {
+        text-align: center;
+    }
+
+    .DocumentImageThumbnailView img {
+        width: 150px;
+        margin: 0px;
+        padding: 5px;
+        text-align: center;
+        position: relative;
+    }
+
+        .DocumentImageThumbnailView img.notRendered {
+            width: auto;
+            margin:75px;
+        }
+
+        .DocumentImageThumbnailView img.throbber {
+            width: 15px;
+            margin: 75px;
+            padding: 0;
+        }
+
+        .DocumentImageThumbnailView img.selected_thumbnail {
+            background-color: #B2DFEE;
+        }
+
+    .DocumentImageThumbnailView div.contentItem {
+        position: relative;
+        width: 100%;
+    }
+
+        .DocumentImageThumbnailView div.contentItem.selectedContentItem {
+            background-color: #000;
+        }

@@ -1,0 +1,21 @@
+﻿.BookmarksView {
+    width: 30px;
+}
+
+.BookmarksView .vert_seperator {
+    display: block;
+    float: left;
+    margin: 0 2px;
+}
+
+.BookmarksView .displayNone {
+    display: none;
+}
+
+.BookmarksView .bookmarksMenu dd ul.children {
+    overflow-y: hidden;
+}
+
+.BookmarksView .children li {
+    border-bottom: 1px solid grey;
+}

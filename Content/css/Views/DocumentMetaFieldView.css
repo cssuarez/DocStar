@@ -1,0 +1,59 @@
+﻿.DocumentMetaFieldView {
+    width: 100%;
+    position: relative;
+}
+
+        .DocumentMetaFieldView.metadata_viewer .viewer_meta_title {
+            text-align: left;
+            width: 125px;
+            min-width: 125px;
+            vertical-align: middle;
+            padding-left: 3px;
+        }
+
+        .DocumentMetaFieldView.metadata_viewer select {
+            height: 20px;
+            min-height: 20px;
+            min-width: 128px;
+            position: relative;
+            font-size: 11px;
+            width: 93%;
+        }
+
+        .DocumentMetaFieldView.metadata_viewer input {
+            height: 20px;
+            min-height: 20px;
+            min-width: 128px;
+            position: relative;
+            font-size: 11px;
+            width: 90%;
+        }
+
+        .DocumentMetaFieldView.metadata_viewer textarea {
+            height: 20px;
+            min-height: 20px;
+            min-width: 128px;
+            position: relative;
+            width: 90%;
+            border-radius: 2px;
+            font-family: Verdana,Tahoma;
+            font-size: 11px;
+            max-height: 100px;
+            overflow: hidden;
+        }
+
+        .DocumentMetaFieldView.metadata_viewer input[type="checkbox"] {
+            width: auto;
+            margin: 0 0 0 21%;
+        }
+
+        .DocumentMetaFieldView.metadata_viewer span {
+            height: 20px;
+            min-height: 20px;
+            min-width: 128px;
+        }
+
+        .DocumentMetaFieldView.metadata_viewer .ui-resizable-handle {
+            bottom: 7px;
+            right: 6%;
+        }

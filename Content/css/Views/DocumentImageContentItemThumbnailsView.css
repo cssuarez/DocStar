@@ -1,0 +1,17 @@
+﻿.DocumentImageContentItemThumbnailsView .contentItem {
+    width: 100%;
+}
+
+    .DocumentImageContentItemThumbnailsView .contentItem.selectedContentItem {
+        background-color: #000;
+    }
+
+.DocumentImageContentItemThumbnailsView hr {
+    display: inline-block;
+    float: left;
+    left: 15px;
+    position: relative;
+    width: 125px;
+    height: 3px;
+    background: #FFF;
+}

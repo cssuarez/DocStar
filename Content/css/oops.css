@@ -1,0 +1,20 @@
+﻿html, body
+{
+    height: 100%;
+}
+body
+{
+    font-size: 75%;
+    font-family: Verdana, Tahoma;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4986C0', endColorstr='#041B32');
+    background: -webkit-gradient(linear, left top, left bottom, from(#4986C0), to(#041B32));
+    background: -moz-linear-gradient(top,  #4986C0,  #041B32); /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #4986C0 0%, #041B32 100%); /* W3C (IE10) maybe others soon.*/
+    border: none;
+    margin: 50px 100px ;
+    padding: 0;
+    font-size: 11px;
+}
+#stacktrace {
+    padding: 0 25px;
+}

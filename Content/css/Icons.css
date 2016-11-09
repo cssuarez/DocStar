@@ -1,0 +1,453 @@
+﻿.folder_icon {
+    background-position: -31px -55px;
+    width: 16px;
+    height: 18px;
+}
+
+.column_chooser_icon {
+    background-position: -350px -111px;
+    width: 21px;
+    height: 22px;
+}
+
+.folder_with_docs_icon {
+    background-position: -77px -57px;
+    width: 16px;
+    height: 16px;
+}
+
+.folder_with_subs_icon {
+    background-position: -62px -57px;
+    width: 16px;
+    height: 16px;
+}
+
+.inbox_icon {
+    background-position: 1px -58px;
+    width: 16px;
+    height: 16px;
+}
+
+.xps {
+    background-position: -186px -74px;
+    width: 16px;
+    height: 16px;
+}
+
+.txt {
+    background-position: -46px -74px;
+    width: 12px;
+    height: 16px;
+}
+
+.rtf {
+    background-position: -77px -91px;
+    height: 16px;
+    width: 14px;
+}
+
+.pdf {
+    background-position: -16px -74px;
+    width: 15px;
+    height: 16px;
+}
+
+.doc {
+    background-position: -35px -158px;
+    width: 16px;
+    height: 20px;
+}
+
+.docx {
+    background-position: -52px -160px;
+    width: 16px;
+    height: 18px;
+}
+
+.xls {
+    background-position: -138px -126px;
+    width: 16px;
+    height: 17px;
+}
+
+.xlsx {
+    background-position: -154px -126px;
+    width: 16px;
+    height: 17px;
+}
+
+.ppt {
+    background-position: -1px -142px;
+    width: 16px;
+    height: 17px;
+}
+
+.pptx {
+    background-position: -1px -142px;
+    width: 16px;
+    height: 17px;
+}
+
+.jpg {
+    background-position: -113px -107px;
+    width: 14px;
+    height: 17px;
+}
+
+.gif {
+    background-position: 0 -74px;
+    width: 15px;
+    height: 16px;
+}
+
+.tif {
+    background-position: -58px -74px;
+    width: 15px;
+    height: 16px;
+}
+
+.png {
+    background-position: 1px -74px;
+    width: 16px;
+    height: 16px;
+}
+
+.bmp {
+    background-position: -175px -108px;
+    width: 16px;
+    height: 16px;
+}
+
+.html {
+    background-position: -134px -74px;
+    width: 16px;
+    height: 16px;
+}
+
+.htm {
+    background-position: -134px -74px;
+    width: 16px;
+    height: 16px;
+}
+
+.xml {
+    background-position: -134px -74px;
+    width: 16px;
+    height: 16px;
+}
+
+.msg {
+    background-position: -224px -90px;
+    width: 14px;
+    height: 13px;
+}
+
+.default_icon {
+    background-position: -223px -108px;
+    width: 13px;
+    height: 16px;
+}
+
+.chatIcon {
+    background-image: url("../../Content/images/s.png");
+    background-position: -290px -72px;
+    width: 20px;
+    height: 9px;
+}
+
+.userIcon {
+    background-position: -290px -72px;
+    width: 20px;
+    height: 20px;
+}
+
+.groupIcon {
+    background-position: -290px -72px;
+    width: 16px;
+    height: 20px;
+}
+
+.approved {
+    background-position: -400px -31px;
+    width: 16px;
+    height: 20px;
+}
+
+.ghostApproved {
+    background-position: -386px -49px;
+    width: 16px;
+    height: 20px;
+}
+
+.none {
+    display: block;
+    background: none !important;
+    width: 16px;
+    height: 20px;
+}
+
+.denied {
+    background-position: -400px -49px;
+    width: 16px;
+    height: 20px;
+}
+
+.requested {
+    background-position: -415px -31px;
+    width: 16px;
+    height: 20px;
+}
+
+.requestedfromgroup {
+    background-position: -415px -31px;
+    width: 16px;
+    height: 20px;
+}
+
+.wasapproved {
+    background-position: -386px -49px;
+    width: 16px;
+    height: 20px;
+}
+
+.wasdenied {
+    background-position: -386px -31px;
+    width: 16px;
+    height: 20px;
+}
+
+.rotateAllLeft_icon {
+    background-position: -375px -73px;
+    width: 16px;
+    height: 16px;
+}
+
+.rotateLeft_icon {
+    background-position: -336px -73px;
+    width: 16px;
+    height: 16px;
+}
+
+.rotateRight_icon {
+    background-position: -319px -73px;
+    width: 16px;
+    height: 16px;
+}
+
+.rotateAllRight_icon {
+    background-position: -354px -73px;
+    width: 16px;
+    height: 16px;
+}
+
+.saveIcon {
+    background-position: -256px -35px;
+    width: 16px;
+    height: 16px;
+}
+
+    .saveIcon.disabledIcon {
+        background-position: -319px -90px;
+        width: 16px;
+        height: 16px;
+    }
+
+.saveAsIcon {
+    background-position: -355px -91px;
+    width: 20px;
+    height: 20px;
+}
+
+    .saveAsIcon.disabledIcon {
+        background-position: -375px -91px;
+        width: 20px;
+        height: 20px;
+    }
+
+.scissors {
+    background-position: -433px -33px;
+    width: 13px;
+    height: 16px;
+}
+
+.scissorsDelete {
+    background-position: -433px -92px;
+    width: 19px;
+    height: 19px;
+}
+
+.systrayIcon {
+    background-position: -451px -29px;
+    width: 23px;
+    height: 23px;
+}
+
+.refreshIcon {
+    background-position: -319px -73px;
+    width: 16px;
+    height: 16px;
+}
+
+.sPng {
+    background-image: url("../../Content/images/s.png");
+}
+
+.sPngIB {
+    background-image: url("../../Content/images/s.png");
+    display: inline-block;
+    cursor: pointer;
+}
+
+.wysiwygGif {
+    background-image: url("../../Content/images/jquery.wysiwyg.gif");
+}
+
+.wysiwygGifIB {
+    background-image: url("../../Content/images/jquery.wysiwyg.gif");
+    display: inline-block;
+    cursor: pointer;
+}
+
+.fontStyleBold {
+    background-position: -430px 0;
+    height: 16px;
+    width: 16px;
+}
+
+.fontStyleItalic {
+    background-position: -446px 0;
+    height: 16px;
+    width: 16px;
+}
+
+.fontStyleUnderline {
+    background-position: -460px 0;
+    height: 16px;
+    width: 16px;
+}
+
+.alignLeftIcon {
+    background-position: 1px 1px;
+    width: 16px;
+    height: 16px;
+}
+
+.alignCenterIcon {
+    background-position: -16px 1px;
+    width: 16px;
+    height: 16px;
+}
+
+.alignRightIcon {
+    background-position: -32px 1px;
+    width: 16px;
+    height: 16px;
+}
+
+.sumIcon {
+    background-position: -267px -178px;
+    width: 13px;
+    height: 16px;
+}
+
+.date_icon {
+    background-image: url("../../Content/images/s.png");
+    background-position: -185px -235px;
+    height: 24px;
+    width: 24px;
+}
+
+.gearIcon {
+    background-position: -252px -209px;
+    width: 18px;
+    height: 20px;
+}
+
+.gearIconSmall {
+    background-position: -294px -210px;
+    width: 11px;
+    height: 13px;
+}
+
+.handleIcon {
+    background-position: -417px -51px;
+    width: 10px;
+    height: 14px;
+}
+
+.hideEyeIcon {
+    background-position: -433px -51px;
+    width: 16px;
+    height: 16px;
+}
+
+.showEyeIcon {
+    background-position: -451px -51px;
+    width: 16px;
+    height: 16px;
+}
+
+.print_Icon {
+    background-position: -271px -34px;
+    height: 16px;
+    width: 16px;
+}
+
+.email_Icon {
+    background-position: -286px -34px;
+    height: 16px;
+    width: 16px;
+}
+
+.linkIcon {
+    background-position: -432px -72px;
+    width: 16px;
+    height: 16px;
+}
+
+.linkDisabledIcon {
+    background-position: -450px -72px;
+    width: 16px;
+    height: 16px;
+}
+
+.warningIcon {
+    background-position: -293px -179px;
+    width: 24px;
+    height: 24px;
+}
+
+.dashedRectangle {
+    background-position: -337px -1px;
+    width: 16px;
+    height: 16px;
+}
+
+.disabledIcon {
+    cursor: default;
+    opacity: .3;
+}
+
+.check16Icon {
+    background-position: -292px -143px;
+    width: 16px;
+    height: 16px;
+}
+
+.warning16Icon {
+    background-position: -292px -159px;
+    width: 16px;
+    height: 16px;
+}
+
+.error16Icon {
+    background-position: -308px -158px;
+    width: 16px;
+    height: 16px;
+}
+
+.newForm {
+    background-position: -431px -91px;
+    width: 16px;
+    height: 16px;
+}

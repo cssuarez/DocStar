@@ -1,0 +1,2054 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DBABF5DF-D57F-49A9-BF00-BDE89DE92AD9}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Astria.UI.Web</RootNamespace>
+    <AssemblyName>Astria.UI.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <JSLintSkip>\jsmvc\a_underscore-min.js|\jsmvc\backbone.js|\jsmvc\DoT.js|\Content\LibsInternal\date.format.js|\jsmvc\backboneextensions.js|\WorkflowScripts\jquery-1.7.1.js|\WorkflowScripts\jquery-ui-1.8.16.custom.min.js|\WorkflowScripts\jquery.ctmenu.js|\WorkflowScripts\jquery.json-2.3.min.js|\WorkflowScripts\jquery.jsPlumb-1.3.12-all-min.js|\WorkflowScripts\jquery.qtip.min.js|\Content\Qunit\qunit.js|\Content\LibsExternal\|\Content\Qunit\jslint\|\Content\Qunit\jquery.min.js|\Content\Qunit\z_jquery.url.js|\Content\Qunit\qunit.css|\Content\css\jquery.wysiwyg.css|\Content\css\JQGrid.css|\Content\css\jPicker-1.1.6.css|\Content\css\ui.multiselect.css|\Content\css\perfect-scrollbar.css|\Content\themes\|\Content\Qunit\|\WorkflowScripts\wf_jquery.js|\WorkflowScripts\wf_jquery-ui.js|\Content\SleepyHollow\dev\lib\require.js|\Content\SleepyHollow\test\lib\jasmine-2.0.0\|\Content\SleepyHollow\tools\run-jscover-jasmine.js|\Content\SleepyHollow\tools\|\Content\SleepyHollow\|\Content\LibsWorkflow\jquery.ctmenu.js|\Content\LibsWorkflow\jquery.json-2.3.js|\Content\LibsWorkflow\jquery.jsPlumb.js|\Content\LibsWorkflow\jquery.qtip.js|\jsmvc\a_underscore.js</JSLintSkip>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Elmah, Version=1.1.11517.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dlls\Elmah\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dlls\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dlls\Microsoft.ReportViewer.DataVisualization.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dlls\Microsoft.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dlls\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=__MvcPagesVersion__, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.2\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Content\SleepyHollow\test\Headless.aspx.cs">
+      <DependentUpon>Headless.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\SleepyHollow\test\Headless.aspx.designer.cs">
+      <DependentUpon>Headless.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AcquireController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AdminHostingController.cs" />
+    <Compile Include="Controllers\AnnotationsController.cs" />
+    <Compile Include="Controllers\AuditController.cs" />
+    <Compile Include="Controllers\BasicInfoController.cs" />
+    <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\ContainerController.cs" />
+    <Compile Include="Controllers\ContentTypeController.cs" />
+    <Compile Include="Controllers\ControllerBase.cs" />
+    <Compile Include="Controllers\CustomFieldMetaController.cs" />
+    <Compile Include="Controllers\CustomListController.cs" />
+    <Compile Include="Controllers\DataLinkController.cs" />
+    <Compile Include="Controllers\EditController.cs" />
+    <Compile Include="Controllers\ExportImportController.cs" />
+    <Compile Include="Controllers\FormsController.cs" />
+    <Compile Include="Controllers\GuestController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImagingController.cs" />
+    <Compile Include="Controllers\IndexController.cs" />
+    <Compile Include="Controllers\IPMaskController.cs" />
+    <Compile Include="Controllers\LicensingController.cs" />
+    <Compile Include="Controllers\NoCache.cs" />
+    <Compile Include="Controllers\PreferencesController.cs" />
+    <Compile Include="Controllers\QAController.cs" />
+    <Compile Include="Controllers\RecognitionController.cs" />
+    <Compile Include="Controllers\RecordsManagementController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
+    <Compile Include="Controllers\RetrieveController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\SystemMaintenanceController.cs" />
+    <Compile Include="Controllers\SystemNotificationsController.cs" />
+    <Compile Include="Controllers\WorkflowController.cs" />
+    <Compile Include="Controllers\WorkflowDesignerController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="JsonResultExtended.cs" />
+    <Compile Include="Models\AcquireModel.cs" />
+    <Compile Include="Models\AdminModel.cs" />
+    <Compile Include="Models\BuzzEditorModel.cs" />
+    <Compile Include="Models\GuestSessionCookie.cs" />
+    <Compile Include="Models\GuestChallengeModel.cs" />
+    <Compile Include="Models\GuestViewerModel.cs" />
+    <Compile Include="Models\HomeModel.cs" />
+    <Compile Include="Models\LicenseModel.cs" />
+    <Compile Include="Models\ModelBase.cs" />
+    <Compile Include="Models\PasswordExpiredModel.cs" />
+    <Compile Include="Models\PrintModel.cs" />
+    <Compile Include="Models\PromptPasswordModel.cs" />
+    <Compile Include="Models\ServerUriModel.cs" />
+    <Compile Include="Models\SystemNotificationEditorModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QAHandler.ashx.cs">
+      <DependentUpon>QAHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="ReportViewer.aspx.cs">
+      <DependentUpon>ReportViewer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReportViewer.aspx.designer.cs">
+      <DependentUpon>ReportViewer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceReturn.cs" />
+    <Compile Include="ThreadSafeDictionary.cs" />
+    <Compile Include="Utilities\ExceptionUtility.cs" />
+    <Compile Include="Utility\CustomBundler.cs" />
+    <Compile Include="Utility\GoogleReCaptcha.cs" />
+    <Compile Include="Utility\JQGridData.cs" />
+    <Compile Include="Utility\JQGridRow.cs" />
+    <Compile Include="Utility\JSMin.cs" />
+    <Compile Include="Utility\JSTreeAttr.cs" />
+    <Compile Include="Utility\JSTreeData.cs" />
+    <Compile Include="Utility\JSTreeFormat.cs" />
+    <Compile Include="Utility\PermissionsExtensions.cs" />
+    <Compile Include="Utility\ScalarTypesExtensions.cs" />
+    <Compile Include="Utility\StandardResult.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\Dummy.txt" />
+    <Content Include="Content\ConstantUrls\ConstantUrls.js" />
+    <Content Include="Content\css\BuzzSpace.css" />
+    <Content Include="Content\css\BuzzSpaceEditor.css" />
+    <Content Include="Content\css\CheckIn.css" />
+    <Content Include="Content\css\CustomGrid.css" />
+    <Content Include="Content\css\Dialog.css" />
+    <Content Include="Content\css\GuestChallenge.css" />
+    <Content Include="Content\css\GuestFormComplete.css" />
+    <Content Include="Content\css\Icons.css" />
+    <Content Include="Content\css\Import.css" />
+    <Content Include="Content\css\ImportExport.css" />
+    <Content Include="Content\css\jPicker-1.1.6.css" />
+    <Content Include="Content\css\jquery.wysiwyg.css" />
+    <Content Include="Content\css\Licensing.css" />
+    <Content Include="Content\css\login.css" />
+    <Content Include="Content\css\oops.css" />
+    <Content Include="Content\css\perfect-scrollbar.css" />
+    <Content Include="Content\css\Print.css" />
+    <Content Include="Content\css\ReportViewer.css" />
+    <Content Include="Content\css\Site.css" />
+    <Content Include="Content\css\SiteOld.css" />
+    <Content Include="Content\css\ui.multiselect.css" />
+    <Content Include="Content\css\GuestDownload.css" />
+    <Content Include="Content\css\Views\AceEditorView.css" />
+    <Content Include="Content\css\Views\AnnotationView.css" />
+    <Content Include="Content\css\Views\AppDisplayView.css" />
+    <Content Include="Content\css\Views\AuditGridView.css" />
+    <Content Include="Content\css\Views\AuditTrailGridView.css" />
+    <Content Include="Content\css\Views\AuditView.css" />
+    <Content Include="Content\css\Views\BookmarksView.css" />
+    <Content Include="Content\css\Views\CaptureEditView.css" />
+    <Content Include="Content\css\Views\CaptureGridView.css" />
+    <Content Include="Content\css\Views\CaptureProgressGridView.css" />
+    <Content Include="Content\css\Views\CaptureViewerView.css" />
+    <Content Include="Content\css\Views\CaptureWebFileBrowseGridView.css" />
+    <Content Include="Content\css\Views\CollapsedApprovalStampView.css" />
+    <Content Include="Content\css\Views\ColumnSelectView.css" />
+    <Content Include="Content\css\Views\ContentTypeBuilder.css" />
+    <Content Include="Content\css\Views\ContentTypeReplacementView.css" />
+    <Content Include="Content\css\Views\CustomFieldValueView.css" />
+    <Content Include="Content\css\Views\DashboardView.css" />
+    <Content Include="Content\css\Views\DistributedQueueView.css" />
+    <Content Include="Content\css\Views\DocumentFormAnnotationView.css" />
+    <Content Include="Content\css\Views\DocumentFormView.css" />
+    <Content Include="Content\css\Views\DocumentImageContentItemThumbnailsView.css" />
+    <Content Include="Content\css\Views\DocumentImageThumbnailsView.css" />
+    <Content Include="Content\css\Views\DocumentImageThumbnailView.css" />
+    <Content Include="Content\css\Views\DocumentImageView.css" />
+    <Content Include="Content\css\Views\DocumentMetaApprovalView.css" />
+    <Content Include="Content\css\Views\DocumentMetaFieldGroupsView.css" />
+    <Content Include="Content\css\Views\DocumentMetaFieldGroupView.css" />
+    <Content Include="Content\css\Views\DocumentMetaFieldSetView.css" />
+    <Content Include="Content\css\Views\DocumentMetaFieldsView.css" />
+    <Content Include="Content\css\Views\DocumentMetaFieldView.css" />
+    <Content Include="Content\css\Views\DocumentMetaFolderView.css" />
+    <Content Include="Content\css\Views\DocumentMetaHistoryView.css" />
+    <Content Include="Content\css\Views\DocumentMetaRelatedItemsView.css" />
+    <Content Include="Content\css\Views\DocumentMetaVersioningView.css" />
+    <Content Include="Content\css\Views\DocumentMetaView.css" />
+    <Content Include="Content\css\Views\DocumentMetaWorkflowView.css" />
+    <Content Include="Content\css\Views\DocumentNativeView.css" />
+    <Content Include="Content\css\Views\DocumentPagerView.css" />
+    <Content Include="Content\css\Views\DocumentPreviewView.css" />
+    <Content Include="Content\css\Views\DocumentVersioningCommentView.css" />
+    <Content Include="Content\css\Views\DocumentVersioningGridItemView.css" />
+    <Content Include="Content\css\Views\DocumentVersioningGridView.css" />
+    <Content Include="Content\css\Views\DocumentView.css" />
+    <Content Include="Content\css\Views\DocumentViewerMenuView.css" />
+    <Content Include="Content\css\Views\DocumentViewerView.css" />
+    <Content Include="Content\css\Views\FieldedSearchView.css" />
+    <Content Include="Content\css\Views\FormElementControlsView.css" />
+    <Content Include="Content\css\Views\FormElementGroupSettingsView.css" />
+    <Content Include="Content\css\Views\FormElementGroupView.css" />
+    <Content Include="Content\css\Views\FormElementLabelValuePairsView.css" />
+    <Content Include="Content\css\Views\FormElementLabelValuePairView.css" />
+    <Content Include="Content\css\Views\FormElementSettingsView.css" />
+    <Content Include="Content\css\Views\FormElementView.css" />
+    <Content Include="Content\css\Views\FormsDesignerCanvasView.css" />
+    <Content Include="Content\css\Views\FormsDesignerFormPartView.css" />
+    <Content Include="Content\css\Views\FormsDesignerTemplateDataView.css" />
+    <Content Include="Content\css\Views\FormsDesignerView.css" />
+    <Content Include="Content\css\Views\FormsTemplateLibraryView.css" />
+    <Content Include="Content\css\Views\FormTemplateCategoryView.css" />
+    <Content Include="Content\css\Views\FormTemplateSettingsView.css" />
+    <Content Include="Content\css\Views\FormulaBuilderView.css" />
+    <Content Include="Content\css\Views\ImportJobsEditView.css" />
+    <Content Include="Content\css\Views\ImportJobsGridView.css" />
+    <Content Include="Content\css\Views\ImportLDAPView.css" />
+    <Content Include="Content\css\Views\LDAPEditView.css" />
+    <Content Include="Content\css\Views\LicenseEditView.css" />
+    <Content Include="Content\css\Views\NumPadView.css" />
+    <Content Include="Content\css\Views\PawnsInlineView.css" />
+    <Content Include="Content\css\Views\PawnsView.css" />
+    <Content Include="Content\css\Views\PublicImageView.css" />
+    <Content Include="Content\css\Views\RecycleBinEditView.css" />
+    <Content Include="Content\css\Views\RetrieveView.css" />
+    <Content Include="Content\css\Views\SavedSearchView.css" />
+    <Content Include="Content\css\Views\SearchCriteriaView.css" />
+    <Content Include="Content\css\Views\SearchResultCustomFieldGroupSubgridView.css" />
+    <Content Include="Content\css\Views\SearchResultsGridView.css" />
+    <Content Include="Content\css\Views\SearchView.css" />
+    <Content Include="Content\css\Views\StampEditView.css" />
+    <Content Include="Content\css\Views\TextSettingsView.css" />
+    <Content Include="Content\css\Views\WorkflowItemsPerAssigneeView.css" />
+    <Content Include="Content\css\Views\WorkflowItemsPerStepView.css" />
+    <Content Include="Content\css\Views\WorkflowView.css" />
+    <Content Include="Content\images\AlphaBar.png" />
+    <Content Include="Content\images\bar-opacity.png" />
+    <Content Include="Content\images\Bars.png" />
+    <Content Include="Content\images\Connected.png" />
+    <Content Include="Content\images\Connecting.png" />
+    <Content Include="Content\images\Disconnected.png" />
+    <Content Include="Content\images\dsWorkflow-transparent Background.ico" />
+    <Content Include="Content\images\eclipse_client_not_connected_screen_cap.png" />
+    <Content Include="Content\images\indeterminate_progress.gif" />
+    <Content Include="Content\images\jquery.wysiwyg.bg.png" />
+    <Content Include="Content\images\jquery.wysiwyg.gif" />
+    <Content Include="Content\images\large_throbber.gif" />
+    <Content Include="Content\images\local_system_access_screen_cap.png" />
+    <Content Include="Content\images\main_logo_default.jpg" />
+    <Content Include="Content\images\map-opacity.png" />
+    <Content Include="Content\images\mappoint.gif" />
+    <Content Include="Content\images\Maps.png" />
+    <Content Include="Content\images\NoColor.png" />
+    <Content Include="Content\images\picker.gif" />
+    <Content Include="Content\images\picker.png" />
+    <Content Include="Content\images\preview-opacity.png" />
+    <Content Include="Content\images\rangearrows.gif" />
+    <Content Include="Content\images\s.png" />
+    <Content Include="Content\images\sun_in_clouds.jpg" />
+    <Content Include="Content\images\transparent.png" />
+    <Content Include="Content\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Content\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Content\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="Content\images\ui-bg_flat_55_fbec88_40x100.png" />
+    <Content Include="Content\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_75_d0e5f5_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_85_dfeffc_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Content\images\ui-bg_gloss-wave_55_5c9ccc_500x100.png" />
+    <Content Include="Content\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Content\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Content\images\ui-bg_inset-hard_100_f5f8f9_1x100.png" />
+    <Content Include="Content\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <Content Include="Content\images\ui-icons_217bc0_256x240.png" />
+    <Content Include="Content\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="Content\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\images\ui-icons_469bdd_256x240.png" />
+    <Content Include="Content\images\ui-icons_6da8d5_256x240.png" />
+    <Content Include="Content\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\images\ui-icons_d8e7f3_256x240.png" />
+    <Content Include="Content\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Content\images\ui-icons_f9bd01_256x240.png" />
+    <Content Include="Content\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Content\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\images\user_preferences_screen_cap.png" />
+    <Content Include="Content\JSProxy\AdminServiceProxy.js" />
+    <Content Include="Content\JSProxy\AutomationHubProxy.js" />
+    <Content Include="Content\JSProxy\BulkDataServiceProxy.js" />
+    <Content Include="Content\JSProxy\CompanyInstanceHubProxy.js" />
+    <Content Include="Content\JSProxy\CompanySettingsProxy.js" />
+    <Content Include="Content\JSProxy\ContentTypeServiceProxy.js" />
+    <Content Include="Content\JSProxy\CustomFieldProxy.js" />
+    <Content Include="Content\JSProxy\DataLinkServiceProxy.js" />
+    <Content Include="Content\JSProxy\DistributedQueueProxy.js" />
+    <Content Include="Content\JSProxy\DocumentServiceProxy.js" />
+    <Content Include="Content\JSProxy\DownloadProxy.js" />
+    <Content Include="Content\JSProxy\FileTransferServiceProxy.js" />
+    <Content Include="Content\JSProxy\FolderServiceProxy.js" />
+    <Content Include="Content\JSProxy\FormsServiceProxy.js" />
+    <Content Include="Content\JSProxy\ImportExportServiceProxy.js" />
+    <Content Include="Content\JSProxy\InboxServiceProxy.js" />
+    <Content Include="Content\JSProxy\LDAPServiceProxy.js" />
+    <Content Include="Content\JSProxy\MonitorHubProxy.js" />
+    <Content Include="Content\JSProxy\QAServiceProxy.js" />
+    <Content Include="Content\JSProxy\ReportingProxy.js" />
+    <Content Include="Content\JSProxy\SearchResultServiceProxy.js" />
+    <Content Include="Content\JSProxy\SearchServiceProxy.js" />
+    <Content Include="Content\JSProxy\SecurityServiceProxy.js" />
+    <Content Include="Content\JSProxy\SignalRServiceProxy.js" />
+    <Content Include="Content\JSProxy\StampServiceProxy.js" />
+    <Content Include="Content\JSProxy\SystemMaintenanceServiceProxy.js" />
+    <Content Include="Content\JSProxy\UserServiceProxy.js" />
+    <Content Include="Content\JSProxy\WorkflowProxy.js" />
+    <Content Include="Content\JSProxy\WorkflowServiceProxyV2.js" />
+    <Content Include="Content\JSProxy\aa_AjaxCore.js" />
+    <Content Include="Content\JSProxy\aa_ControllerProxyCore.js" />
+    <Content Include="Content\JSProxy\aa_ServiceProxyCore.js" />
+    <Content Include="Content\LibsCompanyMgmt\CompanyManagement.js" />
+    <None Include="Content\LibsExternal\jquery-vsdoc.js" />
+    <Content Include="Content\LibsExternal\ace\ace.js" />
+    <Content Include="Content\LibsExternal\ace\ext-language_tools.js" />
+    <Content Include="Content\LibsExternal\ace\mode-javascript.js" />
+    <Content Include="Content\LibsExternal\ace\snippets\javascript.js" />
+    <Content Include="Content\LibsExternal\ace\snippets\text.js" />
+    <Content Include="Content\LibsExternal\ace\theme-chrome.js" />
+    <Content Include="Content\LibsExternal\ace\worker-javascript.js" />
+    <Content Include="Content\LibsExternal\jquery.js" />
+    <Content Include="Content\LibsExternal\jquery.cookie.js" />
+    <Content Include="Content\LibsExternal\jquery.ui.js" />
+    <Content Include="Content\LibsExternal\jquery.l.datetimepicker.js" />
+    <Content Include="Content\LibsExternal\jquery.scrollTo.js" />
+    <Content Include="Content\LibsExternal\jquery.ui.multiselect.js" />
+    <Content Include="Content\LibsExternal\css.js" />
+    <Content Include="Content\LibsExternal\goog.math.long.js" />
+    <Content Include="Content\LibsExternal\jpicker.js" />
+    <Content Include="Content\LibsExternal\jquery.combobox.js" />
+    <Content Include="Content\LibsExternal\jquery.contextmenu.js" />
+    <Content Include="Content\LibsExternal\jquery.imgareaselect.js" />
+    <Content Include="Content\LibsExternal\jquery.jstree.js" />
+    <Content Include="Content\LibsExternal\jquery.mousewheel.js" />
+    <Content Include="Content\LibsExternal\jquery.numeric.js" />
+    <Content Include="Content\LibsExternal\jquery.signalR.js" />
+    <Content Include="Content\LibsExternal\jquery.ui.touch-punch.js" />
+    <Content Include="Content\LibsExternal\jquery.wysiwyg.js" />
+    <Content Include="Content\LibsExternal\json.js" />
+    <Content Include="Content\LibsExternal\md5.js" />
+    <Content Include="Content\LibsExternal\perfect-scrollbar.js" />
+    <Content Include="Content\LibsExternal\purl.js" />
+    <Content Include="Content\LibsExternal\raphael.js" />
+    <Content Include="Content\LibsExternal\String.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\jquery.tinymce.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\license.txt" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\advlist\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\anchor\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\autolink\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\autoresize\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\autosave\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\bbcode\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\charmap\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\code\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\compat3x\editable_selects.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\compat3x\form_utils.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\compat3x\mctabs.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\compat3x\tiny_mce_popup.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\compat3x\validate.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\contextmenu\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\directionality\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\emoticons\img\smiley-cool.gif" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\emoticons\img\smiley-cry.gif" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\emoticons\img\smiley-embarassed.gif" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\emoticons\img\smiley-foot-in-mouth.gif" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\emoticons\img\smiley-frown.gif" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\emoticons\img\smiley-innocent.gif" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\emoticons\img\smiley-kiss.gif" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\emoticons\img\smiley-laughing.gif" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\emoticons\img\smiley-money-mouth.gif" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\emoticons\img\smiley-sealed.gif" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\emoticons\img\smiley-smile.gif" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\emoticons\img\smiley-surprised.gif" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\emoticons\img\smiley-tongue-out.gif" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\emoticons\img\smiley-undecided.gif" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\emoticons\img\smiley-wink.gif" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\emoticons\img\smiley-yell.gif" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\emoticons\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\example\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\example_dependency\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\fullpage\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\fullscreen\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\hr\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\image\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\insertdatetime\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\layer\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\legacyoutput\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\link\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\lists\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\media\moxieplayer.swf" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\media\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\moxiemanager\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\nonbreaking\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\noneditable\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\pagebreak\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\paste\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\preview\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\print\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\save\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\searchreplace\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\spellchecker\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\tabfocus\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\table\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\template\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\textcolor\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\visualblocks\css\visualblocks.css" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\visualblocks\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\visualchars\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\plugins\wordcount\plugin.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\skins\lightgray\content.inline.min.css" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\skins\lightgray\content.min.css" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\skins\lightgray\fonts\icomoon-small.svg" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\skins\lightgray\fonts\icomoon.svg" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\skins\lightgray\img\anchor.gif" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\skins\lightgray\img\loader.gif" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\skins\lightgray\img\object.gif" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\skins\lightgray\img\trans.gif" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\skins\lightgray\img\wline.gif" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\skins\lightgray\skin.ie7.min.css" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\skins\lightgray\skin.min.css" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\themes\modern\theme.min.js" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\tinymce.min.js" />
+    <Content Include="Content\LibsExternal\wysiwyg.colorpicker.js" />
+    <Content Include="Content\LibsExternal\wysiwyg.image.js" />
+    <Content Include="Content\LibsExternal\wysiwyg.link.js" />
+    <Content Include="Content\LibsExternal\wysiwyg.table.js" />
+    <Content Include="Content\LibsGuest\GuestDocumentView.js" />
+    <Content Include="Content\LibsInternal\Acquire.js" />
+    <Content Include="Content\LibsInternal\ApprovalDialogs.js" />
+    <Content Include="Content\LibsInternal\a_jquery.custom.autocomplete.js" />
+    <Content Include="Content\LibsInternal\a_jquery.custom.dialog.js" />
+    <Content Include="Content\LibsInternal\a_jquery.custom.multiselect.js" />
+    <Content Include="Content\LibsInternal\BuzzEditor.js" />
+    <Content Include="Content\LibsInternal\BuzzUtil.js" />
+    <Content Include="Content\LibsInternal\ClientService.js" />
+    <Content Include="Content\LibsInternal\ContentTypeDialogs.js" />
+    <Content Include="Content\LibsInternal\ContextMenu.js" />
+    <Content Include="Content\LibsInternal\CssConstants.js" />
+    <Content Include="Content\LibsInternal\CustomFieldSetup.js" />
+    <Content Include="Content\LibsInternal\date.format.js" />
+    <Content Include="Content\LibsInternal\DateUtil.js" />
+    <Content Include="Content\LibsInternal\DialogsUtil.js" />
+    <Content Include="Content\LibsInternal\DocumentMetaDialogs.js" />
+    <Content Include="Content\LibsInternal\Drawing.js" />
+    <Content Include="Content\LibsInternal\DTO.js" />
+    <Content Include="Content\LibsInternal\EmailLinkUtil.js" />
+    <Content Include="Content\LibsInternal\ErrorHandler.js" />
+    <Content Include="Content\LibsInternal\FieldedCriteriaUtil.js" />
+    <Content Include="Content\LibsInternal\FormDialogs.js" />
+    <Content Include="Content\LibsInternal\GuidedHelp.js" />
+    <Content Include="Content\LibsInternal\InputUtil.js" />
+    <Content Include="Content\LibsInternal\jquery.containers.js" />
+    <Content Include="Content\LibsInternal\KeyboardNavUtil.js" />
+    <Content Include="Content\LibsInternal\LDAPDialogs.js" />
+    <Content Include="Content\LibsInternal\Navigation.js" />
+    <Content Include="Content\LibsInternal\Page.js" />
+    <Content Include="Content\LibsInternal\PageOptionsDialogs.js" />
+    <Content Include="Content\LibsInternal\PanZoomRotate.js" />
+    <Content Include="Content\LibsInternal\PostMessageHelper.js" />
+    <Content Include="Content\LibsInternal\Recognition.js" />
+    <Content Include="Content\LibsInternal\RecordsMgmtDialogs.js" />
+    <Content Include="Content\LibsInternal\ScanUtil.js" />
+    <Content Include="Content\LibsInternal\SearchResultDialogs.js" />
+    <Content Include="Content\LibsInternal\SearchUtil.js" />
+    <Content Include="Content\LibsInternal\SecurityUtil.js" />
+    <Content Include="Content\LibsInternal\Send.js" />
+    <Content Include="Content\LibsInternal\ShowHidePanel.js" />
+    <Content Include="Content\LibsInternal\ShowHideUtil.js" />
+    <Content Include="Content\LibsInternal\Sort.js" />
+    <Content Include="Content\LibsInternal\SystemNotificationEditor.js" />
+    <Content Include="Content\LibsInternal\Tab.js" />
+    <Content Include="Content\LibsInternal\Templates.js" />
+    <Content Include="Content\LibsInternal\Timer.js" />
+    <Content Include="Content\LibsInternal\Utility.js" />
+    <Content Include="Content\LibsInternal\VersioningDialogs.js" />
+    <Content Include="Content\LibsInternal\VocabUtil.js" />
+    <Content Include="Content\LibsInternal\Voice.js" />
+    <Content Include="Content\LibsInternal\WorkflowDialogs.js" />
+    <Content Include="Content\LibsInternal\WorkflowUtil.js" />
+    <Content Include="Content\LibsLogin\Login.js" />
+    <Content Include="Content\LibsGuest\GuestDownload.js" />
+    <Content Include="Content\ReportWorks\DynamicDates.js" />
+    <Content Include="Content\ReportWorks\ReportViewer.js" />
+    <Content Include="Content\SleepyHollow\build\gruntfile.js" />
+    <Content Include="Content\SleepyHollow\build\mygruntfile.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\expected\testPass.xml" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\expected\testPass2.xml" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\Gruntfile.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\node_modules\grunt-lib-contrib\.gitattributes" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\node_modules\grunt-lib-contrib\grunt.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\node_modules\grunt-lib-contrib\lib\contrib.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\node_modules\grunt-lib-contrib\test\lib_test.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\tasks\casper.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\tasks\lib\casper.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\test\casper_test.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\test\expected\testArgs-results.xml" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\test\expected\testFail-results.xml" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\test\expected\testIncludes-results.xml" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\test\expected\testPass-results.xml" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\test\fixtures\basicSite.html" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\test\fixtures\includes\inc.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\test\fixtures\includes\testIncludes.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\test\fixtures\testArgs.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\test\fixtures\testFail.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\test\fixtures\testPass.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\test\fixtures\testPass2.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\test\fixtures\testScreenshots.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\internal-tasks\bump.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\internal-tasks\subgrunt.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\lib\grunt.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\lib\grunt\cli.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\lib\grunt\config.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\lib\grunt\event.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\lib\grunt\fail.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\lib\grunt\file.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\lib\grunt\help.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\lib\grunt\option.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\lib\grunt\task.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\lib\grunt\template.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\lib\util\task.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\async\.gitmodules" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\async\index.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\async\lib\async.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\coffee-script\lib\coffee-script\browser.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\coffee-script\lib\coffee-script\cake.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\coffee-script\lib\coffee-script\coffee-script.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\coffee-script\lib\coffee-script\command.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\coffee-script\lib\coffee-script\grammar.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\coffee-script\lib\coffee-script\helpers.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\coffee-script\lib\coffee-script\index.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\coffee-script\lib\coffee-script\lexer.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\coffee-script\lib\coffee-script\nodes.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\coffee-script\lib\coffee-script\optparse.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\coffee-script\lib\coffee-script\parser.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\coffee-script\lib\coffee-script\repl.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\coffee-script\lib\coffee-script\rewriter.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\coffee-script\lib\coffee-script\scope.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\colors\colors.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\colors\example.html" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\colors\example.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\colors\MIT-LICENSE.txt" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\colors\test.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\colors\themes\winston-dark.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\colors\themes\winston-light.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\dateformat\lib\dateformat.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\dateformat\test\test_weekofyear.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\eventemitter2\index.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\eventemitter2\lib\eventemitter2.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\exit\Gruntfile.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\exit\lib\exit.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\exit\test\exit_test.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\exit\test\fixtures\10-stderr.txt" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\exit\test\fixtures\10-stdout-stderr.txt" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\exit\test\fixtures\10-stdout.txt" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\exit\test\fixtures\100-stderr.txt" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\exit\test\fixtures\100-stdout-stderr.txt" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\exit\test\fixtures\100-stdout.txt" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\exit\test\fixtures\1000-stderr.txt" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\exit\test\fixtures\1000-stdout-stderr.txt" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\exit\test\fixtures\1000-stdout.txt" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\exit\test\fixtures\log-broken.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\exit\test\fixtures\log.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\Gruntfile.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\lib\findup-sync.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\examples\g.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\examples\usr-local.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\glob.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\node_modules\inherits\inherits.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\node_modules\inherits\inherits_browser.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\node_modules\inherits\test.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\node_modules\minimatch\minimatch.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\node_modules\minimatch\node_modules\lru-cache\lib\lru-cache.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\node_modules\minimatch\node_modules\lru-cache\test\basic.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\node_modules\minimatch\node_modules\lru-cache\test\foreach.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\node_modules\minimatch\node_modules\lru-cache\test\memory-leak.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\node_modules\minimatch\node_modules\sigmund\bench.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\node_modules\minimatch\node_modules\sigmund\sigmund.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\node_modules\minimatch\node_modules\sigmund\test\basic.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\node_modules\minimatch\test\basic.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\node_modules\minimatch\test\brace-expand.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\node_modules\minimatch\test\caching.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\node_modules\minimatch\test\defaults.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\node_modules\minimatch\test\extglob-ending-with-state-char.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\test\00-setup.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\test\bash-comparison.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\test\cwd-test.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\test\globstar-match.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\test\mark.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\test\new-glob-optional-options.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\test\nocase-nomagic.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\test\pause-resume.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\test\readme-issue.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\test\root-nomount.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\test\root.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\test\stat.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\test\zz-cleanup.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\lodash\dist\lodash.compat.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\lodash\dist\lodash.compat.min.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\lodash\dist\lodash.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\lodash\dist\lodash.min.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\lodash\dist\lodash.underscore.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\lodash\dist\lodash.underscore.min.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\lodash\LICENSE.txt" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\lodash\lodash.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\test\findup-sync_test.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\test\fixtures\a.txt" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\test\fixtures\aaa.txt" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\test\fixtures\a\b\bar.txt" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\test\fixtures\a\foo.txt" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\getobject\Gruntfile.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\getobject\lib\getobject.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\getobject\test\namespace_test.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\glob\examples\g.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\glob\examples\usr-local.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\glob\glob.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\glob\node_modules\graceful-fs\graceful-fs.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\glob\node_modules\graceful-fs\test\open.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\glob\node_modules\graceful-fs\test\ulimit.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\glob\node_modules\inherits\inherits.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\glob\test\00-setup.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\glob\test\bash-comparison.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\glob\test\cwd-test.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\glob\test\mark.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\glob\test\nocase-nomagic.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\glob\test\pause-resume.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\glob\test\root-nomount.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\glob\test\root.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\glob\test\zz-cleanup.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\examples.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\Gruntfile.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\index.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\grunt-legacy-log-utils\Gruntfile.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\grunt-legacy-log-utils\index.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\grunt-legacy-log-utils\test\index.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\lodash\dist\lodash.compat.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\lodash\dist\lodash.compat.min.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\lodash\dist\lodash.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\lodash\dist\lodash.min.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\lodash\dist\lodash.underscore.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\lodash\dist\lodash.underscore.min.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\lodash\LICENSE.txt" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\lodash\lodash.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\underscore.string\dist\underscore.string.min.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\underscore.string\lib\underscore.string.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\underscore.string\test\run-qunit.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\underscore.string\test\speed.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\underscore.string\test\strings.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\underscore.string\test\strings_standalone.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\underscore.string\test\test.html" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\underscore.string\test\test_standalone.html" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\underscore.string\test\test_underscore\arrays.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\underscore.string\test\test_underscore\chaining.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\underscore.string\test\test_underscore\collections.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\underscore.string\test\test_underscore\functions.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\underscore.string\test\test_underscore\index.html" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\underscore.string\test\test_underscore\objects.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\underscore.string\test\test_underscore\speed.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\underscore.string\test\test_underscore\utility.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\underscore.string\test\test_underscore\vendor\jquery.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\underscore.string\test\test_underscore\vendor\jslitmus.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\underscore.string\test\test_underscore\vendor\qunit.css" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\underscore.string\test\test_underscore\vendor\qunit.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\underscore.string\test\underscore.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\test\index.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-util\Gruntfile.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-util\index.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-util\test\fixtures\Gruntfile-execArgv-child.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-util\test\fixtures\Gruntfile-execArgv.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-util\test\fixtures\Gruntfile-print-text.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-util\test\fixtures\spawn-multibyte.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-util\test\fixtures\spawn.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-util\test\index.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\hooker\child.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\hooker\dist\ba-hooker.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\hooker\dist\ba-hooker.min.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\hooker\grunt.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\hooker\lib\hooker.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\hooker\parent.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\hooker\test\hooker_test.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\iconv-lite\encodings\big5.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\iconv-lite\encodings\gbk.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\iconv-lite\encodings\singlebyte.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\iconv-lite\encodings\table\big5.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\iconv-lite\encodings\table\gbk.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\iconv-lite\generation\generate-big5-table.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\iconv-lite\generation\generate-singlebyte.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\iconv-lite\index.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\iconv-lite\test\big5-test.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\iconv-lite\test\big5File.txt" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\iconv-lite\test\cyrillic-test.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\iconv-lite\test\gbk-test.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\iconv-lite\test\gbkFile.txt" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\iconv-lite\test\greek-test.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\iconv-lite\test\main-test.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\iconv-lite\test\performance.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\iconv-lite\test\turkish-test.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\bin\js-yaml.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\examples\custom_types.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\examples\dumper.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\examples\sample_document.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\index.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\lib\js-yaml.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\lib\js-yaml\common.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\lib\js-yaml\dumper.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\lib\js-yaml\exception.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\lib\js-yaml\loader.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\lib\js-yaml\mark.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\lib\js-yaml\require.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\lib\js-yaml\schema.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\lib\js-yaml\schema\default.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\lib\js-yaml\schema\minimal.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\lib\js-yaml\schema\safe.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\lib\js-yaml\type.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\lib\js-yaml\type\binary.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\lib\js-yaml\type\bool.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\lib\js-yaml\type\float.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\lib\js-yaml\type\int.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\lib\js-yaml\type\js\function.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\lib\js-yaml\type\js\regexp.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\lib\js-yaml\type\js\undefined.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\lib\js-yaml\type\map.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\lib\js-yaml\type\merge.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\lib\js-yaml\type\null.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\lib\js-yaml\type\omap.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\lib\js-yaml\type\pairs.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\lib\js-yaml\type\seq.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\lib\js-yaml\type\set.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\lib\js-yaml\type\str.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\lib\js-yaml\type\timestamp.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\examples\arguments.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\examples\choice.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\examples\constants.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\examples\help.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\examples\nargs.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\examples\parents.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\examples\prefix_chars.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\examples\sub_commands.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\examples\sum.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\examples\testformatters.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\index.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\lib\action.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\lib\action\append.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\lib\action\append\constant.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\lib\action\count.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\lib\action\help.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\lib\action\store.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\lib\action\store\constant.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\lib\action\store\false.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\lib\action\store\true.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\lib\action\subparsers.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\lib\action\version.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\lib\action_container.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\lib\argparse.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\lib\argument\error.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\lib\argument\exclusive.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\lib\argument\group.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\lib\argument_parser.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\lib\const.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\lib\help\added_formatters.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\lib\help\formatter.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\lib\namespace.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\node_modules\underscore.string\foo.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\node_modules\underscore.string\gulpfile.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\node_modules\underscore.string\lib\underscore.string.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\node_modules\underscore\underscore-min.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\node_modules\underscore\underscore.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\esprima\bin\esparse.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\esprima\bin\esvalidate.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\esprima\esprima.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\esprima\test\compat.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\esprima\test\reflect.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\esprima\test\run.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\esprima\test\runner.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\esprima\test\test.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\lodash\lodash.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\lodash\lodash.min.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\lodash\lodash.underscore.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\lodash\lodash.underscore.min.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\minimatch\minimatch.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\minimatch\node_modules\lru-cache\lib\lru-cache.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\minimatch\node_modules\lru-cache\test\basic.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\minimatch\node_modules\lru-cache\test\foreach.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\minimatch\node_modules\lru-cache\test\memory-leak.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\minimatch\node_modules\sigmund\bench.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\minimatch\node_modules\sigmund\sigmund.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\minimatch\node_modules\sigmund\test\basic.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\minimatch\test\basic.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\minimatch\test\brace-expand.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\minimatch\test\caching.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\minimatch\test\defaults.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\minimatch\test\extglob-ending-with-state-char.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\nopt\bin\nopt.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\nopt\examples\my-program.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\nopt\lib\nopt.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\nopt\node_modules\abbrev\abbrev.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\nopt\node_modules\abbrev\test.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\rimraf\bin.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\rimraf\rimraf.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\rimraf\test\test-async.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\rimraf\test\test-sync.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\underscore.string\dist\underscore.string.min.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\underscore.string\lib\underscore.string.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\underscore.string\test\run-qunit.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\underscore.string\test\speed.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\underscore.string\test\strings.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\underscore.string\test\strings_standalone.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\underscore.string\test\test.html" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\underscore.string\test\test_standalone.html" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\underscore.string\test\test_underscore\arrays.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\underscore.string\test\test_underscore\chaining.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\underscore.string\test\test_underscore\collections.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\underscore.string\test\test_underscore\functions.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\underscore.string\test\test_underscore\objects.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\underscore.string\test\test_underscore\speed.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\underscore.string\test\test_underscore\temp.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\underscore.string\test\test_underscore\temp_tests.html" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\underscore.string\test\test_underscore\test.html" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\underscore.string\test\test_underscore\utility.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\underscore.string\test\test_underscore\vendor\jquery.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\underscore.string\test\test_underscore\vendor\jslitmus.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\underscore.string\test\test_underscore\vendor\qunit.css" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\underscore.string\test\test_underscore\vendor\qunit.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\underscore.string\test\underscore.js" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\which\which.js" />
+    <Content Include="Content\SleepyHollow\js\app.js" />
+    <Content Include="Content\SleepyHollow\lib\jasmine-1.3.0\jasmine-html.js" />
+    <Content Include="Content\SleepyHollow\lib\jasmine-1.3.0\jasmine.css" />
+    <Content Include="Content\SleepyHollow\lib\jasmine-1.3.0\jasmine.js" />
+    <Content Include="Content\SleepyHollow\tests\utils\logMeIn.js" />
+    <Content Include="Content\SleepyHollow\tests\functional\myTest.js" />
+    <Content Include="Content\SleepyHollow\tests\functional\practiceSmoke.js" />
+    <Content Include="Content\SleepyHollow\tests\SpecRunner.html" />
+    <Content Include="Content\SleepyHollow\tests\spec\app.js" />
+    <Content Include="Content\SleepyHollow\test\lib\require.js" />
+    <Content Include="Content\SleepyHollow\test\Headless.aspx" />
+    <Content Include="Content\SleepyHollow\test\Headless.html" />
+    <Content Include="Content\SleepyHollow\test\lib\jasmine-2.0.0\boot.js" />
+    <Content Include="Content\SleepyHollow\test\lib\jasmine-2.0.0\console.js" />
+    <Content Include="Content\SleepyHollow\test\lib\jasmine-2.0.0\jasmine-html.js" />
+    <Content Include="Content\SleepyHollow\test\lib\jasmine-2.0.0\jasmine.css" />
+    <Content Include="Content\SleepyHollow\test\lib\jasmine-2.0.0\jasmine.js" />
+    <Content Include="Content\SleepyHollow\test\lib\jasmine-2.0.0\jasmine_favicon.png" />
+    <Content Include="Content\SleepyHollow\test\lib\jasmine-2.0.0\matchers.js" />
+    <Content Include="Content\SleepyHollow\test\spec\LoginSpec.js" />
+    <Content Include="Content\SleepyHollow\test\spec\LoginTstr.js" />
+    <Content Include="Content\SleepyHollow\test\spec\UserHelper.js" />
+    <Content Include="Content\SleepyHollow\test\spec\UserSpec.js" />
+    <Content Include="Content\SleepyHollow\tools\JSCover-all.jar" />
+    <Content Include="Content\SleepyHollow\tools\out\phantom\jscoverage-highlight.css" />
+    <Content Include="Content\SleepyHollow\tools\out\phantom\jscoverage-ie.css" />
+    <Content Include="Content\SleepyHollow\tools\out\phantom\jscoverage-throbber.gif" />
+    <Content Include="Content\SleepyHollow\tools\out\phantom\jscoverage.css" />
+    <Content Include="Content\SleepyHollow\tools\out\phantom\jscoverage.html" />
+    <Content Include="Content\SleepyHollow\tools\out\phantom\jscoverage.js" />
+    <Content Include="Content\SleepyHollow\tools\out\phantom\original-src\dev\scripts\myNumbers.js" />
+    <Content Include="Content\SleepyHollow\tools\out\phantom\original-src\dev\scripts\numbers.js" />
+    <Content Include="Content\SleepyHollow\tools\run-jscover-jasmine.js" />
+    <Content Include="Content\SleepyHollow\ui.html" />
+    <Content Include="Content\templates\numpadlayout_html4.cshtml" />
+    <Content Include="Content\templates\documentformannotationlayout_html4.cshtml" />
+    <None Include="Content\templates\aceeditorlayout_html4.cshtml" />
+    <Content Include="Content\templates\documentformviewbuttonslayout_html4.cshtml" />
+    <Content Include="Content\templates\taborderlayout_html4.cshtml" />
+    <Content Include="Content\templates\tofieldsettingslayout_html4.cshtml" />
+    <Content Include="Content\templates\tofieldsettinglayout_html4.cshtml" />
+    <None Include="Content\templates\formcustomfieldmetacontrolslayout_html4.cshtml" />
+    <Content Include="Content\templates\HelpEmailTemplate.htm" />
+    <Content Include="Content\templates\IdeaEmailTemplate.htm" />
+    <Content Include="Content\themes\apple\bg.jpg" />
+    <Content Include="Content\themes\apple\d.png" />
+    <Content Include="Content\themes\apple\dot_for_ie.gif" />
+    <Content Include="Content\themes\apple\style.css" />
+    <Content Include="Content\themes\apple\throbber.gif" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\css\jquery-ui.css" />
+    <Content Include="Content\themes\classic\d.png" />
+    <Content Include="Content\themes\classic\dot_for_ie.gif" />
+    <Content Include="Content\themes\classic\style.css" />
+    <Content Include="Content\themes\classic\throbber.gif" />
+    <Content Include="Content\themes\default-rtl\d.gif" />
+    <Content Include="Content\themes\default-rtl\d.png" />
+    <Content Include="Content\themes\default-rtl\dots.gif" />
+    <Content Include="Content\themes\default-rtl\style.css" />
+    <Content Include="Content\themes\default-rtl\throbber.gif" />
+    <Content Include="Content\themes\default\d.gif" />
+    <Content Include="Content\themes\default\d.png" />
+    <Content Include="Content\themes\default\style.css" />
+    <Content Include="Content\themes\default\throbber.gif" />
+    <Content Include="Global.asax" />
+    <Content Include="HTMLPage1.htm" />
+    <Content Include="jsmvc\a_complexModels\!ImportLDAPPackageCPX.js" />
+    <Content Include="jsmvc\a_complexModels\!SearchResultsCPX.js" />
+    <Content Include="jsmvc\a_complexModels\ApprovalRequestItemsCPX.js" />
+    <Content Include="jsmvc\a_complexModels\AuditResultsCPX.js" />
+    <Content Include="jsmvc\a_complexModels\AuditTrailResultsCPX.js" />
+    <Content Include="jsmvc\a_complexModels\BulkViewerDataPackageCPX.js" />
+    <Content Include="jsmvc\a_complexModels\DocumentGetPackageCPX.js" />
+    <Content Include="jsmvc\a_complexModels\DocumentPageCPX.js" />
+    <Content Include="jsmvc\a_complexModels\DocumentVersionCPX.js" />
+    <Content Include="jsmvc\a_complexModels\FormsDataCPX.js" />
+    <Content Include="jsmvc\a_complexModels\FormTemplatePackageCPX.js" />
+    <Content Include="jsmvc\a_complexModels\GetViewableVersionsPackageCPX.js" />
+    <Content Include="jsmvc\a_complexModels\ImportJobResultsCPX.js" />
+    <Content Include="jsmvc\a_complexModels\ImportLDAPGroupsPackageCPX.js" />
+    <Content Include="jsmvc\a_complexModels\ImportLDAPUsersPackageCPX.js" />
+    <Content Include="jsmvc\a_complexModels\LabelValuePairsCPX.js" />
+    <Content Include="jsmvc\a_complexModels\SearchableEntityCPX.js" />
+    <Content Include="jsmvc\a_complexModels\SearchRequestCPX.js" />
+    <Content Include="jsmvc\a_complexModels\WFDocumentDataPackageCPX.js" />
+    <Content Include="jsmvc\a_complexModels\WFNotificationRuleCPX.js" />
+    <Content Include="jsmvc\a_complexModels\WorkflowItemCountCPX.js" />
+    <Content Include="jsmvc\a_complexModels\WorkflowItemsCPX.js" />
+    <Content Include="jsmvc\a_base_a_models\CustomGridItem.js" />
+    <Content Include="jsmvc\a_models\Approval.js" />
+    <Content Include="jsmvc\a_models\AssigneeWorkflow.js" />
+    <Content Include="jsmvc\a_models\Audit.js" />
+    <Content Include="jsmvc\a_models\AuditSearchCriteria.js" />
+    <Content Include="jsmvc\a_models\Bookmark.js" />
+    <Content Include="jsmvc\a_models\BuzzSpaces.js" />
+    <Content Include="jsmvc\a_models\Company.js" />
+    <Content Include="jsmvc\a_models\CompanyInstance.js" />
+    <Content Include="jsmvc\a_models\ContentItem.js" />
+    <Content Include="jsmvc\a_models\ContentType.js" />
+    <Content Include="jsmvc\a_models\CustomFieldGroup.js" />
+    <Content Include="jsmvc\a_models\CustomFieldGroupItem.js" />
+    <Content Include="jsmvc\a_models\CustomFieldMeta.js" />
+    <Content Include="jsmvc\a_models\CustomFieldMetaGroupPackage.js" />
+    <Content Include="jsmvc\a_models\CustomFieldValue.js" />
+    <Content Include="jsmvc\a_models\CustomList.js" />
+    <Content Include="jsmvc\a_models\DatabaseField.js" />
+    <Content Include="jsmvc\a_models\DataLink.js" />
+    <Content Include="jsmvc\a_models\DataLinkQuery.js" />
+    <Content Include="jsmvc\a_models\DBSyncSetting.js" />
+    <Content Include="jsmvc\a_models\DeletedDocument.js" />
+    <Content Include="jsmvc\a_models\DistributedQueue.js" />
+    <Content Include="jsmvc\a_models\DistributedQueueProcessor.js" />
+    <Content Include="jsmvc\a_models\Document.js" />
+    <Content Include="jsmvc\a_models\DQEntry.js" />
+    <Content Include="jsmvc\a_models\DynamicField.js" />
+    <Content Include="jsmvc\a_models\FieldCriterion.js" />
+    <Content Include="jsmvc\a_models\FileSystemEntry.js" />
+    <Content Include="jsmvc\a_models\Folder.js" />
+    <Content Include="jsmvc\a_models\FormElement.js" />
+    <Content Include="jsmvc\a_models\FormElementGroup.js" />
+    <Content Include="jsmvc\a_models\FormElementGroupMember.js" />
+    <Content Include="jsmvc\a_models\FormFormulaElement.js" />
+    <Content Include="jsmvc\a_models\FormPart.js" />
+    <Content Include="jsmvc\a_models\FormTemplate.js" />
+    <Content Include="jsmvc\a_models\Formula.js" />
+    <Content Include="jsmvc\a_models\GetImportJobsPackage.js" />
+    <Content Include="jsmvc\a_models\ImageStamp.js" />
+    <Content Include="jsmvc\a_models\ImportJob.js" />
+    <Content Include="jsmvc\a_models\Inbox.js" />
+    <Content Include="jsmvc\a_models\IndexStats.js" />
+    <Content Include="jsmvc\a_models\InlayColor.js" />
+    <Content Include="jsmvc\a_models\IPMask.js" />
+    <Content Include="jsmvc\a_models\LabelValuePairItem.js" />
+    <Content Include="jsmvc\a_models\LDAPConnection.js" />
+    <Content Include="jsmvc\a_models\LDAPContainer.js" />
+    <Content Include="jsmvc\a_models\LDAPGroup.js" />
+    <Content Include="jsmvc\a_models\LDAPUser.js" />
+    <Content Include="jsmvc\a_models\LicenseStatistic.js" />
+    <Content Include="jsmvc\a_models\Mark.js" />
+    <Content Include="jsmvc\a_models\Message.js" />
+    <Content Include="jsmvc\a_models\PublicImage.js" />
+    <Content Include="jsmvc\a_models\RecordCategory.js" />
+    <Content Include="jsmvc\a_models\RecordFreeze.js" />
+    <Content Include="jsmvc\a_models\Report.js" />
+    <Content Include="jsmvc\a_models\ReportParameter.js" />
+    <Content Include="jsmvc\a_models\ReportSchedule.js" />
+    <Content Include="jsmvc\a_models\Role.js" />
+    <Content Include="jsmvc\a_models\SavedSearch.js" />
+    <Content Include="jsmvc\a_models\ScanSetting.js" />
+    <Content Include="jsmvc\a_models\Schedule.js" />
+    <Content Include="jsmvc\a_models\SecurityClass.js" />
+    <Content Include="jsmvc\a_models\SimpleDocument.js" />
+    <Content Include="jsmvc\a_models\SlimEntity.js" />
+    <Content Include="jsmvc\a_models\SlimFormTemplate.js" />
+    <Content Include="jsmvc\a_models\SlimRole.js" />
+    <Content Include="jsmvc\a_models\SyncAction.js" />
+    <Content Include="jsmvc\a_models\SystemPreference.js" />
+    <Content Include="jsmvc\a_models\TaskUIDatum.js" />
+    <Content Include="jsmvc\a_models\TextSetting.js" />
+    <Content Include="jsmvc\a_models\TextStamp.js" />
+    <Content Include="jsmvc\a_models\User.js" />
+    <Content Include="jsmvc\a_models\UserPreference.js" />
+    <Content Include="jsmvc\a_models\VersionComment.js" />
+    <Content Include="jsmvc\a_models\VersionStateInfo.js" />
+    <Content Include="jsmvc\a_models\Watch.js" />
+    <Content Include="jsmvc\a_models\WFBranch.js" />
+    <Content Include="jsmvc\a_models\WFDocument.js" />
+    <Content Include="jsmvc\a_models\WorkflowItemByWorkflow.js" />
+    <Content Include="jsmvc\a_underscore.js" />
+    <Content Include="jsmvc\backbone.js" />
+    <Content Include="jsmvc\backboneextensions.js" />
+    <Content Include="jsmvc\a_base_collections\CustomGridItems.js" />
+    <Content Include="jsmvc\collections\Approvals.js" />
+    <Content Include="jsmvc\collections\AssigneeWorkflows.js" />
+    <Content Include="jsmvc\collections\Audits.js" />
+    <Content Include="jsmvc\collections\Bookmarks.js" />
+    <Content Include="jsmvc\collections\BuzzSpacesCollection.js" />
+    <Content Include="jsmvc\collections\Companies.js" />
+    <Content Include="jsmvc\collections\CompanyInstances.js" />
+    <Content Include="jsmvc\collections\ContentItems.js" />
+    <Content Include="jsmvc\collections\ContentTypes.js" />
+    <Content Include="jsmvc\collections\CustomFieldGroupItems.js" />
+    <Content Include="jsmvc\collections\CustomFieldGroups.js" />
+    <Content Include="jsmvc\collections\CustomFieldMetaGroupPackages.js" />
+    <Content Include="jsmvc\collections\CustomFieldMetas.js" />
+    <Content Include="jsmvc\collections\CustomFieldValues.js" />
+    <Content Include="jsmvc\collections\CustomLists.js" />
+    <Content Include="jsmvc\collections\DatabaseFields.js" />
+    <Content Include="jsmvc\collections\DataLinkQueries.js" />
+    <Content Include="jsmvc\collections\DataLinks.js" />
+    <Content Include="jsmvc\collections\DBSyncSettings.js" />
+    <Content Include="jsmvc\collections\DeletedDocuments.js" />
+    <Content Include="jsmvc\collections\DistributedQueueProcessors.js" />
+    <Content Include="jsmvc\collections\DistributedQueues.js" />
+    <Content Include="jsmvc\collections\DocumentPages.js" />
+    <Content Include="jsmvc\collections\Documents.js" />
+    <Content Include="jsmvc\collections\DocumentVersions.js" />
+    <Content Include="jsmvc\collections\DQEntries.js" />
+    <Content Include="jsmvc\collections\DynamicFields.js" />
+    <Content Include="jsmvc\collections\FieldCriteria.js" />
+    <Content Include="jsmvc\collections\FileSystemEntries.js" />
+    <Content Include="jsmvc\collections\Folders.js" />
+    <Content Include="jsmvc\collections\FormElementGroupMembers.js" />
+    <Content Include="jsmvc\collections\FormElementGroups.js" />
+    <Content Include="jsmvc\collections\FormElements.js" />
+    <Content Include="jsmvc\collections\FormFormulaElements.js" />
+    <Content Include="jsmvc\collections\FormParts.js" />
+    <Content Include="jsmvc\collections\ImageStamps.js" />
+    <Content Include="jsmvc\collections\ImportJobs.js" />
+    <Content Include="jsmvc\collections\Inboxes.js" />
+    <Content Include="jsmvc\collections\InlayColors.js" />
+    <Content Include="jsmvc\collections\IPMasks.js" />
+    <Content Include="jsmvc\collections\LabelValuePairItems.js" />
+    <Content Include="jsmvc\collections\LDAPConnections.js" />
+    <Content Include="jsmvc\collections\LDAPContainers.js" />
+    <Content Include="jsmvc\collections\LDAPGroups.js" />
+    <Content Include="jsmvc\collections\LDAPUsers.js" />
+    <Content Include="jsmvc\collections\LicenseStatistics.js" />
+    <Content Include="jsmvc\collections\Marks.js" />
+    <Content Include="jsmvc\collections\Messages.js" />
+    <Content Include="jsmvc\collections\PublicImages.js" />
+    <Content Include="jsmvc\collections\RecordCategories.js" />
+    <Content Include="jsmvc\collections\RecordFreezes.js" />
+    <Content Include="jsmvc\collections\ReportParameters.js" />
+    <Content Include="jsmvc\collections\Reports.js" />
+    <Content Include="jsmvc\collections\ReportSchedules.js" />
+    <Content Include="jsmvc\collections\Roles.js" />
+    <Content Include="jsmvc\collections\SavedSearches.js" />
+    <Content Include="jsmvc\collections\ScanSettings.js" />
+    <Content Include="jsmvc\collections\Schedules.js" />
+    <Content Include="jsmvc\collections\SearchableEntities.js" />
+    <Content Include="jsmvc\collections\SecurityClasses.js" />
+    <Content Include="jsmvc\collections\SimpleDocuments.js" />
+    <Content Include="jsmvc\collections\SlimEntities.js" />
+    <Content Include="jsmvc\collections\SlimFormTemplates.js" />
+    <Content Include="jsmvc\collections\SlimRoles.js" />
+    <Content Include="jsmvc\collections\SyncActions.js" />
+    <Content Include="jsmvc\collections\SystemPreferences.js" />
+    <Content Include="jsmvc\collections\TaskUIData.js" />
+    <Content Include="jsmvc\collections\TextStamps.js" />
+    <Content Include="jsmvc\collections\UserPreferences.js" />
+    <Content Include="jsmvc\collections\Users.js" />
+    <Content Include="jsmvc\collections\VersionComments.js" />
+    <Content Include="jsmvc\collections\Watches.js" />
+    <Content Include="jsmvc\collections\WFBranches.js" />
+    <Content Include="jsmvc\collections\WFNotificationRules.js" />
+    <Content Include="jsmvc\collections\WorkflowItemCounts.js" />
+    <Content Include="jsmvc\collections\WorkflowItemsByWorkflow.js" />
+    <Content Include="jsmvc\compositecollections\C3PICC.js" />
+    <Content Include="jsmvc\compositecollections\ContentTypeCC.js" />
+    <Content Include="jsmvc\compositecollections\CustomFieldCC.js" />
+    <Content Include="jsmvc\compositecollections\DataLinksCC.js" />
+    <Content Include="jsmvc\compositecollections\DistributedQueueCC.js" />
+    <Content Include="jsmvc\compositecollections\ExportImportCC.js" />
+    <Content Include="jsmvc\compositecollections\FormsCC.js" />
+    <Content Include="jsmvc\compositecollections\LDAPConnectionsCC.js" />
+    <Content Include="jsmvc\compositecollections\LicensesCC.js" />
+    <Content Include="jsmvc\compositecollections\RecordCategoriesCC.js" />
+    <Content Include="jsmvc\compositecollections\RolesCC.js" />
+    <Content Include="jsmvc\compositecollections\StampCC.js" />
+    <Content Include="jsmvc\compositecollections\UsersCC.js" />
+    <Content Include="jsmvc\compositecollections\WorkflowsCC.js" />
+    <Content Include="jsmvc\controllers\AdminController.js" />
+    <Content Include="jsmvc\controllers\CaptureController.js" />
+    <Content Include="jsmvc\controllers\FormsRouter.js" />
+    <Content Include="jsmvc\controllers\HomeController.js" />
+    <Content Include="jsmvc\controllers\InitController.js" />
+    <Content Include="jsmvc\controllers\ReportsController.js" />
+    <Content Include="jsmvc\controllers\RetrieveController.js" />
+    <Content Include="jsmvc\controllers\WorkflowController.js" />
+    <Content Include="jsmvc\DoT.js" />
+    <Content Include="jsmvc\views\!CustomGridView.js" />
+    <Content Include="jsmvc\views\AceEditorView.js" />
+    <Content Include="jsmvc\views\ActionEditView.js" />
+    <Content Include="jsmvc\views\ActionManagerView.js" />
+    <Content Include="jsmvc\views\AdminEditView.js" />
+    <Content Include="jsmvc\views\AdminManagerView.js" />
+    <Content Include="jsmvc\views\AnnotationView.js" />
+    <Content Include="jsmvc\views\AppDisplayView.js" />
+    <Content Include="jsmvc\views\ApprovalRequestItemsView.js" />
+    <Content Include="jsmvc\views\AuditGridView.js" />
+    <Content Include="jsmvc\views\AuditManagerView.js" />
+    <Content Include="jsmvc\views\AuditTrailGridView.js" />
+    <Content Include="jsmvc\views\AuditView.js" />
+    <Content Include="jsmvc\views\BookmarksView.js" />
+    <Content Include="jsmvc\views\BuzzSpacesEditView.js" />
+    <Content Include="jsmvc\views\BuzzSpacesManagerView.js" />
+    <Content Include="jsmvc\views\C3PIEditView.js" />
+    <Content Include="jsmvc\views\C3PIFieldMapperView.js" />
+    <Content Include="jsmvc\views\C3PIManagerView.js" />
+    <Content Include="jsmvc\views\C3PIMasterView.js" />
+    <Content Include="jsmvc\views\C3PI_eConnectView.js" />
+    <Content Include="jsmvc\views\CaptureEditView.js" />
+    <Content Include="jsmvc\views\CaptureGridItemView.js" />
+    <Content Include="jsmvc\views\CaptureGridView.js" />
+    <Content Include="jsmvc\views\CaptureProgressGridItemView.js" />
+    <Content Include="jsmvc\views\CaptureProgressGridView.js" />
+    <Content Include="jsmvc\views\CaptureViewerView.js" />
+    <Content Include="jsmvc\views\CaptureWebFileBrowseGridView.js" />
+    <Content Include="jsmvc\views\CategoryView.js" />
+    <Content Include="jsmvc\views\ClientSelectorView.js" />
+    <Content Include="jsmvc\views\CollapsedApprovalStampView.js" />
+    <Content Include="jsmvc\views\ColumnSelectView.js" />
+    <Content Include="jsmvc\views\CompanyEditView.js" />
+    <Content Include="jsmvc\views\CompanyManagerView.js" />
+    <Content Include="jsmvc\views\ContentTypeBuilderEditView.js" />
+    <Content Include="jsmvc\views\ContentTypeBuilderFieldRegionView.js" />
+    <Content Include="jsmvc\views\ContentTypeBuilderFieldSettingsView.js" />
+    <Content Include="jsmvc\views\TabOrderFieldSettingView.js" />
+    <Content Include="jsmvc\views\TabOrderFieldSettingsView.js" />
+    <Content Include="jsmvc\views\ContentTypeBuilderFieldSettingView.js" />
+    <Content Include="jsmvc\views\ContentTypeBuilderInlineView.js" />
+    <Content Include="jsmvc\views\ContentTypeDefaultsView.js" />
+    <Content Include="jsmvc\views\ContentTypeEditView.js" />
+    <Content Include="jsmvc\views\ContentTypeFieldView.js" />
+    <Content Include="jsmvc\views\ContentTypeManagerView.js" />
+    <Content Include="jsmvc\views\ContentTypeReplacementView.js" />
+    <Content Include="jsmvc\views\ContentTypeSecurityView.js" />
+    <Content Include="jsmvc\views\CustomFieldMetaEditView.js" />
+    <Content Include="jsmvc\views\CustomFieldMetaGroupEditView.js" />
+    <Content Include="jsmvc\views\CustomFieldMetaManagerEditView.js" />
+    <Content Include="jsmvc\views\CustomFieldMetaManagerView.js" />
+    <Content Include="jsmvc\views\CustomFieldValueView.js" />
+    <Content Include="jsmvc\views\CustomListEditView.js" />
+    <Content Include="jsmvc\views\CustomListManagerView.js" />
+    <Content Include="jsmvc\views\DashboardView.js" />
+    <Content Include="jsmvc\views\DataLinkEditView.js" />
+    <Content Include="jsmvc\views\DataLinkManagerView.js" />
+    <Content Include="jsmvc\views\DataUsageReportView.js" />
+    <Content Include="jsmvc\views\DBSyncEditView.js" />
+    <Content Include="jsmvc\views\DBSyncManagerView.js" />
+    <Content Include="jsmvc\views\DistributedQueueManagerView.js" />
+    <Content Include="jsmvc\views\DistributedQueueView.js" />
+    <Content Include="jsmvc\views\DocumentFormAnnotationView.js" />
+    <Content Include="jsmvc\views\DocumentFormView.js" />
+    <Content Include="jsmvc\views\DocumentImageContentItemThumbnailsView.js" />
+    <Content Include="jsmvc\views\DocumentImageThumbnailsView.js" />
+    <Content Include="jsmvc\views\DocumentImageThumbnailView.js" />
+    <Content Include="jsmvc\views\DocumentImageView.js" />
+    <Content Include="jsmvc\views\DocumentMetaApprovalView.js" />
+    <Content Include="jsmvc\views\DocumentMetaFieldGroupsView.js" />
+    <Content Include="jsmvc\views\DocumentMetaFieldGroupView.js" />
+    <Content Include="jsmvc\views\DocumentMetaFieldSetVerifyView.js" />
+    <Content Include="jsmvc\views\DocumentMetaFieldSetView.js" />
+    <Content Include="jsmvc\views\DocumentMetaFieldsView.js" />
+    <Content Include="jsmvc\views\DocumentMetaFieldView.js" />
+    <Content Include="jsmvc\views\DocumentMetaFolderView.js" />
+    <Content Include="jsmvc\views\DocumentMetaHistoryView.js" />
+    <Content Include="jsmvc\views\DocumentMetaRelatedItemsView.js" />
+    <Content Include="jsmvc\views\DocumentMetaVersioningView.js" />
+    <Content Include="jsmvc\views\DocumentMetaView.js" />
+    <Content Include="jsmvc\views\DocumentMetaWorkflowView.js" />
+    <Content Include="jsmvc\views\DocumentNativeView.js" />
+    <Content Include="jsmvc\views\DocumentPagerView.js" />
+    <Content Include="jsmvc\views\DocumentPreviewView.js" />
+    <Content Include="jsmvc\views\DocumentVersioningCommentView.js" />
+    <Content Include="jsmvc\views\DocumentVersioningGridItemView.js" />
+    <Content Include="jsmvc\views\DocumentVersioningGridView.js" />
+    <Content Include="jsmvc\views\DocumentView.js" />
+    <Content Include="jsmvc\views\DocumentViewerMenuView.js" />
+    <Content Include="jsmvc\views\DocumentViewerView.js" />
+    <Content Include="jsmvc\views\ExportImportEditView.js" />
+    <Content Include="jsmvc\views\ExportImportManagerView.js" />
+    <Content Include="jsmvc\views\FieldedSearchView.js" />
+    <Content Include="jsmvc\views\FormContentTypeControlsView.js" />
+    <Content Include="jsmvc\views\FormCustomFieldMetaControlsView.js" />
+    <Content Include="jsmvc\views\FormCustomFieldGroupControlsView.js" />
+    <Content Include="jsmvc\views\FormElementControlsView.js" />
+    <Content Include="jsmvc\views\FormElementGroupSettingsView.js" />
+    <Content Include="jsmvc\views\FormElementGroupView.js" />
+    <Content Include="jsmvc\views\FormElementLabelValuePairsView.js" />
+    <Content Include="jsmvc\views\FormElementLabelValuePairView.js" />
+    <Content Include="jsmvc\views\FormElementSettingsView.js" />
+    <Content Include="jsmvc\views\FormElementValueView.js" />
+    <Content Include="jsmvc\views\FormElementView.js" />
+    <Content Include="jsmvc\views\FormsCategoryNavigationView.js" />
+    <Content Include="jsmvc\views\FormsDesignerCanvasView.js" />
+    <Content Include="jsmvc\views\FormsDesignerFormPartView.js" />
+    <Content Include="jsmvc\views\FormsDesignerTemplateDataView.js" />
+    <Content Include="jsmvc\views\FormsDesignerView.js" />
+    <Content Include="jsmvc\views\FormsTemplateLibraryView.js" />
+    <Content Include="jsmvc\views\FormsView.js" />
+    <Content Include="jsmvc\views\FormTemplateCategoryView.js" />
+    <Content Include="jsmvc\views\FormTemplateSettingsView.js" />
+    <Content Include="jsmvc\views\FormulaBuilderView.js" />
+    <Content Include="jsmvc\views\HomeEditView.js" />
+    <Content Include="jsmvc\views\HomeManagerView.js" />
+    <Content Include="jsmvc\views\ImportJobsEditView.js" />
+    <Content Include="jsmvc\views\ImportJobsGridItemView.js" />
+    <Content Include="jsmvc\views\ImportJobsGridView.js" />
+    <Content Include="jsmvc\views\ImportJobsView.js" />
+    <Content Include="jsmvc\views\ImportLDAPGridItemView.js" />
+    <Content Include="jsmvc\views\ImportLDAPGridView.js" />
+    <Content Include="jsmvc\views\ImportLDAPGroupsView.js" />
+    <Content Include="jsmvc\views\ImportLDAPUsersView.js" />
+    <Content Include="jsmvc\views\!ImportLDAPView.js" />
+    <Content Include="jsmvc\views\IndexManagerView.js" />
+    <Content Include="jsmvc\views\IndexView.js" />
+    <Content Include="jsmvc\views\InlayColorView.js" />
+    <Content Include="jsmvc\views\IPMaskEditView.js" />
+    <Content Include="jsmvc\views\IPMaskManagerView.js" />
+    <Content Include="jsmvc\views\LDAPEditView.js" />
+    <Content Include="jsmvc\views\LDAPManagerView.js" />
+    <Content Include="jsmvc\views\LicenseEditView.js" />
+    <Content Include="jsmvc\views\LicenseManagerView.js" />
+    <Content Include="jsmvc\views\NumPadView.js" />
+    <Content Include="jsmvc\views\PasswordManagementEditView.js" />
+    <Content Include="jsmvc\views\PasswordManagementView.js" />
+    <Content Include="jsmvc\views\PasswordManagerView.js" />
+    <Content Include="jsmvc\views\PasswordView.js" />
+    <Content Include="jsmvc\views\PawnsInlineView.js" />
+    <Content Include="jsmvc\views\PawnsView.js" />
+    <Content Include="jsmvc\views\PermissionsEditView.js" />
+    <Content Include="jsmvc\views\PublicImageView.js" />
+    <Content Include="jsmvc\views\RecycleBinEditView.js" />
+    <Content Include="jsmvc\views\RecycleBinManagerView.js" />
+    <Content Include="jsmvc\views\ReportParameterLibraryView.js" />
+    <Content Include="jsmvc\views\ReportParameterView.js" />
+    <Content Include="jsmvc\views\ReportsCategoryView.js" />
+    <Content Include="jsmvc\views\ReportSchedulingView.js" />
+    <Content Include="jsmvc\views\ReportsDashboardView.js" />
+    <Content Include="jsmvc\views\ReportsManagerView.js" />
+    <Content Include="jsmvc\views\ReportView.js" />
+    <Content Include="jsmvc\views\ReportWorksView.js" />
+    <Content Include="jsmvc\views\RetentionEditView.js" />
+    <Content Include="jsmvc\views\RetentionFreezeEditView.js" />
+    <Content Include="jsmvc\views\RetentionFreezeManagerView.js" />
+    <Content Include="jsmvc\views\RetentionManagerView.js" />
+    <Content Include="jsmvc\views\RetrieveView.js" />
+    <Content Include="jsmvc\views\RoleEditView.js" />
+    <Content Include="jsmvc\views\RoleManagerView.js" />
+    <Content Include="jsmvc\views\SavedSearchView.js" />
+    <Content Include="jsmvc\views\SchedulingView.js" />
+    <Content Include="jsmvc\views\SearchCriteriaView.js" />
+    <Content Include="jsmvc\views\SearchResultCustomFieldGroupSubgridView.js" />
+    <Content Include="jsmvc\views\SearchResultItemView.js" />
+    <Content Include="jsmvc\views\SearchResultsGridFooterView.js" />
+    <Content Include="jsmvc\views\SearchResultsGridView.js" />
+    <Content Include="jsmvc\views\SearchResultsMenuView.js" />
+    <Content Include="jsmvc\views\SearchResultVersioningSubgridView.js" />
+    <Content Include="jsmvc\views\SearchView.js" />
+    <Content Include="jsmvc\views\SecurityClassEditView.js" />
+    <Content Include="jsmvc\views\SecurityClassManagerView.js" />
+    <Content Include="jsmvc\views\SlapBoxView.js" />
+    <Content Include="jsmvc\views\StampEditView.js" />
+    <Content Include="jsmvc\views\StampManagerView.js" />
+    <Content Include="jsmvc\views\StaticDataGridView.js" />
+    <Content Include="jsmvc\views\SyncActionEditView.js" />
+    <Content Include="jsmvc\views\SystemNotificationsEditView.js" />
+    <Content Include="jsmvc\views\SystemNotificationsView.js" />
+    <Content Include="jsmvc\views\SystemPreferencesEditView.js" />
+    <Content Include="jsmvc\views\SystemPreferencesManagerView.js" />
+    <Content Include="jsmvc\views\TabOrderEditView.js" />
+    <Content Include="jsmvc\views\TextSettingsView.js" />
+    <Content Include="jsmvc\views\UserEditView.js" />
+    <Content Include="jsmvc\views\UserManagerView.js" />
+    <Content Include="jsmvc\views\ViewLicensesEditView.js" />
+    <Content Include="jsmvc\views\ViewLicensesView.js" />
+    <Content Include="jsmvc\views\WatchLibraryView.js" />
+    <Content Include="jsmvc\views\WatchView.js" />
+    <Content Include="jsmvc\views\WorkflowDashboardView.js" />
+    <Content Include="jsmvc\views\WorkflowDesignerEditView.js" />
+    <Content Include="jsmvc\views\WorkflowDesignerManagerView.js" />
+    <Content Include="jsmvc\views\WorkflowItemPerAssigneeSubgridItemView.js" />
+    <Content Include="jsmvc\views\WorkflowItemPerAssigneeSubgridView.js" />
+    <Content Include="jsmvc\views\WorkflowItemPerAssigneeView.js" />
+    <Content Include="jsmvc\views\WorkflowItemPerStepSubgridItemView.js" />
+    <Content Include="jsmvc\views\WorkflowItemPerStepSubGridView.js" />
+    <Content Include="jsmvc\views\WorkflowItemPerStepView.js" />
+    <Content Include="jsmvc\views\WorkflowItemsPerAssigneeView.js" />
+    <Content Include="jsmvc\views\WorkflowItemsPerStepView.js" />
+    <Content Include="jsmvc\views\WorkflowItemsView.js" />
+    <Content Include="jsmvc\views\WorkflowView.js" />
+    <Content Include="ReportViewer.aspx" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Content\LibsWorkflow\ActionEditor.js" />
+    <Content Include="Content\LibsWorkflow\Actions.js" />
+    <Content Include="Content\LibsWorkflow\BranchesEditor.js" />
+    <Content Include="Content\images\dynamicAnchorBg.jpg" />
+    <Content Include="Content\LibsWorkflow\jquery.ctmenu.js" />
+    <Content Include="Content\LibsWorkflow\jquery.json-2.3.js" />
+    <Content Include="Content\LibsWorkflow\jquery.jsPlumb.js" />
+    <Content Include="Content\LibsWorkflow\jquery.qtip.js" />
+    <Content Include="Content\LibsWorkflow\Login.js" />
+    <Content Include="Content\css\WorkflowDesigner.css" />
+    <Content Include="Content\LibsWorkflow\StepEditor.js" />
+    <Content Include="Content\LibsWorkflow\TaskEditor.js" />
+    <Content Include="Content\LibsWorkflow\Workflow.js" />
+    <Content Include="Content\LibsWorkflow\WorkflowEditor.js" />
+    <Content Include="HTMLPage1.cshtml" />
+    <Content Include="QAHandler.ashx" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\langs\readme.md" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\skins\lightgray\fonts\icomoon-small.eot" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\skins\lightgray\fonts\icomoon-small.ttf" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\skins\lightgray\fonts\icomoon-small.woff" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\skins\lightgray\fonts\icomoon.eot" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\skins\lightgray\fonts\icomoon.ttf" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\skins\lightgray\fonts\icomoon.woff" />
+    <Content Include="Content\LibsExternal\TinyMCEJScripts2\skins\lightgray\fonts\readme.md" />
+    <Content Include="Content\SleepyHollow\tools\jscover-generate.bat" />
+    <Content Include="Content\SleepyHollow\tools\jscover-server.bat" />
+    <Content Include="Content\SleepyHollow\tools\out\jscover.log" />
+    <Content Include="Content\SleepyHollow\tools\out\jscover.log.lck" />
+    <Content Include="Content\SleepyHollow\tools\out\phantom\jscoverage.json" />
+    <Content Include="Content\templates\actionlayout_html4.cshtml" />
+    <Content Include="Content\templates\annotationlayout_html4.cshtml" />
+    <Content Include="Content\templates\appdisplaylayout_html4.cshtml" />
+    <Content Include="Content\templates\approvallayout_html4.cshtml" />
+    <Content Include="Content\templates\approvalrequestitemslayout_html4.cshtml" />
+    <Content Include="Content\templates\auditgridviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\auditlayout_html4.cshtml" />
+    <Content Include="Content\templates\bookmarkslayout_html4.cshtml" />
+    <Content Include="Content\templates\capturegriditemviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\capturegridviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\capturelayout_html4.cshtml" />
+    <Content Include="Content\templates\captureprogressgriditemviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\captureprogressgridviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\captureviewerlayout_html4.cshtml" />
+    <Content Include="Content\templates\capturewebfilebrowsegridviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\categorylayout_html4.cshtml" />
+    <Content Include="Content\templates\categorynavigationlayout_html4.cshtml" />
+    <Content Include="Content\templates\changepasswordlayout_html4.cshtml" />
+    <Content Include="Content\templates\checkindialoglayout_html4.cshtml" />
+    <Content Include="Content\templates\checkoutdialoglayout_html4.cshtml" />
+    <Content Include="Content\templates\columnselectviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\contenttypebuilderlayout_html4.cshtml" />
+    <Content Include="Content\templates\contenttypedefaultslayout_html4.cshtml" />
+    <Content Include="Content\templates\contenttypefieldlayout_html4.cshtml" />
+    <Content Include="Content\templates\contenttypesecuritylayout_html4.cshtml" />
+    <Content Include="Content\templates\ctbfieldregionselectionlayout_html4.cshtml" />
+    <Content Include="Content\templates\ctbfieldsettinglayout_html4.cshtml" />
+    <Content Include="Content\templates\ctbfieldsettingslayout_html4.cshtml" />
+    <Content Include="Content\templates\customfieldgroupitemslayout_html4.cshtml" />
+    <Content Include="Content\templates\customfieldgroupitemslibrarylayout_html4.cshtml" />
+    <Content Include="Content\templates\customfieldgroupsettingslayout_html4.cshtml" />
+    <Content Include="Content\templates\customfieldgroupsubgridviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\customfieldmetamanagerlayout_html4.cshtml" />
+    <Content Include="Content\templates\customfieldvaluelayout_html4.cshtml" />
+    <Content Include="Content\templates\customlistlayout_html4.cshtml" />
+    <Content Include="Content\templates\dashboardlayout_html4.cshtml" />
+    <Content Include="Content\templates\datalinkconnectionlayout_html4.cshtml" />
+    <Content Include="Content\templates\dataUsageReportlayout_html4.cshtml" />
+    <Content Include="Content\templates\directlinklayout_html4.cshtml" />
+    <Content Include="Content\templates\distributedqueuelayout_html4.cshtml" />
+    <Content Include="Content\templates\documentformviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\documentimagecontentitemthumbnailslayout_html4.cshtml" />
+    <Content Include="Content\templates\documentimagethumbnaillayout_html4.cshtml" />
+    <Content Include="Content\templates\documentimagethumbnailslayout_html4.cshtml" />
+    <Content Include="Content\templates\documentimageviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\documentmetaapprovalviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\documentmetafieldgroupsviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\documentmetafieldgroupviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\documentmetafieldsetviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\documentmetafieldsetviewverifylayout_html4.cshtml" />
+    <Content Include="Content\templates\documentmetafieldsviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\documentmetafieldviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\documentmetafolderviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\documentmetahistoryapprovalviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\documentmetahistoryviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\documentmetarelateditemsviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\documentmetaversioningviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\documentmetaviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\documentmetaworkflowviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\documentnativeviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\documentpreviewviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\documentversioningcommentviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\documentversioninggriditemviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\documentversioninggridviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\documentviewerlayout_html4.cshtml" />
+    <Content Include="Content\templates\documentviewermenulayout_html4.cshtml" />
+    <Content Include="Content\templates\documentviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\downloadlinklayout_html4.cshtml" />
+    <Content Include="Content\templates\dropdownlayout_html4.cshtml" />
+    <Content Include="Content\templates\editbuzzspacelayout_html4.cshtml" />
+    <Content Include="Content\templates\editcompanylayout_html4.cshtml" />
+    <Content Include="Content\templates\editcontenttypelayout_html4.cshtml" />
+    <Content Include="Content\templates\editcustomfieldmetagroupslayout_html4.cshtml" />
+    <Content Include="Content\templates\editcustomfieldmetalayout_html4.cshtml" />
+    <Content Include="Content\templates\editdatabasesyncsettingslayout_html4.cshtml" />
+    <Content Include="Content\templates\editdatalinklayout_html4.cshtml" />
+    <Content Include="Content\templates\editdocumentlayout_html4.cshtml" />
+    <Content Include="Content\templates\editipmasklayout_html4.cshtml" />
+    <Content Include="Content\templates\editldapconnectionlayout_html4.cshtml" />
+    <Content Include="Content\templates\editpermissionslayout_html4.cshtml" />
+    <Content Include="Content\templates\editretentioncategories_html4.cshtml" />
+    <Content Include="Content\templates\editretentionfreezes_html4.cshtml" />
+    <Content Include="Content\templates\editrolelayout_html4.cshtml" />
+    <Content Include="Content\templates\editsecurityclasslayout_html4.cshtml" />
+    <Content Include="Content\templates\editstamplayout_html4.cshtml" />
+    <Content Include="Content\templates\edituserlayout_html4.cshtml" />
+    <Content Include="Content\templates\emailmenulayout_html4.cshtml" />
+    <Content Include="Content\templates\ExportImportlayout_html4.cshtml" />
+    <Content Include="Content\templates\fieldedsearchviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\formcontettypecontrolslayout_html4.cshtml" />
+    <Content Include="Content\templates\formcustomfieldgroupcontrolslayout_html4.cshtml" />
+    <Content Include="Content\templates\formelementcontrolslayout_html4.cshtml" />
+    <Content Include="Content\templates\formelementgrouplayout_html4.cshtml" />
+    <Content Include="Content\templates\formelementlabelvaluepairlayout_html4.cshtml" />
+    <Content Include="Content\templates\formelementlabelvaluepairslayout_html4.cshtml" />
+    <Content Include="Content\templates\formelementvaluelayout_html4.cshtml" />
+    <Content Include="Content\templates\formsdesignercanvaslayout_html4.cshtml" />
+    <Content Include="Content\templates\formsdesignerformpartlayout_html4.cshtml" />
+    <Content Include="Content\templates\formsdesignerlayout_html4.cshtml" />
+    <Content Include="Content\templates\formsdesignertemplatedatalayout_html4.cshtml" />
+    <Content Include="Content\templates\formslayout_html4.cshtml" />
+    <Content Include="Content\templates\formtemplatecategorylayout_html4.cshtml" />
+    <Content Include="Content\templates\formtemplatefieldgroupsettingslayout_html4.cshtml" />
+    <Content Include="Content\templates\formtemplatefieldsettingslayout_html4.cshtml" />
+    <Content Include="Content\templates\formtemplatesettingslayout_html4.cshtml" />
+    <Content Include="Content\templates\formtemplateslayout_html4.cshtml" />
+    <Content Include="Content\templates\guidedhelp_capture_html4.cshtml" />
+    <Content Include="Content\templates\importjobsgriditemviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\importjobsgridviewwlayout_html4.cshtml" />
+    <Content Include="Content\templates\importJobslayout_html4.cshtml" />
+    <Content Include="Content\templates\indexlayout_html4.cshtml" />
+    <Content Include="Content\templates\inlaycolor_html4.cshtml" />
+    <Content Include="Content\templates\licenselayout_html4.cshtml" />
+    <Content Include="Content\templates\pageoptionsmenulayout_html4.cshtml" />
+    <Content Include="Content\templates\passwordmanagementlayout_html4.cshtml" />
+    <Content Include="Content\templates\progressbarlayout_html4.cshtml" />
+    <Content Include="Content\templates\publicimagelayout_html4.cshtml" />
+    <Content Include="Content\templates\recyclebinlayout_html4.cshtml" />
+    <Content Include="Content\templates\reportcustombuttonslayout_html4.cshtml" />
+    <Content Include="Content\templates\reportlayout_html4.cshtml" />
+    <Content Include="Content\templates\reportparameterslayout_html4.cshtml" />
+    <Content Include="Content\templates\reportparameterslibrarylayout_html4.cshtml" />
+    <Content Include="Content\templates\reportschedulinglayout_html4.cshtml" />
+    <Content Include="Content\templates\reportsdashboardlayout_html4.cshtml" />
+    <Content Include="Content\templates\reportworkslayout_html4.cshtml" />
+    <Content Include="Content\templates\retrievelayout_html4.cshtml" />
+    <Content Include="Content\templates\savedsearchlayout_html4.cshtml" />
+    <Content Include="Content\templates\schedulinglayout_html4.cshtml" />
+    <Content Include="Content\templates\searchcriteriaviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\searchresultitemviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\searchresultsmenulayout_html4.cshtml" />
+    <Content Include="Content\templates\searchviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\slapboxlayout_html4.cshtml" />
+    <Content Include="Content\templates\staticdatagridviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\subgridviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\syncactionlayout_html4.cshtml" />
+    <Content Include="Content\templates\systempreferenceslayout_html4.cshtml" />
+    <Content Include="Content\templates\systrayconnectionlayout_html4.cshtml" />
+    <Content Include="Content\templates\textsettinglayout_html4.cshtml" />
+    <Content Include="Content\templates\unpublishdialoglayout_html4.cshtml" />
+    <Content Include="Content\templates\viewlicenseslayout_html4.cshtml" />
+    <Content Include="Content\templates\watcheslayout_html4.cshtml" />
+    <Content Include="Content\templates\watchlayout_html4.cshtml" />
+    <Content Include="Content\templates\wfexceptionlayout_html4.cshtml" />
+    <Content Include="Content\templates\workflowdashboardlayout_html4.cshtml" />
+    <Content Include="Content\templates\WorkflowDesignerEmailTemplate_html4.cshtml" />
+    <Content Include="Content\templates\workflowdesignerlayout_html4.cshtml" />
+    <Content Include="Content\templates\workflowitemperassigneesubgriditemviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\workflowitemperassigneesubgridviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\workflowitemperassigneeviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\workflowitemperstepsubgriditemviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\workflowitemperstepsubgridviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\workflowitemperstepviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\workflowitemslayout_html4.cshtml" />
+    <Content Include="Content\templates\workflowitemsperassigneeviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\workflowitemsperstepviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\workflowlayout_html4.cshtml" />
+    <Content Include="Content\templates\workflowpawnslayout_html4.cshtml" />
+    <Content Include="Content\themes\default\Thumbs.db" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\PasswordExpired.cshtml" />
+    <Content Include="Views\Acquire\Acquire.cshtml" />
+    <Content Include="Views\Acquire\UploadIFrame.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Annotations\ImageStampFrame.cshtml" />
+    <Content Include="Views\Company\Index.cshtml" />
+    <Content Include="Views\CustomList\GetBuzzSpaceEditor.cshtml" />
+    <Content Include="Views\CustomList\GetCurrentBuzzSpaces.cshtml" />
+    <Content Include="Views\ExportImport\ImportFrame.cshtml" />
+    <Content Include="Views\ExportImport\ImportStatus.cshtml" />
+    <Content Include="Views\Forms\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Oops.cshtml" />
+    <Content Include="Views\Imaging\PrintDocument.cshtml" />
+    <Content Include="Views\Imaging\PrintServerDocument.cshtml" />
+    <Content Include="Views\Licensing\LicensingFrame.cshtml" />
+    <Content Include="Views\Reports\Index.cshtml" />
+    <Content Include="Views\Retrieve\GetFolderTree.cshtml" />
+    <Content Include="Views\Retrieve\GetInboxTree.cshtml" />
+    <Content Include="Views\Retrieve\Index.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\SystemMaintenance\AddAttachment.cshtml" />
+    <Content Include="Views\SystemMaintenance\LiveChat.cshtml" />
+    <Content Include="Views\SystemNotifications\GetSystemNotificationsEditor.cshtml" />
+    <Content Include="Views\WorkflowDesigner\Index.cshtml" />
+    <Content Include="Views\Workflow\Index.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Content\templates\importldaplayout_html4.cshtml" />
+    <Content Include="Content\templates\c3pilayout_html4.cshtml" />
+    <Content Include="Content\templates\c3pimapperlayout_html4.cshtml" />
+    <Content Include="Content\templates\c3pimasterlayout_html4.cshtml" />
+    <Content Include="Content\templates\c3pi_eConnect_html4.cshtml" />
+    <Content Include="Content\templates\clientselector_html4.cshtml" />
+    <Content Include="Content\templates\importldapgridviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\importldapgriditemviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\searchresultsgridviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\contenttypereplacementlayout_html4.cshtml" />
+    <Content Include="Content\templates\audittrailgridlayout_html4.cshtml" />
+    <Content Include="Content\templates\documentpagerlayout_html4.cshtml" />
+    <Content Include="Content\SleepyHollow\build\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\.jshintrc" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\.npmignore" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\.travis.yml" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\LICENSE-MIT" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\node_modules\grunt-lib-contrib\.npmignore" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\node_modules\grunt-lib-contrib\.travis.yml" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\node_modules\grunt-lib-contrib\AUTHORS" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\node_modules\grunt-lib-contrib\CHANGELOG" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\node_modules\grunt-lib-contrib\LICENSE-MIT" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\node_modules\grunt-lib-contrib\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\node_modules\grunt-lib-contrib\README.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt-casper\README.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\.npmignore" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\appveyor.yml" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\CONTRIBUTING.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\LICENSE-MIT" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\.bin\cake" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\.bin\cake.cmd" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\.bin\coffee" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\.bin\coffee.cmd" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\.bin\js-yaml" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\.bin\js-yaml.cmd" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\.bin\nopt" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\.bin\nopt.cmd" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\.bin\rimraf" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\.bin\rimraf.cmd" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\.bin\which" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\.bin\which.cmd" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\async\.npmignore" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\async\LICENSE" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\async\Makefile" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\async\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\async\README.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\coffee-script\.npmignore" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\coffee-script\bin\cake" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\coffee-script\bin\coffee" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\coffee-script\CNAME" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\coffee-script\extras\jsl.conf" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\coffee-script\LICENSE" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\coffee-script\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\coffee-script\Rakefile" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\coffee-script\README" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\colors\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\colors\ReadMe.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\dateformat\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\dateformat\Readme.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\dateformat\test\test_weekofyear.sh" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\eventemitter2\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\eventemitter2\README.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\exit\.jshintrc" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\exit\.npmignore" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\exit\.travis.yml" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\exit\LICENSE-MIT" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\exit\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\exit\README.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\exit\test\fixtures\create-files.sh" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\.jshintrc" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\.npmignore" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\.travis.yml" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\LICENSE-MIT" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\.npmignore" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\.travis.yml" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\LICENSE" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\node_modules\inherits\LICENSE" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\node_modules\inherits\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\node_modules\inherits\README.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\node_modules\minimatch\.npmignore" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\node_modules\minimatch\LICENSE" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\node_modules\minimatch\node_modules\lru-cache\.npmignore" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\node_modules\minimatch\node_modules\lru-cache\CONTRIBUTORS" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\node_modules\minimatch\node_modules\lru-cache\LICENSE" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\node_modules\minimatch\node_modules\lru-cache\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\node_modules\minimatch\node_modules\lru-cache\README.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\node_modules\minimatch\node_modules\sigmund\LICENSE" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\node_modules\minimatch\node_modules\sigmund\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\node_modules\minimatch\node_modules\sigmund\README.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\node_modules\minimatch\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\node_modules\minimatch\README.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\README.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\glob\test\bash-results.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\lodash\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\node_modules\lodash\README.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\findup-sync\README.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\getobject\.jshintrc" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\getobject\.npmignore" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\getobject\.travis.yml" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\getobject\LICENSE-MIT" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\getobject\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\getobject\README.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\glob\.npmignore" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\glob\.travis.yml" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\glob\LICENSE" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\glob\node_modules\graceful-fs\.npmignore" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\glob\node_modules\graceful-fs\LICENSE" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\glob\node_modules\graceful-fs\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\glob\node_modules\graceful-fs\README.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\glob\node_modules\inherits\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\glob\node_modules\inherits\README.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\glob\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\glob\README.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\glob\test\bash-results.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\.jshintrc" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\.npmignore" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\.travis.yml" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\LICENSE-MIT" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\grunt-legacy-log-utils\.jshintrc" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\grunt-legacy-log-utils\.npmignore" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\grunt-legacy-log-utils\.travis.yml" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\grunt-legacy-log-utils\LICENSE-MIT" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\grunt-legacy-log-utils\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\grunt-legacy-log-utils\README.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\lodash\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\lodash\README.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\underscore.string\.travis.yml" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\underscore.string\component.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\underscore.string\Gemfile" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\underscore.string\Gemfile.lock" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\underscore.string\libpeerconnection.log" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\underscore.string\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\underscore.string\Rakefile" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\node_modules\underscore.string\README.markdown" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-log\README.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-util\.jshintrc" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-util\.npmignore" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-util\.travis.yml" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-util\LICENSE-MIT" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-util\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-util\README.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-util\test\fixtures\exec.cmd" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\grunt-legacy-util\test\fixtures\exec.sh" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\hooker\LICENSE-MIT" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\hooker\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\hooker\README.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\iconv-lite\.npmignore" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\iconv-lite\.travis.yml" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\iconv-lite\LICENSE" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\iconv-lite\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\iconv-lite\README.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\iconv-lite\README.md~" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\examples\custom_types.yaml" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\examples\dumper.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\examples\sample_document.yaml" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\HISTORY.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\LICENSE" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\.bin\esparse" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\.bin\esparse.cmd" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\.bin\esvalidate" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\.bin\esvalidate.cmd" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\HISTORY.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\LICENSE" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\node_modules\underscore.string\.npmignore" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\node_modules\underscore.string\.travis.yml" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\node_modules\underscore.string\bower.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\node_modules\underscore.string\component.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\node_modules\underscore.string\libpeerconnection.log" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\node_modules\underscore.string\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\node_modules\underscore.string\README.markdown" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\node_modules\underscore\LICENSE" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\node_modules\underscore\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\node_modules\underscore\README.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\argparse\README.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\esprima\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\node_modules\esprima\README.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\js-yaml\README.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\lodash\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\lodash\README.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\minimatch\.npmignore" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\minimatch\LICENSE" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\minimatch\node_modules\lru-cache\.npmignore" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\minimatch\node_modules\lru-cache\CONTRIBUTORS" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\minimatch\node_modules\lru-cache\LICENSE" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\minimatch\node_modules\lru-cache\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\minimatch\node_modules\lru-cache\README.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\minimatch\node_modules\sigmund\LICENSE" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\minimatch\node_modules\sigmund\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\minimatch\node_modules\sigmund\README.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\minimatch\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\minimatch\README.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\nopt\.npmignore" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\nopt\LICENSE" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\nopt\node_modules\abbrev\.npmignore" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\nopt\node_modules\abbrev\.travis.yml" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\nopt\node_modules\abbrev\CONTRIBUTING.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\nopt\node_modules\abbrev\LICENSE" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\nopt\node_modules\abbrev\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\nopt\node_modules\abbrev\README.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\nopt\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\nopt\README.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\rimraf\AUTHORS" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\rimraf\LICENSE" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\rimraf\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\rimraf\README.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\rimraf\test\run.sh" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\rimraf\test\setup.sh" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\underscore.string\.travis.yml" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\underscore.string\Gemfile" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\underscore.string\Gemfile.lock" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\underscore.string\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\underscore.string\Rakefile" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\underscore.string\README.markdown" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\which\bin\which" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\which\LICENSE" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\which\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\node_modules\which\README.md" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\package.json" />
+    <Content Include="Content\SleepyHollow\build\node_modules\grunt\README.md" />
+    <Content Include="Content\SleepyHollow\lib\jasmine-1.3.0\MIT.LICENSE" />
+    <Content Include="Content\templates\searchresultsgridfooterviewlayout_html4.cshtml" />
+    <Content Include="Content\templates\formulabuilderlayout_html4.cshtml" />
+    <Content Include="Views\Guest\DocumentDownload.cshtml" />
+    <Content Include="Views\Guest\GuestViewer.cshtml" />
+    <Content Include="Views\Shared\WorkflowTaskTemplates.cshtml" />
+    <Content Include="Views\Shared\DialogTemplates.cshtml" />
+    <Content Include="Views\Guest\FormComplete.cshtml" />
+    <Content Include="Views\Guest\Challenge.cshtml" />
+    <Content Include="Content\templates\collapsedapprovalstamplayout_html4.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\SleepyHollow\out\" />
+    <Folder Include="Content\themes\default\.svn\prop-base\" />
+    <Folder Include="Content\themes\default\.svn\props\" />
+    <Folder Include="Content\themes\default\.svn\text-base\" />
+    <Folder Include="Content\themes\default\.svn\tmp\prop-base\" />
+    <Folder Include="Content\themes\default\.svn\tmp\props\" />
+    <Folder Include="Content\themes\default\.svn\tmp\text-base\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Annotations.Accusoft\Annotations.Accusoft.csproj">
+      <Project>{b251de91-b336-42e7-aaca-2803aede8f63}</Project>
+      <Name>Annotations.Accusoft</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Astria.Core.DataContracts\Astria.Framework.Core.DataContracts.csproj">
+      <Project>{f5c43e0d-36f7-41f3-9614-08df501cd733}</Project>
+      <Name>Astria.Framework.Core.DataContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Astria.Framework.Datalink.Interfaces\Astria.Framework.Datalink.Interfaces.csproj">
+      <Project>{8f67eac4-f238-41fc-aced-aa583d57772d}</Project>
+      <Name>Astria.Framework.Datalink.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Astria.Framework.Datalink\Astria.Framework.Datalink.csproj">
+      <Project>{6b797121-33d1-4cc1-9870-4afa66c9ee99}</Project>
+      <Name>Astria.Framework.Datalink</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Astria.Framework.IFilter.Console\Astria.Framework.IFilter.Console.csproj">
+      <Project>{29a9ca4e-4adb-4f01-b827-9b9870d62186}</Project>
+      <Name>Astria.Framework.IFilter.Console</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Astria.Framework.IFilter\Astria.Framework.IFilter.csproj">
+      <Project>{7390fbfc-034e-45f9-b674-5e8427170284}</Project>
+      <Name>Astria.Framework.IFilter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Astria.Framework.LDAP.DataContracts\Astria.Framework.LDAP.DataContracts.csproj">
+      <Project>{96205994-8e7c-488c-b757-897f7cb8cfc6}</Project>
+      <Name>Astria.Framework.LDAP.DataContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Astria.Framework.LDAP\Astria.Framework.LDAP.csproj">
+      <Project>{061695bb-2704-477a-8e35-25d5aee7057b}</Project>
+      <Name>Astria.Framework.LDAP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Astria.Framework.Provisioning.Data\Astria.Framework.Provisioning.Data.csproj">
+      <Project>{7a154340-5bd3-4171-8614-759280da754a}</Project>
+      <Name>Astria.Framework.Provisioning.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Astria.Hosting.DataContracts\Astria.Framework.Hosting.DataContracts.csproj">
+      <Project>{517b44fa-ced4-469e-96ff-d5da7894131b}</Project>
+      <Name>Astria.Framework.Hosting.DataContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Astria.Hosting.OperationContracts\Astria.Framework.Hosting.OperationContracts.csproj">
+      <Project>{c78616c3-7998-49a9-b503-052453f3c1c8}</Project>
+      <Name>Astria.Framework.Hosting.OperationContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Barcode.Accusoft\Astria.Framework.Barcode.Accusoft.csproj">
+      <Project>{c9ac47cc-a8c9-451e-83d1-3106e03dce2a}</Project>
+      <Name>Astria.Framework.Barcode.Accusoft</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Barcode\Astria.Framework.Barcode.csproj">
+      <Project>{d826ca09-e811-4f3f-b989-6018c14bae5a}</Project>
+      <Name>Astria.Framework.Barcode</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Components.Tasks\Components.Workflow.csproj">
+      <Project>{7e6c7828-8e8a-4189-8341-132b3a806c68}</Project>
+      <Name>Components.Workflow</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dapper\Dapper.csproj">
+      <Project>{daf737e1-05b5-4189-a5aa-dac6233b64d7}</Project>
+      <Name>Dapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataContracts\Astria.Framework.DataContracts.csproj">
+      <Project>{6269728c-b2c6-462c-9ab5-7747fbc922ea}</Project>
+      <Name>Astria.Framework.DataContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EPocalipse.IFilter\EPocalipse.IFilter.csproj">
+      <Project>{400462ce-40b3-498f-b95a-b1d2ae679359}</Project>
+      <Name>EPocalipse.IFilter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FrameworkUtility\Astria.Framework.Utility.csproj">
+      <Project>{78781bb9-c5b4-4ecc-a396-59d474de03ca}</Project>
+      <Name>Astria.Framework.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Imaging.Accusoft\Astria.Framework.Imaging.Accusoft.csproj">
+      <Project>{93009b93-e81c-443c-86d6-0b7533b7144b}</Project>
+      <Name>Astria.Framework.Imaging.Accusoft</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Imaging\Astria.Framework.Imaging.csproj">
+      <Project>{06ac35a8-fb3e-4941-b908-fdb9837ec754}</Project>
+      <Name>Astria.Framework.Imaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NSspi\NSspi.csproj">
+      <Project>{4b4cd933-bf62-4f92-b8fa-6771758c5197}</Project>
+      <Name>NSspi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ocr.Nuance\Astria.Framework.Ocr.Nuance.csproj">
+      <Project>{71b7d637-8ce8-455f-9b3a-4846073ef316}</Project>
+      <Name>Astria.Framework.Ocr.Nuance</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ocr\Astria.Framework.Ocr.csproj">
+      <Project>{a9b756fb-b486-418c-bfc4-e6c3233694a4}</Project>
+      <Name>Astria.Framework.Ocr</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OperationContracts\Astria.Framework.OperationContracts.csproj">
+      <Project>{a9a98d88-45ec-4650-bfb4-be88fafc66d9}</Project>
+      <Name>Astria.Framework.OperationContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\serviceinterop_web\Astria.UI.ServiceInterop.csproj">
+      <Project>{480ae05f-8651-423a-a44f-b1379e003add}</Project>
+      <Name>Astria.UI.ServiceInterop</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\tar-cs\tar-cs.csproj">
+      <Project>{b9189786-191b-42c7-8029-244e0da8da21}</Project>
+      <Name>tar-cs</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>51182</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost/Fusion</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

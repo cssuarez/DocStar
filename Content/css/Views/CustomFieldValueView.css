@@ -1,0 +1,109 @@
+﻿.CustomFieldValueView {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    padding: 0 0 5px 0;
+    min-height: 20px;
+    table-layout:fixed;
+}
+    li.CustomFieldValueView {
+        display: table;
+    }
+
+    .CustomFieldValueView .del_cf {
+       width:16px;
+    }
+
+    .CustomFieldValueView input {
+        height: 16px;
+        width:92%;
+        float:left;
+        min-height:16px;
+    }
+
+    .CustomFieldValueView textarea {
+        overflow: hidden;
+    }
+
+    .CustomFieldValueView input[type="checkbox"] {
+        width: auto;
+        margin: 4px 6px;
+        float:left;
+    }
+
+    .CustomFieldValueView select, .CustomFieldValueView textarea {
+        font-size: 11px;
+        position: relative;
+        width: 125px;
+        margin: 3px;
+    }
+
+    .CustomFieldValueView select {
+        float: left;
+    }
+    .CustomFieldValueView div.cfsFormat{
+        width:125px;
+        max-width:125px;
+    }
+
+        .CustomFieldValueView select.cfsFormat,
+        .CustomFieldValueView div.cfsFormat span {
+            width: 115px;
+            max-width: 115px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            float: left;
+            margin: 3px;
+        }
+
+        .CustomFieldValueView select.cf_val {
+            margin: 3px;
+            width: 92%;
+        }
+
+    .CustomFieldValueView div.cf_displayVal {
+        border: 2px inset #000000;
+        box-shadow: 1px 1px 1px #000000;
+        display: inline-block;
+        height: 16px;
+        margin: 3px 3px 0px 3px;
+        width: 92%;
+        max-width: 92%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .CustomFieldValueView div.cf_displayDisabled {
+        background-color: #999;
+    }
+
+    .CustomFieldValueView span.cf_displayVal {
+        line-height: 13px;
+        padding: 0 4px;
+    }
+
+    .CustomFieldValueView .ui-combobox {
+        left: 3px;
+        top: 2px;
+        width: 92%;
+        height: 20px;  
+        float:left;      
+    }
+
+        .CustomFieldValueView .ui-combobox input.ui-autocomplete-input {
+            color: #000;
+            float: none;
+            height: 16px;
+            width: 80%;            
+        }
+
+        .CustomFieldValueView .ui-combobox a.ui-button {
+            display: inline-block;
+            padding: 0;
+            position: relative;
+            float: none;
+            height: 24px;
+            margin: -3px 0 0 -4px;
+            
+        }

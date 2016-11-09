@@ -1,0 +1,27 @@
+﻿.CollapsedApprovalStampView {
+    width: 11px; /* Width of text size*/
+    position: absolute;
+    right: 0px;
+    border: 1px solid black;
+    border-radius: 7px 0 0 7px; /* top-left and bottom-left corners should be rounded */
+    padding: 3px;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FCEFC7', endColorstr='#F1B616');
+    background: -webkit-gradient(linear, left top, left bottom, from(#FCEFC7), to(#F1B616));
+    background: -moz-linear-gradient(top, #FCEFC7, #F1B616); /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #FCEFC7 0%, #F1B616 100%); /* W3C (IE10) maybe others soon.*/
+    color: #000;
+    text-align: center;
+    cursor: pointer;
+    word-wrap: break-word;
+    z-index: 151;
+}
+
+    .CollapsedApprovalStampView:hover {
+        z-index: 152;
+    }
+
+    #masterForm .CollapsedApprovalStampView div, /* Override the one set in the #masterForm style tag*/
+    .CollapsedApprovalStampView div {
+        font-weight: bold;
+        width: 100%;
+    }

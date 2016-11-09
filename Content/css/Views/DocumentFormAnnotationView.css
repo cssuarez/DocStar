@@ -1,0 +1,40 @@
+﻿.DocumentFormAnnotationView {
+    display: inline-block;
+    float: left;
+    position: relative;
+}
+
+
+    .DocumentFormAnnotationView .annotations_menu {
+        background: inherit;
+        display: inline-block;
+    }
+
+        .DocumentFormAnnotationView .annotations_menu > div.custom_button {
+            float: left;
+        }
+
+    .DocumentFormAnnotationView div.custom_button.pressed {
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#082647', endColorstr='#CDDEFF');
+        background: -webkit-gradient(linear, left top, left bottom, from(#082647), to(#CDDEFF));
+        background: -moz-linear-gradient(top, #082647, #CDDEFF); /* for firefox 3.6+ */
+        background: linear-gradient(to bottom, #082647 0, #CDDEFF 100%); /* W3C (IE10) maybe others soon.*/
+    }
+
+        .DocumentFormAnnotationView div.custom_button.pressed:active {
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#CDDEFF', endColorstr='#082647');
+            background: -webkit-gradient(linear, left top, left bottom, from(#CDDEFF), to(#082647));
+            background: -moz-linear-gradient(top, #CDDEFF, #082647); /* for firefox 3.6+ */
+            background: linear-gradient(to bottom, #CDDEFF 0, #082647 100%); /* W3C (IE10) maybe others soon.*/
+        }
+
+    .DocumentFormAnnotationView div.custom_button.showHideStamps {
+        width: 140px;
+        height: 16px;
+        line-height: 16px;
+    }
+
+        .DocumentFormAnnotationView div.custom_button.showHideStamps span {
+            width: 100%;
+            text-align: center;
+        }

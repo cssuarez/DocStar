@@ -1,0 +1,19 @@
+#overwrite_existing {
+    margin: 2px 2px 2px 0;
+}
+
+body {
+    font-family: Verdana,Tahoma;
+    font-size: 11px;
+}
+
+.errorClass {
+    border-color: Red;
+    color: Red;
+    display: none;
+}
+
+#importStatus {
+    width: 100%;
+    min-height: 100px;
+}

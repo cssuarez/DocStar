@@ -1,0 +1,12 @@
+﻿.DistributedQueueView {
+    width: 100%;
+    height: 100%;
+}
+
+    .DistributedQueueView .StaticDataGridView {
+        height: 175px;
+    }
+
+        .DistributedQueueView .StaticDataGridView .customGridTable {
+            height: 100%;
+        }

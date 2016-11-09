@@ -1,0 +1,8 @@
+﻿.CaptureWebFileBrowseGridView {
+    width: 100%;
+    height: 100%;
+}
+
+    .CaptureWebFileBrowseGridView .customGridTable {
+        height: auto;
+    } 

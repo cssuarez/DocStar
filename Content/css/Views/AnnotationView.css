@@ -1,0 +1,254 @@
+﻿.AnnotationView {
+    display: inline-block;
+    float: left;
+    position: relative;
+}
+
+    .AnnotationView .collapsedAnnotationMenuButton {
+        float: left;
+    }
+
+    .AnnotationView .annotations_menu {
+        background: inherit;
+    }
+
+        .AnnotationView .annotations_menu.collapse {
+            display: none;
+            float: left;
+            position: absolute;
+            right: -1px;
+            top: 23px;
+            width: 270px;
+            z-index: 100;
+        }
+
+    .AnnotationView div, .AnnotationView .fontPropCont div > span {
+        background-image: url("../../../Content/images/s.png");
+        display: inline-block;
+        float: left;
+    }
+
+    .AnnotationView .fontPropCont div.toggle_btn {
+        background-image: url("../../../Content/images/s.png");
+        background-position: -2px -178px;
+    }
+
+        .AnnotationView .fontPropCont div.toggle_btn.pressed {
+            background-position: -2px -200px;
+        }
+
+    .AnnotationView div > span {
+        height: 16px;
+        margin: 2px;
+        width: 14px;
+    }
+
+    .AnnotationView .annotations_menu > div.custom_button {
+        background-position: -66px -180px;
+    }
+
+    .AnnotationView div.custom_button.pressed {
+        background-position: -66px -207px;
+    }
+
+    .AnnotationView div.cancelEditMode {
+        display: none;
+    }
+
+    .AnnotationView span.anchor.thick_one {
+        background: #000;
+        height: 1px;
+        margin: .5px 0 0;
+        width: 100%;
+    }
+
+    .AnnotationView span.anchor.thick_two {
+        background: #000;
+        height: 2px;
+        margin: 1px 0 0;
+    }
+
+    .AnnotationView span.anchor.thick_four {
+        background: #000;
+        height: 4px;
+        margin: 2px 0 0;
+    }
+
+    .AnnotationView .annoPropsCont {
+        background: #bbb;
+        border: 1px solid #000;
+        color: #000;
+        display: none;
+        height: 65px;
+        position: absolute;
+        right: 6px;
+        top: 24px;
+        width: 400px;
+        z-index: 198;
+    }
+
+        .AnnotationView .annoPropsCont .dropdown {
+            display: inline-block;
+            float: left;
+            width: 47px;
+        }
+
+            .AnnotationView .annoPropsCont .dropdown li {
+                background: none;
+                color: #000;
+                line-height: 20px;
+                text-align: center;
+                height: 20px;
+                padding: 0 5px;
+                width: 35px;
+            }
+
+            .AnnotationView .annoPropsCont .dropdown span.anchor {
+                float: none;
+                margin: 0;
+                width: auto;
+            }
+
+            .AnnotationView .annoPropsCont .dropdown ul li span.anchor {
+                padding: 0;
+                display: block;
+                position: relative;
+                top: 47%;
+                width: 100%;
+            }
+
+        .AnnotationView .annoPropsCont .thickness_text {
+            background: #000;
+            display: inline-block;
+            float: left;
+            height: 0;
+            position: relative;
+            top: 50%;
+            width: 50%;
+        }
+
+        .AnnotationView .annoPropsCont span.jPicker {
+            height: 22px;
+            margin: 0;
+            max-height: 22px;
+            max-width: 25px;
+            width: 25px;
+        }
+
+            .AnnotationView .annoPropsCont span.jPicker .Icon {
+                position: relative;
+            }
+
+        .AnnotationView .annoPropsCont > div {
+            margin: 5px 0;
+        }
+
+        .AnnotationView .annoPropsCont div {
+            background: none;
+        }
+
+        .AnnotationView .annoPropsCont a {
+            background: none;
+            display: inline-block;
+            float: left;
+            margin: 5px;
+        }
+
+        .AnnotationView .annoPropsCont select {
+            height: 20px;
+            width: 150px;
+        }
+
+            .AnnotationView .annoPropsCont select[name="FontSize"] {
+                width: 45px;
+            }
+
+    .AnnotationView .fontPropCont a {
+        margin: 0;
+        width: 0;
+    }
+
+    .AnnotationView div.fontPropCont {
+        display: none;
+        margin: 0 0 0 5px;
+    }
+
+    .AnnotationView .annoProps a {
+        height: 14px;
+        margin: 3px -4px;
+    }
+
+    .AnnotationView .FontStyleBold {
+        background-position: -430px 0;
+        height: 16px;
+        width: 16px;
+    }
+
+    .AnnotationView .FontStyleItalic {
+        background-position: -446px 0;
+        height: 16px;
+        width: 16px;
+    }
+
+    .AnnotationView .FontStyleUnderLine {
+        background-position: -460px 0;
+        height: 16px;
+        width: 16px;
+    }
+
+    .AnnotationView .FontStyleStrike {
+        background-position: -435px -14px;
+        height: 16px;
+        width: 20px;
+    }
+
+/* Image / Text Stamp Sprite */
+.imageStampCont, .textStampCont {
+    height: 66px;
+    overflow: hidden;
+    width: 64px;
+}
+
+    .imageStampCont img, .textStampCont img {
+        position: relative;
+    }
+
+
+
+.AnnotationView .imageStamps,
+.AnnotationView .textStamps {
+    background: #bbb;
+    border: 1px solid #000;
+    color: #000;
+    display: none;
+    max-height: 152px;
+    overflow: auto;
+    position: absolute;
+    right: 6px;
+    top: 24px;
+    width: 400px;
+    z-index: 198;
+}
+
+
+    .AnnotationView .imageStamps div,
+    .AnnotationView .textStamps div {
+        background: none;
+        margin: 2px;
+    }
+
+    .AnnotationView .imageStamps ul, .AnnotationView .textStamps ul {
+        list-style: none;
+        margin: 5px;
+        padding: 0;
+    }
+
+        .AnnotationView .imageStamps ul li, .AnnotationView .textStamps ul li {
+            background: #000;
+            display: inline-block;
+        }
+
+            .AnnotationView .imageStamps ul li.pressed, .AnnotationView .textStamps ul li.pressed,
+            .AnnotationView .imageStamps ul li.pressed:active, .AnnotationView .textStamps ul li.pressed:active {
+                background: #F00;
+            }

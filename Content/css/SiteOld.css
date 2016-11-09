@@ -1,0 +1,6491 @@
+/* Disable native date pickers (but not entirely...) still causes issues with using jquery datepicker and Chrome */
+input::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+input[type="date"]::-webkit-input-placeholder {
+    visibility: hidden !important;
+}
+
+input[type=date]::-webkit-inner-spin-button,
+input[type=date]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+/* End Disable native date pickers */
+
+#cf_folder_list a {
+    color: #000;
+}
+
+#selectFolder #Root > a, #retrieve_layout_selectContainer #Root > a {
+    color: #aaa;
+}
+
+    #selectFolder #Root > a:hover, #retrieve_layout_selectContainer #Root > a:hover {
+        text-decoration: none;
+    }
+
+
+#replace_r select {
+    max-width: 200px;
+}
+
+#replace_u select {
+    max-width: 200px;
+}
+
+.admin_ribbon_box {
+    border-right: 1px solid #000;
+    display: inline-block;
+    height: 150px;
+    margin: 0 0 5px 0;
+    text-align: left;
+    vertical-align: top;
+    width: 19%;
+}
+
+#company_box {
+    border: none;
+}
+
+#layout {
+    width: 100%;
+}
+
+#two_col, #main, #main_tabs, #tabs-4, #tabs {
+    height: 100%;
+}
+
+#admin_action {
+    width: 99%;
+}
+
+#admin_throbber {
+    display: table;
+    height: 300px;
+    width: 100%;
+}
+
+    #admin_throbber div {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    #admin_throbber img {
+        height: 20px;
+        width: 20px;
+    }
+
+#admin_action h2 {
+    margin: 0 0 0 5px;
+    padding: 5px 0;
+}
+
+#admin_menu {
+    background-color: #D8E4F3;
+    padding: 5px;
+}
+
+#admin_screen {
+    position: relative;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#D8E4F3', endColorstr='#4C7CA9');
+    background: -webkit-gradient(linear, left top, left bottom, from(#D8E4F3), to(#4C7CA9));
+    background: -moz-linear-gradient(top, #D8E4F3, #4C7CA9); /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #D8E4F3 0%, #4C7CA9 100%); /* W3C (IE10) maybe others soon.*/
+    height: 85%;
+    overflow: hidden;
+    padding-left: 5px;
+    padding-right: 5px;
+    position: relative;
+    /*max-height: 85%;*/
+    width: 99.5%;
+    display: inline-block;
+}
+
+    #admin_screen input[type="password"], #admin_screen input[type="text"], #admin_screen input[type="number"],
+    .customFieldMetaEditView input[type="text"] {
+        width: 200px;
+    }
+
+    #admin_screen span.wideInput input {
+        width: 100%;
+    }
+
+    #admin_screen span.wideInput {
+        display: block;
+        overflow: hidden;
+    }
+
+.customFieldMetaEditView #dq_delete, #dqp_hide {
+    float: right;
+    margin: 0 0 10px 85%;
+    position: relative;
+    top: 5px;
+}
+
+#DistributedQueueDTO li, #DistributedQueueProcessorDTO li {
+    width: 47%;
+}
+
+#DistributedQueueDTO {
+    clear: left;
+}
+
+#dq_refresh_div {
+    float: left;
+}
+
+#dq_delete_div, #dqp_hide_div {
+    float: right;
+}
+
+#mask_layout input[type="password"], #mask_layout input[type="text"] {
+    width: 45%;
+}
+
+#mask_layout span.metalabel {
+    display: inline-block;
+    float: none;
+    padding: 0 5px 0 0;
+    text-align: right;
+    width: 30%;
+}
+
+#mask_layout input.metainput {
+    display: inline-block;
+    float: none;
+}
+
+#admin_screen select, .customFieldMetaEditView select {
+    width: 205px;
+}
+
+#group_layout select {
+    width: 100%;
+    height: 98%;
+}
+
+#admin_screen #ctFields select {
+    width: 100%;
+}
+
+#lic_exp {
+    display: inline-block;
+    float: left;
+    margin: -1px 6px 0;
+    position: relative;
+}
+
+#admin_screen input.hasDatepicker {
+    float: left;
+}
+
+#admin_screen #buzzSchedule input.hasDatepicker {
+    float: none;
+}
+
+#pass_success .success_message {
+    display: none;
+    left: 130px;
+    position: relative;
+    width: 300px;
+}
+
+#reassignWfDoc .updation_message {
+    float: right;
+}
+
+#login_error {
+    color: Red;
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+#header {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4986C0', endColorstr='#041B32');
+    background: -webkit-gradient(linear, left top, left bottom, from(#4986C0), to(#041B32));
+    background: -moz-linear-gradient(top, #4986C0, #041B32); /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #4986C0 0, #041B32 100%); /* W3C (IE10) maybe others soon.*/
+    height: 45px;
+    margin: 0 0 0 0;
+    position: relative;
+}
+
+    #header .f_height {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        right: 0;
+        top: -1px;
+    }
+
+#qs {
+    display: none;
+    float: left;
+    left: -2px;
+    padding: 4px 4px 0;
+    position: relative;
+    top: 12px;
+    z-index: 14;
+}
+
+#qtext {
+    box-shadow: none;
+    display: inline-block;
+    float: left;
+    height: 24px;
+    margin: 0;
+    padding: 0;
+    width: 237px;
+    min-width: 45px;
+    max-width: 237px;
+}
+
+#qsbutton {
+    background-image: url("../../Content/images/s.png");
+    background-position: -66px -178px;
+    color: #FFF;
+    cursor: pointer;
+    display: inline-block;
+    float: left;
+    height: 25px;
+    left: 3px;
+    line-height: 25px;
+    padding: 0;
+    position: relative;
+    text-align: left;
+    text-indent: 10px;
+    width: 75px;
+}
+
+    #qsbutton:active {
+        background-image: url("../../Content/images/s.png");
+        background-position: -66px -207px;
+    }
+
+#qs .savedSearchSelection {
+    top: -1px;
+}
+
+#qs .warningErrorClass {
+    margin: -9px 0 0 0;
+    position: absolute;
+}
+
+.button_icon {
+    position: absolute;
+    right: 3px;
+    top: 5px;
+}
+
+#qs_suggested {
+    background: #FFF;
+    border: 1px solid #999;
+    display: none;
+    list-style: none outside none;
+    margin: 25px 0 0 0;
+    overflow-x: hidden;
+    padding: 0;
+    position: absolute;
+    width: 195px;
+}
+
+    #qs_suggested li {
+        font-size: 11px;
+        padding: 4px 0;
+        position: relative;
+        text-indent: 3px;
+        width: 100%;
+    }
+
+        #qs_suggested li:hover, #qs_suggested li.selected, #vocab_suggestions li:hover, #vocab_suggestions li.selected {
+            background: #D8E4F3;
+            cursor: pointer;
+        }
+
+#masterOfAll {
+    height: calc(100% - 2px);
+}
+
+#browse, #main {
+    display: none;
+    float: left;
+    height: calc(100% - 4px);
+}
+
+#main {
+    width: 50%;
+}
+
+#two_col {
+    height: 100%;
+    width: 100%;
+}
+
+#tab_panel_container {
+    min-height: 577px;
+}
+
+#browse, #main, #tabs, #two_col {
+    min-height: 577px;
+}
+
+#browse {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6DB8FD', endColorstr='#022241');
+    background: -webkit-gradient(linear, left top, left bottom, from(#6DB8FD), to(#022241));
+    background: -moz-linear-gradient(top, #6DB8FD, #022241); /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #6DB8FD 0, #022241 100%); /* W3C (IE10) maybe others soon.*/
+    height: auto;
+    max-height: 100%;
+    max-width: 30%;
+    min-width: 15px;
+    position: relative;
+    width: 170px; /**/ /* 6DB8FD 022241*/
+    clear: both;
+}
+
+    #browse .ui-resizable-e {
+        cursor: e-resize;
+        height: 100%;
+        right: -1px;
+        width: 4px;
+        z-index: 499;
+    }
+
+#col_border_top {
+    background: #FFBE0D;
+    border-bottom: 1px solid black;
+    height: 4px;
+    position: relative;
+    width: 100%;
+    z-index: 0;
+}
+
+#search_results {
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+    #search_results table {
+        border: 0;
+        width: 100%;
+    }
+
+    #search_results td {
+        border: 0;
+        text-align: left;
+    }
+
+#document_viewer {
+    float: left;
+    vertical-align: top;
+}
+
+#document_view img {
+    margin: 0;
+    padding: 0;
+}
+
+#viewer_menu {
+    text-align: left;
+    width: 400px;
+}
+
+#thumbnail_viewer {
+    bottom: -1px;
+    position: absolute;
+    right: -1px;
+}
+
+#document_meta {
+    float: left;
+}
+
+    #document_meta ul {
+        display: inline;
+        list-style: none;
+    }
+
+    #document_meta li {
+        clear: left;
+        float: left;
+        padding-bottom: 0.5em;
+    }
+
+    #document_meta label {
+        float: left;
+        padding-right: 0.5em;
+        text-align: left;
+        width: 5em;
+    }
+
+    #document_meta input {
+        float: left;
+    }
+
+#admin_menu {
+    border-bottom: 1px solid black;
+    position: relative;
+    text-align: left;
+    z-index: 0;
+}
+
+    #admin_menu.collapsed {
+        height: 15px;
+    }
+
+#adminToggleBtnCont {
+    bottom: 0;
+    height: 15px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+}
+
+#adminToggleBtn {
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+}
+
+#admin_menu b {
+    display: block;
+    padding: 0 0 10px 0;
+}
+
+#admin_menu a {
+    color: #000;
+    display: block;
+    position: relative;
+    text-decoration: none;
+}
+
+#siteAdminPermissions {
+    position: relative;
+    top: 3px;
+    left: 45px;
+}
+
+#evenPerms, #oddPerms {
+    display: inline-block;
+    float: left;
+    left: 45px;
+    min-width: 160px;
+    position: relative;
+    width: 45%;
+}
+
+#admin_menu a:visited {
+    color: #000;
+}
+
+#admin_menu a:hover, #admin_menu span:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+div #admin_tab_panel.show_tabs {
+    height: 101%;
+}
+
+#admin_tab_panel .selected {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+#settings_box {
+    border-right: 0;
+}
+
+#create_user_div {
+    width: 325px;
+}
+
+#login_error {
+    height: 1em;
+    text-align: center;
+}
+
+.inputErrorClass {
+    border-color: Red;
+    color: Red;
+}
+
+.ui-dialog {
+    z-index: 10000;
+}
+
+    .ui-dialog .warningErrorClass, #saveAsDialog .warningErrorClass {
+        float: left;
+        display: inline-block;
+        width: 100%;
+    }
+
+input.new_name[type="text"] {
+    width: 200px;
+}
+
+.warningErrorClass {
+    color: #a60000;
+    padding-left: 3px;
+}
+
+.unstyledList, .workflow, .docFreeze, #ldapDTO {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+    #ldapDTO li > span {
+        display: inline-block;
+        float: left;
+        padding-right: 5px;
+        position: relative;
+        text-align: right;
+        top: 3px;
+        width: 90px;
+    }
+
+    .unstyledList label {
+        display: inline-block;
+        float: left;
+        padding-right: 5px;
+        position: relative;
+        text-align: right;
+        top: 3px;
+        width: 140px;
+    }
+
+    .unstyledList.narrow label {
+        width: 70px;
+    }
+
+    #ldapDTO .portOpts {
+        float: left;
+        padding: 0;
+    }
+
+        #ldapDTO .portOpts li {
+            display: inline-block;
+        }
+
+            #ldapDTO .portOpts li > span {
+                display: block;
+                width: 55px;
+            }
+
+            #ldapDTO .portOpts li > input {
+                margin-left: 0;
+            }
+
+fieldset[name="queries"] .unstyledList input[type="radio"] {
+    margin: 0;
+}
+
+#admin_screen #ldapDTO input[name="Port"] {
+    width: 45px;
+}
+
+.docFreeze label {
+    display: inline-block;
+    float: left;
+    padding-right: 5px;
+    position: relative;
+    text-align: right;
+    top: 3px;
+    width: 60px;
+}
+
+.unstyledList li, .workflow li, .docFreeze li, #ldapDTO li {
+    display: inline-block;
+    padding-bottom: 5px;
+    width: 100%;
+}
+
+.unstyledList .buttons {
+    padding-left: 12em;
+    width: auto;
+}
+
+.workflow span {
+    display: inline-block;
+    padding-right: 5px;
+    text-align: right;
+    width: 140px;
+}
+
+textarea[name="buzz_content"] {
+    height: 500px;
+    width: 500px;
+}
+
+.wysiwyg-input {
+    height: 250px;
+    width: 400px;
+}
+
+#admin_action .unstyledList .wysiwyg {
+    position: relative;
+}
+
+#admin_action .unstyledList li {
+    display: inline-block;
+}
+
+#admin_action .narrow.unstyledList > li {
+    display: block;
+}
+
+#admin_action fieldset[name="queries"] div.inlineblock .unstyledList > li {
+    display: block;
+    width: auto;
+}
+
+#admin_action .buttons {
+    display: inline-block;
+    padding: 10px 40%;
+    width: 240px;
+}
+
+#admin_action .listarea {
+    float: left;
+    width: 35%;
+}
+
+#admin_action .metaarea {
+    display: inline-block;
+    width: 64%;
+}
+
+#admin_action .ctlist {
+    margin: 0 0 5px;
+    width: 98%;
+}
+
+#admin_action .metalabel {
+    display: inline-block;
+    float: left;
+    min-width: 125px;
+    padding: 0 5px 0 0;
+    text-align: right;
+    width: 30%;
+}
+
+#admin_action #indexLayout .metalabel {
+    min-width: 165px;
+}
+
+#admin_action .metainput, #admin_action .metaselect {
+    display: inline-block;
+    float: left;
+    width: 65%;
+}
+
+#admin_action #indexLayout .metainput, #admin_action #indexLayout .metaselect {
+    width: auto;
+}
+
+#admin_action div.input {
+    height: 20px;
+    margin: 0 0 10px 0;
+}
+
+#admin_action .contentTypeDefaultsLayout div.input {
+    height: auto;
+}
+
+#admin_action #indexLayout div.input {
+    display: inline-block;
+    float: left;
+    height: auto;
+    margin: 2.5px 0;
+    width: 50%;
+}
+
+#admin_action #indexLayout .metaarea {
+    width: 100%;
+}
+
+#admin_action #indexLayout > fieldset {
+    margin: 0 6px 0 0;
+}
+
+#admin_action .multiselect {
+    display: inline-block;
+}
+
+select[name='CustomFieldSelection'] {
+    height: 64px;
+}
+
+#ct_perm .permissions {
+    position: relative;
+    top: 10px;
+    width: 48%;
+}
+
+#ct_perm .metaarea {
+    padding: 5px 0;
+    width: 48%;
+}
+
+    #ct_perm .metaarea .metalabel {
+        min-width: 140px;
+    }
+
+#ct_perm span.metalabel {
+    float: none;
+    position: relative;
+    width: 130px;
+}
+
+#ct_buttons {
+    display: inline-block;
+    padding: 10px 40%;
+    position: relative;
+    width: 200px;
+}
+
+#admin_action .contentTypeDTO, .contentTypeDTO {
+    display: inline-block;
+    width: 100%;
+}
+
+    #admin_action .contentTypeDTO .metaarea, .contentTypeDTO .metaarea {
+        width: 100%;
+    }
+
+    #admin_action .contentTypeDTO div.input, .contentTypeDTO div.input {
+        display: table;
+        width: 100%;
+        vertical-align: middle;
+        margin: 0 0 5px;
+    }
+
+        #admin_action .contentTypeDTO div.input .metalabel, .contentTypeDTO div.input .metalabel {
+            float: none;
+            width: 140px;
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+            #admin_action .contentTypeDTO div.input .metalabel.alignTop, .contentTypeDTO div.input .metalabel.alignTop {
+                vertical-align: top;
+            }
+
+        #admin_action .contentTypeDTO div.input metaselect, .contentTypeDTO div.input metaselect,
+        #admin_action .contentTypeDTO div.input metainput, .contentTypeDTO div.input metainput {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        #admin_action .contentTypeDTO div.input .short_btn, .contentTypeDTO div.input .short_btn {
+            float: right;
+            height: 18px;
+            line-height: 18px;
+        }
+
+    #admin_action .contentTypeDTO div.inputJQGrid, .contentTypeDTO div.inputJQGrid {
+        display: table;
+        vertical-align: top;
+        height: auto;
+    }
+
+        #admin_action .contentTypeDTO div.inputJQGrid .metalabel.alignTop, .contentTypeDTO div.inputJQGrid .metalabel.alignTop {
+            vertical-align: top;
+        }
+
+        #admin_action .contentTypeDTO div.inputJQGrid .ui-jqgrid, .contentTypeDTO div.inputJQGrid .ui-jqgrid {
+            display: table-cell;
+            vertical-align: top;
+        }
+
+    #admin_action .contentTypeDTO input.metainput, .contentTypeDTO input.metainput {
+        width: 325px;
+    }
+
+        #admin_action .contentTypeDTO input.metainput[name="DefaultFolderName"], .contentTypeDTO input.metainput[name="DefaultFolderName"] {
+            width: 210px;
+        }
+
+    #admin_action .contentTypeDTO .folder_icon, .contentTypeDTO .folder_icon {
+        display: inline-block;
+        left: 7px;
+        position: relative;
+        top: 1px;
+    }
+
+    #admin_action .contentTypeDTO .metaselect, .contentTypeDTO .metaselect {
+        width: 100%;
+    }
+
+    #admin_action .contentTypeDTO .ctlist, .contentTypeDTO .ctlist {
+        height: 405px;
+    }
+
+    #admin_action .contentTypeDTO .warningErrorClass, .contentTypeDTO .warningErrorClass {
+        width: 100%;
+    }
+
+.contentTypeSecurityView .metaarea .metalabel {
+    width: 131px;
+}
+
+.arrar.inputErrorClass {
+    color: #000000;
+}
+
+    .arrar.inputErrorClass input[name="Name"] {
+        border-color: red;
+        color: Red;
+    }
+
+
+#admin_action .contentTypeDTO .docProps, .contentTypeDTO .docProps {
+    margin: 0;
+    padding: 8px 5px 4px 0;
+    width: 100%;
+}
+
+    #admin_action .contentTypeDTO .docProps legend, .contentTypeDTO .docProps legend {
+        margin: 0 75px;
+    }
+
+#ct_userGroupTab {
+    display: inline-block;
+    float: left;
+    width: 48%;
+    margin: 5px 0 0 -4px;
+}
+
+    #ct_userGroupTab .ui-tabs-panel {
+        padding: 3px;
+    }
+
+    #ct_userGroupTab .ctlist {
+        height: 90px;
+        width: 100%;
+    }
+
+#companyIPMaskDTO {
+    overflow-x: hidden;
+}
+
+    #companyIPMaskDTO .ctlist {
+        height: 120px;
+    }
+
+.buttons .warningErrorClass {
+    float: left;
+    position: relative;
+    width: 100%;
+}
+
+#user_layout .warningErrorClass, #role_layout .warningErrorClass, #securityClassDTO .warningErrorClass, #customfieldsmanager_layout .warningErrorClass, #systemsettings_layout .warningErrorClass, #retention_categories_layout .warningErrorClass, #retention_freezes_layout .warningErrorClass {
+    float: left;
+    left: 150px;
+    position: relative;
+    width: 100%;
+}
+
+#customfieldsgroup_layout .warningErrorClass {
+    left: 0;
+}
+
+#role_layout .buttons .warningErrorClass, #retention_categories_layout .buttons .warningErrorClass, #retention_freezes_layout .buttons .warningErrorClass {
+    float: left;
+    left: 0;
+    position: relative;
+    width: 100%;
+}
+
+#role_layout select[name="RoleMemberships"] {
+    width: 100%;
+}
+
+.liclist {
+    display: inline-block;
+    padding: 0 5px;
+}
+
+#replace_sc span, #replace_sc select {
+    display: inline-block;
+    margin: 5px 0;
+}
+
+    #replace_sc span.warningErrorClass {
+        margin: 0;
+    }
+
+#stampCont {
+    position: relative;
+}
+
+#imageStampDTO {
+    display: none;
+}
+
+    #imageStampDTO iframe {
+        border: none;
+        height: 75px;
+        width: 100%;
+    }
+
+#stampDTO {
+    height: 100%;
+    width: 100%;
+}
+
+#stampDTO, #textStampDTO {
+    display: inline-block;
+}
+
+
+    #stampDTO .gridContainer {
+        width: 100%;
+        height: 250px;
+        display: inline-block;
+        position: relative;
+    }
+
+        #stampDTO .gridContainer .StaticDataGridView {
+            height: 100%;
+            position: relative;
+        }
+
+            #stampDTO .gridContainer .StaticDataGridView .customGridTable {
+                height: 100%;
+            }
+
+    #stampDTO .listarea {
+        display: inline-block;
+        width: 50%;
+    }
+
+    #stampDTO .metaarea {
+        display: inline-block;
+        width: 50%;
+    }
+
+    #stampDTO .metalabel {
+        width: 150px;
+    }
+
+    #stampDTO .metaarea .metalabel {
+        margin: 5px 0 0;
+    }
+
+    #stampDTO textarea {
+        font-family: Verdana, Tahoma;
+        font-size: 11px;
+        height: 60px;
+        resize: none;
+        width: 199px;
+    }
+
+    #stampDTO div.input {
+        display: inline-block;
+        height: auto;
+        margin: 0 0 5px;
+        width: 100%;
+    }
+
+    #stampDTO div.toggle_btn {
+        display: inline-block;
+        float: left;
+        height: 16px;
+        width: 18px;
+    }
+
+        #stampDTO div.toggle_btn span {
+            background-image: url("../../Content/images/s.png");
+            display: inline-block;
+        }
+
+    #textStampDTO select {
+        height: 20px;
+    }
+
+    #textStampDTO #FontStyleBold {
+        background-position: -430px 0;
+        height: 16px;
+        width: 16px;
+    }
+
+    #textStampDTO #FontStyleItalic {
+        background-position: -446px 0;
+        height: 16px;
+        width: 16px;
+    }
+
+    #textStampDTO #FontStyleUnderLine {
+        background-position: -460px 0;
+        height: 16px;
+        width: 16px;
+    }
+
+    #textStampDTO #FontStyleStrike {
+        background-position: -435px -14px;
+        height: 16px;
+        width: 20px;
+    }
+/****************************************************
+** Two column layout support
+*****************************************************/
+
+#admin_action div.left {
+    float: left;
+    width: 54%;
+}
+
+#admin_action div.right {
+    float: left;
+    width: 46%;
+}
+
+#admin_action div.left_onethird {
+    float: left;
+    width: 45%;
+}
+
+#admin_action div.left_twothirds {
+    float: left;
+    width: 54%;
+}
+/****************************************************
+** END Two column layout support
+*****************************************************/
+/****************************************************
+**  jQuery Tabs
+****************************************************/
+
+#tabs_list_container {
+    left: 170px;
+    position: absolute;
+}
+
+#tabs_list {
+    display: inline-block;
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+
+    #tabs_list li.tab {
+        border-top-style: solid;
+        border-width: 1px;
+        display: block;
+        float: left;
+        list-style: none outside none;
+        padding: 0;
+        position: relative;
+        white-space: nowrap;
+        width: 89px;
+    }
+
+        #tabs_list li.tab > a {
+            color: #000000;
+            float: left;
+            font-size: 100%;
+            padding: 0.5em 0;
+            text-align: center;
+            text-decoration: none;
+            width: 100%;
+            outline: none;
+        }
+
+        #tabs_list li.tab.tab_selected {
+            background-image: url("../../Content/images/s.png");
+            background-position: -2px -321px;
+            border: none;
+            height: 47px;
+            line-height: 52px;
+        }
+
+        #tabs_list li.tab.tab_unselected {
+            background-color: #FEFEFE;
+            border-bottom: none;
+            border-color: #B3B5B7;
+            border-left-color: #B3B5B7;
+            border-left-style: solid;
+            border-right-style: solid;
+            border-top-left-radius: 5px;
+            height: 29px;
+            line-height: 16px;
+            overflow: hidden;
+            top: 17px;
+        }
+
+            #tabs_list li.tab.tab_unselected > a {
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#BDBABA');
+                background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#BDBABA));
+                background: -moz-linear-gradient(top, #FFFFFF, #BDBABA); /* for firefox 3.6+ */
+                background: linear-gradient(to bottom, #FFFFFF 0, #BDBABA 100%); /* W3C (IE10) maybe others soon.*/
+                border-top-left-radius: 5px;
+                height: 100%;
+                width: 100%;
+            }
+
+#retrieve_tab_panel {
+    height: 100%;
+    width: 100%;
+}
+
+    #retrieve_tab_panel > div {
+        height: 100%;
+        width: 100%;
+    }
+
+#tab_panel_container {
+    float: left;
+    height: 100%;
+    margin: 3px 0 0 5px;
+    position: relative;
+    width: 100%;
+}
+
+#tabs {
+    color: #000;
+    float: left;
+    font-family: Verdana, Tahoma;
+    font-size: 11px;
+    height: 99%;
+    min-width: 810px;
+    overflow: hidden;
+    position: relative;
+    top: 0;
+    width: 99%;
+}
+
+#home_tab_panel, #retrieve_tab_panel, #capture_tab_panel, #workflow_tab_panel, #reports_tab_panel, #admin_tab_panel {
+    position: absolute;
+}
+
+    #workflow_tab_panel > div, #capture_tab_panel > div {
+        height: 100%;
+    }
+
+#tab_panel_container .hide_tabs {
+    border-bottom: none;
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    visibility: hidden;
+    width: 100%;
+    z-index: -1;
+}
+
+    #tab_panel_container .hide_tabs iframe {
+        display: none;
+    }
+
+#tab_panel_container .show_tabs {
+    height: 100%;
+    visibility: visible;
+    width: 100%;
+}
+
+
+/****************************************************
+**  END jQuery Tabs
+****************************************************/
+
+/****************************************************
+**  Show/Hide Panel
+****************************************************/
+
+#show_hide_panel {
+    cursor: e-resize;
+    position: relative; /* 	height: 100%; 	float: left; */
+}
+
+#hide_arrow {
+    position: relative;
+}
+
+    #hide_arrow span {
+        cursor: pointer;
+        float: left;
+        font-size: 14px;
+        height: 16px;
+        left: 158px;
+        position: absolute;
+        text-align: center;
+        top: 5px;
+        width: 8px;
+        z-index: 1;
+    }
+
+#collapse_bg {
+    background-color: #6cb7fc;
+    padding: 0 1px;
+    z-index: 99999;
+}
+
+.collapse_arrow {
+    background-image: url("../../Content/images/s.png");
+    background-position: -74px -41px;
+}
+
+.expand_arrow {
+    background-image: url("../../Content/images/s.png");
+    background-position: -101px -41px;
+}
+
+#two_col .show_panel {
+    visibility: visible;
+}
+
+#two_col .hide_panel {
+    visibility: hidden;
+}
+
+#main .expand_panel {
+    margin: 0 0 0 -125px;
+}
+
+#main .collapse_panel {
+    margin: 0 0 0 0;
+}
+/****************************************************
+**  END Show/Hide Panel
+****************************************************/
+/* SPRITE */
+
+#dstar {
+    background-image: url(../../Content/images/s.png);
+}
+
+#dstar {
+    background-position: 0 0;
+    height: 46px;
+    width: 259px;
+}
+/* END SPRITE */
+
+#loginct {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15%;
+}
+/****************************************************
+**  Item Location Dropdown menus
+****************************************************/
+
+.dropdown {
+    /* cancel the default list style */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    text-decoration: none;
+    width: 100%;
+}
+
+    .dropdown .parent {
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#D7D7D7', endColorstr='#FEFEFE');
+        background: -webkit-gradient(linear, left top, left bottom, from(#D7D7D7), to(#FEFEFE));
+        background: -moz-linear-gradient(top, #D7D7D7, #FEFEFE); /* for firefox 3.6+ */
+        background: linear-gradient(to bottom, #D7D7D7 0, #FEFEFE 100%); /* W3C (IE10) maybe others soon.*/
+        border: 1px solid #BFBFBF;
+        color: #000;
+        display: block;
+        height: 10px;
+        padding: 5px 0 5px 5px;
+        text-decoration: none;
+    }
+
+    .dropdown .parent {
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    #tab_panel_container .dropdown .parent:hover, body .dropdown .parent:hover, .dropdown .selected {
+        background: #E6E6E6;
+    }
+
+#tab_panel_container .dropdown ul.children, #requestApprovals .dropdown ul.children, #reassignWfDoc .dropdown ul.children {
+    background-color: #D8D8D8;
+    display: none;
+    left: 0;
+    list-style: none;
+    /* cancel the default list style */
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    z-index: 1050;
+}
+
+#requestApprovals .dropdown ul li span.anchor, #reassignWfDoc .dropdown ul li span.anchor {
+    color: #000;
+    display: inline-block;
+    text-decoration: none;
+}
+
+#tab_panel_container .dropdown ul li span.anchor {
+    color: #000;
+    display: inline-block;
+    text-decoration: none;
+}
+
+#tab_panel_container .dropdown ul li .disabled span.anchor {
+    color: #858585;
+    display: inline-block;
+    text-decoration: none;
+}
+
+#tab_panel_container .dropdown ul li:hover, #requestApprovals .dropdown ul li:hover, #reassignWfDoc .dropdown ul li:hover {
+    background-color: #E6E6E6;
+    color: #000;
+}
+
+#tab_panel_container .dropdown ul li.disabled, #tab_panel_container .dropdown ul li.disabled:active, #tab_panel_container .dropdown ul li.disabled:hover {
+    background: inherit;
+}
+
+    #tab_panel_container .dropdown ul li.disabled span.anchor, #tab_panel_container .dropdown ul li.disabled:active span.anchor {
+        color: #888;
+    }
+
+/****************************************************
+**  END Item location Dropdown menus
+****************************************************/
+/****************************************************
+**  Login Dropdown
+****************************************************/
+#dropdown {
+    background-color: transparent;
+    display: inline-block;
+    height: 30px;
+    /* cancel the default list style */
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    top: -1px;
+    width: 80px;
+}
+
+#dropdown_vert_scroll {
+    background: #000;
+    height: 295px;
+    left: -8px;
+    position: absolute;
+    top: 3px;
+    width: 5px;
+    z-index: 100002;
+}
+
+    #dropdown_vert_scroll .ui-slider-handle {
+        left: -3px;
+        margin: 0 0 -35px;
+        padding: 25px 0;
+        width: 5px;
+    }
+
+    #dropdown_vert_scroll .scroll-bar {
+        width: 1px;
+    }
+
+#dropdown div.parent {
+    background-color: #FFCC42;
+    border: 1px solid #6a6a6a;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    color: #000;
+    font-weight: 700;
+    padding: 2px;
+    text-decoration: none;
+}
+
+    #dropdown div.parent span {
+        float: left;
+    }
+
+#dropdown ul {
+    -moz-box-shadow: 2px 2px 2px #000000;
+    -webkit-box-shadow: 2px 2px 2px #000000;
+    border: 1px solid black;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    box-shadow: 2px 2px 2px #000000;
+}
+
+    #dropdown ul.children {
+        background: #e4dfcb;
+        border-bottom-left-radius: 5px;
+        border-top-left-radius: 5px;
+        display: none;
+        list-style: none;
+        margin: 0;
+        max-height: 300px;
+        padding: 0;
+        position: absolute;
+        right: 0;
+        width: 300px;
+        z-index: 100001;
+    }
+
+    #dropdown ul li {
+        font-size: 15px;
+        word-wrap: break-word;
+        width: 100%;
+    }
+
+        #dropdown ul li span.anchor, #dropdown ul li > a {
+            border-bottom-left-radius: 5px;
+            border-top-left-radius: 5px;
+            color: #000;
+            display: inline-block;
+            font-weight: 700;
+            padding: 4px 0 4px 9%;
+            text-decoration: none;
+            width: 90%;
+        }
+
+        #dropdown ul li a.ui-button {
+            border-bottom-left-radius: 5px;
+            border-top-left-radius: 5px;
+            color: #000;
+            display: inline-block;
+            font-weight: 700;
+            padding: 4px 4px 4px 16px;
+            text-decoration: none;
+        }
+
+        #dropdown ul li span.anchor:hover, #dropdown ul li > a:hover {
+            background-color: #d0c9af;
+            color: #5d4617;
+            cursor: pointer;
+        }
+
+#instanceList li h4 {
+    margin: 0;
+}
+
+#dropdown #instanceListSubmenu {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    background: #e4dfcb;
+    box-shadow: none;
+    display: none;
+    left: -182px;
+    list-style: none;
+    margin: 0;
+    max-height: 300px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    width: 180px;
+}
+
+#companyList > span {
+    display: inline;
+    float: left;
+    position: inherit;
+    top: 3px;
+    left: 16px;
+    right: 4px;
+}
+
+#companyList span input.ui-autocomplete-input {
+    display: inline;
+    position: relative;
+    left: 16px;
+    right: 4px;
+    width: 245px;
+    height: 24px;
+    font-size: 15px;
+}
+
+#companyList span a.ui-button {
+    display: inline-block;
+    margin: 0 0 0 15px;
+    padding: 0px !important;
+    position: absolute;
+}
+
+#companyList a.ui-button {
+    height: 28px;
+    width: 28px;
+}
+
+#header #dropdown li h4 {
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+    #header #dropdown li h4 span {
+        color: #000;
+        display: block;
+        font-size: 15px;
+        font-weight: bolder;
+        padding: 4px 4px 4px 12px;
+    }
+/****************************************************
+**  END Login Dropdown
+****************************************************/
+/****************************************************
+**  Home Layout 
+****************************************************/
+
+#home_tab_panel {
+    height: 100%;
+    width: 100%;
+}
+
+    #home_tab_panel > div {
+        height: 100%;
+        width: 100%;
+    }
+
+#buzzspace_layout {
+    height: 102%;
+    margin: -3px 0 0;
+    width: 100%;
+}
+
+#buzz_header {
+    background: #EEE;
+    border-bottom: 1px solid #DDD;
+    height: 25px;
+    line-height: 25px;
+    width: 100%;
+}
+
+    #buzz_header span {
+        left: 10px;
+        position: relative;
+    }
+/****************************************************
+**  Retrieve Layout / Workflow Layout / Meta data accordion layout
+****************************************************/
+
+#retrieve_layout, #workflow_layout {
+    height: 100%;
+    width: 100%;
+}
+
+.accordion {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F9F9F9', endColorstr='#FFFFFF');
+    background: -webkit-gradient(linear, left top, left bottom, from(#F9F9F9), to(#FFFFFF));
+    background: -moz-linear-gradient(top, #F9F9F9, #FFFFFF); /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #F9F9F9 0, #FFFFFF 100%); /* W3C (IE10) maybe others soon.*/
+    float: left;
+    position: relative;
+    width: 100%;
+}
+
+    .accordion.closed {
+        display: none;
+    }
+
+    .accordion.open {
+        display: inline-block;
+    }
+
+    .accordion.disabled {
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F9F9F9', endColorstr='#FFFFFF');
+        background: -webkit-gradient(linear, left top, left bottom, from(#F9F9F9), to(#FFFFFF));
+        background: -moz-linear-gradient(top, #F9F9F9, #FFFFFF); /* for firefox 3.6+ */
+        background: linear-gradient(to bottom, #F9F9F9 0, #FFFFFF 100%); /* W3C (IE10) maybe others soon.*/
+    }
+
+.accordion_title {
+    cursor: pointer;
+    float: left;
+    font-weight: bold;
+    padding: 3px 0 4px 0;
+    width: 100%;
+}
+
+    .accordion_title.noAccordionEvent {
+        cursor: default;
+    }
+
+.accordion_title_open {
+    /*background-color: #FFBE0D;*/
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FCEFC7', endColorstr='#F1B616');
+    background: -webkit-gradient(linear, left top, left bottom, from(#FCEFC7), to(#F1B616));
+    background: -moz-linear-gradient(top, #FCEFC7, #F1B616); /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #FCEFC7 0%, #F1B616 100%); /* W3C (IE10) maybe others soon.*/
+}
+
+.accordion_title_closed {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = "#d4e8fc", endColorstr = "#032342");
+    background: -webkit-gradient(linear, left top, left bottom, from(#d4e8fc), to(#032342));
+    background: -moz-linear-gradient(center top, #d4e8fc, #032342) repeat scroll 0 0 transparent; /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #d4e8fc 0%, #032342 100%); /* W3C (IE10) maybe others soon.*/
+}
+
+.accordion_title.disabled, .accordion_title.disabled:active {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = "#EEEEEE", endColorstr = "#444444");
+    background: -webkit-gradient(linear, left top, left bottom, from(#EEEEEE), to(#444444));
+    background: -moz-linear-gradient(center top, #EEEEEE, #444) repeat scroll 0 0 transparent; /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #EEEEEE 0%, #444444 100%); /* W3C (IE10) maybe others soon.*/
+    color: #FFF;
+}
+
+#entityViewer .viewer_menubar {
+    left: 0;
+}
+
+/*#region viewer layout css*/
+/* document preview, document image, capture preview, workflow preview, document native view, document form view */
+.document_preview {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6DB8FD', endColorstr='#022241');
+    background: -webkit-gradient(linear, left top, left bottom, from(#6DB8FD), to(#022241));
+    background: -moz-linear-gradient(top, #6DB8FD, #022241); /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #6DB8FD 0, #022241 100%); /* W3C (IE10) maybe others soon.*/
+}
+
+.viewer_menubar {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = "#d4e8fc", endColorstr = "#032342");
+    background: linear-gradient(to bottom, #d4e8fc 0, #032342 100%); /* W3C (IE10) maybe others soon.*/
+    background: -moz-linear-gradient(center top, #d4e8fc, #032342) repeat scroll 0 0 transparent;
+    background: -webkit-gradient(linear, left top, left bottom, from(#d4e8fc), to(#032342));
+    color: #FFF;
+    height: 20px;
+    padding: 3px 0 4px 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    margin: 0 1px 0 0;
+}
+
+    .viewer_menubar .arrow {
+        width: 10px;
+        float: left;
+        position: relative;
+        left: 1px;
+    }
+
+        .viewer_menubar .arrow span {
+            cursor: pointer;
+            display: block;
+            font-size: 14px;
+            height: 16px;
+            text-align: center;
+            width: 10px;
+        }
+
+.viewer_image {
+    background-image: url(../../Content/images/transparent.png);
+    border: 1px solid #000;
+    display: inline-block;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0px;
+    left: 5px;
+    margin: 35px 0 0 0;
+}
+
+    .viewer_image .image_full {
+        float: left;
+        height: 100%;
+        left: 0px;
+        position: relative;
+        text-align: center;
+        top: 0px;
+        width: 100%;
+    }
+
+    .viewer_image .img_container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+
+.hideNative .viewer_menubar div:not(.arrow),
+.hideNative .viewer_image {
+    visibility: hidden;
+    overflow: hidden;
+    width: 0;
+    height: 0;
+}
+/*#endregion viewer layout css*/
+
+
+.accordion_title .title_arrow, .meta_accordion_title .title_arrow {
+    float: left;
+    height: 15px;
+    left: 7px;
+    position: relative;
+    top: 2px;
+    width: 15px;
+}
+
+.accordion_title_closed .title_arrow {
+    background-image: url("../../Content/images/s.png");
+    background-position: -46px -41px;
+}
+
+.accordion_title_open .title_arrow {
+    background-image: url("../../Content/images/s.png");
+    background-position: -60px -41px;
+}
+
+.accordion_title span.anchor {
+    background: none;
+    color: #000;
+    float: none;
+    left: 10px;
+    position: relative;
+    text-decoration: none;
+    top: 3px;
+}
+
+.accordion_title_open span.anchor {
+    color: #000;
+}
+
+.accordion_title_closed span.anchor, .accordion_title_open.disabled span.anchor {
+    color: #FFF;
+}
+/****************************************************
+**  Retrieve Layout Items and location
+****************************************************/
+
+#accordion_container {
+    height: 100%;
+}
+/****************************************************
+**  Retrieve Layout Field Search
+****************************************************/
+
+
+#requestApprovals .dropdown, #reassignWfDoc .dropdown {
+    float: left;
+    left: 12px;
+    margin: 7px 0 0 4px;
+    position: relative;
+    width: 25%;
+}
+
+    #requestApprovals .dropdown .parent .approvals_dropdown_text, #reassignWfDoc .dropdown .parent .reassign_dropdown_text {
+        float: left;
+        overflow: hidden;
+        position: relative;
+        width: 85%;
+    }
+
+    #requestApprovals .dropdown .parent .approvals_dropdown_arrow, #reassignWfDoc .dropdown .parent .reassign_dropdown_arrow {
+        float: right;
+        position: relative;
+        top: -2px;
+    }
+
+    #requestApprovals .dropdown dd, #reassignWfDoc .dropdown dd {
+        z-index: 1;
+    }
+
+    #requestApprovals .dropdown ul.children, #reassignWfDoc .dropdown ul.children {
+        max-height: 175px;
+    }
+/* Scan Dialog */
+#scan_dialog span {
+    position: relative;
+    top: -2px;
+}
+
+#scan_dialog select {
+    width: 203px;
+}
+
+#scan_dialog input[type="text"] {
+    width: 200px;
+}
+/* End Scan Dialog */
+
+/****************************************************
+** Retrieve Layout Select Folder
+****************************************************/
+
+#retrieve_layout_selectContainer, #selectFolder {
+    display: none;
+    overflow: auto;
+    max-height: 450px;
+}
+
+    #retrieve_layout_selectContainer a, #selectFolder a {
+        color: #000;
+    }
+
+    #retrieve_layout_selectContainer ul, #selectFolder ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    #retrieve_layout_selectContainer > ul, #selectFolder > ul {
+        padding: 0;
+        position: absolute;
+    }
+
+/****************************************************
+** Workflow Layout
+****************************************************/
+
+#assign_throbber, #req_throbber, #reassign_throbber, #reset_throbber {
+    bottom: 0;
+    display: none;
+    left: 47%;
+    position: absolute;
+}
+
+
+
+#wfItem_err_cont {
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+#work_items .show_auto {
+    float: left;
+    left: 1px;
+    position: relative;
+    top: 9px;
+}
+
+#workflow_removal {
+    text-align: center;
+}
+
+#wfItems_filter .select_queue ul.children, #wfItems_filter .select_wf ul.children {
+    max-height: 175px;
+    min-width: 100%;
+}
+
+#workflow_selection fieldset {
+    display: inline-block;
+    float: left;
+    left: -2px;
+    margin: 0 0 10px 0;
+    padding: 0;
+    position: relative;
+    width: 92%;
+}
+
+    #workflow_selection fieldset div {
+        display: none;
+    }
+
+    #workflow_selection fieldset span {
+        position: relative;
+        top: -2px;
+    }
+
+#workflow_selection .additionalAction {
+    display: inline-block;
+    float: left;
+    width: 100%;
+}
+
+#resetWfDoc span {
+    display: inline-block;
+    float: left;
+    margin: 10px 5px 0 20px;
+}
+
+#resetWfDoc .clearChat {
+    display: inline-block;
+    float: left;
+    margin: 10px 0 0;
+}
+
+#resetWfDoc .clearChatMsg {
+    display: inline-block;
+    float: left;
+    margin: 0;
+    text-align: left;
+    width: 100%;
+}
+
+/****************************************************
+** Link/Print 
+****************************************************/
+
+#download {
+    visibility: hidden;
+    position: absolute;
+    height: 0;
+    width: 0;
+    border: none;
+}
+
+#iprint {
+    position: absolute;
+    height: 0;
+    width: 0;
+    border: none;
+}
+
+#created-link .item {
+    display: inline-block;
+    min-width: 380px;
+    position: relative;
+    width: 100%;
+}
+
+#created-link span {
+    display: inline-block;
+    text-align: right;
+    width: 55px;
+}
+
+#created-link input {
+    left: 15px;
+    position: relative;
+    width: 75%;
+}
+
+#created-link .email_body_label {
+    top: -37px;
+}
+
+#sendDialog .email_warning_label {
+    position: relative;
+    top: 18px;
+}
+
+#created-link textarea {
+    left: 15px;
+    position: relative;
+    width: 75%;
+    height: 4em;
+}
+
+#created-link .warningErrorClass {
+    position: relative;
+    text-align: left;
+    top: 10px;
+    width: 100%;
+}
+
+#created-link .success_message {
+    bottom: -10px;
+    display: none;
+    left: -30px;
+    position: absolute;
+    top: auto;
+    width: 100%;
+}
+
+#created-link .generateLink {
+    left: 15px;
+    min-width: 16px;
+    position: relative;
+    top: 3px;
+    width: 16px;
+}
+
+.errors {
+    color: #F00;
+    float: left;
+    height: auto;
+    left: 10px;
+    position: relative;
+    width: 100%;
+}
+
+#link_submit {
+    background-image: url("../../Content/images/s.png");
+    background-position: -66px -178px;
+    border: 1px solid #000000;
+    cursor: default;
+    height: 25px;
+    left: 25px;
+    line-height: 25px;
+    position: relative;
+    text-align: center;
+    top: -3px;
+    width: 70px;
+}
+
+    #link_submit:active {
+        background-image: url("../../Content/images/s.png");
+        background-position: -66px -207px;
+    }
+
+#link_submitted {
+    display: none;
+    height: 25px;
+    position: relative;
+    text-align: center;
+    top: 5px;
+    width: 100%;
+}
+
+#limit-exceeded, #single-selection, #viewer_print-error {
+    display: none;
+    text-align: center;
+}
+
+#sendDialog {
+    display: inline-block;
+}
+
+    #sendDialog span.progress {
+        position: absolute;
+        min-width: 0;
+        left: 0;
+        top: 0;
+    }
+
+    #sendDialog .progressCont {
+        width: 100%;
+    }
+
+    #sendDialog span {
+        display: inline-block;
+        min-width: 75px;
+        position: relative;
+        top: -3px;
+    }
+
+    #sendDialog .warningErrorClass, #sendDialog .success_message {
+        top: 30px;
+    }
+
+    #sendDialog > div {
+        display: inline-block;
+        min-width: 50%;
+        position: relative;
+    }
+
+        #sendDialog > div > div {
+            height: 15px;
+            margin: 5px 0;
+        }
+
+            #sendDialog > div > div.spacingRight {
+                height: 15px;
+                margin: 5px 15px 0 0;
+            }
+
+        #sendDialog > div.fright {
+            min-width: 0;
+        }
+
+#sendThrobber {
+    left: 50%;
+    position: relative;
+    top: 5px;
+}
+
+#sendDialog .pageSelectionContainer {
+    height: 45px;
+}
+
+    #sendDialog .pageSelectionContainer div.indented {
+        left: 15px;
+        position: relative;
+    }
+
+#printingThrobber {
+    margin: 0 0 0 44%;
+}
+/****************************************************
+** End Link/Print 
+****************************************************/
+/****************************************************
+** Retrieve Layout : Results View
+****************************************************/
+
+.custom_button, .customButtonWithIcon {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#CDDEFF', endColorstr='#082647');
+    background: -webkit-gradient(linear, left top, left bottom, from(#CDDEFF), to(#082647));
+    background: -moz-linear-gradient(top, #CDDEFF, #082647); /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #CDDEFF 0, #082647 100%); /* W3C (IE10) maybe others soon.*/
+    border: 1px solid #000000;
+    color: #FFFFFF;
+    cursor: default;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+}
+
+    .custom_button.disabled,
+    .custom_button.disabled:active {
+        cursor: default;
+        background-color: #999;
+        background-image: none;
+    }
+
+.connectionIndicator {
+    position: relative;
+}
+
+.customButtonWithIcon {
+    text-align: left;
+    text-indent: 15px;
+}
+
+    .custom_button:active,
+    .customButtonWithIcon:active,
+    .custom_button.active,
+    .customButtonWithIcon.active {
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#082647', endColorstr='#CDDEFF');
+        background: -webkit-gradient(linear, left top, left bottom, from(#082647), to(#CDDEFF));
+        background: -moz-linear-gradient(top, #082647, #CDDEFF); /* for firefox 3.6+ */
+        background: linear-gradient(to bottom, #082647 0, #CDDEFF 100%); /* W3C (IE10) maybe others soon.*/
+    }
+
+a[name="downloadNativeDocument"] {
+    display: inline-block;
+    height: 22px;
+    line-height: 21px;
+    margin: 5px 0 0 1px;
+    position: relative;
+    top: -4px;
+    width: 180px;
+    cursor: pointer;
+}
+
+#accordion_container.hideNative {
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+}
+
+#field_acc_title, #wf_acc_title, #rd_acc_title, #app_acc_title, #vers_acc_title, #cfg_acc_title {
+    height: 16px;
+    width: 100%;
+}
+
+.meta_accordion_title_contents {
+    position: relative;
+    top: -1px;
+    width: 100%;
+}
+
+    .meta_accordion_title_contents .buttonContainer {
+        position: absolute;
+        right: 0;
+    }
+
+.fieldLabelContainer {
+    width: 165px;
+    min-width: 165px;
+    max-width: 165px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.ctbFieldSettingsContainer span.handleIcon {
+    cursor: move;
+}
+
+.ctbFieldSettingsContainer .limitLabelWidth {
+    max-width: 38%;
+    min-width: 38%;
+}
+
+.ctbFieldsContainer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+    .ctbFieldsContainer ul > li > a {
+        vertical-align: middle;
+    }
+
+.ctbFieldsContainer .ctbFieldSettingsContainer {
+    overflow: auto;
+    margin: 5px 0;
+}
+
+.ctbFieldSettingsContainer ul > li {
+    height: 26px;
+    line-height: 26px;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#BDBABA');
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#BDBABA));
+    background: -moz-linear-gradient(top, #FFFFFF, #BDBABA); /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #FFFFFF 0, #BDBABA 100%); /* W3C (IE10) maybe others soon.*/
+    border: 1px solid #808080;
+    position: relative;
+}
+
+.ctbDisplayFieldsContainer label {
+    margin: 0 0 0 10px;
+}
+
+.contentTypeContainer .ui-combobox, .ctbNewFieldContainer .ui-combobox {
+    position: relative;
+    border-spacing: 0;
+}
+
+.contentTypeContainer .warningErrorClass {
+    position: absolute;
+    top: 100%;
+    left: 0;
+}
+
+.ctbNewFieldContainer .ui-icon.ui-icon-plus {
+    cursor: pointer;
+}
+/* END Content Type - Meta Panel END*/
+
+#entityMeta textarea {
+    border-radius: 2px;
+    font-family: Verdana, Tahoma;
+    font-size: 11px;
+    max-height: 100px;
+}
+
+    #entityMeta textarea[readonly] {
+        background: #F0F0F0;
+    }
+
+
+#metadata_results_counter {
+    float: left;
+    height: 12px;
+    margin: 0 12px;
+    position: relative;
+    text-align: center;
+    top: -3px;
+    width: 40px;
+}
+
+.wfApprove {
+    margin: 0 12px 0;
+}
+
+    .wfApprove.isApproved {
+        margin: 0 10px 0;
+    }
+
+.wfDeny.isDenied {
+    margin: 0 -2px 0;
+}
+
+#entityMeta .wfApprove, #entityMeta .wfDeny {
+    left: -4px;
+    top: -3px;
+}
+
+.temp_throbber {
+    left: 40%;
+    position: absolute;
+    top: 20%;
+}
+
+/*Container to make short_btns stack on top of one another, rather than go left to right*/
+
+.short_btns {
+    margin: -3px;
+    width: 85px;
+}
+
+.short_btn {
+    cursor: pointer;
+    height: 23px;
+    line-height: 23px;
+    padding: 1px 0;
+    width: 75px;
+}
+
+.custom_button.shortHeightBtn {
+    height: 18px;
+    line-height: 18px;
+}
+
+.long_btn {
+    cursor: pointer;
+    height: 23px;
+    line-height: 23px;
+    min-width: 75px;
+    padding: 1px 5px;
+}
+
+#meta_folders_container .del_row_container {
+    background-color: #FFF;
+    display: none;
+    height: 18px;
+    position: absolute;
+    right: 2px;
+    width: 16px;
+}
+
+.meta_locations #meta_folders_container .del_row_container.del_row {
+    height: 16px;
+    width: 16px;
+}
+
+.cfsFormat select {
+    width: 100%;
+}
+
+#entityMeta .docVersDTO.auditInfo {
+    display: inline-block;
+    float: left;
+    padding: 0 0 5px;
+}
+
+#entityMeta .docVersDTO input {
+    width: 100%;
+    padding: 0;
+}
+
+.workflowTaskTemplate {
+    display: table;
+    margin: 5px 0;
+    position: relative;
+    top: -4px;
+    width: 100%;
+    height: 35px;
+    word-wrap: break-word;
+}
+
+    .workflowTaskTemplate input {
+        display: table-cell;
+        width: 60%;
+    }
+
+    .workflowTaskTemplate select {
+        -moz-box-shadow: 2px 2px 2px #000;
+        -webkit-box-shadow: 2px 2px 2px #000;
+        box-shadow: 2px 2px 2px #000;
+        position: relative;
+        right: 3px;
+        width: 169px;
+    }
+
+    .workflowTaskTemplate .radios {
+        display: table-cell;
+        margin: 5px 0;
+        width: 60%;
+        float: right;
+    }
+
+        .workflowTaskTemplate .radios div {
+            display: table-row;
+            width: 100%;
+        }
+
+            .workflowTaskTemplate .radios div label {
+                display: table-cell;
+                vertical-align: middle;
+                word-break: break-all;
+                width: 100%;
+            }
+
+.UserPromptString {
+    display: table-cell;
+    vertical-align: middle;
+    max-width: 125px;
+    width: 125px;
+    min-width: 125px;
+    overflow: hidden;
+    text-align: left;
+}
+
+    .UserPromptString.UserPromptStringRadios {
+        max-width: 50%;
+    }
+
+.userApprovalTaskButtons {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    right: 0;
+}
+
+.wfInsufficientPermissions {
+    position: relative;
+    top: 2px;
+    left: -5px;
+}
+
+#wf_panel {
+    display: inline-block;
+    float: left;
+    margin: 2px 0 2px 2px;
+    min-height: 65px;
+    position: relative;
+    min-width: 284px;
+    width: 100%;
+}
+
+#requestApprovals .success_message, #reassignWfDoc .success_message {
+    display: inline-block;
+    margin: 0;
+    text-align: left;
+    width: 95%;
+}
+
+#requestApprovals > div, #reassignWfDoc > div {
+    display: inline-block;
+    width: 100%;
+}
+
+#requestApprovals .dropdown, #reassignWfDoc .dropdown {
+    width: 65%;
+}
+
+#requestApprovals > div > input {
+    float: left;
+    left: 16px;
+    margin: 12px 0 0 0;
+    position: relative;
+}
+
+#requestApprovals > div > span, #reassignWfDoc > div > span {
+    float: left;
+    margin: 12px 0 0 0;
+    min-width: 100px;
+    text-align: right;
+}
+
+.currentUserApproval {
+    background: #ADD8E6;
+}
+/****************************************************
+**  Viewer layout
+****************************************************/
+
+.submenu {
+    background: #D8D8D8;
+    display: none;
+    list-style: none;
+    margin: 0 0 0 100%;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    width: auto;
+    z-index: 500;
+}
+
+    .submenu li {
+        display: inline-block;
+        float: left;
+        width: auto;
+    }
+
+        .submenu li div.menu_item {
+            padding: 0 5px 0 0;
+        }
+
+body .nested ul.children {
+    overflow: visible;
+}
+
+.nested ul.children .submenu li {
+    display: block;
+    float: none;
+}
+
+.nested ul.children li {
+    margin: 0 15px 0 0;
+    position: relative;
+    width: 100%;
+}
+
+
+.nested ul li:hover > .submenu {
+    display: block;
+}
+
+.dropdown_arrow {
+    position: absolute;
+    right: 1px;
+    top: 4px;
+}
+/****************************************************
+** Panzoom
+****************************************************/
+
+/****************************************************
+**  END Panzoom
+****************************************************/
+
+#retrieve_layout_folder_list, #retrieve_layout_inbox_list, #inbox_contextmenu, #inbox_delete, #inbox_remove, #folder_contextmenu, #folder_delete, #folder_remove, #cont_sec_selectRole, #cont_sec_selectUser, #workflow_removal, #selectFolder, #addDocFreeze, #removeDocFreeze, #cutoffDocuments, #requestApprovals, #app_dialog, #approveDenyDialog {
+    display: none;
+}
+
+#userPrefsDialog {
+    overflow: auto;
+    max-height: 400px;
+}
+
+#container_security {
+    display: none;
+}
+
+.root_list {
+    list-style: none;
+    padding: 0;
+}
+
+.browseLDAP {
+    overflow: hidden;
+}
+
+#folder_list_scroll {
+    margin: 0 20px 0 0;
+    max-height: 220px;
+    min-height: 15px;
+    overflow: hidden;
+}
+
+#folder_list > ul {
+    position: relative;
+}
+
+#inbox_list_scroll {
+    margin: 0 20px 0 0;
+    max-height: 220px;
+    min-height: 15px;
+    overflow: hidden;
+}
+
+#inbox_list > ul {
+    position: relative;
+}
+
+#inbox_contextmenu .warningErrorClass, #folder_contextmenu .warningErrorClass, #workflow_selection .warningErrorClass {
+    bottom: 0;
+    left: 0;
+    position: relative;
+    display: inline-block;
+    word-break: break-all;
+}
+
+#container_security .warningErrorClass, #reassignWfDoc .warningErrorClass {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+}
+
+#inbox_contextmenu .success_message, #folder_contextmenu .success_message {
+    display: none;
+}
+
+#container_security .success_message, #requestApprovals .success_message, #reassignWfDoc .success_message {
+    bottom: 0;
+    display: none;
+    position: absolute;
+    text-align: right;
+    width: 95%;
+}
+
+
+.categoryLayout .root > a > ins.jstree-icon, .dashboardLayout .root a > ins.jstree-icon {
+    display: none;
+}
+
+.categoryLayout .report > a > ins.jstree-icon, .dashboardLayout .report > a > ins.jstree-icon {
+    display: inline-block;
+    background-image: url("../../Content/images/s.png");
+    background-position: -390px -143px;
+    width: 14px;
+    height: 16px;
+}
+
+#inbox_list a > ins.jstree-icon, #retrieve_layout_inbox_list a > ins.jstree-icon, .categoryLayout .category > a > ins.jstree-icon {
+    background-image: url("../../Content/images/s.png");
+    background-position: 1px -58px;
+    height: 16px;
+    left: -2px;
+    position: relative;
+    top: 1px;
+    width: 16px;
+}
+
+#folder_list a > ins.jstree-icon, #retrieve_layout_folder_list a > ins.jstree-icon, #alerts_tree a > ins.jstree-icon,
+#workflow_tree a > ins.jstree-icon, #approval_tree a > ins.jstree-icon, #selectFolder a > ins.jstree-icon, #cf_folder_list a > ins.jstree-icon {
+    background-image: url("../../Content/images/s.png");
+    background-position: -31px -55px;
+    height: 18px;
+    position: relative;
+    top: -3px;
+    width: 16px;
+}
+
+#browse .jstree a, .navigationLayout .jstree a {
+    font-size: 12px;
+    padding: 0 2px 0 1px;
+}
+
+#alerts_tree, #workflow_tree, #approval_tree {
+    margin: 0 15px 0 0;
+    overflow: hidden;
+}
+
+
+.browseLDAP {
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+    .browseLDAP .jstree a {
+        color: #000;
+    }
+
+    .browseLDAP a > ins.jstree-icon { /*TODO: scain get an icon for ldap browsing*/
+    }
+/****************************************************
+**  Inbox/Folder Nav ContextMenu modal window
+****************************************************/
+
+#inbox_contextmenu .new_inbox_name_title {
+    position: absolute;
+    top: 5px;
+}
+
+#new_inbox_name {
+    left: 150px;
+    position: absolute;
+    width: 175px;
+}
+
+#inbox_contextmenu {
+    height: 80px;
+}
+
+    #inbox_contextmenu div, #folder_contextmenu div {
+        display: inline-block;
+        float: left;
+        height: 20px;
+        margin: 5px 0;
+        position: relative;
+        width: 100%;
+    }
+
+    #inbox_contextmenu .inbox_create_secclass_title {
+        position: absolute;
+        top: 5px;
+    }
+
+    #inbox_contextmenu .inbox_security_class {
+        left: 150px;
+        position: absolute;
+    }
+
+    #inbox_contextmenu .dropdown {
+        /* cancel the default list style */
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        width: 175px;
+    }
+
+        #inbox_contextmenu .dropdown:hover {
+            background-color: #efefef;
+        }
+
+        #inbox_contextmenu .dropdown .parent {
+            background-color: #D8D8D8;
+            border: 1px solid #6a6a6a;
+            color: #000;
+            display: block;
+            height: 10px;
+            padding: 5px 0 5px 5px;
+            text-decoration: none;
+        }
+
+        #inbox_contextmenu .dropdown span.parent:hover {
+            background: #E6E6E6;
+        }
+
+        #inbox_contextmenu .dropdown ul.children {
+            background-color: #D8D8D8;
+            display: none;
+            left: 0;
+            list-style: none;
+            /* cancel the default list style */
+            margin: 0;
+            max-height: 175px;
+            padding: 0;
+            position: absolute;
+            width: 175px;
+            z-index: 500;
+        }
+
+        #inbox_contextmenu .dropdown ul li span.anchor {
+            color: #000;
+            display: block;
+            font-size: 11px;
+            text-decoration: none;
+        }
+
+        #inbox_contextmenu .dropdown ul li:hover {
+            background-color: #E6E6E6;
+            color: #5d4617;
+        }
+
+    #inbox_contextmenu .dropdown_arrow {
+        float: right;
+    }
+
+#folder_contextmenu .new_folder_name_title {
+    position: absolute;
+    top: 5px;
+}
+
+#new_folder_name {
+    left: 150px;
+    position: absolute;
+    width: 170px;
+}
+
+#folder_contextmenu .folder_create_secclass_title {
+    position: absolute;
+    top: 5px;
+}
+
+#folder_contextmenu .fold_security_class {
+    left: 150px;
+    position: absolute;
+}
+
+#folder_contextmenu .dropdown {
+    /* cancel the default list style */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    width: 175px;
+}
+
+    #folder_contextmenu .dropdown .parent {
+        background-color: #D8D8D8;
+        border: 1px solid #6a6a6a;
+        color: #000;
+        display: block;
+        height: 10px;
+        padding: 5px 0 5px 5px;
+        text-decoration: none;
+    }
+
+    #folder_contextmenu .dropdown span.parent:hover {
+        background: #E6E6E6;
+    }
+
+    #folder_contextmenu .dropdown ul.children {
+        background-color: #D8D8D8;
+        display: none;
+        left: 0;
+        list-style: none;
+        /* cancel the default list style */
+        margin: 0;
+        max-height: 175px;
+        padding: 0;
+        position: absolute;
+        width: 175px;
+        z-index: 500;
+    }
+
+    #folder_contextmenu .dropdown ul li span.anchor {
+        color: #000;
+        display: block;
+        text-decoration: none;
+    }
+
+    #folder_contextmenu .dropdown ul li:hover {
+        background-color: #E6E6E6;
+        color: #5d4617;
+    }
+
+#folder_contextmenu .dropdown_arrow {
+    float: right;
+}
+
+#container_security .cont_sec_user, #container_security .cont_sec_group, #container_security .cont_sec_sec, #container_security .cont_sec_perm {
+    display: inline-block;
+    float: left;
+    height: 100px;
+    margin: 5px 0;
+    position: relative;
+    width: 100%;
+}
+
+#container_security .cont_sec_sec {
+    height: 70px;
+}
+
+#container_security .cont_sec_user, #container_security .cont_sec_group {
+    height: 120px;
+}
+
+#container_security span {
+    position: absolute;
+}
+
+#container_security #oddPerms, #container_security #evenPerms {
+    left: 90px;
+}
+
+#container_security .cont_sec_perm span {
+    position: relative;
+}
+
+#container_security select {
+    display: inline-block;
+    float: left;
+    height: 100px;
+    left: 90px;
+    position: absolute;
+    width: 290px;
+}
+
+#container_security input[type="button"] {
+    display: inline-block;
+    left: 90px;
+    margin: 5px 0 0;
+    position: relative;
+    top: 100px;
+}
+
+#container_security .container_title {
+    position: absolute;
+}
+
+#container_name {
+    left: 90px;
+    position: absolute;
+    top: 8px;
+    width: 285px;
+}
+
+#cont_sec_load {
+    height: 20px;
+    left: 180px;
+    position: relative;
+    top: 245px;
+    width: 20px;
+}
+
+#container_security .container_secclass_title {
+    position: absolute;
+    top: 35px;
+}
+
+#container_security .container_security_class {
+    left: 90px;
+    position: absolute;
+    top: 40px;
+}
+
+#container_security .dropdown, #workflow_selection .dropdown, #pageOptionsDialog .dropdown {
+    /* cancel the default list style */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    width: 290px;
+}
+
+    #container_security .dropdown .parent, #workflow_selection .dropdown .parent, #pageOptionsDialog .dropdown .parent {
+        background-color: #D8D8D8;
+        border: 1px solid #6a6a6a;
+        color: #000;
+        display: block;
+        height: 10px;
+        padding: 5px 0 5px 5px;
+        position: relative;
+        text-decoration: none;
+    }
+
+    #container_security .dropdown span.anchor:hover, #workflow_selection .dropdown span.anchor:hover, #pageOptionsDialog .dropdown span.anchor:hover {
+        background: #E6E6E6;
+    }
+
+    #container_security .dropdown ul.children, #workflow_selection .dropdown ul.children, #pageOptionsDialog .dropdown ul.children {
+        background-color: #D8D8D8;
+        display: none;
+        left: 0;
+        list-style: none;
+        /* cancel the default list style */
+        margin: 0;
+        max-height: 175px;
+        padding: 0;
+        position: absolute;
+        width: 175px;
+        z-index: 500;
+    }
+
+    #container_security .dropdown ul li span.anchor, #workflow_selection .dropdown ul li span.anchor, #pageOptionsDialog .dropdown ul li span.anchor {
+        color: #000;
+        display: block;
+        position: relative;
+        text-decoration: none;
+    }
+
+    #container_security .dropdown ul li:hover, #workflow_selection .dropdown ul li:hover, #pageOptionsDialog .dropdown ul li:hover {
+        background-color: #E6E6E6;
+        color: #5d4617;
+    }
+
+#container_security .dropdown_arrow, #workflow_selection .dropdown_arrow, #pageOptionsDialog .dropdown_arrow {
+    float: right;
+}
+
+#cont_sec_selectUser select, #cont_sec_selectRole select, #selectUser select, #selectRole select {
+    height: 100%;
+    width: 100%;
+}
+
+#workflow_selection {
+    display: inline-block;
+    height: auto;
+    margin: 5px 0 0;
+}
+
+    #workflow_selection div {
+        display: inline-block;
+        float: left;
+        margin: 2px 0;
+        min-height: 20px;
+        width: 100%;
+    }
+
+    #workflow_selection > div > span {
+        display: inline-block;
+        float: left;
+        position: relative;
+    }
+
+    #workflow_selection .dropdown {
+        float: left;
+        left: 100px;
+        position: absolute;
+        top: 0;
+        width: 190px;
+    }
+
+        #workflow_selection .dropdown ul.children {
+            display: none;
+        }
+
+    #workflow_selection span.wf_suc_msg, #workflow_removal span.wf_suc_msg, input[name="wf_err_msg"] {
+        bottom: 0;
+        display: none;
+        left: 5px;
+        width: 85%;
+    }
+/****************************************************
+**  END Inbox/Folder Nav ContextMenu modal window
+****************************************************/
+/****************************************************
+**  Item/document type icon images
+****************************************************/
+
+#retrieve_layout_results_list {
+    max-height: 150px;
+}
+
+    #retrieve_layout_results_list .item_type_icon, #rd_container .item_type_icon, .item_type_icon {
+        background-image: url("../../Content/images/s.png");
+        left: 7px;
+        position: relative;
+    }
+
+    #retrieve_layout_results_list select.editable, #retrieve_layout_results_list select.cf_val,
+    #captureGrid select.editable, #captureGrid select.cf_val {
+        width: 100%;
+    }
+
+    #retrieve_layout_results_list .editable input,
+    #captureGrid .editable input {
+        width: 98%;
+    }
+
+    #retrieve_layout_results_list .editable textarea,
+    #captureGrid .editable textarea {
+        max-height: 100px;
+        max-width: 98%;
+        min-width: 98%;
+        width: 98%;
+    }
+
+
+    #wfItems .warningErrorClass,
+    #arItems .warningErrorClass,
+    #retrieve_layout_results_list .warningErrorClass {
+        position: relative;
+        /*left: -98%;
+        cursor: text;
+        opacity: 0;*/
+        float: left;
+    }
+
+        #wfItems .warningErrorClass:hover,
+        #arItems .warningErrorClass:hover,
+        #retrieve_layout_results_list .warningErrorClass:hover {
+            /*opacity: 1;*/
+        }
+
+#captureGrid .warningErrorClass {
+    position: relative;
+    float: left;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+#app_panel {
+    display: inline-block;
+    float: right;
+    margin: 2px 0 2px 2px;
+    padding: 0 0 7px 0;
+    position: relative;
+    right: 5px;
+    width: 284px;
+}
+
+#meta_approvals_container .item_type_icon {
+    float: left;
+    left: 0;
+    top: 1px;
+}
+
+#meta_approvals {
+    list-style: none;
+    margin: 0;
+    max-height: 200px;
+    overflow: hidden;
+    padding: 0;
+    width: 100%;
+}
+
+    #meta_approvals li {
+        border: 1px solid #000;
+        float: left;
+        left: 1%;
+        margin: 2px 0;
+        position: relative;
+        width: 97.5%;
+        white-space: normal;
+        word-wrap: break-word;
+    }
+
+        #meta_approvals li div {
+            float: left;
+            margin: 0 2px;
+        }
+
+            #meta_approvals li div.name {
+                margin: 2px;
+                max-width: 90%;
+                width: 90%;
+                word-wrap: break-word;
+            }
+
+            #meta_approvals li div.reason {
+                max-height: 100px;
+                overflow: auto;
+            }
+
+    #meta_approvals .item_type_icon {
+        left: 0;
+    }
+
+.approveDenyDialogContents span {
+    display: inline-block;
+    min-height: 16px;
+    width: 100%;
+}
+
+.approveDenyDialogContents textarea {
+    height: 75%;
+    resize: none;
+    width: 98%;
+}
+
+    .approveDenyDialogContents textarea.warningErrorClass {
+        border: 1px solid;
+    }
+/****************************************************
+**  END Item/document type icon images
+****************************************************/
+/****************************************************
+**  OCR selection (lasso)
+****************************************************/
+
+#lasso_load {
+    height: 20px;
+    left: 50%;
+    position: relative;
+    top: 50%;
+    width: 20px;
+    z-index: 1;
+}
+
+#lasso_results_cont {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F9F9F9', endColorstr='#FFFFFF');
+    -moz-border-radius: 6px 6px 6px 6px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#F9F9F9), to(#FFFFFF));
+    background: -moz-linear-gradient(top, #F9F9F9, #FFFFFF); /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #F9F9F9 0%, #FFFFFF 100%); /* W3C (IE10) maybe others soon.*/
+    border: 1px solid #000;
+    border-radius: 6px 6px 6px 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 10001;
+}
+
+#lasso_exit_cont .lasso_exit {
+    display: inline-block;
+    position: absolute;
+    top: 40%;
+}
+
+#lasso_exit_cont {
+    display: inline-block;
+    height: 100%;
+    position: absolute;
+    right: 5%;
+}
+
+.lasso_results {
+    display: inline-block;
+    float: left;
+    height: 96%;
+    resize: none;
+    width: 90%;
+}
+/****************************************************
+** END OCR selection (lasso)
+****************************************************/
+/****************************************************
+** Retrieve Sprites
+****************************************************/
+
+.search_icon {
+    background-image: url("../../Content/images/s.png");
+    background-position: -150px -235px;
+    display: inline-block;
+    height: 25px;
+    position: relative;
+    top: 5px;
+    width: 30px;
+}
+
+.date_search {
+    background-image: url("../../Content/images/s.png");
+    background-position: -185px -235px;
+    float: right;
+    height: 25px;
+    position: absolute;
+    right: 50px;
+    top: 5px;
+    width: 30px;
+}
+
+.accordion_title > span {
+    float: right;
+    height: 20px;
+    position: relative;
+    right: 15px;
+    top: 2px;
+    width: 90px;
+}
+
+.accordion_title_contents {
+    height: 20px;
+    width: 100%;
+}
+
+span.swoosh {
+    width: 75px;
+    height: 16px;
+    float: right;
+    margin: 3px 5px 0 0;
+}
+
+.accordion_title.disabled span.swoosh {
+    display: none;
+}
+
+.accordion_title_open span.swoosh {
+    background-image: url("../../Content/images/s.png");
+    background-position: -90px -370px;
+}
+
+.accordion_title_closed span.swoosh {
+    background-image: url("../../Content/images/s.png");
+    background-position: -5px -370px;
+}
+
+#header .small_docstar_logo {
+    background-image: url("../../Content/images/s.png");
+    background-position: 0 -233px;
+    height: 30px;
+    left: 0;
+    position: absolute;
+    top: 5px;
+    width: 150px;
+}
+/****************************************************
+** END Retrieve Sprites
+****************************************************/
+/****************************************************
+** Inbox/Folder/General scrollbars
+****************************************************/
+
+#inbox_vert_scroll {
+    height: 100%;
+    max-height: 230px;
+    position: absolute;
+    right: 5px;
+    top: 30px;
+    width: 1px;
+}
+
+.ui-slider.ui-slider-vertical .ui-slider-handle {
+    border: 1px solid #000;
+}
+
+.ui-slider-vertical .ui-slider-handle {
+    font-size: 2px;
+    height: 15%;
+    left: 0;
+    margin: 0 0 -7.5%;
+    margin-left: 0;
+    padding: 0;
+    width: 10px;
+}
+/****************************************************
+** END Inbox/Folder/General scrollbars
+****************************************************/
+
+.dropdown {
+    cursor: pointer;
+}
+
+.shadow {
+    -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+}
+
+.shadow_left {
+    -moz-box-shadow: -3px 2px 2px #000;
+    -webkit-box-shadow: -3px 2px 2px #000;
+    box-shadow: -3px 2px 2px #000;
+}
+
+.shadow_bottom {
+    -moz-box-shadow: 0 2px 2px #000;
+    -webkit-box-shadow: 0 2px 2px #000;
+    box-shadow: 0 2px 2px #000;
+}
+
+.light_shadow_left {
+    -moz-box-shadow: -2px 0 2px #CCC;
+    -webkit-box-shadow: -2px 0 2px #CCC;
+    box-shadow: -2px 0 2px #CCC;
+}
+
+.light_shadow_right {
+    -moz-box-shadow: 2px 0 2px #CCC;
+    -webkit-box-shadow: 2px 0 2px #CCC;
+    box-shadow: 2px 0 2px #CCC;
+}
+
+.shadow_glow {
+    -moz-box-shadow: 2px 2px 2px #BBB;
+    -webkit-box-shadow: 2px 2px 2px #BBB;
+    box-shadow: 2px 2px 2px #BBB;
+}
+/* Admin IP Restrictions */
+
+#addNew .metalabel {
+    width: 150px;
+}
+
+#addNew div.input {
+    display: inline-block;
+    width: 48%;
+}
+
+#addNew input {
+    display: inline-block;
+}
+
+#addNew .ipTo {
+    display: inline-block;
+    left: 0;
+    position: relative;
+    width: 0;
+}
+/*Admin Lists*/
+
+#clist_txtarea {
+    overflow: auto;
+}
+/*END Admin Lists*/
+/* END Admin IP Restrictions */
+/* START System Settings*/
+
+#systemsettings_layout select[name="Id"] {
+    width: 220px;
+}
+
+#systemsettings_layout textarea {
+    max-height: 110px;
+    max-width: 200px;
+    width: 200px;
+}
+/* END System Settings*/
+
+#customfieldsmanager_layout .metalabel, #systemsettings_layout .metalabel {
+    width: 145px;
+}
+
+#customfieldsgroup_layout .unstyledList {
+    margin: 5px 0 0;
+}
+
+#customfieldsgroup_layout .ui-combobox {
+    top: -4px;
+}
+
+    #customfieldsgroup_layout .ui-combobox input.isCombo {
+        width: 250px;
+    }
+
+#exportImport_layout .exportSelection {
+    display: inline-block;
+    float: left;
+    list-style: none outside none;
+    padding: 0;
+    width: 148px;
+}
+
+    #exportImport_layout .exportSelection ol {
+        padding: 0;
+    }
+
+    #exportImport_layout .exportSelection ul {
+        list-style: none outside none;
+        padding: 0;
+    }
+
+#exportImport_layout select {
+    margin: 5px 0;
+}
+
+#allfolders {
+    display: inline-block;
+    height: 130px;
+    line-height: 50px;
+    text-align: center;
+    width: 205px;
+}
+
+#exportFolderList {
+    height: 130px;
+    width: 205px;
+}
+
+#exportImport_layout .exportTabs {
+    display: inline-block;
+    float: left;
+    list-style: none outside none;
+    padding: 0;
+    width: 555px;
+}
+
+#customlists_layout .unstyledList, #customfieldsmanager_layout .unstyledList, #systemsettings_layout .unstyledList, #dataLinkLayout .unstyledList {
+    display: inline-block;
+    float: left;
+    width: 48%;
+}
+
+.customFieldMetaEditView .unstyledList.customFieldSelection {
+    width: 401px;
+}
+
+.customFieldMetaEditView .unstyledList.customFieldValues {
+    width: 355px;
+}
+
+.ui-dialog .customFieldMetaEditView .unstyledList.customFieldValues {
+    width: 400px;
+}
+
+.ui-dialog .customFieldMetaEditView .warningErrorClass {
+    margin: 0 0 0 145px;
+}
+
+#customfieldsmanager_layout .unstyledList.autoWidth {
+    display: inline-block;
+    float: left;
+    width: auto;
+}
+
+#customfieldsmanager_layout .unstyledList.fullWidth {
+    display: inline-block;
+    float: left;
+    width: 100%;
+}
+/* Edit Company */
+
+#company_layout .listarea {
+    display: inline-block;
+    height: 200px;
+}
+
+    #company_layout .listarea .metalabel {
+        float: left;
+    }
+
+#company_layout select {
+    height: 100%;
+}
+
+#company_layout .warningErrorClass {
+    float: left;
+    height: 18px;
+    left: 50px;
+    padding-left: 4px;
+    position: relative;
+    top: 4px;
+    width: 100%;
+}
+
+#company_layout .metaarea, #company_layout .input {
+    position: relative;
+    width: 434px;
+}
+
+    #company_layout .metaarea .metalabel {
+        position: relative;
+        top: 4px;
+        width: 50px;
+    }
+/* END Edit Company */
+
+#searchAuditDiv, #clearAuditDiv, #clearAuditDTLbl, #clearAuditDTInput {
+    float: left;
+}
+
+#clearAuditFS {
+    height: 164px;
+    margin: 0 0 0 40px;
+}
+
+#audit_search_terms {
+    display: inline-block;
+    padding: 0 10px;
+}
+
+    #audit_search_terms input {
+        width: 150px;
+    }
+
+    #audit_search_terms label {
+        float: left;
+    }
+
+.throbber.loadingThrobberHorizontalPosCenter {
+    display: block;
+    margin: auto;
+}
+
+.dialogThrobberPosCenter {
+    left: 45%;
+}
+
+#generalSaveDirtyPromptDialog .displayTable {
+    margin: 15px 0 0;
+}
+
+#generalSaveDirtyPromptDialog .warningIcon {
+    margin: 5px;
+    cursor: default;
+}
+
+#generalSaveDirtyPromptDialog pre {
+    margin: 23px 5px 0 5px;
+    white-space: normal;
+    word-wrap: break-word;
+    vertical-align: middle;
+    text-align: center;
+}
+
+#generalSaveDirtyPromptDialog .dialogThrobberPos {
+    left: auto;
+    right: 230px;
+}
+
+.dialogThrobberPos {
+    position: absolute;
+    bottom: -35px;
+    left: 40%;
+}
+
+.generalDialogThrobberPos, div.clientSelector .source span {
+    position: relative;
+    top: 3px;
+}
+
+#ui_message_exception {
+    display: none;
+}
+
+    #ui_message_exception span {
+        position: relative;
+    }
+
+#capture_layout .buttonOptions {
+    left: 0;
+    top: 11px;
+    width: 165px;
+}
+
+#qs .buttonOptions {
+    position: absolute;
+    right: 2px;
+    top: 31px;
+    width: 225px;
+}
+
+    #qs .buttonOptions .ui-combobox input.isCombo {
+        display: inline-block;
+        width: 187px;
+    }
+
+ul.buttonOptions {
+    background: none repeat scroll 0 0 #FFF;
+    border: 1px solid #000;
+    list-style: none outside none;
+    padding: 10px;
+    position: absolute;
+    right: 19px;
+    text-align: right;
+    z-index: 2;
+    position: absolute;
+    bottom: 5px;
+}
+
+    ul.buttonOptions li {
+        text-align: right;
+    }
+
+        ul.buttonOptions li div {
+            font-weight: bold;
+            text-align: left;
+        }
+
+span.buttonOptionsClose {
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+}
+
+span.custom_button > a.whiteIcon {
+    left: -5px;
+    position: relative;
+    top: 25%;
+}
+
+span.custom_button > a.whiteIcon, span.custom_button > span.whiteIcon {
+    background-image: url("../../Content/images/ui-icons_d8e7f3_256x240.png");
+}
+
+.workflowUIContainer {
+    padding: 1px;
+    text-align: right;
+}
+
+.wfInfo {
+    width: 100%;
+}
+
+    .wfInfo div {
+        display: inline-block;
+        height: 15px;
+        overflow: hidden;
+        width: 100%;
+    }
+
+.branchLabels {
+    margin: 5px 0 0 5px;
+}
+
+    .branchLabels ul {
+        list-style: none;
+        padding: 0 0 0 20px;
+    }
+
+        .branchLabels ul li {
+            margin: 5px 0;
+        }
+
+.wfChatLogEntry, .versChatLogEntry {
+    border: 1px solid #000;
+    margin: 5px 0 0;
+    max-height: 200px;
+    min-height: 25px;
+    padding: 5px 0;
+}
+
+.chatThrobber {
+    position: relative;
+    width: 270px;
+}
+
+    .chatThrobber img {
+        margin: 0 0 0 125px;
+    }
+
+.wfLeftJustify {
+    font-family: Verdana, Tahoma;
+    text-align: left;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+    .wfLeftJustify.wfStatusText {
+        font-weight: bold;
+    }
+
+    .wfLeftJustify.wfStatus {
+        margin: 5px 0 0 10px;
+    }
+
+    .wfLeftJustify.noProcess {
+        display: inline-block;
+        margin: 15px 0;
+        text-align: center;
+        width: 100%;
+    }
+
+    .wfLeftJustify.wfException {
+        color: #a60000;
+    }
+
+.wf_button {
+    display: inline-block;
+    font-weight: bold;
+    height: 25px;
+    line-height: 25px;
+    margin: 5px 0 0 0;
+    padding: 0 10px;
+    width: 160px;
+}
+
+span.isRequired {
+    display: inline-block;
+    padding: 0;
+    position: absolute;
+    right: -4px;
+    top: 6px;
+}
+
+.isRequiredEmpty {
+    border: 1px solid #a60000;
+}
+
+#showRelatedDocuments {
+    margin: 0 5px 0 0;
+}
+
+#buzzSchedule span {
+    display: inline-block;
+    text-align: right;
+    width: 145px;
+}
+
+#buzzSchedule .buzz_left_block {
+    float: left;
+    width: 355px;
+}
+
+#helpDialogIFrame, #ideaDialogIFrame, iframe.sendMessage {
+    max-height: 185px;
+    max-height: 40%;
+    width: 100%;
+}
+
+#helpDialog textarea, #ideaDialog textarea, textarea.sendMessage {
+    height: 40%;
+    max-height: 40%;
+    max-width: 100%;
+    min-height: 40%;
+    min-width: 100%;
+    resize: none;
+    width: 100%;
+}
+
+#helpDialog a, #ideaDialog a {
+    float: right;
+}
+
+#annotationText span, #annotationText textarea {
+    margin: 5px 0;
+    width: 100%;
+}
+
+#annotationText textarea {
+    height: 90%;
+    resize: none;
+}
+
+#buzzEditorIframe {
+    min-height: 435px;
+}
+
+#buzzIframe, #buzzEditorIframe {
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
+}
+
+    #buzzIframe body {
+        overflow: hidden;
+    }
+
+.ui-combobox {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+}
+
+.ui-autocomplete.ui-menu {
+    min-width: 50px;
+    max-height: 82px;
+    overflow: auto;
+    overflow-x: hidden;
+    z-index: 9999999999 !important;
+}
+
+.ui-menu .ui-menu-item a {
+    min-height: 16px;
+    display: inline-block;
+    width: 100%;
+    max-width: 99%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#admin_screen .ui-autocomplete.ui-menu {
+    max-height: 225px;
+}
+/* Image Viewer Rotation Container*/
+
+.transformCont {
+    position: absolute;
+}
+
+.element_transition {
+    -moz-transition: rotate 0.3s ease-out; /* FF4+ */
+    -ms-transition: rotate 0.3s ease-out; /* IE10 */
+    -o-transition: rotate 0.3s ease-out; /* Opera 10.5+ */
+    -webkit-transition: rotate 0.3s ease-out; /* Saf3.2+, Chrome */
+    transition: rotate 0.3s ease-out;
+}
+/* Rotations (Can be applied to any element including text) */
+
+.rotate90 {
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1); /* for ie 8*/ /*-ms-transform:rotate(90deg); /* IE 9 (collides with above) */
+    transform: rotate(90deg) translate(0px, -100%); /* CSS 3 */
+    transform-origin: 0 0;
+    -moz-transform: rotate(90deg) translate(0, -100%); /* Firefox */
+    -moz-transform-origin: 0 0; /* Firefox */
+    -o-transform: rotate(90deg) translate(0, -100%); /* Opera */
+    -o-transform-origin: 0 0; /* Opera */
+    -webkit-transform: rotate(90deg) translate(0, -100%); /* Safari and Chrome */
+    -webkit-transform-origin: 0 0; /* Safari and Chrome */
+}
+
+.rotate180 {
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2); /* for ie 8*/ /*-ms-transform:rotate(180deg); /* IE 9 */
+    transform: rotate(180deg); /* CSS 3 */
+    transform-origin: center;
+    -moz-transform: rotate(180deg); /* Firefox */
+    -moz-transform-origin: center; /* Firefox */
+    -o-transform: rotate(180deg); /* Opera */
+    -o-transform-origin: center; /* Opera */
+    -webkit-transform: rotate(180deg); /* Safari and Chrome */
+    -webkit-transform-origin: center; /* Safari and Chrome */
+}
+
+.rotate270 {
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); /* for ie 8*/ /* -ms-transform:rotate(270deg); /* IE 9 */
+    transform: rotate(270deg) translate(-100%, 0); /* CSS 3 */
+    transform-origin: 0 0;
+    -moz-transform: rotate(270deg) translate(-100%, 0); /* Firefox */
+    -moz-transform-origin: 0 0; /* Firefox */
+    -o-transform: rotate(270deg) translate(-100%, 0); /* Opera */
+    -o-transform-origin: 0 0; /* Opera */
+    -webkit-transform: rotate(270deg) translate(-100%, 0); /* Safari and Chrome */
+    -webkit-transform-origin: 0 0; /* Safari and Chrome */
+}
+
+.bookmarks_container {
+    position: relative;
+    top: 0px;
+    display: inline-block;
+    float: left;
+}
+
+    .bookmarks_container .toggle_btn.pressed {
+        background-position: -66px -207px;
+    }
+
+#bookmarksMenu.dropdown {
+    display: inline-block;
+    float: left;
+    top: 1px;
+    width: 24px;
+}
+
+.bookmarkItem {
+    background-color: #FFCC42;
+}
+/* Annotation Properties */
+
+.markContainer, .regionContainer {
+    height: 100%;
+    width: 100%;
+}
+
+    .regionContainer > div {
+        position: absolute;
+    }
+
+.modalThrobberCont, .burningInAnnotationsCont {
+    height: 100%;
+    position: relative;
+    width: 100%;
+}
+
+    .modalThrobberCont img {
+        display: inline-block;
+        left: 45%;
+        position: absolute;
+        top: 40%;
+    }
+
+.burningInAnnotationsCont {
+    top: 0;
+    position: absolute;
+}
+
+    .burningInAnnotationsCont img {
+        display: inline-block;
+        position: relative;
+        top: 10px;
+        left: 162px;
+    }
+
+    .burningInAnnotationsCont > div.burningInMessageCont {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #000000;
+        border-radius: 10px;
+        width: 375px;
+        height: 110px;
+        position: absolute;
+        bottom: 35px;
+        left: 39%;
+    }
+
+    .burningInAnnotationsCont > div > div {
+        position: absolute;
+        bottom: 10px;
+        width: 100%;
+    }
+
+    .burningInAnnotationsCont span {
+        width: 100%;
+        display: inline-block;
+        text-align: center;
+        margin: 2px 0;
+    }
+
+.burningInOverlay {
+    opacity: .50;
+    background: #808080;
+}
+
+.grayGradientBackground {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#D7D7D7', endColorstr='#FEFEFE');
+    background: -webkit-gradient(linear, left top, left bottom, from(#D7D7D7), to(#FEFEFE));
+    background: linear-gradient(to bottom, #D7D7D7 0, #FEFEFE 100%); /* W3C (IE10) maybe others soon.*/
+    background: -moz-linear-gradient(top, #D7D7D7, #FEFEFE); /* for firefox 3.6+ */
+}
+
+div.grayGradient {
+    background-image: url("../../Content/images/s.png");
+    background-position: -2px -178px;
+}
+
+    div.grayGradient.pressed {
+        background-position: -2px -200px;
+    }
+
+div.blueGradient {
+    background-image: url("../../Content/images/s.png");
+    background-position: -66px -178px;
+}
+
+    div.blueGradient.pressed {
+        background-position: -66px -207px;
+    }
+
+.fontPropCont div.toggle_btn, #textStampDTO div.toggle_btn {
+    background-image: url("../../Content/images/s.png");
+    background-position: -2px -178px;
+}
+
+    .fontPropCont div.toggle_btn.pressed, #textStampDTO div.toggle_btn.pressed {
+        background-position: -2px -200px;
+    }
+
+/* Resizable Annotations */
+
+.regionResize .ui-wrapper {
+    overflow: visible;
+}
+
+.regionResize .ui-resizable-handle {
+    border: 1px solid #000;
+}
+
+    .regionResize .ui-resizable-handle.ui-resizable-n, .regionResize .ui-resizable-handle.ui-resizable-s {
+        background: #fff;
+        left: 50%;
+        width: 9px;
+        z-index: 100;
+    }
+
+    .regionResize .ui-resizable-handle.ui-resizable-e, .regionResize .ui-resizable-handle.ui-resizable-w {
+        background: #fff;
+        height: 9px;
+        top: 50%;
+        z-index: 100;
+    }
+
+    .regionResize .ui-resizable-handle.ui-resizable-ne, .regionResize .ui-resizable-handle.ui-resizable-nw, .regionResize .ui-resizable-handle.ui-resizable-sw {
+        background: #fff;
+        height: 9px;
+        width: 9px;
+        z-index: 100;
+    }
+
+    .regionResize .ui-resizable-handle.ui-resizable-se {
+        background: #fff;
+        bottom: -5px;
+        height: 9px;
+        right: -5px;
+        width: 9px;
+        z-index: 100;
+    }
+/* Redactions */
+
+div.redaction {
+    display: inline-block;
+    position: absolute;
+}
+/* Text Preview */
+
+.imageStampPreview .imageStampCont, .textStampPreview .textStampCont {
+    display: inline-block;
+    height: auto;
+    max-height: 300px;
+    max-width: 400px;
+    overflow: auto;
+    position: relative;
+    width: auto;
+}
+
+
+
+#actionConfirmThrobber {
+    bottom: 0;
+    display: none;
+    margin: 5px 0 0 50%;
+}
+
+#action-confirm .success_message {
+    display: none;
+    margin: 0;
+    text-align: left;
+    width: 95%;
+}
+
+pre#catchallerrors {
+    font-family: Verdana, Tahoma;
+    font-size: 11px;
+    white-space: pre-wrap;
+    width: 99%;
+    word-wrap: break-word;
+}
+/* Dialog Formatting */
+
+#cutoffDocuments input {
+    margin: 5px 0;
+    width: 100%;
+}
+
+#addDocFreeze select {
+    max-height: 175px;
+    width: 82%;
+}
+
+#addDocFreeze fieldset {
+    margin: 0;
+    padding: 0;
+    width: 82%;
+}
+
+#removeDocFreeze select {
+    margin: 5px 0;
+    max-height: 175px;
+    width: 100%;
+}
+
+#created-link {
+    margin: 0 0 15px 0;
+}
+
+.alphaNumeric {
+    display: inline-block;
+    left: 115px;
+    position: relative;
+    width: 76%;
+    word-wrap: break-word;
+}
+
+#importEntitiesIFrame {
+    width: 100%;
+    height: auto;
+}
+
+#wfDesignerLink .popoutWfDesigner {
+    background-image: url(../../Content/images/ui-icons_217bc0_256x240.png);
+    cursor: pointer;
+    display: inline-block;
+    height: 16px;
+    position: relative;
+    top: 4px;
+    width: 16px;
+}
+
+#wfDesignerLink {
+    width: 100%;
+}
+
+    #wfDesignerLink a {
+        display: inline-block;
+    }
+
+.zoomHighlight {
+    border: 3px solid #51CBEE;
+    display: inline-block;
+    position: absolute;
+}
+
+/*Slap box css*/
+#ldapSlapBox .slapBox {
+    margin: 4px 0 5px 0;
+}
+
+.slapBox {
+    display: inline-block;
+    height: 200px;
+    margin: 0 0 5px 0;
+    width: 470px;
+}
+
+    .slapBox div {
+        display: inline-block;
+        float: left;
+        height: 100%;
+    }
+
+
+#customfieldsmanager_layout .multiselect, .customFieldGroupDTO .multiselect {
+    width: 600px;
+    height: 200px;
+}
+
+#customfieldsmanager_layout .ui-multiselect {
+    float: left;
+}
+
+#customfieldsmanager_layout .unstyledList .ui-multiselect li {
+    width: 95%;
+}
+
+#customfieldsmanager_layout .unstyledList .ui-multiselect ul.selected li {
+    width: 95% !important;
+}
+
+#customfieldsmanager_layout .ui-multiselect input[type="text"] {
+    width: auto;
+}
+
+.primaryList, .inclusionList {
+    background: #FFF;
+    border: 1px solid #828790;
+    height: 100%;
+    height: 200px;
+    overflow: auto;
+    overflow-x: hidden;
+    padding: 0;
+    width: 40%;
+}
+
+.addToInclusion, .removeFromInclusion {
+    cursor: pointer;
+    display: inline-block;
+    margin: 5px;
+    position: relative;
+    top: 70px;
+}
+/*End slap box css*/
+
+.slapBoxProps {
+    min-width: 325px;
+    padding: 0;
+    width: 25%;
+}
+
+/* LDAP Import */
+
+#admin_action li.enabledIntegrated.hidden, #admin_action li.enabledIndependent.hidden {
+    display: none;
+}
+
+/* End LDAP Import */
+
+#importLicenseIFrame {
+    border: medium none;
+    min-height: 45px;
+    max-height: 80px;
+    position: relative;
+    float: right;
+    top: -12px;
+    width: 350px;
+}
+
+#getLicRespItem {
+    display: inline-block;
+}
+
+#getLicReqItem, #getLicRespItem {
+    margin: 5px 0 15px 0;
+    position: relative;
+}
+
+#licenseLayout div.container {
+    margin: 10px 0;
+}
+
+#licenseLayout span.label {
+    display: inline-block;
+    min-width: 200px;
+    width: 200px;
+    text-align: right;
+}
+
+#licenseLayout .noLicensingCode {
+    margin: 0 0 0 10px;
+}
+
+#licenseLayout fieldset.licenseLayoutCurrent {
+    min-height: 230px;
+    margin: 5px 0;
+}
+
+#licenseLayout fieldset.licenseLayoutOffline {
+    min-height: 90px;
+}
+
+span.licenseSubmit {
+    display: inline-block;
+}
+
+span.licenseSubmit, .generateLink {
+    background-position: -319px -73px;
+    cursor: pointer;
+    display: inline-block;
+    height: 16px;
+    position: relative;
+    top: 3px;
+    width: 16px;
+}
+
+    span.licenseSubmit.updating, .generateLink.updating, .loadingThrobber, .throbber {
+        background-image: url(../../Content/themes/default/throbber.gif);
+        background-position: 0 0;
+    }
+
+.throbber {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+}
+
+.helpthrobber {
+    bottom: 0;
+    display: none;
+    left: 48%;
+    position: absolute;
+}
+
+.loadingThrobber {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    left: 48%;
+    top: 10%;
+}
+/* Combo box - General, override if need be*/
+
+.ui-combobox input.ui-autocomplete-input {
+    color: #000;
+    font-size: 11px;
+    height: 16px;
+    padding: 2px;
+    float: left;
+}
+
+input.isCombo:not([readonly]):not([disabled]),
+.ui-combobox input.isCombo:not([readonly]):not([disabled]) {
+    background: white;
+    width: calc(100% - 36px);
+}
+
+#admin_screen input.isCombo {
+    height: 16px;
+    width: 205px;
+}
+
+#admin_screen .ui-combobox .ui-button, .ui-combobox .ui-button {
+    height: 20px;
+    float: none;
+}
+
+/* #region Data Link */
+#dataLinkLayout {
+    margin: 5px 0 0;
+    width: 100%;
+}
+
+    #dataLinkLayout .ui-combobox {
+        float: left;
+    }
+
+    #dataLinkLayout fieldset {
+        padding-bottom: 2px;
+    }
+
+    #dataLinkLayout .dataLinkQuerySettings .sPngIB {
+        margin: 5px 3px;
+    }
+
+    #dataLinkLayout #dataLinkQueries .dataLinkQueryType {
+        margin: 0 0 0 10px;
+        width: 500px;
+    }
+
+    #dataLinkLayout .dataLinkQueryType div {
+        float: left;
+        min-width: 63px;
+    }
+
+    #dataLinkLayout .dataLinkQueryType .metalabel {
+        text-align: left;
+    }
+
+#dataLinkConnections .sPngIB {
+    margin: 2px;
+}
+
+#dataLinkLayout .metalabel {
+    display: inline-block;
+    float: left;
+    margin: 2px 8px 0 5px;
+    min-width: inherit;
+    width: auto;
+}
+
+#dataLinkLayout .custom_button {
+    float: left;
+    height: 14px;
+    line-height: 14px;
+    margin: 3px 5px;
+}
+
+#dataLinkLayout div.left {
+    width: 80%;
+}
+
+#dataLinkLayout div.right {
+    width: 19%;
+}
+
+#dataLinkLayout .dispTable {
+    height: 100px;
+}
+
+#dataLinkLayout .unstyledList {
+    margin: 0;
+    width: 100%;
+}
+
+#dataLinkLayout .accordion {
+    border-bottom: 1px solid #000;
+    border-top: 1px solid #000;
+}
+
+#dataLinkQueries .dataLinkQuerySettings {
+    margin: 5px;
+}
+
+    #dataLinkQueries .dataLinkQuerySettings .warningErrorClass {
+        display: block;
+        float: left;
+        height: 0;
+        left: 66px;
+        position: absolute;
+        top: 31px;
+        width: auto;
+        padding: 3px;
+    }
+
+#dataLinkQueries span.label {
+    float: left;
+    padding: 5px;
+}
+
+#dataLinkLayout .accordion .accordionContents {
+    display: inline-block;
+    padding: 5px;
+}
+
+#dataLinkLayout .unstyledList li {
+    padding-bottom: 3px;
+}
+
+#dataLinkConnections .unstyledList li {
+    padding: 0;
+}
+
+#dataLinkConnections .warningErrorClass {
+    display: inline-block;
+    margin: 0 0 5px;
+    position: relative;
+    top: 2px;
+}
+
+.dataSourceType {
+    width: 115px;
+}
+
+#dataLinkLayout .dataSourceType .unstyledList {
+    width: 100%;
+}
+
+.dataSourceTypeSettings {
+    width: 370px;
+}
+
+#dataLinkQueries input[type="checkbox"], #dataLinkQueries input[type="radio"], #dataLinkLayout input[type="radio"] {
+    float: left;
+    margin: 2px 0;
+}
+
+#dataLinkTypeTemplate div {
+    float: left;
+}
+
+#dataLinkTypeTemplate .dltMain {
+    width: 515px;
+}
+
+#dataLinkTypeTemplate .dltSub {
+    width: 130px;
+}
+
+#dataLinkTypeTemplate .exeMain {
+    width: 210px;
+}
+
+    #dataLinkTypeTemplate .exeMain select {
+        width: 170px;
+    }
+
+    #dataLinkTypeTemplate .exeMain input.isCombo {
+        width: 170px;
+    }
+
+#dataLinkTypeTemplate input[type="text"].exe1, #dataLinkTypeTemplate .dltSubExe1 {
+    width: 330px;
+}
+
+#dataLinkTypeTemplate input[type="text"].exe2, #dataLinkTypeTemplate .dltSubExe2 {
+    width: 100px;
+    margin: 0 5px;
+}
+
+#dataLinkTypeTemplate label {
+    float: left;
+    margin: 0 0 5px 5px;
+    text-align: left;
+    width: 100%;
+}
+
+#dataLinkConnections input[name="ConnectionString"] {
+    width: 500px;
+}
+
+#dataLinkConnections input.isCombo[name="ConnectionString"] {
+    width: 475px;
+}
+
+#dataLinkConnections input[name="EncryptedPassword"], #dataLinkConnections input[name="ConfirmEncryptedPassword"] {
+    width: 120px;
+}
+
+#testLive.custom_button {
+    margin: 5px;
+}
+
+#dataLinkQueries .dlqParams {
+    float: left;
+    min-width: 96%;
+    padding-right: 0;
+}
+
+#dataLinkQueryDef .dlqParams .unstyledList {
+    width: 275px;
+}
+
+    #dataLinkQueryDef .dlqParams .unstyledList label {
+        width: 60px;
+    }
+
+#parameterDef .warningErrorClass {
+    display: inline-block;
+    left: 60px;
+    max-width: 195px;
+    position: relative;
+}
+
+textarea[name="CommandText"], textarea[name="OldCommandText"] {
+    float: left;
+    height: 145px;
+    margin: 0;
+    max-height: 250px;
+    max-width: 82%;
+    min-height: 50px;
+    min-width: 82%;
+    padding: 0;
+    resize: none;
+    width: 82%;
+}
+
+#parameterDef .unstyledList {
+    width: 280px;
+}
+
+    #parameterDef .unstyledList li {
+        padding: 2px 0;
+    }
+
+#parameterDef label {
+    width: 63px;
+}
+
+#dataLinkLayout #testAll {
+    margin: 3px 1px;
+}
+
+select#allQueries, select#allConnections {
+    width: 100%;
+}
+
+.includeDocs {
+    display: inline-block;
+    float: left;
+    margin: 0 0 0 25px;
+}
+
+.docFormat input[type="text"] {
+    position: relative;
+    top: -2px;
+}
+/* #endregion Data Link */
+
+/*Disabled input/textarea text color*/
+.disabledText {
+    background: #EEE;
+    color: #6D6D6D;
+}
+
+.dispTable {
+    display: table;
+    width: 100%;
+}
+/* Vertically align direct child element of .dispTable*/
+
+.dispTableCellAlignMid {
+    display: table-cell;
+    height: 100%;
+    vertical-align: middle;
+    width: 100%;
+}
+
+.fsAccordion legend {
+    cursor: pointer;
+}
+
+.fsAccordionBody.closed {
+    display: none;
+}
+
+.fsAccordionBody.open {
+    display: block;
+}
+
+.fsAccordionTitle, .horizontalRadioLabelContainer {
+    position: relative;
+    top: 2px;
+}
+
+/* #region Inline Workflow Designer*/
+
+#inlineWorkflowDesigner, #inlineWorkflowDesigner iframe {
+    border: none;
+    height: 100%;
+    left: 0;
+    max-height: 100%;
+    max-width: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 100000;
+}
+
+    #inlineWorkflowDesigner .dialogOverlay.ui-widget-overlay {
+        display: inline-block;
+        z-index: 1000;
+    }
+/* #endregion Inline Workflow Designer */
+
+/* #region Connection Wizard */
+
+#buildConnection.custom_button {
+    margin: 20px 5px 3px 5px;
+}
+
+#dataLinkConnections span.pwdComment {
+    float: left;
+    margin: 22px 0 0;
+}
+
+select[name="ConnectionString"] ~ .ui-combobox .ui-icon.comboThrobber, select[name="ConnectionString"] ~ .ui-combobox .ui-state-hover .ui-icon.comboThrobber, #select[name="ConnectionString"] ~ .ui-combobox .ui-state-focus .ui-icon.comboThrobber,
+select[name="ExecutableName"] ~ .ui-combobox .ui-icon.comboThrobber, select[name="ExecutableName"] ~ .ui-combobox .ui-state-hover .ui-icon.comboThrobber, #select[name="ExecutableName"] ~ .ui-combobox .ui-state-focus .ui-icon.comboThrobber,
+#connectionWizard .ui-icon.comboThrobber, #connectionWizard .ui-state-hover .ui-icon.comboThrobber, #connectionWizard .ui-state-focus .ui-icon.comboThrobber {
+    background-image: url("../../Content/themes/default/throbber.gif");
+    background-position: 0 0;
+    display: inline-block;
+}
+
+#connectionWizard .ui-combobox input {
+    width: 200px;
+}
+
+#connectionWizard input {
+    width: 230px;
+}
+
+#connectionWizard .unstyledList {
+    width: 100%;
+}
+
+#connectionWizard span.label {
+    float: left;
+    padding: 5px;
+    text-align: right;
+    width: 125px;
+}
+/* #endregion Connection Wizard */
+
+div.columnHeaderEdit.ui-button.ui-widget {
+    height: 12px;
+    left: 4px;
+    margin: -2px;
+    position: relative;
+    width: 12px;
+}
+
+/* #region ResizeDocument Container */
+.resize-document {
+    height: 100%;
+}
+
+    .resize-document .ui-resizable-handle {
+        z-index: 999;
+    }
+
+/* #endregion ResizeDocument Container */
+
+/* Added so the datepicker is overtop of other elements (eg. resizable handles)*/
+.ui-datepicker {
+    z-index: 999999 !important;
+}
+
+.column-width-changed {
+    background: -moz-linear-gradient(center top, #E6E6E6, #fbec5d) repeat scroll 0 0 transparent !important;
+    color: #333333;
+}
+
+/* #region Page Options*/
+.pageOptionsDialog .modalThrobberCont {
+    width: auto;
+    height: auto;
+    position: absolute;
+    left: 50%;
+    bottom: 25px;
+    display: none;
+}
+
+.pageOptionsDialog .contentType {
+    width: 290px;
+}
+
+.pageOptionsDialog span.metalabel {
+    min-width: 150px;
+    text-align: right;
+    margin: 0 5px;
+}
+
+.pageOptionsDialog input[type="text"] {
+    width: 285px;
+}
+
+.pageOptionsDialog .warningErrorClass {
+    float: left;
+}
+
+.pageOptionsDialog .splitOptions .warningErrorClass {
+    float: left;
+    width: 100%;
+    left: 160px;
+    position: relative;
+}
+/* #endregion Page Options */
+
+#setRequiredDialog .warningErrorClass {
+    position: relative;
+    left: 105px;
+}
+
+#downloadRedirectMessage {
+    color: blue;
+    position: relative;
+    top: 18px;
+}
+/* #endregion Page Options*/
+
+/* #region Capture Layout */
+#capture_layout {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+    #capture_layout .dropdown .children {
+        max-height: 250px;
+    }
+
+#scanAcc .accordion > div {
+    display: inline-block;
+    float: left;
+    margin: 5px 0 0 12px;
+    width: 100%;
+}
+
+#scanAcc .accordion .disabledAccordion.disabled, .accordion .disabledAccordion.disabled {
+    margin: 0;
+    opacity: .7;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 13;
+}
+
+#scanAcc .fright {
+    position: relative;
+    right: 27px;
+    top: 14px;
+}
+
+#capture_layout .accordion > div > div {
+    width: 100%;
+    float: left;
+    display: inline-block;
+    margin: 0 0 15px 0;
+    position: relative;
+}
+
+/* TEMPORARY: until users get used to where batch import is*/
+#captureImportTabs {
+    font-size: 11px;
+    font-family: Verdana, Tahoma;
+}
+
+    #captureImportTabs .ui-tabs-panel {
+        min-height: 80px;
+    }
+
+    #captureImportTabs > div > div {
+        float: left;
+        display: inline-block;
+    }
+
+    #captureImportTabs > ul > li {
+        border: 1px solid #999;
+    }
+
+        #captureImportTabs > ul > li a {
+            color: #000;
+            width: 100px;
+            text-align: center;
+        }
+
+    #captureImportTabs .ui-tabs-nav {
+        background: -webkit-gradient(linear, left top, left bottom, from(#D9D9D9), to(#EEEEEE));
+        background: -moz-linear-gradient(top, #D9D9D9, #EEEEEE); /* for firefox 3.6+ */
+        background: linear-gradient(to bottom, #D9D9D9 0, #EEEEEE 100%); /* W3C (IE10) maybe others soon.*/
+    }
+
+    #captureImportTabs .ui-state-default {
+        background: -webkit-gradient(linear, left top, left bottom, from(#D9D9D9), to(#EEEEEE));
+        background: -moz-linear-gradient(top, #D9D9D9, #EEEEEE); /* for firefox 3.6+ */
+        background: linear-gradient(to bottom, #D9D9D9 0, #EEEEEE 100%); /* W3C (IE10) maybe others soon.*/
+    }
+
+        #captureImportTabs .ui-state-default.ui-state-active {
+            z-index: 10;
+            background: -webkit-gradient(linear, left top, left bottom, from(#FCEFC7), to(#F1B616));
+            background: -moz-linear-gradient(top, #FCEFC7, #F1B616); /* for firefox 3.6+ */
+            background: linear-gradient(to bottom, #FCEFC7 0, #F1B616 100%); /* W3C (IE10) maybe others soon.*/
+        }
+
+    #captureImportTabs #captureImportTabs_BatchImport {
+        text-align: center;
+    }
+
+.custom_button.splitBtn {
+    position: relative;
+    left: -1px;
+    width: 10px;
+    height: 25px;
+    cursor: pointer;
+}
+
+    .custom_button.splitBtn .whiteIcon {
+        left: -3px;
+    }
+
+    .custom_button.splitBtn.splitBtnShortHeight {
+        height: 20px;
+    }
+
+        .custom_button.splitBtn.splitBtnShortHeight .whiteIcon {
+            top: 3px;
+        }
+
+#captureImportTabs_BatchImport span {
+    position: relative;
+    top: 30px;
+    font-weight: bold;
+}
+
+#capture_layout #captureImportTabs_Import .buttons {
+    width: auto;
+    margin-top: 17px;
+}
+
+#captureImportTabs_Import div.importHTML iframe {
+    width: 0;
+    height: 0;
+    float: left;
+}
+
+#importTab {
+    border-top-right-radius: 25px;
+}
+
+#batchImportTab {
+    position: relative;
+    left: -20px;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+/* END TEMPORARY*/
+
+#capture_layout .accordion dl {
+    width: 200px;
+}
+
+#capture_layout .accordion .labelAboveSelectCont {
+    width: 225px;
+    float: left;
+    display: inline-block;
+}
+
+    #capture_layout .accordion .labelAboveSelectCont dl {
+        float: left;
+        display: inline-block;
+    }
+
+#capture_layout .accordion .labelAboveSelect {
+    margin: 0 0 3px 0;
+    float: left;
+    display: inline-block;
+}
+
+#capture_layout .buttons {
+    position: relative;
+    float: left;
+    margin: 11px 0 5px 0;
+}
+
+#capture_layout .captureBtns {
+    height: 35px;
+}
+
+#captureListActions {
+    position: relative;
+    top: 4px;
+    width: 28%;
+}
+
+    #captureListActions .dropdown {
+        width: 90px;
+    }
+
+        #captureListActions .dropdown ul {
+            overflow-y: hidden;
+        }
+
+#scanAcc, #importAcc, #captureGridCont {
+    float: left;
+    width: 100%;
+    position: relative;
+}
+
+.noContentTypesAvailable {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    opacity: .5;
+    z-index: 10;
+}
+
+#captureGridCont .warningErrorClass {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    text-align: center;
+    z-index: 11;
+}
+
+#systrayConnStatus {
+    position: absolute;
+    left: 35%;
+    top: 0;
+    margin: 3px 0 0;
+    width: 40%;
+    background: none;
+    border: none;
+}
+
+#automationDLConnStatus {
+    margin: 3px 0 0;
+    background: none;
+    border: none;
+}
+
+#automationDLPrompt {
+    margin: 3px 0 0;
+    display: inline-block;
+}
+
+#systrayConnStatus.systrayConnectionPrompt #systrayConnStatusText:hover {
+    text-decoration: underline;
+}
+
+#scanAcc .accordion_title_open #systrayConnStatusText {
+    color: #000;
+}
+
+#scanAcc .accordion_title_closed #systrayConnStatusText, #scanAcc .accordion_title_open.disabled #systrayConnStatusText {
+    color: #FFF;
+}
+
+#scanSplitOptions {
+    margin: 18px 0 0;
+}
+
+    #scanSplitOptions div {
+        float: left;
+    }
+
+    #scanSplitOptions .radioLabelSpacing {
+        margin: 0 8px 0 -5px;
+    }
+
+#systrayConnStatusText {
+    float: left;
+    width: auto;
+    max-width: 90%;
+    height: 100%;
+    position: relative;
+    left: 20px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+#systrayConnStatusIcon {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    float: left;
+    position: absolute;
+    left: 0;
+}
+
+    #systrayConnStatusIcon.throbber {
+        background-image: url(../../Content/themes/default/throbber.gif);
+        background-position: 0 0;
+    }
+
+#automationDLConnStatusIcon {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    float: left;
+    position: inherit;
+    left: 0;
+}
+
+    #automationDLConnStatusIcon.connecting {
+        background-image: url(../../Content/images/Connecting.png);
+        background-position: 0 0;
+    }
+
+    #automationDLConnStatusIcon.connected {
+        background-image: url(../../Content/images/Connected.png);
+        background-position: 0 0;
+    }
+
+    #automationDLConnStatusIcon.disconnected {
+        background-image: url(../../Content/images/Disconnected.png);
+        background-position: 0 0;
+    }
+
+#updateDLClient, #connectDLClient {
+    position: inherit;
+}
+
+#scanOptionsDialog > div.fright {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+    #scanOptionsDialog > div.fright.hasAdvanced {
+        top: 25px;
+    }
+
+    #scanOptionsDialog > div.fright > div {
+        height: 100px;
+        margin: 5px 2px;
+        width: 100%;
+    }
+
+div.noLabelRow {
+    position: relative;
+    left: 183px;
+}
+
+#scanOptionsDialog span.label,
+#preProcDialog span.label {
+    width: 175px;
+    display: inline-block;
+    text-align: right;
+    margin: 6px 2px;
+}
+
+#scanOptionsDialog span.radioLabelSpacing,
+#preProcDialog span.radioLabelSpacing {
+    min-width: 100px;
+    display: inline-block;
+}
+
+#scanOptionsDialog input[type="radio"] {
+    margin: 0;
+}
+
+#hasAdvancedSettings {
+    height: 25px;
+    text-align: center;
+}
+
+#scanOptionsDialog .scanOptionsBarcodeLicense {
+    margin: 15px 0;
+}
+
+    #scanOptionsDialog .scanOptionsBarcodeLicense .barcodeLicenseText {
+        display: inline-block;
+        width: 300px;
+    }
+
+#requestBarcodeCont {
+    display: inline-block;
+    width: 100%;
+}
+
+    #requestBarcodeCont #requestBarcode {
+        position: relative;
+        left: 32%;
+    }
+
+td .progressCont {
+    width: 100%;
+    top: 0;
+    border: none;
+    background: transparent;
+}
+
+.progressCont {
+    background: #FFF;
+    border: 1px solid black;
+    width: 300px;
+    height: 21px;
+    line-height: 21px;
+    text-align: center;
+    position: relative;
+    top: 4px;
+    width: 28%;
+}
+
+    .progressCont .progress {
+        width: 0;
+        height: 100%;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#B7D9EA', endColorstr='#7CBBDA');
+        background: -webkit-gradient(linear, left top, left bottom, from(#B7D9EA), to(#7CBBDA));
+        background: -moz-linear-gradient(top, #B7D9EA, #7CBBDA); /* for firefox 3.6+ */
+        background: linear-gradient(to bottom, #B7D9EA 0, #7CBBDA 100%); /* W3C (IE10) maybe others soon.*/
+        display: inline-block;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .progressCont .progressStatus {
+        position: relative;
+    }
+
+    .progressCont .progressIndeterminate {
+        width: 56px;
+        height: 22px;
+        display: inline-block;
+        background-image: url("../../Content/images/indeterminate_progress.gif");
+    }
+
+        .progressCont .progressIndeterminate.displayNone {
+            display: none;
+        }
+
+#directoriesResize {
+    height: 100%;
+    width: 150px;
+    border-right: 1px solid #51CBEE;
+}
+
+#directoriesContainer {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+#webFileBrowseDialog {
+    padding: 0;
+}
+
+    #webFileBrowseDialog hr {
+        width: 98%;
+        float: left;
+    }
+
+    #webFileBrowseDialog .throbber {
+        left: 45%;
+        position: absolute;
+        bottom: -35px;
+    }
+
+    #webFileBrowseDialog ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        min-width: 100px;
+    }
+
+        #webFileBrowseDialog ul li {
+            width: 90%;
+            cursor: pointer;
+            float: left;
+            display: inline-block;
+            padding: 0 0 0 10px;
+            margin: 5px 0;
+        }
+
+            #webFileBrowseDialog ul li.selected {
+                border-radius: 5px;
+                border: 1px solid #51CBEE;
+                padding: 0 0 0 9px;
+                margin: 4px 0;
+                background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#51CBEE));
+                background: -moz-linear-gradient(top, #FFFFFF, #51CBEE); /* for firefox 3.6+ */
+                background: linear-gradient(to bottom, #FFFFFF 0, #51CBEE 100%); /* W3C (IE10) maybe others soon.*/
+            }
+
+            #webFileBrowseDialog ul li:hover {
+                border-radius: 5px;
+                border: 1px solid #51CBEE;
+                padding: 0 0 0 9px;
+                margin: 4px 0;
+            }
+
+            #webFileBrowseDialog ul li span {
+                white-space: nowrap;
+                word-wrap: break-word;
+            }
+
+    #webFileBrowseDialog > div {
+        float: left;
+        display: inline-block;
+    }
+
+#webFileBrowseGrid tr, #webFileBrowseGrid td {
+    border: none;
+}
+
+#webFileBrowseBack {
+    cursor: pointer;
+    line-height: 25px;
+    height: 23px;
+    width: 98%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+    #webFileBrowseBack .vert_seperator, #webFileBrowseBack .vert_seperator_hidable {
+        top: 1px;
+        left: 17px;
+        position: absolute;
+    }
+
+    #webFileBrowseBack .ui-icon {
+        position: absolute;
+        top: 5px;
+    }
+
+#webFileBrowseBackText {
+    word-wrap: break-word;
+    white-space: nowrap;
+    position: relative;
+    left: 25px;
+}
+
+#directoriesContainer .ui-resizable-e {
+    right: 0;
+}
+/* #endregion Capture Layout*/
+
+/* #region Guided Help */
+#guidedHelp .guidedHelpContents {
+    overflow: auto;
+    max-height: 95%;
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+}
+
+#guidedHelp .neverAgainCont {
+    position: absolute;
+    bottom: 5px;
+    right: 15px;
+}
+
+#guidedHelp input[name="neverAgain"] {
+    margin: 0 5px;
+}
+
+.clientPairingHelp span.helpLabel {
+    font-weight: bold;
+    margin: 0 0 10px;
+}
+
+.clientPairingHelp > div, .clientPairingHelp > span {
+    margin: 5px 0 0;
+}
+
+.clientPairingHelp pre {
+    margin: 3px 0;
+}
+
+.clientPairingHelp a.custom_button {
+    margin: -6px 10px;
+    color: #FFF;
+}
+
+.clientPairingHelp .systrayIcon {
+    margin: -4px 5px;
+    cursor: default;
+}
+
+.clientPairingHelp img {
+    position: relative;
+    left: 35px;
+    max-width: 750px;
+}
+
+    .clientPairingHelp img.systrayCap {
+        max-height: 215px;
+        left: 110px;
+    }
+
+    .clientPairingHelp img.userPrefCap {
+        left: 270px;
+        max-height: 250px;
+    }
+
+.clientPairingHelp hr {
+    width: 100%;
+    left: -10px;
+    float: left;
+    position: relative;
+}
+
+.guidedHelpCapture {
+    cursor: pointer;
+    float: right;
+    margin: 7px 0 0;
+    position: relative;
+    text-align: right;
+    text-decoration: underline;
+    width: 100%;
+}
+
+.ui-dialog a.custom_button {
+    color: #FFF;
+}
+/* dialog title bar guided help*/
+.ui-dialog .ui-dialog-titlebar-help {
+    height: 16px;
+    margin: -10px 0 0;
+    padding: 1px;
+    position: absolute;
+    right: 23px;
+    top: 54%;
+    width: 16px;
+}
+
+.ui-state-hover.ui-dialog-titlebar-help .guidedHelpCapture {
+    margin: 0;
+}
+
+.ui-dialog-titlebar-help .guidedHelpCapture {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    margin: 1px;
+}
+
+.ui-dialog-titlebar-expand {
+    cursor: pointer;
+    height: 18px;
+    margin: -10px 0 0;
+    padding: 1px;
+    position: absolute;
+    right: 23px;
+    top: 50%;
+    width: 19px;
+}
+
+    .ui-dialog-titlebar-expand:hover {
+        border: 1px solid #999999;
+        padding: 0;
+    }
+
+    .ui-dialog-titlebar-expand span {
+        display: block;
+        margin: 1px;
+    }
+
+
+
+/* #endregion Guided Help*/
+
+.odbcReplaceParam {
+    width: 160px;
+}
+
+    .odbcReplaceParam span {
+        line-height: 17px;
+        margin: 0 0 0 5px;
+    }
+
+    .odbcReplaceParam input[name="SplitQueries"] {
+        float: none !important;
+    }
+
+
+/* #region Versioning Sub grid*/
+
+#retrieve_layout_results_list .ui-subgrid td.ui-widget-content.subgrid-cell, #workflow_layout .ui-subgrid td.ui-widget-content.subgrid-cell {
+    display: none;
+}
+
+#retrieve_layout_results_list .ui-subgrid .subgrid-data, #retrieve_layout_results_list .ui-subgrid .tablediv,
+#wfItems .ui-subgrid .subgrid-data, #wfItems .ui-subgrid .tablediv {
+    display: inline-block;
+}
+/* #endregion Versioning Sub grid*/
+
+/* #region Versioning Accordion */
+#vers_acc {
+    min-height: 215px;
+}
+
+    #vers_acc .custom_button {
+        float: right;
+        position: relative;
+        right: 6px;
+        margin: 5px 4px 5px 0;
+        width: 64px;
+    }
+
+    #vers_acc .versioningUIContainer {
+        width: 100%;
+        padding: 1px;
+    }
+
+    #vers_acc .versChatLog {
+        width: 100%;
+        position: relative;
+        left: -1px;
+    }
+
+    #vers_acc .chatIcon {
+        padding: 3px;
+    }
+
+    #vers_acc .versChatLogListContainer {
+        border: 1px solid black;
+    }
+
+        #vers_acc .versChatLogListContainer > span {
+            padding: 2px 5px;
+        }
+
+    #vers_acc .versChatLogListContainerScroll {
+        max-height: 135px;
+        overflow: hidden;
+        display: inline-block;
+        width: 100%;
+        position: relative;
+    }
+
+        #vers_acc .versChatLogListContainerScroll .ps-scrollbar-x-rail {
+            display: none;
+        }
+
+    #vers_acc .versChatLogListContainer ul {
+        list-style: none;
+        width: 97%; /*Prevent overflow in the width direction*/
+        padding: 5px;
+    }
+
+    #vers_acc .versChatLogListContainer .showComments {
+        cursor: pointer;
+    }
+
+    #vers_acc .versChatLogListContainer hr {
+        width: 96%;
+        left: 2%;
+        position: relative;
+        display: inline-block;
+    }
+
+#versioningGrid td, .ui-subgrid td {
+    background-color: inherit;
+}
+
+.deleteVersion {
+    right: 3px;
+    margin: -14px 0 0;
+    cursor: pointer;
+    background-color: inherit;
+}
+
+.deleteVersionComment {
+    position: absolute;
+    top: 0;
+    right: 3px;
+    cursor: pointer;
+    background-color: inherit;
+}
+
+.unpublishVersion {
+    right: 20px;
+    margin: -14px 0 0;
+    cursor: pointer;
+    background-color: inherit;
+}
+/* #endregion Versioning Accordion */
+
+.systraySelection {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* #region Custom Field Value Grid */
+
+.customFieldGroupItemsLibraryView .jqgrow input, .customFieldGroupItemsLibraryView .ui-jqgrid-btable .jqgrow textarea {
+    max-width: 98%;
+}
+
+
+#customfieldsgroup_layout .cfgGridsPreview {
+    position: relative;
+    min-height: 125px;
+}
+
+    #customfieldsgroup_layout .cfgGridsPreview > div {
+        max-width: 75%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+.ui-subgrid .throbber {
+    margin: 25px 0;
+    position: relative;
+    left: 50%;
+}
+
+.deleteGroupItem {
+    cursor: pointer;
+    background-color: inherit;
+    margin: 5px 0 0;
+    right: 20px;
+}
+
+tr.customFieldGroupItem span.editable {
+    width: 100%;
+    display: inline-block;
+    position: relative;
+}
+
+    tr.customFieldGroupItem span.editable textarea {
+        width: 100%;
+        min-width: 98%;
+        max-width: 98%;
+    }
+
+#cfg_acc .customFieldGroupItemsLibraryView .customFieldGroupItemsLibraryViewScroll {
+    border-bottom: 1px solid #000;
+    overflow: hidden;
+    max-height: 400px;
+    margin: 0 0 5px;
+}
+
+.customFieldGroupItemsLibraryView .customFieldGroup {
+    width: 65%;
+    min-width: 185px;
+    height: 20px;
+    margin: 0 3px;
+}
+
+.customFieldGroupItemsLibraryView .groupName {
+    min-width: 150px;
+    padding: 0 25px 0 0;
+}
+
+.customFieldGroupItemsLibraryView .addGroup {
+    bottom: 2px;
+    float: right;
+    position: relative;
+    right: 4px;
+    margin: 0 0 3px 0;
+}
+
+.customFieldGroupItemsLibraryView .deleteGroup {
+    cursor: pointer;
+    right: 8px;
+    top: 0px;
+    position: absolute;
+}
+
+.customFieldGroupItemsLibraryView .cfgGridsContainer td.bold {
+    font-weight: bold;
+}
+
+.customFieldGroupItemsLibraryView .cfgGridsContainer td input,
+.customFieldGroupItemsLibraryView .cfgGridsContainer td textarea,
+.customFieldGroupItemsLibraryView .cfgGridsContainer td select {
+    text-align: inherit;
+}
+/* #endregion Custom Field Value Grid */
+
+/* #region Custom Multiselect*/
+.available .additionalSelectedHTML,
+.available .additionalSelectedHTML.newField,
+.available .preAdditionalSelectedHTML,
+.available .preAdditionalSelectedHTML.newField {
+    display: none;
+}
+
+.selected li .additionalSelectedHTML {
+    display: inline-block;
+    margin: 0 5px;
+    position: absolute;
+    right: 12px;
+    top: 2px;
+}
+
+.selected li .preAdditionalSelectedHTML {
+    display: inline-block;
+}
+
+.selected .additionalSelectedHTML input {
+    position: relative;
+    top: 2px;
+    margin: 0 4px;
+}
+
+.selected .limitLabelWidth, .available .limitLabelWidth, .limitLabelWidth {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.available .limitLabelWidth {
+    max-width: 90%;
+}
+
+.selected .limitLabelWidth {
+    max-width: 70%;
+    min-width: 70%;
+}
+
+.selected .additionalSelectedHTML .defaultFieldHTMLContainer {
+    float: left;
+}
+
+    .selected .additionalSelectedHTML .defaultFieldHTMLContainer select {
+        width: 100px;
+    }
+
+    .selected .additionalSelectedHTML .defaultFieldHTMLContainer input {
+        margin: 0;
+        width: 95px;
+        position: relative;
+        top: -4px;
+    }
+
+    .selected .additionalSelectedHTML .defaultFieldHTMLContainer .folder_icon {
+        position: relative;
+        top: -2px;
+    }
+
+.ctbFieldsContainer .defaultFieldHTMLContainer {
+    position: relative;
+    min-height: 1px;
+    min-width: 1px;
+    right: 5px;
+}
+
+    .ctbFieldsContainer .defaultFieldHTMLContainer select {
+        width: 100px;
+    }
+
+    .ctbFieldsContainer .defaultFieldHTMLContainer input {
+        width: 95px;
+    }
+
+    .ctbFieldsContainer .defaultFieldHTMLContainer .folder_icon {
+        position: absolute;
+        left: -16px;
+    }
+
+
+/* #endregion Custom Mulstiselect*/
+
+
+
+#wfItemsPager .pagerLimit {
+    position: absolute;
+    left: 45px;
+    top: 3px;
+    z-index: 1;
+}
+
+    #wfItemsPager .pagerLimit input {
+        width: 30px;
+        height: 13px;
+        margin: 0;
+        font-size: 0.8em;
+    }
+
+#arItemsPager .pagerLimit {
+    position: absolute;
+    left: 45px;
+    top: 3px;
+    z-index: 1;
+}
+
+    #arItemsPager .pagerLimit input {
+        width: 30px;
+        height: 13px;
+        margin: 0;
+        font-size: 0.8em;
+    }
+
+.view_metadata .displayTable {
+    border-collapse: separate;
+    border-spacing: 5px;
+}
+
+/* #region Inlay Color */
+div.InlayColor {
+    height: 25px;
+    width: 14px;
+    float: left;
+    display: inline-block;
+}
+
+    div.InlayColor span {
+        display: inline-block;
+        width: 10px;
+        height: 21px;
+        margin: 1px;
+        border: 1px solid #000;
+    }
+
+div.InlaySelected {
+    background-color: #000;
+}
+
+div.InlayColor span.InlayColor_ffaaaa, table.customGridTable > tbody > tr.watchHighlight_ffaaaa {
+    background-color: #ffaaaa;
+}
+
+div.InlayColor span.InlayColor_ffd4aa, table.customGridTable > tbody > tr.watchHighlight_ffd4aa {
+    background-color: #ffd4aa;
+}
+
+div.InlayColor span.InlayColor_ffffaa, table.customGridTable > tbody > tr.watchHighlight_ffffaa {
+    background-color: #ffffaa;
+}
+
+div.InlayColor span.InlayColor_d4ffaa, table.customGridTable > tbody > tr.watchHighlight_d4ffaa {
+    background-color: #d4ffaa;
+}
+
+div.InlayColor span.InlayColor_aaffaa, table.customGridTable > tbody > tr.watchHighlight_aaffaa {
+    background-color: #aaffd4;
+}
+
+div.InlayColor span.InlayColor_aaffff, table.customGridTable > tbody > tr.watchHighlight_aaffff {
+    background-color: #aaffff;
+}
+
+div.InlayColor span.InlayColor_aad4ff, table.customGridTable > tbody > tr.watchHighlight_aad4ff {
+    background-color: #aad4ff;
+}
+
+div.InlayColor span.InlayColor_aaaaff, table.customGridTable > tbody > tr.watchHighlight_aaaaff {
+    background-color: #aaaaff;
+}
+
+div.InlayColor span.InlayColor_d4aaff, table.customGridTable > tbody > tr.watchHighlight_d4aaff {
+    background-color: #d4aaff;
+}
+
+div.InlayColor span.InlayColor_ffaaff, table.customGridTable > tbody > tr.watchHighlight_ffaaff {
+    background-color: #ffaaff;
+}
+
+div.InlayColor span.InlayColor_ffaad4, table.customGridTable > tbody > tr.watchHighlight_ffaad4 {
+    background-color: #ffaad4;
+}
+
+.ctbFieldSettingsContainer ul > li.gradient-ffaaaa, .gradient-ffaaaa {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#ffaaaa');
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#ffaaaa));
+    background: -moz-linear-gradient(top, #FFFFFF, #ffaaaa); /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #FFFFFF 0, #ffaaaa 100%); /* W3C (IE10) maybe others soon.*/
+}
+
+.ctbFieldSettingsContainer ul > li.gradient-ffd4aa, .gradient-ffd4aa {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#ffd4aa');
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#ffd4aa));
+    background: -moz-linear-gradient(top, #FFFFFF, #ffd4aa); /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #FFFFFF 0, #ffd4aa 100%); /* W3C (IE10) maybe others soon.*/
+}
+
+.ctbFieldSettingsContainer ul > li.gradient-ffffaa, .gradient-ffffaa {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#ffffaa');
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#ffffaa));
+    background: -moz-linear-gradient(top, #FFFFFF, #ffffaa); /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #FFFFFF 0, #ffffaa 100%); /* W3C (IE10) maybe others soon.*/
+}
+
+.ctbFieldSettingsContainer ul > li.gradient-d4ffaa, .gradient-d4ffaa {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#d4ffaa');
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#d4ffaa));
+    background: -moz-linear-gradient(top, #FFFFFF, #d4ffaa); /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #FFFFFF 0, #d4ffaa 100%); /* W3C (IE10) maybe others soon.*/
+}
+
+.ctbFieldSettingsContainer ul > li.gradient-aaffaa, .gradient-aaffaa {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#aaffaa');
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#aaffaa));
+    background: -moz-linear-gradient(top, #FFFFFF, #aaffaa); /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #FFFFFF 0, #aaffaa 100%); /* W3C (IE10) maybe others soon.*/
+}
+
+.ctbFieldSettingsContainer ul > li.gradient-aaffff, .gradient-aaffff {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#aaffff');
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#aaffff));
+    background: -moz-linear-gradient(top, #FFFFFF, #aaffff); /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #FFFFFF 0, #aaffff 100%); /* W3C (IE10) maybe others soon.*/
+}
+
+.ctbFieldSettingsContainer ul > li.gradient-aad4ff, .gradient-aad4ff {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#aad4ff');
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#aad4ff));
+    background: -moz-linear-gradient(top, #FFFFFF, #aad4ff); /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #FFFFFF 0, #aad4ff 100%); /* W3C (IE10) maybe others soon.*/
+}
+
+.ctbFieldSettingsContainer ul > li.gradient-aaaaff, .gradient-aaaaff {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#aaaaff');
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#aaaaff));
+    background: -moz-linear-gradient(top, #FFFFFF, #aaaaff); /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #FFFFFF 0, #aaaaff 100%); /* W3C (IE10) maybe others soon.*/
+}
+
+.ctbFieldSettingsContainer ul > li.gradient-d4aaff, .gradient-d4aaff {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#d4aaff');
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#d4aaff));
+    background: -moz-linear-gradient(top, #FFFFFF, #d4aaff); /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #FFFFFF 0, #d4aaff 100%); /* W3C (IE10) maybe others soon.*/
+}
+
+.ctbFieldSettingsContainer ul > li.gradient-ffaaff, .gradient-ffaaff {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#ffaaff');
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#ffaaff));
+    background: -moz-linear-gradient(top, #FFFFFF, #ffaaff); /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #FFFFFF 0, #ffaaff 100%); /* W3C (IE10) maybe others soon.*/
+}
+
+.ctbFieldSettingsContainer ul > li.gradient-ffaad4, .gradient-ffaad4 {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#ffaad4');
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#ffaad4));
+    background: -moz-linear-gradient(top, #FFFFFF, #ffaad4); /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #FFFFFF 0, #ffaad4 100%); /* W3C (IE10) maybe others soon.*/
+}
+
+/* #endregion Inlay Color*/
+
+
+/* #region Watch layout */
+.watchLibraryView {
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 85%;
+    height: 100%;
+}
+
+.addWatch {
+    bottom: 0;
+    left: 50%;
+    width: 40px;
+    height: 14px;
+    line-height: 14px;
+}
+
+.deleteWatch {
+    position: relative;
+    right: 0;
+    cursor: pointer;
+}
+
+.watchContainer {
+    padding: 5px 0 0;
+}
+
+    .watchContainer select {
+        min-width: 200px;
+    }
+
+    .watchContainer .displayTableCell {
+        padding: 0 5px;
+        vertical-align: middle;
+    }
+
+    .watchContainer span.AlignCenter:first-child {
+        display: inline-block;
+        float: left;
+        position: relative;
+        top: -7px;
+        padding: 0 0 10px 0;
+    }
+
+.watchFieldLabel {
+    width: 200px;
+}
+
+.watchTrueOrFalseLabel {
+    width: 100px;
+}
+
+.watchGroupingLabel {
+    width: 90px;
+}
+
+.watchColorLabel {
+    width: 170px;
+}
+
+.watchView {
+    padding: 5px 0;
+}
+
+    .watchView input[name="IsTrue"] {
+        margin: 0 30px;
+    }
+
+table > tbody > tr.watchHighlight {
+    background: none;
+}
+/* #endregion Watch layout*/
+
+#admin_screen #customfields_layout input.isCombo, .customFieldMetaEditView .isCombo {
+    width: 170px;
+}
+
+    #admin_screen #customfields_layout input.isCombo:disabled, .customFieldMetaEditView .isCombo:disabled {
+        width: 198px;
+        background: #E6E6E6;
+    }
+
+.testDialog div {
+    width: 100%;
+}
+
+    .testDialog div span {
+        display: inline-block;
+        margin: 3px 0 0;
+        text-align: right;
+        vertical-align: top;
+        width: 80px;
+    }
+
+.testDialog input[type="text"], .testDialog textarea {
+    width: 200px;
+}
+
+.testDialog textarea {
+    min-height: 50px;
+}
+
+button.dialogLeftButton {
+    position: absolute;
+    left: 15px;
+}
+
+.importJob_marginLeft {
+    margin-left: 20px;
+}
+
+/* #region Reports Layout */
+#tab_panel_container #reports_tab_panel.show_tabs, #forms_tab_panel.show_tabs {
+    width: 101%;
+}
+
+#reports_tab_panel.hide_tabs {
+    display: block;
+}
+
+#reports_tab_panel, #forms_tab_panel {
+    width: 100%;
+    position: relative;
+    top: -3px;
+    left: -10px;
+    border-spacing: 5px 0;
+}
+
+    #reports_tab_panel > div, #forms_tab_panel > div {
+        height: 100%;
+        display: table-row;
+    }
+
+    #forms_tab_panel .mainLayout {
+        position: relative;
+    }
+
+    #forms_tab_panel .categoryLayout {
+        height: 100%;
+        max-height: 100%;
+    }
+
+.navigationLayout {
+    width: 170px;
+    max-width: 400px;
+    height: 100%;
+    color: white;
+    overflow: hidden;
+    vertical-align: top;
+    position: relative;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6DB8FD', endColorstr='#022241');
+    background: -webkit-gradient(linear, left top, left bottom, from(#6DB8FD), to(#022241));
+    background: -moz-linear-gradient(top, #6DB8FD, #022241); /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #6DB8FD 0, #022241 100%); /* W3C (IE10) maybe others soon.*/
+}
+
+    .navigationLayout .showHideArrow {
+        top: 5px;
+        right: 12px;
+    }
+
+    .navigationLayout .collapse_arrow, .navigationLayout .expand_arrow {
+        height: 16px;
+        width: 8px;
+        position: fixed;
+        cursor: pointer;
+    }
+
+.categoryLayout, .dashboardLayout {
+    max-height: 49%;
+    overflow: hidden;
+    margin: 5px 15px 0 0;
+}
+
+    .categoryLayout .category, .categoryLayout .category, .report, .dashboardLayout .report {
+        cursor: pointer;
+        margin: 3px 0 3px 20px;
+    }
+
+        .categoryLayout .category:hover, .categoryLayout .category .report:hover, .dashboardLayout .report:hover {
+            text-decoration: underline;
+            color: #EEE;
+        }
+
+    .categoryLayout a.bold, .dashboardLayout a.bold {
+        font-weight: bold;
+    }
+
+    .categoryLayout a.underline, .dashboardLayout a.underline {
+        text-decoration: underline;
+    }
+
+    .categoryLayout .categoryList_scroll {
+        margin: 0 20px 0 0;
+        max-height: 580px;
+        min-height: 15px;
+        overflow: hidden;
+    }
+
+.mainLayout {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F9F9F9', endColorstr='#FFFFFF');
+    background: -webkit-gradient(linear, left top, left bottom, from(#F9F9F9), to(#FFFFFF));
+    background: -moz-linear-gradient(top, #F9F9F9, #FFFFFF); /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #F9F9F9 0%, #FFFFFF 100%); /* W3C (IE10) maybe others soon.*/
+    height: 100%;
+}
+
+.categoryItemsLayout .unstyledList {
+    margin: 0;
+}
+
+.categoryItemsLayout .categoryItem {
+    cursor: pointer;
+    padding: 10px;
+    margin: 5px;
+    background-color: #FFF;
+    border: 1px solid #000;
+    width: 175px;
+    float: left;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+    .categoryItemsLayout .categoryItem.selected {
+        background: #51CBEE;
+    }
+
+    .categoryItemsLayout .categoryItem.disabled {
+        opacity: 0.3;
+    }
+
+    .categoryItemsLayout .categoryItem:hover {
+        text-decoration: underline;
+    }
+
+    .categoryItemsLayout .categoryItem img {
+        width: 125px;
+        height: 125px;
+        position: relative;
+        left: 25px;
+    }
+
+        .categoryItemsLayout .categoryItem img.throbber {
+            width: 16px;
+            height: 16px;
+            margin: 55px 53px 54px 53px;
+            position: relative;
+            left: 30px;
+        }
+
+    .categoryItemsLayout .categoryItem span {
+        text-decoration: inherit;
+        text-align: center;
+        width: 100%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+/* #endregion Reports Layout */
+
+/* #region DB Sync Settings Layout */
+#dbSync_layout input[type="radio"] {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#dbSync_layout .radioLabelSpacing {
+    margin: 0 15px 0 0;
+}
+
+#dbSync_layout .warningErrorClass {
+    display: inline-block;
+}
+/* #endregion DB Sync Settings Layout*/
+
+/* #region PAWNS, WEDS, WARTS Layout */
+
+
+
+
+#WEDSFS input {
+    text-align: right;
+    width: 40px;
+}
+
+    #WEDSFS input.hasDatepicker {
+        width: 125px;
+    }
+
+#WEDSFS .metaLabel {
+    width: 35px;
+}
+/* #endregion PAWNS, WEDS, WARTS Layout */
+
+/* #region Scheduling Layout */
+.reportSchedulingLayout div > .warningErrorClass {
+    width: 100%;
+    margin: 0 0 0 100px;
+    float: left;
+}
+
+.reportSchedulingLayout input[name="Recipients"] {
+    width: 415px;
+}
+
+
+
+.schedulingLayout input {
+    min-height: 16px;
+}
+
+    .schedulingLayout input[name="ExecutionTime"] {
+        width: 165px;
+    }
+
+    .schedulingLayout input[name="Frequency"] {
+        width: 50px;
+    }
+
+.schedulingLayout select {
+    min-height: 20px;
+}
+
+    .schedulingLayout select[name="ExecutionType"] {
+        width: 110px;
+        margin: 0 0 0 5px;
+    }
+
+.schedulingLayout span.metaLabel, .reportSchedulingLayout span.metaLabel, .reportSchedulingLayout span.label {
+    width: 90px;
+    float: left;
+    margin: 4px 10px 0 0;
+    text-align: right;
+}
+
+.schedulingLayout input.isCombo, .reportSchedulingLayout input.isCombo {
+    min-height: 14px;
+    background: white;
+    width: 385px;
+}
+
+.schedulingLayout > div.inlineblock {
+    margin: 5px 0;
+    width: 100%;
+}
+
+.schedulingLayout .date_icon {
+    top: -3px;
+    cursor: pointer;
+}
+
+.reportSchedulingLayout .parameter {
+    display: inline-block;
+    position: relative;
+    margin: 5px 0;
+    width: 100%;
+    float: left;
+}
+
+    .reportSchedulingLayout .parameter select {
+        float: left;
+        width: 390px;
+    }
+
+    .reportSchedulingLayout .parameter input.isCombo {
+        width: 357px;
+    }
+
+    .reportSchedulingLayout .parameter input.datepicker.hasDatepicker {
+        width: 360px;
+    }
+
+    .reportSchedulingLayout .parameter input[type="text"] {
+        float: left;
+        width: 360px;
+    }
+
+.reportSchedulingLayout .ui-combobox {
+    float: left;
+    height: 24px;
+}
+
+    .reportSchedulingLayout .ui-combobox .isCombo:disabled {
+        background-color: #F0F0F0;
+        background-image: none;
+    }
+
+.reportSchedulingLayout .parameterValueProperties {
+    left: 100px;
+}
+
+.reportSchedulingLayout label {
+    margin: 5px;
+}
+
+.reportSchedulingLayout fieldset {
+    margin: 0;
+}
+
+.reportSchedulingLayout .reportParameters {
+    max-height: 400px;
+    overflow: auto;
+    width: 100%;
+    margin: 0 0 0 -9px; /* Offset the containing fieldsets padding*/
+}
+
+    .reportSchedulingLayout .reportParameters .date_icon {
+        position: relative;
+        top: -3px;
+    }
+
+/* #endregion Scheduling Layout*/
+
+/* #region Password Management Layout */
+
+#passwordManagmentDTO .unstyledList label {
+    display: inline-block;
+    float: left;
+    padding-right: 10px;
+    position: relative;
+    text-align: right;
+    top: 3px;
+    width: 200px;
+}
+
+#passwordManagmentDTO .unstyledList select, #passwordManagmentDTO .unstyledList input {
+    width: 80px;
+}
+
+    #passwordManagmentDTO .unstyledList input[type='checkbox'] {
+        width: auto;
+    }
+
+#pass_management_success .success_message {
+    display: none;
+    position: relative;
+    width: 300px;
+}
+
+#pass_management_reset .reset_message {
+    display: none;
+    position: relative;
+    width: 300px;
+}
+
+#pass_expired {
+    font-size: 13px;
+}
+
+    #pass_expired p, #pass_expired span.warningErrorClass, #pass_expired h1, #pass_expired h2 {
+        text-align: center;
+    }
+
+    #pass_expired #pass_expired_reset label {
+        display: inline-block;
+        padding-right: 10px;
+        position: relative;
+        text-align: right;
+        width: 425px;
+    }
+
+body.passwordExpired {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F9F9F9', endColorstr='#FFFFFF');
+    background: -webkit-gradient(linear, left top, left bottom, from(#F9F9F9), to(#FFFFFF));
+    background: -moz-linear-gradient(top, #F9F9F9, #FFFFFF); /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #F9F9F9 0, #FFFFFF 100%); /* W3C (IE10) maybe others soon.*/
+}
+
+/* #endregion Password Management Layout*/
+
+
+#admin_screen .ImportJobsEditView input[name="maxResults"] {
+    width: 50px;
+}
+
+#dataUsageContainer .left_labeled_layout {
+    list-style: none;
+}
+
+    #dataUsageContainer .left_labeled_layout label {
+        display: inline-block;
+        float: left;
+        margin: 4px 0 0;
+        text-align: right;
+        width: 150px;
+    }
+
+    #dataUsageContainer .left_labeled_layout span {
+        display: inline-block;
+        float: left;
+        margin: 4px 0 0 25px;
+        text-align: left;
+        width: 150px;
+    }
+
+    #dataUsageContainer .left_labeled_layout li {
+        height: 20px;
+        margin: 0 0 5px;
+    }
+
+/*#region Field Region */
+.ui-dialog.limitTitleWidth .ui-dialog-title {
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 90%;
+    white-space: nowrap;
+}
+
+.fieldRegionSelectionContainer textarea {
+    height: 80px; /* Display 5 rows of text*/
+}
+
+.item {
+    display: table;
+    border-spacing: 5px;
+    width: 100%;
+}
+
+    .item span {
+        display: table-cell;
+        font-weight: bold;
+        text-align: right;
+        width: 110px;
+        margin: 5px 0 0 0;
+        vertical-align: middle;
+    }
+
+    .item select {
+        width: 100%;
+        display: table-cell;
+    }
+
+    .item.enumSettings {
+        border-spacing: 0;
+        margin: 0 0 4px;
+        display: table;
+        float: left;
+        width: auto;
+    }
+
+        .item.enumSettings input {
+            margin: 3px 3px 3px 4px;
+            display: table-cell;
+        }
+
+        .item.enumSettings span {
+            width: 130px;
+            font-weight: normal;
+            position: relative;
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+/*#endregion End Field Region*/
+
+/*#region Content Type Builder Tabs */
+
+
+#contentTypeBuilderTabs {
+    font-size: 11px;
+    font-family: Verdana, Tahoma;
+}
+
+    #contentTypeBuilderTabs > .ui-tabs-panel {
+        padding: 0;
+    }
+
+    #contentTypeBuilderTabs #ct_userGroupTab {
+        display: inline-block;
+        float: left;
+        width: 100%;
+    }
+
+        #contentTypeBuilderTabs #ct_userGroupTab .ctlist {
+            height: 90px;
+            width: 100%;
+        }
+
+    #contentTypeBuilderTabs #editSyncAction {
+        float: right;
+    }
+/*#endregion Content Type Builder Tabs */
+
+#syncActionContainer img {
+    margin-top: 3px;
+}
+
+.searchColumnEdit select, .searchColumnEdit input {
+    width: 99%;
+}
+
+.uploadIframe {
+    height: 30px;
+}
+
+
+
+#dataLinkDialog {
+    overflow: auto;
+    max-height: 400px;
+}
+
+    #dataLinkDialog .StaticDataGridView {
+        width: 100%;
+        height: 100%;
+    }
+
+    #dataLinkDialog #dataLinkTestResults {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: 5px 10px;
+    }
+
+div.c3piSettings .connectionIndicator {
+    display: inline-block;
+}
+
+#admin_screen div.c3piSettings input[type="text"][name="Prefix"] {
+    width: 40px;
+}
+
+#admin_screen div.c3piSettings div.clientSelector select {
+    width: auto;
+}
+
+#admin_screen div.c3piSettings ol.mapper li {
+    width: 365px; /* must be a bit more than that of the label + the select, below */
+    float: left;
+}
+
+#admin_screen div.c3piSettings ol.mapper label {
+    width: 195px;
+}
+
+#admin_screen div.c3piSettings ol.mapper select {
+    width: 160px;
+}
+
+#admin_screen div.c3piQueries select[name="queries"] {
+    width: 280px;
+}
+
+
+#wfItems_filter .workflow_sub_menu {
+    display: inline-block !important;
+    width: 100% !important;
+}
+
+.ui-tooltip {
+    word-wrap: break-word;
+}
+
+#autoSaveInProgress span {
+    position: absolute;
+    top: 28px;
+    left: 58px;
+}
+
+#createFormPublicLink #created-link {
+    margin-top: 20px;
+}

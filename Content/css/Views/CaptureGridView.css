@@ -1,0 +1,29 @@
+﻿.CaptureGridView {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+    .CaptureGridView .customGridTable {
+        height: 100%;
+    }
+
+    .CaptureGridView .selectionHeader {
+        width: 20px;
+    }
+
+    .CaptureGridView .editHeader {
+        width: 36px;
+    }
+
+    .CaptureGridView .columnEdit {
+        display: inline-block;
+        position: absolute;
+        top: -3px;
+    }
+
+    .CaptureGridView .customGridHeader div {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+    }

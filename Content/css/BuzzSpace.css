@@ -1,0 +1,130 @@
+﻿html, body
+{
+    height: 100%;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+#buzzspace_layout, #buzzspace_layout .ui-resizable-e, #sys_buzz, #cust_buzz
+{
+    min-height: 577px;
+}
+.light_shadow_left
+{
+    -moz-box-shadow: -2px 0px 2px #CCC;
+    -webkit-box-shadow: -2px 0px 2px #CCC;
+    box-shadow: -2px 0px 2px #CCC;
+}
+#buzzspace_layout
+{
+    width: 100%;
+    height: 100%;
+    margin: -3px 0 0;
+}
+#buzzspace_layout .ui-resizable-e
+{
+    width: 5px;
+    height: 100%;
+    right: 0px;
+    cursor: e-resize;
+    z-index: 1000;
+}
+#sys_buzz
+{
+    display: inline-block;
+    float: left;
+    width: 59.5%;
+    height: 100%;
+    padding: 0 0.5% 0 0;
+}
+#cust_buzz
+{
+    display: inline-block;
+    float: left;
+    width: 40%;
+    height: 100%;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F9F9F9', endColorstr='#FFFFFF');
+    background: -webkit-gradient(linear, left top, left bottom, from(#F9F9F9), to(#FFFFFF));
+    background: -moz-linear-gradient(top,  #F9F9F9,  #FFFFFF); /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #F9F9F9 0%, #FFFFFF 100%); /* W3C (IE10) maybe others soon.*/
+    overflow: auto;
+}
+.ui-resizable
+{
+    position: relative;
+}
+.ui-resizable-handle
+{
+    position: absolute;
+    font-size: 0.1px;
+    z-index: 99999;
+    display: block;
+}
+.ui-resizable-disabled .ui-resizable-handle, .ui-resizable-autohide .ui-resizable-handle
+{
+    display: none;
+}
+.ui-resizable-n
+{
+    cursor: n-resize;
+    height: 7px;
+    width: 100%;
+    top: -5px;
+    left: 0;
+}
+.ui-resizable-s
+{
+    cursor: s-resize;
+    height: 7px;
+    width: 100%;
+    bottom: -5px;
+    left: 0;
+}
+.ui-resizable-e
+{
+    cursor: e-resize;
+    width: 7px;
+    right: -5px;
+    top: 0;
+    height: 100%;
+}
+.ui-resizable-w
+{
+    cursor: w-resize;
+    width: 7px;
+    left: -5px;
+    top: 0;
+    height: 100%;
+}
+.ui-resizable-se
+{
+    cursor: se-resize;
+    width: 12px;
+    height: 12px;
+    right: 1px;
+    bottom: 1px;
+}
+.ui-resizable-sw
+{
+    cursor: sw-resize;
+    width: 9px;
+    height: 9px;
+    left: -5px;
+    bottom: -5px;
+}
+.ui-resizable-nw
+{
+    cursor: nw-resize;
+    width: 9px;
+    height: 9px;
+    left: -5px;
+    top: -5px;
+}
+.ui-resizable-ne
+{
+    cursor: ne-resize;
+    width: 9px;
+    height: 9px;
+    right: -5px;
+    top: -5px;
+}

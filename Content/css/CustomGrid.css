@@ -1,0 +1,236 @@
+﻿/*IF YOU HAVE A VIEW THAT NEEDS A SPECIFIC STYLE PUT IT IN THE VIEWS CSS NOT HERE */
+.customGridHeaderContainer .customGridTable {
+    border: none;
+}
+
+.customGridScrollableContainer .customGridTable {
+    border-top: none;
+    border-bottom: none;
+}
+
+.customGridTable {
+    width: 100%;
+    position: relative;
+    background: url("../../Content/themes/base/images/ui-bg_flat_75_ffffff_40x100.png") repeat-x scroll 50% 50% #ffffff;
+    border: 1px solid #AAA;
+    border-collapse: collapse;
+    border-spacing: 0;
+    color: #222222;
+    padding: 0;
+    margin: 0;
+    table-layout: fixed; /*much faster then auto*/
+}
+
+    .customGridTable .errorRow {
+        border: 2px solid #a60000;
+    }
+
+    .customGridTable .emptyGridRow {
+        width: 100%;
+    }
+
+        .customGridTable.emptyGridRow:not(:only-child) {
+            display: none;
+        }
+
+    .customGridTable .customGridHeader {
+        background: url("../../Content/themes/base/images/ui-bg_glass_75_e6e6e6_1x400.png") repeat-x scroll 50% 50% #E6E6E6;
+        font-weight: normal;
+        color: #555;
+        width: 100%;
+        height: 22px;
+        padding: 0;
+        text-align: center;
+    }
+
+        .customGridTable .customGridHeader:hover {
+            background: url("../../Content/themes/base/images/ui-bg_glass_75_dadada_1x400.png") repeat-x scroll 50% 50% #dadada;
+            color: #212121;
+        }
+
+        .customGridTable .customGridHeader.customGridSortable {
+            cursor: pointer;
+        }
+
+    .customGridTable .customGridDataCell {
+        border: 1px solid #aaaaaa;
+        font-weight: normal;
+        height: 22px;
+        padding: 0 2px;
+    }
+
+    .customGridTable tbody tr:hover:not(.emptyGridRow, .customGridHighlight) {
+        background: url("../../Content/themes/base/images/ui-bg_glass_75_dadada_1x400.png") repeat-x scroll 50% 50% #dadada;
+        color: #212121;
+    }
+
+    .customGridTable tbody tr.customGridHighlight {
+        background: none repeat-x scroll 50% 50% #fbf9d0;
+        color: #363636;
+    }
+
+    .customGridTable .customGridDataCell input, .customGridTable .customGridDataCell select {
+        width: 99%;
+    }
+
+    .customGridTable .customGridDataCell .ui-combobox a {
+        float: none;
+    }
+
+    .customGridTable .customGridHeader, .customGridTable .customGridDataCell {
+        overflow: hidden;
+        white-space: nowrap;
+        border: 1px solid #aaaaaa;
+        font-size: 11px;
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+    .customGridTable .customGridDataCell {
+        text-align: left;
+    }
+
+        .customGridTable .customGridHeader > div, .customGridTable .customGridDataCell > div {
+            position: relative;
+        }
+
+    .customGridTable .customGridPager {
+        background: url("../../Content/themes/base/images/ui-bg_glass_75_e6e6e6_1x400.png") repeat-x scroll 50% 50% #E6E6E6;
+        height: 22px;
+        font-size: 0.8em;
+        border: 1px solid #AAA;
+    }
+
+        .customGridTable .customGridPager .customGridPagerButton {
+            padding: 1px;
+        }
+
+            .customGridTable .customGridPager .customGridPagerButton:hover {
+                background: url("../../Content/themes/base/images/ui-bg_glass_75_dadada_1x400.png") repeat-x scroll 50% 50% #dadada;
+                color: #212121;
+                border: 1px solid #aaaaaa;
+                border-radius: 4px;
+                padding: 0px;
+            }
+
+
+        .customGridTable .customGridPager .customGridPagerNavigation {
+            float: right;
+            margin-right: 45%;
+        }
+
+            .customGridTable .customGridPager .customGridPagerNavigation span {
+                float: left;
+            }
+
+            .customGridTable .customGridPager .customGridPagerNavigation input {
+                float: left;
+                width: 40px;
+                height: 11px;
+                font-size: 1.1em;
+            }
+
+            .customGridTable .customGridPager .customGridPagerNavigation .customGridPagerText {
+                margin: 3px;
+            }
+
+            .customGridTable .customGridPager .customGridPagerNavigation .ui-icon {
+                cursor: pointer;
+            }
+
+                .customGridTable .customGridPager .customGridPagerNavigation .ui-icon.disabledNav {
+                    cursor: default;
+                    opacity: 0.3;
+                }
+
+        .customGridTable .customGridPager .viewCount {
+            position: absolute;
+            right: 0;
+            margin: 3px;
+        }
+
+    .customGridTable .customGridHeader.subgridExpandHeader {
+        width: 20px;
+    }
+
+    .customGridTable .customGridDataCell .subgridExpand {
+        cursor: pointer;
+    }
+
+.customGridResizeHelper {
+    background-color: #777;
+    width: 2px;
+    height: 100%;
+    margin-left: 3px;
+}
+
+.customGridColumnResizeContainer {
+    position: absolute;
+    width: 100%;
+    max-width: 100%;
+    height: 24px;
+}
+
+    .customGridColumnResizeContainer .customGridColumnResizeHandle {
+        position: absolute;
+        height: 100%;
+        width: 9px;
+        cursor: col-resize;
+        z-index: 90;
+    }
+
+.customGridTableContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.customGridHeaderContainer {
+    position: absolute;
+    z-index: 10;
+    overflow: hidden;
+    left: 0;
+    right: 0;
+}
+
+.customGridFooterContainer {
+    position: absolute;
+    bottom: 0;
+}
+
+.customGridScrollableContainer {
+    position: absolute;
+    overflow: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0; /* Has a value if there is a footer (23px), otherwise leave as 0 */
+}
+
+    .customGridScrollableContainer .customGridTable {
+        border-right-width: 0;
+    }
+
+.scrollbarWidthCalculation {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: -100px;
+    left: -100px;
+    overflow: auto;
+}
+
+.customGridTable .customGridDataCell .saveRow,
+.customGridTable .customGridDataCell .cancelSave {
+    margin: 0;
+    float: left;
+}
+
+.customGridTable .customGridDataCell .editRow {
+    margin: 0 0 0 25%;
+}
+
+.customGridTable th.fillHeader {
+    padding: 0;
+}
