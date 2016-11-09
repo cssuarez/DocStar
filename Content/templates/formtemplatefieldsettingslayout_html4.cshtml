@@ -1,0 +1,194 @@
+﻿@using Astria.Framework.Utility;
+<div class="accordion_title accordion_title_open noAccordionEvent">
+    <div class="accordion_title_contents">
+        <span class="swoosh"></span>
+    </div>
+</div>
+<div class="accordion open">
+    @* No Fields exist in the Designer Canvas *@
+    {{if(!it.selectedFormElements || it.selectedFormElements.length === 0) { }}
+    <div class="fieldErrorMessage">
+        <h2 class="errorMessage">@Constants.i18n("noFieldsSelected")</h2>
+        <h3 class="explanation">@Constants.i18n("noFieldsSelectedExplanation")</h3>
+    </div>
+    {{ } else { }}
+    <div class="fieldSettingsContainer">
+        @* Backing Store *@
+        {{ if(it.displayBackingStore) { }}
+        <div>
+            <label>
+                <span>{{=it.fieldMapLabel}}</span>
+                {{  
+                    var constantBsAttr = '';
+                    var constantBackingStoresLength = it.constantBackingStores.length;
+                    if (constantBackingStoresLength === 1) {
+                        constantBsAttr = 'disabled="disabled"';
+                    }
+
+                    var selectClass = '';
+                    if (it.imgBackingStores.length > 0 ) {
+                        selectClass = 'imgBackingStores';
+                    }
+                }}
+                {{ if (!constantBsAttr) { }}
+                    {{ if (it.imgBackingStores.length === 0) { }}
+                <span class="editBackingStore ui-icon ui-icon-plus"></span>
+                    {{ } }}
+                <span class="editBackingStore ui-icon ui-icon-pencil"></span>
+                {{ } }}
+                <select name="BackingStoreId" class="{{=selectClass}} {{=constantBsAttr}}" >
+                    @* This may be one of three different ids:
+                        a custom field meta id,
+                        a image storage id,
+                        or a constant Id that defines a standard field (Title, Keywords, Created, so on) *@
+                    {{if (constantBackingStoresLength > 0) { }}
+                    <optgroup label="@Constants.i18n("documentProperties")">
+                        {{ var idx = 0;
+                    var length = it.constantBackingStores.length;
+                    for(idx; idx < length; idx++) {
+                        var attrs = { selected: it.constantBackingStores[idx].Id === it.BackingStoreId ? 'selected' : undefined };
+                        }}
+                        {{=Utility.safeHtmlValue(it.constantBackingStores[idx].Id, { attrs: attrs, tag: 'option', text: it.constantBackingStores[idx].Name })}}
+                        {{ } }}
+                    </optgroup>
+                    {{ } }}
+                    {{if(it.imgBackingStores.length > 0) { }}
+                    <optgroup label="@Constants.i18n("images")">
+                        {{ var idx = 0;
+                    var length = it.imgBackingStores.length;
+                    for(idx; idx < length; idx++) {
+                        var attrs = { selected: it.imgBackingStores[idx].Id === it.BackingStoreId ? 'selected' : undefined };
+                        }}
+                        {{=Utility.safeHtmlValue(it.imgBackingStores[idx].Id, { attrs: attrs, tag: 'option', text: it.imgBackingStores[idx].Name })}}
+                        {{ } }}
+                    </optgroup>
+                    {{ } }}
+                    {{if(it.cfBackingStores.length > 0) { }}
+                    <optgroup label="@Constants.i18n("fields")">
+                        {{ var idx = 0;
+                    var length = it.cfBackingStores.length;
+                    for(idx; idx < length; idx++) {
+                        var attrs = { selected: it.cfBackingStores[idx].Id === it.BackingStoreId ? 'selected' : undefined };
+                        }}
+                        {{=Utility.safeHtmlValue(it.cfBackingStores[idx].Id, { attrs: attrs, tag: 'option', text: it.cfBackingStores[idx].Name })}}
+                        {{ } }}
+                    </optgroup>
+                    {{ } }}
+                </select>
+            </label>
+        </div>
+        {{ } }}
+        <div data-accid="formElementLabelAccState">
+            <div class="accordion_title accordion_title_{{=it.formElementLabelAccState}}">
+                <div class="accordion_title_contents">
+                    <div class="title_arrow">
+                    </div>
+                    <span class="anchor">@Constants.i18n("fieldLabel")</span>
+                    <span class="swoosh"></span>
+                </div>
+            </div>
+            <div class="accordion {{=it.formElementLabelAccState}}">
+                {{ if(it.displayLabelTextSettings) { }}
+                @* Label Text Settings *@
+                <div class="labelTextSettingsContainer">
+                    @* Label *@
+                    <div>
+                        <label>
+                            <span>@Constants.i18n("fieldLabel")</span>
+                            <textarea rows="4" class="textareaResizeNone" name="Label">{{=it.Label}}</textarea>
+                        </label>
+                    </div>
+                    @* Render a text setting here *@
+                </div>
+                {{ } }}
+            </div>
+        </div>
+        <div data-accid="formElementValueAccState">
+            <div class="accordion_title accordion_title_{{=it.formElementValueAccState}}">
+                <div class="accordion_title_contents">
+                    <div class="title_arrow">
+                    </div>
+                    <span class="anchor">@Constants.i18n("value")</span>
+                    <span class="swoosh"></span>
+                </div>
+            </div>
+            <div class="accordion {{=it.formElementValueAccState}}">
+                {{ if(it.displayValueTextSettings) { }}
+                @* Value *@
+                <div class="formElementValueContainer">
+                    @* Render Form Element Value View Here *@
+                </div>
+                {{ } }}
+            </div>
+        </div>
+        <div data-accid="formElementFormulaAccState">
+            <div class="accordion_title accordion_title_{{=it.formElementFormulaAccState}}">
+                <div class="accordion_title_contents">
+                    <div class="title_arrow">
+                    </div>
+                    <span class="anchor">@Constants.i18n("formulas")</span>
+                    <span class="swoosh"></span>
+                </div>
+            </div>
+            <div class="accordion {{=it.formElementFormulaAccState}}">
+                <div class="formElementFormulaBuilderContainer">
+
+                </div>
+            </div>
+        </div>
+        <div data-accid="fieldOptionsAdvancedAccState">
+            <div class="accordion_title accordion_title_{{=it.fieldOptionsAdvancedAccState}}">
+                <div class="accordion_title_contents">
+                    <div class="title_arrow">
+                    </div>
+                    <span class="anchor">@Constants.i18n("advanced")</span>
+                    <span class="swoosh"></span>
+                </div>
+            </div>
+            <div class="accordion {{=it.fieldOptionsAdvancedAccState}}">
+                {{ if(it.displayOptions) { }}
+                @* Options *@
+                <fieldset>
+                    <legend>@Constants.i18n("fieldOptions")</legend>
+                    <label>
+                        <span>@Constants.i18n("renderAsText")</span>
+                        @* Checked by default if there is no value for RenderAsSpan *@
+                        <input type="checkbox" name="RenderAsSpan" {{=it.RenderAsSpan ? 'checked="checked"' : ''}} />
+                    </label>
+                </fieldset>
+                {{ } }}
+                @* CSS Layout *@
+                <fieldset>
+                    <legend>@Constants.i18n("cssLayoutKeywords")</legend>
+                    <label>
+                        <span>@Constants.i18n("fieldLabel")</span>
+                        <input type="text" name="CSSLabelKeywords" value="{{=it.CSSLabelKeywords}}" />
+                    </label>
+                    <label>
+                        <span>@Constants.i18n("value")</span>
+                        <input type="text" name="CSSInputKeywords" value="{{=it.CSSInputKeywords}}" />
+                    </label>
+                    <label>
+                        <span>@Constants.i18n("fieldParent")</span>
+                        <input type="text" name="CSSContainerKeywords" value="{{=it.CSSContainerKeywords}}" />
+                    </label>
+                </fieldset>
+                @* Form Element Group Settings *@
+                {{if(it.isFormElementGroup) { }}
+                <div class="formElementGroupSettingsContainer">
+                    @* Render Group Settings Here *@
+                </div>
+                {{ } }}
+            </div>
+        </div>
+    </div>
+    <hr />
+    {{if(it.hasModifyPerms) { }}
+    <div class="posAbs posBottom fullWidth">
+        <div class="buttonContainer">
+            <span class="deleteFormElement custom_button long_btn">{{=it.deleteButtonLabel}}</span>
+        </div>
+    </div>
+    {{ } }}
+    {{ } }}
+</div>

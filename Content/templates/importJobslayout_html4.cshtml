@@ -1,0 +1,53 @@
+﻿@using Astria.Framework.Utility;
+<h2>@Constants.i18n("importjob")</h2>
+<fieldset id="importJobsFilters">
+    <legend></legend>
+    <div class="bottomMargin">
+        <label>@Constants.i18n("importJobsFilterBy"):</label>
+        <select id="importJobsFilterBy">
+            <option value="0">[@Constants.i18n("all")]</option>
+            <option value="1">@Constants.i18n("user")</option>
+            <option value="2">@Constants.i18n("machineName")</option>
+            <option value="3">@Constants.i18n("status")</option>
+        </select>
+
+        <select id="importjobsusers" class="importjobfilters" style="display:none">
+            {{ 
+                var i = 0;
+                var length = it.users.length;
+                for (i; i < length; i++) {
+                    var u = it.users[i];
+            }}
+            <option value="{{=u.value}}">{{=u.text}}</option>
+            {{ } }}
+        </select>
+
+        <select id="importjobsMachine" class="importjobfilters" style="display:none"></select>
+
+        <select id="importjobsStatus" class="importjobfilters" style="display:none">
+            {{
+                i = 0;
+                length = it.ijs.length;
+                for (i; i < length; i++) {
+                    var ij = it.ijs[i];
+            }}
+            <option value="{{=ij.value}}">{{=ij.text}}</option>
+            {{ } }}
+        </select>
+        <span>@Constants.i18n("maxResults")</span>
+        <input type="text" name="maxResults" value="25" />
+        <input type="button" name="filter_jobs" value="@Constants.i18n("importJobsFilterbtn")" />
+        <input type="button" name="clear_data" value="@Constants.i18n("clear")" />
+    </div>
+    <div class="bottomMargin">
+        <label>{{=Constants.c.importJobEmailRecipients }}</label>
+        <input type="text" name="IJEmailRecipient" value="{{=it.email}}" />
+        <input type="button" name="Test_mail" value="@Constants.i18n("testmail")" />
+        <input type="button" name="save_IJEmailRecp" value="@Constants.i18n("save")" />
+        <input type="hidden" name="rb_Error" />
+        <div><span id="statusMsg"></span></div>
+    </div>
+    <div class="inlineblock gridContainer">
+    </div>
+</fieldset>
+<div id="results_data"></div>

@@ -1,0 +1,44 @@
+﻿@using Astria.Framework.Utility;
+@*Used by both User and Group Imports*@
+<div>
+    <div class="spacingBottomSmall">
+        <span>@Constants.i18n("domain"):</span>
+        <select name="LDAPConnection">
+            {{
+                var idx = 0;
+                var length = it.connections.length;
+                for(idx = 0; idx < length; idx++) {
+                    var conn = it.connections[idx];
+            }}
+            {{=Utility.safeHtmlValue(conn.Id, {tag: 'option', text: conn.Name} ) }}
+            {{ } }}
+        </select>
+        <input class="browseConn" type="button" {{=it.connections.length === 0 ? 'disabled="disabled"' : ''}} value="@Constants.i18n("browse")@Constants.i18n("ellipses")" />
+        <input class="getAll" type="button" {{=it.connections.length === 0 ? 'disabled="disabled"' : ''}} value="@Constants.i18n("getAll")" />
+    </div>
+    @* Insert Grid HERE *@
+</div>
+@*TODO: scain - for later implementation - add create inboxes/create folders/create security classes
+    <div class="ldapImportOptions">
+        <fieldset>
+            <legend>@Constants.i18n("ldapImportOptions")</legend>
+            <div>
+                <input type="checkbox" name="EnableIntegrated" />
+                <span>@Constants.i18n("enableIntegrated")</span>
+            </div>
+            <div>
+                <input type="checkbox" name="EnableIndependent" />
+                <span>@Constants.i18n("enableIndependent")</span>
+            </div>
+            <span>@Constants.i18n("password"):</span>
+            <input type="text" name="Password" />
+            <span>@Constants.i18n("password_reenter"):</span>
+            <input type="text" name="ConfirmPassword" />
+
+
+            <input type="checkbox" name="CreateInboxes" />
+            <input type="checkbox" name="CreateFolders" />
+            <input type="checkbox" name="CreateSecurityClasses"/>
+        </fieldset>
+    </div>
+*@

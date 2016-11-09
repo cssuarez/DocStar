@@ -1,0 +1,17 @@
+﻿@using Astria.Framework.Utility;
+<td class="customGridDataCell AlignCenter">
+    @*selection Header*@
+    <input type="checkbox" class="selectedItem" {{=it.toolTip ? 'title="' + it.toolTip + '"' : ''}} {{=it.selected ? 'checked="checked"' : ''}} />
+</td>
+{{
+var i = 0;
+var length = it.cells.length;
+for (i; i < length; i++) {
+    var cell = it.cells[i];
+}}
+<td data-cellid="{{=cell.valueId}}" class="customGridDataCell customGridEditCell">
+    <div class="valueContainer">
+        {{=cell.value || '&nbsp;'}}
+    </div>
+</td>
+{{ } }}

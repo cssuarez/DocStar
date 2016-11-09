@@ -1,0 +1,10 @@
+{
+  "name": "SleepyHollow",
+  "version": "0.0.1",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-uglify": "~0.2.4",
+    "grunt-contrib-jasmine": "~0.5.1",
+    "grunt-casper": "~0.1.3"
+  }
+}

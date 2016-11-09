@@ -1,0 +1,22 @@
+﻿@using Astria.Framework.Utility;
+<div class="buttonContainer">
+    {{if(it.hasFormDesignerGWP) { }}
+        {{if(it.canCreateForm) { }}
+            <span class="createForm sPngIB newForm" title="@Constants.i18n("createNewForm")"></span>
+        {{ } }}
+        {{if(it.isNew) { }}
+            <span class="createFormTemplate ui-icon ui-icon-pencil"></span>
+        {{ } else if(it.canEditForm) { }} 
+            <span class="editFormTemplate ui-icon ui-icon-pencil"></span>
+        {{ } }}    
+        {{ if(it.canCreateLink) { }}
+        <span class="createPublicLink sPng html"></span>
+        {{ } }}
+        {{ if(it.canDeleteForm) { }}
+        <span class="deleteFormTemplate ui-icon ui-icon-close"></span>
+        {{ } }}
+        
+    {{ } }}
+</div>
+<span class="label">{{=it.Name}}</span>
+@*<span title="{{=it.canCreateForm ? '' : it.canNotCreateFormTooltip}}" class="createForm custom_button short_btn {{=it.canCreateForm ? '' : 'disabled'}}">@Constants.i18n("createOne")</span>*@

@@ -1,0 +1,17 @@
+﻿@using Astria.Framework.Utility;
+{{if(it.inEditMode) { }}
+<span class="messageLabel">@Constants.i18n("messages")</span>
+<span class="saveIcon sPngIB {{=it.saveIconClass}}"></span>
+<span class="ui-icon ui-icon-cancel"></span>
+<hr />
+<div class="formulaMessageContainer">
+    <div class="formulaError warningErrorClass">{{=it.formulaError}}</div>
+    <div class="formulaMessage">{{=it.formulaMessage}}</div>
+</div>  @* Only display a message when in formula edit mode *@
+{{ } else { }}
+<span class="ui-icon ui-icon-pencil fright"></span>
+{{ } }}
+<textarea class="{{=it.inEditMode ? 'editing' : ''}} {{=it.textareaClass}}" readonly="readonly">{{=it.formula}}</textarea>
+<span class="numpadContainer">
+    @* Render number pad here, when in edit mode *@
+</span>

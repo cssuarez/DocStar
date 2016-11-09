@@ -1,0 +1,99 @@
+﻿@using Astria.Framework.Utility;
+{{  
+    var reindexing = false;
+    var fieldName = '';
+    var pieces = [];
+    var topTerms = [];
+    var termPieces = [];
+    var fieldName = '';
+    var i = 0;
+    var idx = 0;
+    var idxst = '@Constants.i18n("indexStats")';
+    var fldst = '@Constants.i18n("fieldStats")';
+    var reIdxKey = idxst + ":" + '@Constants.i18n("reIndexing")';
+    var indexstats = { };
+    var fieldStats = { };
+    if (it.stats !== undefined) { 
+        stats = it.stats.toJSON();
+        reindexing = it.stats.get(reIdxKey) === "True";
+        
+        for(key in stats) {
+            pieces = key.split(':');
+            if (pieces[0] == idxst) {
+                indexstats[pieces[1]] = stats[key];
+            }
+            else {   
+                fieldName = pieces[2];
+                idx = fieldName.indexOf('_');
+                if (idx >= 0) {
+                    fieldName = fieldName.substring(idx + 1);
+                }                                
+                if (fieldStats[fieldName] === undefined) {
+                    fieldStats[fieldName] = { };
+                }
+                if (pieces[1] === '@Constants.i18n("topTerms")') {
+                    topTerms = stats[key].split(',');
+                    fieldStats[fieldName][pieces[1]] = { };
+                    for(i = 0; i < topTerms.length; i++) {
+                        termPieces = topTerms[i].split(':'); 
+                        fieldStats[fieldName][pieces[1]][termPieces[0]] = termPieces[1];
+                    }
+                }
+                else {
+                    fieldStats[fieldName][pieces[1]] = stats[key];
+                }
+            }
+        };
+    };
+}}
+<div id="indexLayout">
+    <h2>@Constants.i18n("headingIndexAdmin")</h2>
+    {{ if(reindexing === true) { }}
+        <input type="button" id="reindex" name="reindex" value="@Constants.i18n("reIndex")" disabled="disabled" />
+        <input type="button" id="deleteIndex" name="deleteIndex" value="@Constants.i18n("deleteAndReindex")" disabled="disabled" />
+    {{ } else { }}
+        <input type="button" id="reindex" name="reindex" value="@Constants.i18n("reIndex")" /> 
+        <input type="button" id="deleteIndex" name="deleteIndex" value="@Constants.i18n("deleteAndReindex")"/>
+    {{ } }}
+    <input type="hidden" name="reindex_error" />
+    
+    
+     <fieldset>
+        <legend>@Constants.i18n("currentIndexStats")</legend>
+        <div class="metaarea">    
+        {{   for(key in indexstats) { }} 
+            <div class="input">
+                <span class="metalabel">{{= key }}:</span>
+                <span class="metainput">{{= indexstats[key] }}</span>
+            </div>
+            {{ } }}
+
+        </div>
+    </fieldset>
+     <fieldset class="fieldStatistics">
+        <legend><span class="ui-icon ui-icon-plus" style="float: left;"></span>@Constants.i18n("fieldStatistics")</legend>
+        <div style="display: none;" class="metaarea">    
+        {{   for(key in fieldStats) { }}         
+         <fieldset>
+            <legend>{{= key }}</legend>        
+            {{   for(subkey in fieldStats[key]) { }}
+                {{ if (subkey === '@Constants.i18n("topTerms")') { }}
+                    {{ for(term in fieldStats[key][subkey]) { }}
+                        <div class="input">
+                            <span class="metalabel">{{= subkey }}:</span>
+                            <span class="metainput">{{= fieldStats[key][subkey][term] }} - {{= term }}</span>
+                        </div>
+                    {{ } }}
+                {{ } else { }}
+                    <div class="input">
+                        <span class="metalabel">{{= subkey }}:</span>
+                        <span class="metainput">{{= fieldStats[key][subkey] }}</span>
+                    </div>
+                {{ } }}
+            {{ } }}
+        </fieldset>
+        {{ } }}
+
+        </div>
+    </fieldset>
+</div>

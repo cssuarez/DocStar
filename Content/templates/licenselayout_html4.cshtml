@@ -1,0 +1,68 @@
+﻿@using Astria.Framework.Utility;
+@using Astria.UI.Web.Models;
+{{
+    var isSuperAdmin = $('#isSuperAdmin').val();
+    var isInstanceAdmin = $('#isInstanceAdmin').val();
+    if(isSuperAdmin.toLowerCase() === 'true' || isInstanceAdmin.toLowerCase() === 'true') {
+        isSuperAdmin = true;
+    }
+    else {
+        isSuperAdmin = false;
+    }
+    if (!it.list.errorMsg) {
+}}
+<div id="licenseLayout">
+    {{  if(isSuperAdmin) { 
+            if(window.provisioningCode) { }}
+                <fieldset class="licenseLayoutCurrent">
+                    <legend>@Constants.i18n("currentLicensing"):
+                        <span id="provisioningCode">{{= window.provisioningCode }}</span>
+                        <span class="button sPng licenseSubmit" title="@Constants.i18n("refresh")"></span>
+                    </legend>
+                </fieldset>
+        {{  } else {    }}
+                <div class="container">
+                    <span  class="noLicensingCode label">@Constants.i18n("provisioningCode"):</span>
+                    <input type="text" name="provisioningCode" id="provisioningCode" value="" />
+                </div>
+                <fieldset>
+                    <legend>@Constants.i18n("onlineLicensing")</legend>
+                    <div class="container">
+                        <span class="label">@Constants.i18n("submitRequestProvCode"):</span>
+                        <input class="button licenseSubmit" type="button" value="@Constants.i18n("submit")" />
+                    </div>
+                </fieldset>
+    {{  }   }}
+    {{  } else if(window.provisioningCode) { }}
+            <fieldset class="licenseLayout">
+                <legend>@Constants.i18n("currentLicensing"):
+                    <span id="provisioningCode">{{= window.provisioningCode }}</span>
+                </legend>
+                <table id="licenseDTO"></table>
+            </fieldset>
+    {{  } else { }}
+        <span>@Constants.i18n("lincensingNotAvailable")</span>
+    {{  } }}
+    {{ if(isSuperAdmin) { }}
+        <fieldset class="licenseLayoutOffline">
+            <legend>@Constants.i18n("offlineLicensing")</legend>
+            <div id="getLicReqItem" class="container">
+                <span class="label">@Constants.i18n("genLicenseRequest"):</span>
+                <input class="button" value="@Constants.i18n("request")" type="button" id="genReq"/>
+                <iframe id="genReqIFrame" style="height: 0; width: 0; border: none"/>
+            </div>
+            <div id="getLicRespItem" class="container">
+                <span class="label">@Constants.i18n("importLicenseFile"):</span>
+                <iframe id="importLicenseIFrame" src="Licensing/LicensingFrame"/>
+            </div>
+        </fieldset>
+    {{ } }}
+    <div class="buttons">
+        <input type="hidden" name="lic_Error" />
+    </div>
+    {{  } else { }}
+    <div class="error">
+    {{= it.list.errorMsg }}
+    </div>
+    {{ } }}
+</div>

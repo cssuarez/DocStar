@@ -1,0 +1,14 @@
+﻿@using Astria.Framework.Utility;
+<div>
+    <div class="itemLabel">
+        <span>{{=it.label}}</span>
+    </div>
+    @* 
+        Example markup that it.colorsHTML should contain
+        <div class="InlayColor">    // another possible class of InlaySelected, if the color is selected
+            <span class="InlayColor_{color in hex}"></span>
+        </div>
+     *@
+    {{= it.colorsHTML}}
+    <input name="InlayColor" type="hidden" />
+</div>

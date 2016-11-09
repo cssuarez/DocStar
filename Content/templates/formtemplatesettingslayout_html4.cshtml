@@ -1,0 +1,162 @@
+﻿@using Astria.Framework.Utility;
+@using Astria.Framework.DataContracts;
+<div class="accordion_title accordion_title_open noAccordionEvent">
+    <div class="accordion_title_contents">
+        <span class="swoosh"></span>
+    </div>
+</div>
+<div class="accordion open">
+    <div class="fullWidth inlineblock">
+        <span class="fleft">@Constants.i18n("securityClass")</span>
+        <select name="SecurityClassId" class="fright">
+            {{
+            var idx = 0;
+            var length = it.securityClasses.length;
+            for (idx; idx < length; idx++) {
+                var attrs = { selected: it.securityClasses[idx].Id === it.SecurityClassId ? 'selected' : undefined };
+            }}
+            {{=Utility.safeHtmlValue(it.securityClasses[idx].Id, { attrs: attrs, tag: 'option', text: it.securityClasses[idx].Name }) }}
+            {{
+            }
+            }}
+        </select>
+    </div>
+    <div class="fullWidth inlineblock">
+        <span class="fleft">@Constants.i18n("category")</span>
+        <select name="Category" class="fright">
+            <option value="@Constants.i18n("emptyGuid")">@Constants.i18n("newTitle")</option>
+            {{
+            var idx = 0;
+            var length = it.formTemplateCategories.length;
+            for (idx; idx < length; idx++) {
+                var attrs = { selected: it.formTemplateCategories[idx] === it.Category ? 'selected' : undefined };
+            }}
+            {{=Utility.safeHtmlValue(it.formTemplateCategories[idx], { attrs: attrs, tag: 'option', text: it.formTemplateCategories[idx] }) }}
+            {{
+            }
+            }}
+        </select>
+    </div>
+    <div class="fullWidth inlineblock">
+        <span class="fleft">@Constants.i18n("name")</span>
+        {{=Utility.safeHtmlValue(it.Name, { tag: 'input', 'class': 'fright', attrs: { name: 'Name', type: 'text' } })}}
+    </div>
+    <div class="fullWidth inlineblock">
+        <span class="fleft">@Constants.i18n("description")</span>
+        {{=Utility.safeHtmlValue(it.Description, { tag: 'textarea', 'class': 'textareaResizeNone fright', attrs: { name: 'Description' } })}}
+    </div>
+    @* Page Size *@
+    <div class="fullWidth inlineblock">
+        <span class="fleft">@Constants.i18n("pageSize")</span>
+        <select class="fright" name="PageSize">
+            {{ var revPs = Utility.reverseMapObject(Constants.ps); }}
+            <option value="{{=Constants.ps.Letter}}" {{=it.PageSize === Constants.ps.Letter ? 'selected="selected"' : ''}}>{{=revPs[Constants.ps.Letter] }}</option>
+            {{
+            var i = 0;
+            var pageSizes = Utility.formatObjectIntoOrderedArray(Constants.ps);
+            var length = pageSizes.length;
+            for(i; i < length; i++) {
+                if (pageSizes[i] !== revPs[Constants.ps.Letter] &&
+                    pageSizes[i] !== revPs[Constants.ps.None] &&
+                    pageSizes[i] !== revPs[Constants.ps.BusinessCard]) {
+            }}
+            <option value="{{=Constants.ps[pageSizes[i]]}}" {{=it.PageSize === Constants.ps[pageSizes[i]] ? 'selected="selected"' : ''}}>{{=pageSizes[i] }}</option>
+            {{
+                }
+            }
+            }}
+        </select>
+    </div>
+    @* Orientation *@
+    <div class="fullWidth inlineblock">
+        <span class="fleft">@Constants.i18n("pageOrientation")</span>
+        <select class="fright" name="Orientation">
+            <option {{=it.isLandscape ? "selected='selected'" : ''}} value="{{=Constants.fp.Landscape}}">@Constants.i18n("landscape")</option>
+            <option {{=it.isPortrait ? "selected='selected'" : ''}} value="{{=Constants.fp.Portrait}}">@Constants.i18n("portrait")</option>
+        </select>
+    </div>
+    @* Create As Draft *@
+    {{if(it.canCreateAsDraft) { }}
+    <div class="fullWidth inlineblock">
+        <label>
+            <span class="fleft">@Constants.i18n("startAsDraft")</span>
+            <input class="fright" type="checkbox" name="CreateAsDraft" {{=it.CreateAsDraft ? 'checked="checked"' : ''}} />
+        </label>
+    </div>
+    {{ } }}
+    @* Show Grid Background *@
+    <div class="fullWidth inlineblock">
+        <label>
+            <span class="fleft">@Constants.i18n("displayGrid")</span>
+            <input class="fright" type="checkbox" name="DisplayGrid" {{=it.DisplayGrid ? 'checked="checked"' : ''}} />
+        </label>
+    </div>
+    @* Snap To Grid size *@
+    <div class="fullWidth inlineblock">
+        <label>
+            <span class="fleft">@Constants.i18n("snapToGrid")</span>
+            <input class="fright" type="number" min="1" max="100" name="SnapToGridSize" value="{{=it.SnapToGridSize}}" />
+        </label>
+    </div>
+    @* CSS Layout *@
+    <div class="fullWidth inlineblock">
+        <span class="fleft">@Constants.i18n("cssLayout")</span>
+        <textarea class="fright textareaResizeNone" name="CSSLayout">{{=it.CSSLayout}}</textarea>
+    </div>
+    @* Javascript *@
+    <div class="fullWidth inlineblock">
+        <span class="fleft">@Constants.i18n("javascript")</span>
+        <span class="editJavascript ui-icon ui-icon-pencil"></span>
+    </div>
+    @* Execute Javascript On Render*@
+    <div class="fullWidth inlineblock">
+        <label>
+            <span class="fleft">@Constants.i18n("renderWithJavascript")</span>
+            <input class="fright" type="checkbox" name="ExecuteJavascriptOnRender" {{=it.ExecuteJavascriptOnRender ? 'checked="checked"' : ''}} />
+        </label>
+    </div>
+
+    @* TabOrderEditor *@
+    <div class="fullWidth inlineblock">
+        <span class="fleft">@Constants.i18n("tabOrderEditor")</span>
+        <span class="editTabOrder ui-icon ui-icon-pencil"></span>
+    </div>
+
+    @* Group Element layout mode*@
+    <div class="fullWidth inlineblock">
+        <span class="fleft">@Constants.i18n("groupElementLayoutMode")</span>
+        <div class="fright radioButtonContainer">
+            <label>
+                <input class="fleft" type="radio" name="groupRenderMode" value="flowLayout" {{=!it.groupGridLayout ? 'checked="checked"' : ''}} title="@Constants.i18n("flowLayoutTooltip")" />
+                <span class="fleft">@Constants.i18n("flow")</span>
+            </label>
+            <label>
+                <input class="fleft" type="radio" name="groupRenderMode" value="gridLayout" {{=it.groupGridLayout ? 'checked="checked"' : ''}} title="@Constants.i18n("gridLayoutTooltip")" />
+                <span class="fleft">@Constants.i18n("grid")</span>
+            </label>
+        </div>
+    </div>
+    <fieldset>
+        <legend>@Constants.i18n("submitOptions")</legend>
+        @* Complete on Sumbit*@
+        <div class="fullWidth inlineblock">
+            <label>
+                <span class="fleft">@Constants.i18n("completeForm")</span>
+                <input class="fright" type="checkbox" name="CompleteOnSubmit" {{=it.CompleteOnSubmit ? 'checked="checked"' : ''}} />
+            </label>
+        </div>
+        <div class="fullWidth inlineblock">
+            <label>
+                <span class="fleft">@Constants.i18n("submitWorkflow")</span>
+                <input class="fright" type="checkbox" name="ExecuteWorkflowUIOnSubmit" {{=it.ExecuteWorkflowUIOnSubmit ? 'checked="checked"' : ''}} />
+            </label>
+        </div>
+    </fieldset>
+    {{ if (it.canCreateLink) { }}  
+    @* Public form link*@
+    <div class="fullWidth inlineblock">
+        <span class="fleft">@Constants.i18n("publicFormLink")</span>
+        <span class="custom_button short_btn fright createPublicLink">@Constants.i18n("create")</span>
+    </div>
+    {{ } }}
+</div>

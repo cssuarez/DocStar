@@ -1,0 +1,46 @@
+﻿@using Astria.Framework.Utility;
+<fieldset>
+    <legend>@Constants.i18n("groupSettings")</legend>
+    <div class="fullWidth">
+        <span class="fleft">@Constants.i18n("repeatDirection")</span>
+        <select class="fright" name="RepeatDirection">
+            <option value="{{=Constants.rd.Horizontally}}" {{=it.repeatHorizontally ? "selected='selected'" : ''}}>@Constants.i18n("rd_Horizontally")</option>
+            <option value="{{=Constants.rd.Vertically}}" {{=it.repeatVertically ? "selected='selected'" : ''}}>@Constants.i18n("rd_Vertically")</option>
+        </select>
+        @* spacing *@
+        <label class="fleft">
+            <span>@Constants.i18n("spacing")</span>
+            <input type="number" value="{{=it.spacing}}" name="spacing" />
+        </label>
+    </div>
+    @* MinCount *@
+    <label>
+        <span>@Constants.i18n("minCount")</span>
+        <input type="number" value="{{=it.MinCount}}" name="MinCount" />
+    </label>
+    @* MaxPerPage *@
+    <label>
+        <span>{{=it.maxPerPageLabel}}</span>
+        @* the below span comes before the input due to both floating right *@
+        {{if(it.isFlowLayout) { }}
+        <span class="fright flow">@Constants.i18n("rows").ToLowerInvariant()</span>
+        {{ } }}
+        <input type="number" class="{{=it.isFlowLayout ? 'flow' : ''}}" value="{{=it.MaxPerPage}}" name="MaxPerPage" />
+        
+    </label>
+    @* SortById *@
+    <label>
+        <span>@Constants.i18n("sortBy")</span>
+        <select name="SortById">
+            @* Fill in with the custom field group custom field names *@
+            {{
+                var idx = 0;
+                var length = it.sortByItems.length;
+                for(idx; idx < length; idx++) {
+                    var attrs = { selected: it.sortByItems[idx].selected };
+            }}
+            {{=Utility.safeHtmlValue(it.sortByItems[idx].Id, {attrs: attrs, 'tag': 'option', 'text': it.sortByItems[idx].Name}) }}
+            {{ } }}
+        </select>
+    </label>
+</fieldset>

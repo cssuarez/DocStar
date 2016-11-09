@@ -1,0 +1,27 @@
+﻿@using Astria.Framework.Utility
+<li class="pageOptionsContainer" style="{{=it.thumbnailsHide ? 'display: none;' : ''}}">
+    <div class="menu_item">
+        <span>&nbsp;</span>
+        <span class="anchor" title="@Constants.i18n("pageOptions")">@Constants.i18n("pageOptions")</span>
+        <span class="ui-icon ui-icon-triangle-1-e right_icon">&nbsp;</span>
+    </div>
+    <ul class="submenu">
+        <li>
+            @* Page Reordering *@
+            <div class="menu_item reorderPages">
+                <span>&nbsp;</span>
+                <span class="anchor" title="@Constants.i18n("reorderPages")">@Constants.i18n("reorderPages")</span>
+            </div>
+        </li>
+        <li>
+            @* Burst Content *@
+        </li>
+        <li>
+            @* Delete Content *@
+            <div class="menu_item deletePages">
+                <span>&nbsp;</span>
+                <span class="anchor" title="@Constants.i18n("deletePages")">@Constants.i18n("deletePages")</span>
+            </div>
+        </li>
+    </ul>
+</li>

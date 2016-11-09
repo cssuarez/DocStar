@@ -1,0 +1,38 @@
+﻿@using Astria.Framework.Utility;
+<div class="clientPairingHelp">
+    <span class="fleft inlineblock fullWidth helpLabel">@Constants.i18n("captureHelp1")</span>
+    <div class="fleft inlineblock fullWidth">
+        <pre class="fleft">@Constants.i18n("captureHelp2")</pre>
+        <a class="custom_button long_btn shadow" href="{{= window.clientServiceInstallUri}}">@Constants.i18n("clientInstall")</a>
+    </div>
+    <div class="fleft inlineblock fullWidth">
+        <pre class="fleft">@Constants.i18n("captureHelp3")</pre>
+        <span class="systrayIcon sPngIB"></span>
+    </div>
+    <div class="fleft inlineblock fullWidth">
+        <pre class="fleft">@Constants.i18n("captureHelp4")</pre>
+        <div class="fleft inlineblock fullWidth">
+            <img class="systrayCap" alt="@Constants.i18n("localSystemAccessCap")" src="@System.Web.Mvc.UrlHelper.GenerateContentUrl("~/Content/images/local_system_access_screen_cap.png", new HttpContextWrapper(HttpContext.Current))"/>
+        </div>
+    </div>
+    <div class="fleft inlineblock fullWidth">
+        <pre class="fleft">@Constants.i18n("captureHelp5")</pre>
+        <div class="fleft inlineblock fullWidth">
+            <img alt="@Constants.i18n("clientPairingCap")" src="@System.Web.Mvc.UrlHelper.GenerateContentUrl("~/Content/images/eclipse_client_not_connected_screen_cap.png", new HttpContextWrapper(HttpContext.Current))"/>
+        </div>
+        <hr />
+        <pre class="fleft">@Constants.i18n("captureHelp5A")</pre>
+        <div class="fleft inlineblock fullWidth">
+            <img class="userPrefCap" alt="@Constants.i18n("clientPairingCap")" src="@System.Web.Mvc.UrlHelper.GenerateContentUrl("~/Content/images/user_preferences_screen_cap.png", new HttpContextWrapper(HttpContext.Current))"/>
+        </div>
+    </div>
+    <div class="fleft inlineblock fullWidth">
+        <pre class="fleft">@Constants.i18n("captureHelp6")</pre>
+    </div>
+    <div class="fleft inlineblock fullWidth">
+        <b>
+            <pre class="fleft">@Constants.i18n("captureHelp7")</pre>
+            <pre class="fleft">@Constants.i18n("captureHelp8")</pre>
+        </b>
+    </div>
+</div>

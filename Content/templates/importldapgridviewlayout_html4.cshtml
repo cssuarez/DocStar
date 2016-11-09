@@ -1,0 +1,25 @@
+﻿@using Astria.Framework.Utility;
+<table class="customGridTable">
+    <thead>
+        <tr>
+            <th class="customGridHeader selectionHeader">
+                <input type="checkbox" class="selectAllItems" {{=it.allSelected ? 'checked="checked"' : ''}} />
+            </th>
+            {{
+                var i = 0;
+                var length = it.headers.length;               
+                for (i; i < length; i++) {
+                    if (it.headers[i] === undefined) { continue; }
+            }}
+            <th class="customGridHeader" style="{{=it.headers[i].style}}" data-columnid="{{=it.headers[i].colId}}">
+                <div>
+                    {{=it.headers[i].value}}
+                </div>
+            </th>
+            {{ } }}
+        </tr>
+    </thead>
+    <tbody>
+        @*ImportLDAPGridViewItems Rendered Here*@
+    </tbody>
+</table>
