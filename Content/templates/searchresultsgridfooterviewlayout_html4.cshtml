@@ -1,0 +1,43 @@
+﻿@using Astria.Framework.Utility;
+{{ if (it.footers.length > 0) { }}      @*Not used yet, but maybe in the future*@
+
+    <td class="customGridDataCell"></td> @*selection Header*@
+    <td class="customGridDataCell"></td> @*subgrid Header*@
+    <td class="customGridDataCell"></td> @*edit Header*@
+    <td class="customGridDataCell"></td> @*type Header*@
+    {{
+    var i = 0;
+    var length = it.footers.length;
+    for (i; i < length; i++) {
+    if (it.footers[i] === undefined) { continue; }
+    }}
+    <td class="customGridDataCell" data-footerid="{{=it.footers[i].id}}" style="{{=it.footers[i].style}}">{{=it.footers[i].value}}</td>
+    {{ } }}
+
+  {{ } }}
+    <td colspan="{{=it.headers.length + (it.regionMode ? 1 : 4)}}"> @*+4 for the static columns*@
+    {{if (!it.regionMode) { }}
+    <div class="fleft customGridPagerButton">
+        <span class="columnSelector ui-icon ui-icon-calculator"></span>
+    </div>
+    {{ } }}
+    {{if(it.showGridRefresh) { }}
+    <div class="fleft customGridPagerButton">
+        <span class="refreshGrid ui-icon ui-icon-refresh"></span>
+    </div>
+    {{ } }}
+    <div class="fright viewCount">
+        <span>{{=it.viewCount}}</span>
+    </div>
+    <div class="customGridPagerNavigation">
+        <span class="navigateFirstPage ui-icon ui-icon-seek-first {{=it.firstClass}}"></span>
+        <span class="navigatePreviousPage ui-icon ui-icon-seek-prev {{=it.prevClass}}"></span>
+        <span class="ui-separator"></span>
+        <span class="customGridPagerText">@Constants.i18n("page")</span>
+        <input class="navigateToPage" {{=it.navigateInputEnabled ? '' : 'disabled="disabled"' }} type="number" value="{{=it.page}}" />
+        <span class="customGridPagerText">{{=it.ofPages}}</span>
+        <span class="ui-separator"></span>
+        <span class="navigateNextPage ui-icon ui-icon-seek-next {{=it.nextClass}}"></span>
+        <span class="navigateLastPage ui-icon ui-icon-seek-end {{=it.lastClass}}"></span>
+    </div>
+</td>

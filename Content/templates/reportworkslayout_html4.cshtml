@@ -1,0 +1,24 @@
+﻿@using Astria.Framework.Utility;
+<div class="navigationLayout light_shadow_right displayTableCell">
+    <div class="showHideArrow posAbs">
+        <span class="collapse_arrow"></span>
+    </div>
+    {{ if(it.reportRunnerExists) { }} 
+    <div class="categoryLayout">
+        <div>
+            <div id="categoryList"></div>
+        </div>
+    </div>
+    <hr />
+    <div class="dashboardLayout">
+        <div>
+            <div id="dashboardList"></div>
+        </div>
+    </div>
+    {{ } }}
+</div>
+<div class="mainLayout displayTableCell">
+    {{if(!it.reportRunnerExists) { }}
+        <span class="spacingTopLeft inlineblock">@Constants.i18n("noReportRunnerForSite")</span>
+    {{ } }}
+</div>

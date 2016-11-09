@@ -1,0 +1,23 @@
+﻿{{
+    it = it || {};
+    var showProgressCont = it.showProgressCont || 'display: none;';
+    var progressIndeterminate = it.progressIndeterminate;
+    var showIndeterminate = 'displayNone';
+    var showProgressBar = 'inlineblock';
+    if(progressIndeterminate) {
+        showIndeterminate = 'inlineblock';
+        showProgressBar = 'displayNone';
+        
+    }
+    var progress = 'width:' + it.progressValue + '%;';
+    var progressStatus = it.progressStatus || '';
+}}
+<div style="{{=showProgressCont}}" class="progressCont fleft">
+    <div class="progressIndeterminate {{=showIndeterminate}}">
+        <span></span>
+    </div>
+    <div class="progressBar {{=showProgressBar }}">
+        <span style="{{=progress }}" class="progress"></span>
+        <span class="progressStatus">{{= progressStatus}}</span>
+    </div>
+</div>

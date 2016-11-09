@@ -1,0 +1,36 @@
+﻿@using Astria.Framework.Utility;
+{{
+    var newSelected = true;
+    if(it.selected && it.selected.get('Id') !== Constants.c.emptyGuid) {
+        newSelected = false;
+    }
+    var disabledIcon = "";
+    var disabled = "";
+    if(newSelected) {
+        disabledIcon = "disabledIcon";
+        disabled = "disabled";
+    }
+}}
+<div class="savedSearchLayout fleft inlineblock" title="@Constants.i18n("savedSearch")">
+    <div class="fleft inlineblock savedSearchListContainer">
+        <select class="savedSearchList">
+            <option id="@Constants.i18n("emptyGuid")" selected="selected">@Constants.i18n("newTitle")</option>
+            {{ if(it.list) { }}
+            {{ var length = it.list.length; }}
+            {{ for(var i = 0; i < length; i++) { }}
+            {{ var savedSearch = it.list.at(i); }}
+            {{ var selected = it.selected && it.selected.get('Id') === savedSearch.get('Id') && !newSelected ? 'selected="selected"' : ''; }}
+            <option id="{{=savedSearch.get('Id')}}" {{=selected}}>{{=savedSearch.get('Name')}}</option>
+            {{ } }}
+            {{ } }}
+        </select>
+    </div>
+    <div class="fright posRel buttons">
+        <span class="custom_button shadow deleteSearch {{=disabled}}">
+            <span class="deleteIcon sPngIB {{=disabledIcon}}" title="@Constants.i18n("deleteSearch")"></span>
+        </span>
+            <span class="custom_button shadow saveSearch disabled">
+            <span class="saveIcon sPngIB disabledIcon" title="@Constants.i18n("saveSearch")"></span>
+        </span>
+    </div>
+</div>

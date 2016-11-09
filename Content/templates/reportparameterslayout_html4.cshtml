@@ -1,0 +1,66 @@
+﻿@using Astria.Framework.Utility;
+<span class="label">{{=it.Name}}:</span>
+{{ if(it.ValidValues && it.ValidValues.length > 0) { }}
+    <select id="{{=it.Name}}" name="{{=it.Name}}" class="fleft" {{=it.disabledDefault}} {{=it.HasMultipleValues}}>
+        {{ if(it.IsMultiValued) { }} 
+            {{=Utility.safeHtmlValue("@Constants.i18n("all")", {attrs:{selected: it.HasSelected ? undefined : 'selected'}, tag:'option', text: "@Constants.i18n("all")" })}}
+        {{ } }}
+        {{
+        var i = 0;
+        var length = it.ValidValues.length;
+        for(i = 0; i < length; i++) {
+            var vv = it.ValidValues[i];
+            var name = vv.Label;
+            var value = vv.Value;
+        }}
+        {{=Utility.safeHtmlValue(value, {attrs:{ selected: vv.Selected ? 'selected' : undefined, name: name }, tag:'option', text: name })}}
+        {{ } }}
+    </select>
+{{ } else { }}
+    @* Standard Fields *@
+    {{ var value = it.Values && it.Values.length > 0 ? it.Values[0] : ''; }}
+    {{ switch (it.Type) { 
+            case 'Boolean': }}
+            <input id="{{=it.Name}}" name="{{=it.Name}}" type="checkbox" value="{{=value}}" class="fleft" {{=it.disabledDefault}} />
+        {{ break; 
+            case 'DateTime': }}
+            <input id="{{=it.Name}}" name="{{=it.Name}}" type="text" class="datepicker fleft inlineblock" value="{{=value}}" {{=it.disabledDefault}} />
+            <select class="dynamicDates ignore" name="{{=it.Name}}" style="display: none;">
+                {{ var i = 0; }}
+                {{ var length = it.dynamicDates.length; }}
+                {{ for(i = 0; i < length; i++) { }}
+                    {{=Utility.safeHtmlValue(it.dynamicDates[i].value, {attrs:{ selected: it.DynamicValue === it.dynamicDates[i].value ? 'selected' : undefined }, tag:'option', text: it.dynamicDates[i].value })}}
+                {{ } }}
+            </select>
+            <span class="date_icon sPng inlineblock fleft"></span>
+        {{ break;
+            case 'Float': }}
+            <input id="{{=it.Name}}" name="{{=it.Name}}" type="number" value="{{=value}}" class="number_Float fleft" {{=it.disabledDefault}} />
+        {{ break; 
+            case 'Integer': }}
+            <input id="{{=it.Name}}" name="{{=it.Name}}" type="number" value="{{=value}}" class="number_Integer fleft" {{=it.disabledDefault}} />
+        {{ break; 
+            case 'String':     @* Intentional fall through *@
+            default: }}
+            {{ if(it.IsTypeAhead) { }} 
+                <input id="{{=it.Name}}" name="{{=it.Name}}" type="text" value="{{=value}}" disabled="disabled" class="{{= it.IsTypeAhead ? 'typeAhead' : ''}} fleft" {{=it.dataDataSetId}} {{=it.disabledDefault}} />
+            {{ } else { }}
+                <input id="{{=it.Name}}" name="{{=it.Name}}" type="text" value="{{=value}}" class="fleft" {{=it.disabledDefault}} />
+            {{ } }}
+        {{ break; }}
+    {{ } }}
+{{ } }}
+<div class="inlineblock fleft posRel parameterValueProperties">
+    {{ if(it.displayUseDefault) { }}
+    <label class="fleft no_text_select">
+        {{=Utility.safeHtmlValue('', {attrs:{ checked: it.UseDefault === false ? undefined : 'checked', type: 'checkbox' }, tag:'input', 'class': 'useDefault' })}}
+        @Constants.i18n("useDefault")
+    </label>
+    {{ } }}
+    {{ if(it.Type === 'DateTime') { }}
+    <label class="fleft no_text_select">
+        {{=Utility.safeHtmlValue('', {attrs:{ checked: it.UseDynamic === true ? 'checked' : undefined, type: 'checkbox' }, tag:'input', 'class': 'useDynamic' })}}
+        @Constants.i18n("useDynamic")
+    </label>
+    {{ } }}
+</div>

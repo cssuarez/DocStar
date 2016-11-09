@@ -1,0 +1,46 @@
+﻿@using Astria.Framework.Utility;
+<div class="schedulingLayout">
+    {{ if(it.displayActive){ }}
+    <div class="inlineblock fullWidth">
+        @* Whether or not the schedule is active *@
+        <span class="metaLabel inlineblock radioLabelSpacing">@Constants.i18n("active"):</span>
+        {{= Utility.safeHtmlValue(it.selected.Status, {attrs:{type:'checkbox', checked: it.selected.Status === Constants.js.Active ? 'checked' : undefined, name: 'Status' }, tag:'input' })}}
+    </div>   
+    {{ } }}
+    <div class="inlineblock fullWidth">
+        <span class="metaLabel inlineblock fleft">{{=it.recurEvery}}</span>
+        <div class="inlineblock fleft">
+            {{= Utility.safeHtmlValue(it.selected.Frequency || 1, { 'class': 'fleft', attrs:{type:'number',name: 'Frequency',min:1,max:1000}, tag:'input' })}}
+            {{  
+                var refEF = Utility.reverseMapObject(Constants.ef);
+                var et = it.executionTypes[0];
+                var length=it.executionTypes.length;
+                        if(length===1) { }}
+                            <span class="inlineblock spacingLeftSmall">{{= et.Value }}</span> 
+                            <input type="hidden" name="ExecutionType" value="{{= refEF[et.Key] }}" />
+                            
+                    {{  } else { }}
+                    <select name="ExecutionType">
+                    {{
+                    var idx = 0;
+                    for(idx; idx < length; idx++) {
+                        et = it.executionTypes[idx];
+                }}
+                        {{= Utility.safeHtmlValue(refEF[et.Key], { attrs: {selected: it.selected.ExecutionType === et.Key ? 'selected' : undefined}, tag:'option', text: et.Value})}}
+                {{
+                    }
+                }}
+                </select>
+            {{  } }}
+        </div>
+        @* The date/time for the schedule to use for execution *@
+        <div class="inlineblock fleft">
+            <span class="inlineblock spacingLeftRight fleft">@Constants.i18n("starting")</span>
+            {{= Utility.safeHtmlValue(it.selected.ExecutionTime || '', {'class': 'fleft', attrs:{type:'datetime', name: 'ExecutionTime'}, tag:'input' })}}
+            <span class="date_icon inlineblock fleft posRel"></span>
+        </div>
+        <input type="hidden" name="FrequencyValidation" />
+        <input type="hidden" name="ExecutionTypeValidation" />
+        <input type="hidden" name="ExecutionTimeValidation" />
+    </div>
+</div>

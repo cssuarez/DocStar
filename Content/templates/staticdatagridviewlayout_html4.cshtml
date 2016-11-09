@@ -1,0 +1,41 @@
+﻿@using Astria.Framework.Utility;
+<table class="customGridTable">
+    <thead>
+        <tr>
+            {{
+            var i = 0;
+            var length = it.headers.length;
+            for (i; i < length; i++) {
+                var h = it.headers[i];
+            }}
+            <th class="customGridHeader {{=h.columnId ? 'customGridSortable' : ''}}" data-columnid="{{=h.columnId || ''}}" style="{{=h.style || ''}}">
+                {{=h.value}}
+            </th>
+            {{ } }}
+        </tr>
+    </thead>
+    <tbody>
+        {{
+        i = 0;
+        length = it.rows.length;
+        for (i; i < length; i++) {
+            var r = it.rows[i];
+        }}
+        <tr class="{{=r.rowClass || ''}}" data-rowid="{{=r.id || ''}}">
+                        {{
+            var vi = 0;
+            var vlength = r.values.length;
+            for (vi; vi < vlength; vi++) {
+                var v = r.values[vi];
+            }}
+            <td class="customGridDataCell">
+                <div class="valueContainer">
+                    {{=v || '&nbsp;'}}
+                </div>
+            </td>
+            {{ } }}         
+        </tr>
+        {{ } }}
+        <tr class="emptyGridRow"><td colspan="{{=it.headers.length}}"></td></tr>
+    </tbody>
+</table>

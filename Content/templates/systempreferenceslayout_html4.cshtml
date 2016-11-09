@@ -1,0 +1,67 @@
+﻿@using Astria.Framework.Utility;
+{{
+    if (!it.list.isEmpty()) { 
+        var typeSelected = it.selected.get("Type");
+        if(typeSelected.match(/bool/ig)) {
+            typeSelected = 'bool';
+        }
+        else if(typeSelected.match(/int/ig)) {
+            typeSelected = 'int';
+        }
+        else if(typeSelected.match(/datetime/ig)) {
+            typeSelected = 'datetime';
+        }        
+        else {
+            typeSelected = 'string';
+        }
+    }
+    var dummmy = 'dummy';
+}}
+<h2>@Constants.i18n("editSiteSettings")</h2>
+<div id="systemsettings_layout">
+    <fieldset>
+        <legend>@Constants.i18n("siteSettings")</legend>
+        <ol class="unstyledList">
+            <li>
+                <span class="metalabel fleft">@Constants.i18n("selectSiteSetting"):</span>
+                <select name="Id" size="10">
+                {{ it.list.each(function(item) { }}
+                    {{  var name = item.get('Name');
+                        name = Constants.c[name] || name;
+                        if (it.selected.get("Id") === item.get("Id")) { }}
+                        <option value="{{= it.selected.get('Id') }}" selected="selected">{{= name }}</option>
+                    {{ } else { }}
+                        <option value="{{= item.get('Id') }}">{{= name }}</option>
+                    {{ } }}    
+                {{ }); }}
+                </select>
+            </li>
+        </ol>
+        <ol class="unstyledList">            
+            <li>
+                <label>@Constants.i18n("name"):</label>
+                {{ var editName = it.selected.get('Name');
+                   editName = Constants.c[editName] || editName; }}
+                <input type="text" name="Name" value="{{= editName }}" />
+                <input type="hidden" name="InstanceId" value="{{= it.selected.get('InstanceId') }}" />
+            </li>
+            <li>
+                <label>@Constants.i18n("type"):</label>
+                <select name="Type">
+                    <option value="Bool" {{=(typeSelected==="boolean") ? 'selected="selected"' : '' }}>@Constants.i18n("bool")</option>
+                    <option value="String" {{=(typeSelected==="string") ? 'selected="selected"' : '' }}>@Constants.i18n("string")</option>
+                    <option value="Int" {{=(typeSelected==="int") ? 'selected="selected"' : '' }}>@Constants.i18n("int")</option>
+                    <option value="DateTime" {{=(typeSelected==="datetime") ? 'selected="selected"' : '' }}>@Constants.i18n("datetime")</option>
+                </select>
+            </li>
+            <li id="val_type_cont">
+                <label>@Constants.i18n("value"):</label>
+                <!-- input added dynamically -->
+            </li>
+        </ol>
+    </fieldset>
+</div>
+<div class="buttons">
+    <input type="button" name="save_ss" value="@Constants.i18n("save")" />    
+    <input type="hidden" name="errors_ss" />
+</div>

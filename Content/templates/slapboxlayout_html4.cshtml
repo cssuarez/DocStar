@@ -1,0 +1,42 @@
+﻿@using Astria.Framework.Utility;
+{{
+    var primary = it.listPrimary;
+    var inclusion = it.listInclusion;
+    var prLen = primary.length;
+    var inLen = 0;
+    if(inclusion) {
+        inLen = inclusion.length;
+    }
+    var getFunc = it.getData;
+}}
+<div class="slapBox">
+    @*List containing all elements minus those in the inclusion list below*@
+    <div>
+        <span class="fullWidth inlineblock spacingLeftBottomSmall bold block">@Constants.i18n("available")</span>
+        <select multiple="multiple" class="primaryList">
+            {{  primary.each(function (item) { }}
+                    <option id="{{= getFunc(item).id}}">{{= Utility.safeHtmlString(getFunc(item).name)}}</option>
+            {{  }); }}
+        </select>
+    </div>
+    @*Buttons to add/remove from the inclusion list*@
+    <div>
+        <span class="addToInclusion ui-icon ui-icon-arrowthick-1-e">
+        </span>
+        <span class="removeFromInclusion ui-icon ui-icon-arrowthick-1-w">
+        </span>
+    </div>
+    @*List containing selected elements*@
+    
+    <div>
+        <span class="fullWidth inlineblock spacingLeftBottomSmall bold block">@Constants.i18n("selected")</span>
+        <select multiple="multiple" class="inclusionList">
+        {{  if(inclusion) {
+                inclusion.each(function (item) { }}
+                    <option></option>
+        {{      });
+            } 
+        }}            
+        </select>
+    </div>
+</div>

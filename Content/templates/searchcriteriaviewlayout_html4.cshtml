@@ -1,0 +1,136 @@
+﻿@using Astria.Framework.Utility;
+@using Astria.Framework.DataContracts;
+{{ 
+    var i = 0;
+    var length = 0;
+}}
+<div data-accid="items_location">
+    <div class="accordion_title accordion_title_{{=it.itemAccordionClosed}}">
+        <div class="accordion_title_contents">
+            <div class="title_arrow">
+            </div>
+            <span class="anchor">@Constants.i18n("itemsLocations")</span>
+            <span class="swoosh"></span>
+        </div>
+    </div>
+    <div class="accordion {{=it.itemAccordionClosed}}">
+        <div class="items_location_container">
+            <span class="items_label">@Constants.i18n("show"):</span>
+            <div class="items_checkbox">
+                <div class="fold_check">
+                    <input name="IncludeFolders" type="checkbox" {{=it.includeFoldersState}} />
+                    <span>@Constants.i18n("folders")</span>
+                </div>
+                <div class="inbox_check">
+                    <input name="IncludeInboxes" type="checkbox" {{=it.includeInboxesState}} />
+                    <span>@Constants.i18n("inboxes")</span>
+                </div>
+                <div class="doc_check">
+                    <input name="IncludeDocuments" type="checkbox" {{=it.includeDocumentsState}} />
+                    <span>@Constants.i18n("documents")</span>
+                </div>
+            </div>
+            <div class="items_search">
+                <div class="container_search">
+                    <p class="items_text_title">
+                        @Constants.i18n("lookContainer"):
+                    </p>
+                    <input class="folder_criteria" type="text" name="look_in_folder" value="{{=it.lookInFolderName}}" />
+                    <span class="search_icon"></span>
+                </div>
+                <div class="ct_search">
+                    <p class="items_dropdown_title">
+                        @Constants.i18n("contentType"):
+                    </p>
+                    <select name="ContentTypeId">
+                        <option></option>
+                        {{
+                    i = 0;
+                    length = it.contentTypes.length;
+                    for (i; i < length; i++) {
+                        var ct = it.contentTypes[i];
+                        }}
+                        <option value="{{=ct.Id}}" {{=ct.state}}>{{=ct.Name}}</option>
+                        {{ } }}
+                    </select>
+                </div>
+            </div>
+            <div class="items_radio fullWidth">
+                <div>@Constants.i18n("predefinedSearch"):</div>
+                <div>
+                    <label class="displayTable">
+                        @* All is used as display text so that everything will be searched and no predefined search will be used *@
+                        <input type="radio" class="displayTableCell verticalAlignMiddle" name="PredefinedSearch" value="@((int)PredefinedSearch.None)" {{=it.predefNoneState}} />
+                        <span class="displayTableCell verticalAlignMiddle">@Constants.i18n("workflow_all")</span>
+                    </label>
+                </div>
+                <div>
+                    <label class="displayTable">
+                        <input type="radio" class="displayTableCell verticalAlignMiddle" name="PredefinedSearch" value="@((int)PredefinedSearch.MyAlerts)" {{=it.predefAlertsState}} />
+                        <span class="displayTableCell verticalAlignMiddle">@Constants.i18n("myAlerts")</span>
+                    </label>
+                </div>
+                <div>
+                    <label class="displayTable">
+                        <input type="radio" class="displayTableCell verticalAlignMiddle" name="PredefinedSearch" value="@((int)PredefinedSearch.MyWorkflows)" {{=it.predefWorkflowsState}} />
+                        <span class="displayTableCell verticalAlignMiddle">@Constants.i18n("myWorkflows")</span>
+                    </label>
+                </div>
+                <div>
+                    <label class="displayTable">
+                        <input type="radio" class="displayTableCell verticalAlignMiddle" name="PredefinedSearch" value="@((int)PredefinedSearch.MyApprovals)" {{=it.predefApprovalsState}} />
+                        <span class="displayTableCell verticalAlignMiddle">@Constants.i18n("myApprovals")</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div data-accid="field_search">
+    <div class="accordion_title accordion_title_{{=it.fieldAccordionClosed}}">
+        <div class="accordion_title_contents">
+            <div class="title_arrow">
+            </div>
+            <span class="anchor">@Constants.i18n("searchFields")</span> <span class="swoosh"></span>
+        </div>
+    </div>
+    <div class="accordion {{=it.fieldAccordionClosed}}">
+        <div class="fieldSearchViewContainer">
+        </div>
+    </div>
+</div>
+<div data-accid="text_search">
+    <div class="accordion_title accordion_title_{{=it.textAccordionClosed}}">
+        <div class="accordion_title_contents">
+            <div class="title_arrow">
+            </div>
+            <span class="anchor">@Constants.i18n("text")</span> <span class="swoosh"></span>
+        </div>
+    </div>
+    <div class="accordion {{=it.textAccordionClosed}}">
+        <div class="text_container">
+            <div class="text_word_search">
+                <span>@Constants.i18n("wordPhrase"):</span>
+                <span>@Constants.i18n("suggestedVocab"):</span>
+            </div>
+            <div class="text_vocabulary">
+                <input class="text_word_phrase_text" type="text" name="search_criteria" value="{{=it.textSearch}}" />
+                <div class="clearfix shadow vocab_suggestions_container">
+                    <ul class="vocab_suggestions"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="search_btns">
+    <div class="search">
+        <a class="reset_btn shadow_bottom">@Constants.i18n("clear")</a>
+        <div class="search_btn shadow_bottom">
+            @Constants.i18n("search")
+            <span class="button_icon ui-icon ui-icon-search"></span>
+        </div>
+</div>
+    <div class="RetrieveSavedSearchView fright inlineblock"></div>
+    <input type="hidden" name="search_error" />
+</div>

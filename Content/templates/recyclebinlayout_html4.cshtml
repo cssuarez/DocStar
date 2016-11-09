@@ -1,0 +1,16 @@
+﻿@using Astria.Framework.Utility;
+<h2>@Constants.i18n("recycleBin")</h2>
+<div class="inlineblock deletedDocsGridContainer">
+</div>
+<div class="buttons">
+    <input type="button" name="restore_docs" value="@Constants.i18n("restore")" />
+    <input type="button" name="delete_docs" value="@Constants.i18n("delete")" />
+    <input type="button" name="refresh_docs" value="@Constants.i18n("refresh")" />
+
+    <input type="hidden" name="rb_Error" />
+    <div><span id="statusMsg"></span></div>
+</div>
+<div id="delete_Confirm" style="display: none">
+    <div>@Constants.i18n("deleteConfirm")</div>
+    <div><span id="selectionCount"></span><span> @Constants.i18n("selectionCount")</span></div>
+</div>

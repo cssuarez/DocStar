@@ -1,0 +1,29 @@
+﻿@using Astria.Framework.Utility;
+<div class="fright fullWidth">
+    <span class="label">@Constants.i18n("name")</span>
+    <select name="Id">
+        {{
+        var idx = 0;
+        var length = it.collection.length;
+        for(idx; idx < length; idx++) {
+            var item = it.collection.at(idx);
+            var itemId = item.get('Id');
+            var selected = itemId === it.selected.get('Id') ? 'selected': undefined;
+            var attrs = { selected: selected };
+        }}
+        {{=Utility.safeHtmlValue(itemId, { attrs: attrs, tag: 'option', text: item.get('Name')})}}
+        {{
+        }
+        }}
+    </select>
+    {{ if (it.selected.get('Id') !== Constants.c.emptyGuid ) { }}
+    <span class="ui-icon ui-icon-close spacingLeftSmall" title="@Constants.i18n("delete")"></span>
+    {{ } }}
+    <input name="Name" type="hidden" />
+</div>
+<div class="fright fullWidth">
+    <iframe frameborder="0" class="uploadIframe fright" src="{{=it.iframeSource}}"></iframe>
+</div>
+<div class="fright fullWidth">
+    <span class="fileType metalabel fright">@Constants.i18n("selectFile") @Constants.i18n("pngOrJpg")</span>
+</div>

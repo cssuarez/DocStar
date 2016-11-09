@@ -1,0 +1,47 @@
+﻿@using Astria.Framework.Utility
+{{if (!it.regionMode) { }}
+<td class="customGridDataCell AlignCenter"> @*selection Header*@
+    <input type="checkbox" class="selectedItem" {{=it.toolTip ? 'title="' + it.toolTip + '"' : ''}} {{=it.selected ? 'checked="checked"' : ''}} />
+</td>
+<td class="customGridDataCell"> @*subgrid Header*@
+    {{if (it.hasSubGrid) { }}
+    <span class="subgridExpand ui-icon ui-icon-triangle-1-{{=it.subGridExpanded ? 's' : 'e'}}"></span>
+    {{ } }}
+</td>
+<td class="customGridDataCell"> @*edit Header*@
+    {{if (it.canEdit) { 
+        if (it.inEditMode) {
+    }}
+    <span class="saveRow ui-icon ui-icon-disk"></span>
+    <span class="cancelSave ui-icon ui-icon-cancel"></span>
+    {{ } else { }}
+    <span class="editRow ui-icon ui-icon-pencil"></span>
+    {{ 
+        }
+    } 
+    }}
+</td>
+{{ } }}
+
+<td class="customGridDataCell"> @*type Header*@
+    <div class="item_type_icon {{=it.typeClass}}"></div>
+</td>
+
+{{
+var i = 0;
+var length = it.cells.length;
+for (i; i < length; i++) {
+    var cell = it.cells[i];
+}}
+<td data-cellid="{{=cell.valueId}}" class="customGridDataCell customGridEditCell">
+    {{
+    var idx = 0;
+    var vLength = cell.values.length;
+    for (idx; idx < vLength; idx++) {
+    }}
+    <div class="valueContainer">
+        {{=cell.values[idx] || '&nbsp;'}}
+    </div>
+    {{ } }}
+</td>
+{{ } }}

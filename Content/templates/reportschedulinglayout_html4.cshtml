@@ -1,0 +1,62 @@
+﻿@using Astria.Framework.Utility;
+<div class="reportSchedulingLayout">
+    <input type="hidden" name="ReportId" value="{{= it.selected.ReportId }}" />
+    <div class="inlineblock fullWidth">
+        @* Display a select list of available report schedules *@
+        <span class="metaLabel inlineblock">@Constants.i18n("name"):</span>
+        <select name="Name">
+            {{
+                var idx = 0;
+                var length = it.reportSchedules.length;
+                for(idx; idx < length; idx++) {
+                    var schedule = it.reportSchedules[idx];
+            }}
+                {{= Utility.safeHtmlValue(schedule.Id, { attrs: {selected: it.selected.Name === schedule.Name ? 'selected' : undefined }, tag:'option', text: schedule.Name })}}
+            {{
+                }
+            }}
+        </select>
+    </div>
+    <div name="Schedule">
+    </div>
+    <div class="inlineblock fullWidth spacingTopBottom">
+        <span class="metaLabel inlineblock">@Constants.i18n("recipients"):</span>
+        {{= Utility.safeHtmlValue(it.selected.Recipients || '', {attrs:{type:'text', name: 'Recipients'}, tag:'input' })}}
+    </div>
+    <div class="inlineblock fullWidth spacingTopBottom">
+        <span class="metaLabel inlineblock radioLabelSpacing">@Constants.i18n("sendAs"):</span>
+        {{
+            var ert = Utility.formatObjectIntoOrderedArray(Constants.ert);
+            var i = 0;
+            var length = ert.length;
+            for(i = 0; i < length; i++) {
+                var rt = ert[i];
+                var checked = undefined;
+                if(it.selected.SendAs ===  undefined && Constants.ert[rt] === Constants.ert.Excel) {
+                    checked = 'checked';
+                }
+                else {
+                    checked = it.selected.SendAs === Constants.ert[rt] ? 'checked' : undefined;
+                }
+        }}
+                {{= Utility.safeHtmlValue(Constants.ert[rt], {attrs:{type:'radio', name: 'SendAs', checked: checked}, tag:'input' })}}
+                {{= Utility.safeHtmlValue("", {'class': 'inlineblock radioLabelSpacing', 'text': Constants.c['ert_' + rt]})}}
+        {{
+            }
+        }}
+    </div>
+    <div class="inlineblock fullWidth spacingTopBottom">
+        <fieldset>
+            <legend>@Constants.i18n("reportParameterValues")</legend>
+            <span class="throbber inlineblock dialogThrobberPosCenter posRel"></span>
+            <iframe style="display: none;" frameborder="0"></iframe>
+            <div class="reportParameters">
+            </div>
+        </fieldset>
+    </div>
+    <div class="inlineblock fullWidth spacingTop">
+        <span class="save fright custom_button shadow_bottom spacingLeftRight short_btn">@Constants.i18n("save")</span>
+        <span class="delete fright custom_button shadow_bottom spacingLeftRight short_btn">@Constants.i18n("delete")</span>
+    </div>
+    <input type="hidden" name="error" />
+</div>

@@ -1,0 +1,60 @@
+﻿@using Astria.Framework.Utility;
+{{if (!it.regionMode) { }}
+<div class="results_actions">
+    <div class="searchResultsMenu fleft">
+        @* Render Results List Action Menu Here *@
+    </div>
+    <div class="fleft maxResultsContainer">
+        <span>@Constants.i18n("maxResults") </span>
+        <input type="text" class='maxResults' value='{{=it.maxResults}}' />
+    </div>
+    {{if (!it.hideNonGridColumnChooser) { }}
+    <div class="fleft" title="@Constants.i18n("columnChooser")">
+        <span class="customButtonWithIcon shadow short_btn column_chooser">
+            <span class="column_chooser_icon sPngIB">&nbsp;</span>
+        </span>
+    </div>
+    {{ } }}
+</div>
+{{ } }}
+<div class="resultsGrid">
+    <table class="customGridTable">
+        <thead>
+            <tr>
+                {{if (!it.regionMode) { }}
+                <th class="customGridHeader selectionHeader">
+                    <input type="checkbox" class="selectAllItems" {{=it.allSelected ? 'checked="checked"' : ''}} />
+                </th>
+                <th class="customGridHeader subgridExpandHeader nonResizable">
+                    &nbsp;
+                </th>
+                <th class="customGridHeader editHeader nonResizable">
+                    @Constants.i18n("edit")
+                </th>
+                {{ } }}
+                <th class="customGridHeader typeHeader nonResizable">
+                    @Constants.i18n("type")
+                </th>
+                {{
+                var i = 0;
+                var length = it.headers.length;
+                for (i; i < length; i++) {
+                    if (it.headers[i] === undefined) { continue; }
+                }}
+                <th class="customGridHeader customGridSortable" style="{{=it.headers[i].style}}" data-columnid="{{=it.headers[i].colId}}">
+                    <div>
+                        {{=it.headers[i].value}}
+                        {{if (it.headers[i].hasColumnEdit) { }}
+                        <span class="columnEdit ui-button-icon-primary ui-icon ui-icon-pencil"></span>
+                        {{ } }}
+                    </div>
+                </th>
+                {{ } }}
+            </tr>
+        </thead>
+        <tbody>
+            @*Search Result Views Rendered Here*@
+        </tbody>    
+        <tfoot></tfoot>  
+    </table>
+</div>

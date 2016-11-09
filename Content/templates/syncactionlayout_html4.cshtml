@@ -1,0 +1,50 @@
+﻿@using Astria.Framework.Utility;
+<div class="input">
+    <span class="metalabel">@Constants.i18n("syncAction"):</span>
+    <select name="SyncActionId" class="metaselect">
+        <option value=""></option>
+        {{ var i = 0; }}
+        {{ var length = window.syncActions.length; }}
+        {{ for (i; i < length; i++) { }}
+            {{ var item = window.syncActions.at(i); }}
+            {{ var type = item.get('Type'); }}
+            {{ var name = item.get('Name'); }}
+            {{ var id = item.get('Id'); }}
+            {{ if (Utility.checkSAT(type, it.syncType)) { }}
+                {{ if (it.syncActionId === id) { }}
+                    <option value="{{= id }}" data-type="{{=type}}" selected="selected">{{= name }}</option>
+                {{ } else { }}
+                    <option value="{{= id }}" data-type="{{=type}}">{{= name }}</option>
+                {{ } }}
+            {{ } }}
+        {{ } }}
+    </select>
+</div>
+<div class="input alignTop">
+    <span class="metalabel">&nbsp;</span>
+    @*<span id="newSyncAction" class="custom_button short_btn no_text_select">@Constants.i18n("new")</span>*@
+    <span id="editSyncAction" class="custom_button short_btn no_text_select">@Constants.i18n("edit")</span>
+</div>
+<div class="input">
+    <span class="metalabel alignTop">@Constants.i18n("syncActionPreference"):</span>
+    <div class="fleft">
+        <div title="@Constants.i18n("syncAndSaveDefined")">
+            <label>
+                <input type="radio" name="SyncActionPreference" value="{{= Constants.sap.SyncAndSave }}" />
+                <span class="radioLabelSpacing">@Constants.i18n("sap_SyncAndSave")</span>
+            </label>
+        </div>
+        <div title="@Constants.i18n("syncAndVerifyDefined")">
+            <label>
+                <input type="radio" name="SyncActionPreference" value="{{= Constants.sap.SyncAndVerify }}" />
+                <span class="radioLabelSpacing">@Constants.i18n("sap_SyncAndVerify")</span>
+            </label>
+        </div>
+        <div title="@Constants.i18n("autoSyncDefined")">
+            <label>
+                <input type="radio" name="SyncActionPreference" value="{{= Constants.sap.AutoSync }}" />
+                <span class="radioLabelSpacing">@Constants.i18n("sap_AutoSync")</span>
+            </label>
+        </div>
+    </div>
+</div>
