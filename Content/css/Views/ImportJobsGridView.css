@@ -1,0 +1,14 @@
+﻿.ImportJobsGridView {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+    .ImportJobsGridView .customGridTable {
+        height: 100%;
+    }
+
+/*Workaround until we redo the admin pages.*/
+#admin_action .ImportJobsGridView .customGridPagerNavigation .navigateToPage {
+    width: 40px;
+}

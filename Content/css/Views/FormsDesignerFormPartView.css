@@ -1,0 +1,47 @@
+﻿.FormsDesignerFormPartView {
+    width: 100%;
+    margin: 8px 0 0;
+}
+
+    .FormsDesignerFormPartView .menubar {
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = "#d4e8fc", endColorstr = "#032342");
+        background: linear-gradient(to bottom, #d4e8fc 0, #032342 100%); /* W3C (IE10) maybe others soon.*/
+        background: -moz-linear-gradient(center top, #d4e8fc, #032342) repeat scroll 0 0 transparent;
+        background: -webkit-gradient(linear, left top, left bottom, from(#d4e8fc), to(#032342));
+        color: #fff;
+        float: left;
+        height: 20px;
+        padding: 3px 0 4px 5px;
+        position: relative;
+        width: 100%;
+    }
+
+
+        .FormsDesignerFormPartView .menubar > span.ui-icon {
+            cursor: pointer;
+        }
+
+        .FormsDesignerFormPartView .menubar input {
+            padding: 0 1px;
+        }
+
+        .FormsDesignerFormPartView .menubar span,
+        .FormsDesignerFormPartView .menubar input {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+            .FormsDesignerFormPartView .menubar input[name="Sequence"] {
+                width: 40px;
+                text-align: center;
+            }
+
+            .FormsDesignerFormPartView .menubar input[name="BookmarkLabel"] {
+                width: 75px;
+            }
+
+    .FormsDesignerFormPartView span.custom_button {
+        width: 40px;
+        height: 16px;
+        line-height: 16px;
+    }

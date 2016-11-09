@@ -1,0 +1,30 @@
+﻿.DocumentViewerView {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0 0 0 18px;
+}
+
+    .DocumentViewerView.metaPanelHidden {
+        left: -18px;
+    }
+
+    .DocumentViewerView.hideNative .viewer_image {
+        visibility: hidden;
+        overflow: hidden;
+        width: 0;
+        height: 0;
+    }
+
+    .DocumentViewerView .DocumentViewerMenuView ul.children {
+        overflow: visible;
+    }
+
+    .DocumentViewerView .approvalStampBtnContainer {
+        position: relative;
+        float: right;
+        top: 100%;
+        min-width: 155px;
+    }

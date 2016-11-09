@@ -1,0 +1,27 @@
+﻿.NumPadView {
+    width: 109px;
+    height: 100px;
+}
+
+    .NumPadView > div {
+        width: 100%;
+    }
+
+    .NumPadView span {
+        float: left;
+        width: 26px;
+        height: 20px;
+        line-height: 20px;
+        text-align: center;
+        border-bottom-width: 0;
+        border-right-width: 0;
+        text-shadow: 1px 1px 1px #000;
+    }
+
+    .NumPadView div > span:last-child {
+        border-right-width: 1px;
+    }
+
+    .NumPadView div:last-child span {
+        border-bottom: 1px;
+    }

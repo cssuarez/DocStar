@@ -1,0 +1,38 @@
+﻿.SavedSearchView {
+    position: relative;
+    margin: 0 5px 0 0;
+}
+
+    .SavedSearchView .ui-combobox {
+        position: relative;
+        top: 4px;
+        width: 136px;
+    }
+
+    .SavedSearchView .savedSearchListContainer {
+        margin-top: 3px;
+    }
+
+    .SavedSearchView .savedSearchLayout .buttons {
+        position: relative;
+    }
+
+        .SavedSearchView .savedSearchLayout .buttons .custom_button {
+            cursor: pointer;
+            float: left;
+            height: 25px;
+            left: 0;
+            position: relative;
+        }
+
+            .SavedSearchView .savedSearchLayout .buttons .custom_button.saveSearch .saveIcon {
+                margin: 5px 0 0 2px;
+            }
+
+            .SavedSearchView .savedSearchLayout .buttons .custom_button.deleteSearch .deleteIcon {
+                margin: 6px 0 0 1px;
+            }
+
+                .SavedSearchView .savedSearchLayout .buttons .custom_button.deleteSearch .deleteIcon.disabledIcon {
+                    margin: 5px 0 0 1px;
+                }

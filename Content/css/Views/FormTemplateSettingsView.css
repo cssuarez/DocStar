@@ -1,0 +1,48 @@
+﻿.FormTemplateSettingsView {
+    width: 100%;
+    height: 100%;
+}
+
+    .FormTemplateSettingsView .accordion {
+        position: absolute;
+        top: 29px;
+        left: 0px;
+        right: 0px;
+        bottom: 30px;
+        width: auto;
+        overflow: auto;
+        max-height: 100%;
+        padding: 0 10px 0 5px;
+    }
+
+        .FormTemplateSettingsView .accordion > div {
+            margin: 5px 0;
+        }
+
+
+    .FormTemplateSettingsView .ui-icon-gripsmall-diagonal-se {
+        z-index: 2;
+        bottom: 1px;
+        right: -9px;
+        width: 12px;
+        height: 12px;
+    }
+
+    .FormTemplateSettingsView .editJavascript {
+        cursor: pointer;
+        float: right;
+        position: relative;
+        right: 164px;
+    }
+
+    .FormTemplateSettingsView .editTabOrder {
+        cursor: pointer;
+        float: right;
+        position: relative;
+        right: 164px;
+    }
+
+    .FormTemplateSettingsView fieldset {
+        margin: 0;
+    }
+

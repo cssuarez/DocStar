@@ -1,0 +1,6 @@
+﻿.FormElementLabelValuePairView .labelValuePairContainer > div > span {
+    width: 41px;
+    max-width: 41px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

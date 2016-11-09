@@ -1,0 +1,150 @@
+﻿.SearchResultsGridView {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+    .SearchResultsGridView .results_actions {
+        float: left;
+        min-width: 190px;
+        position: absolute;
+        top: -30px;
+        width: auto;
+    }
+
+        .SearchResultsGridView .results_actions div.menu_item {
+            display: inline-block;
+            margin: 0;
+            position: relative;
+            width: 100%;
+        }
+
+        .SearchResultsGridView .results_actions .nested ul.children li {
+            margin: 0;
+            position: relative;
+            width: 100%;
+            min-width: 155px;
+        }
+
+        .SearchResultsGridView .results_actions li span.right_icon {
+            float: right;
+            position: absolute;
+            right: 0;
+            top: 3px;
+        }
+
+        .SearchResultsGridView .results_actions .dropdown ul li span.anchor {
+            float: none;
+            font-weight: normal;
+            position: relative;
+            width: 100%;
+        }
+
+        .SearchResultsGridView .results_actions .column_chooser {
+            width: 22px;
+            position: relative;
+            text-indent: 1px;
+            top: -2px;
+        }
+
+        .SearchResultsGridView .results_actions li:hover {
+            background: #E6E6E6;
+        }
+
+        .SearchResultsGridView .results_actions div.menu_item .left_icon {
+            float: left;
+            left: 2px;
+        }
+
+        .SearchResultsGridView .results_actions div.menu_item {
+            left: 0;
+        }
+
+            .SearchResultsGridView .results_actions div.menu_item .search_result_check {
+                position: relative;
+                display: inline-block;
+                float: left;
+                top: 3px;
+                height: 16px;
+                width: 16px;
+                z-index: 1;
+            }
+
+            .SearchResultsGridView .results_actions div.menu_item .excludeGroups {
+                width: auto;
+            }
+
+        .SearchResultsGridView .results_actions .maxResultsContainer span {
+            color: #FFF;
+        }
+
+        .SearchResultsGridView .results_actions span.spacer {
+            float: left;
+            height: 16px;
+            width: 14px;
+            z-index: 1;
+        }
+
+        .SearchResultsGridView .results_actions div {
+            margin: 0 0 0 5px;
+            position: relative;
+        }
+
+        .SearchResultsGridView .results_actions input {
+            width: 35px;
+        }
+
+        .SearchResultsGridView .results_actions .dropdown {
+            float: left;
+            position: relative;
+            width: 80px;
+        }
+
+    .SearchResultsGridView .resultsGrid {
+        float: left;
+        min-height: 100px;
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+        .SearchResultsGridView .resultsGrid .customGridTable {
+            height: auto;
+        }
+
+        .SearchResultsGridView .resultsGrid .customGridTableContainer {
+            background: url("../../../Content/themes/base/images/ui-bg_flat_75_ffffff_40x100.png") repeat-x scroll 50% 50% #ffffff;
+        }
+
+    .SearchResultsGridView .columnEdit {
+        display: inline-block;
+        position: absolute;
+        top: -2px;
+    }
+
+        .SearchResultsGridView .columnEdit:hover {
+            color: #212121;
+            border: 1px solid #aaaaaa;
+            border-radius: 4px;
+        }
+
+
+    .SearchResultsGridView .selectionHeader {
+        width: 20px;
+    }
+
+    .SearchResultsGridView .editHeader {
+        width: 36px;
+    }
+
+    .SearchResultsGridView .typeHeader {
+        width: 30px;
+    }
+
+    .SearchResultsGridView .editRow {
+        margin-left: 8px;
+    }
+
+    .SearchResultsGridView .saveRow {
+        float: left;
+    }

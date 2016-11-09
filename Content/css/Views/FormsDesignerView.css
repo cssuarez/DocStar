@@ -1,0 +1,240 @@
+﻿.FormsDesignerView {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+    .FormsDesignerView .ui-tabs-panel {
+        position: absolute;
+        top: 65px;
+        bottom: 0px;
+        left: 0;
+        right: 0;
+        max-height: 100%;
+        overflow: auto;
+        padding: 0;
+    }
+
+    .FormsDesignerView #formsDesignerAddField .accordion ul {
+        margin: 7px 0 0;
+    }
+
+        .FormsDesignerView #formsDesignerAddField .accordion ul.fleft {
+            padding: 0 0 0 5px;
+        }
+
+        .FormsDesignerView #formsDesignerAddField .accordion ul.fright {
+            padding: 0 5px 0 0;
+        }
+
+    .FormsDesignerView .tabs :focus {
+        outline: none;
+    }
+
+    .FormsDesignerView #formsDesignerFieldSettings {
+        overflow: visible;
+        max-height: none;
+    }
+
+    .FormsDesignerView .settingsPanel {
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F9F9F9', endColorstr='#FFFFFF');
+        background: -webkit-gradient(linear, left top, left bottom, from(#F9F9F9), to(#FFFFFF));
+        background: -moz-linear-gradient(top, #F9F9F9, #FFFFFF); /* for firefox 3.6+ */
+        background: linear-gradient(to bottom, #F9F9F9 0%, #FFFFFF 100%); /* W3C (IE10) maybe others soon.*/
+        width: 323px;
+        position: absolute;
+        top: 5px;
+        bottom: 40px;
+        left: 5px;
+        float: left;
+    }
+
+        .FormsDesignerView .settingsPanel input[type="text"] {
+            width: 180px;
+        }
+
+        .FormsDesignerView .settingsPanel .FormElementSettingsView fieldset input[type="text"] {
+            width: 167px;
+        }
+
+        .FormsDesignerView .settingsPanel .FormTemplateSettingsView fieldset input[type="checkbox"] {
+            right: 155px;
+        }
+
+        .FormsDesignerView .settingsPanel .FormTemplateSettingsView input[type="text"],
+        .FormsDesignerView .settingsPanel .FormTemplateSettingsView input[type="number"],
+        .FormsDesignerView .FormElementGroupSettingsView input {
+            width: 177px;
+        }
+
+        .FormsDesignerView .settingsPanel .FormTemplateSettingsView input[type="checkbox"],
+        .FormsDesignerView .settingsPanel .FormElementSettingsView input[type="checkbox"] {
+            float: right;
+            position: relative;
+            right: 165px;
+            margin: 3px 0 0;
+        }
+
+        .FormsDesignerView .settingsPanel .FormTemplateSettingsView .radioButtonContainer {
+            float: right;
+            position: relative;
+            right: 94px;
+            margin: 3px 0 0;
+        }
+
+        .FormsDesignerView .settingsPanel .FormElementSettingsView .FormElementLabelValuePairsView input[type=radio],
+        .FormsDesignerView .settingsPanel .FormElementSettingsView .FormElementLabelValuePairsView input[type=checkbox] {
+            margin: 0 5px;
+            float: left;
+            right: 0;
+        }
+
+        .FormsDesignerView .settingsPanel .FormTemplateSettingsView fieldset textarea,
+        .FormsDesignerView .settingsPanel .FormElementSettingsView fieldset textarea {
+            width: 175px;
+        }
+
+        .FormsDesignerView .settingsPanel .FormTemplateSettingsView textarea,
+        .FormsDesignerView .settingsPanel .FormElementSettingsView textarea {
+            width: 179px;
+        }
+
+        .FormsDesignerView .settingsPanel .FormElementSettingsView .FormulaBuilderView textarea {
+            width: 100%;
+        }
+
+        .FormsDesignerView .settingsPanel .FormTemplateSettingsView select,
+        .FormsDesignerView .FormElementSettingsView select,
+        .FormsDesignerView .FormElementGroupSettingsView select {
+            width: 181px;
+            display: block;
+        }
+
+        .FormsDesignerView .settingsPanel span.warningErrorClass {
+            float: right;
+        }
+
+        .FormsDesignerView .settingsPanel .FormTemplateSettingsView .ui-combobox,
+        .FormsDesignerView .settingsPanel .FormElementSettingsView .ui-combobox {
+            float: right;
+        }
+
+            .FormsDesignerView .settingsPanel .FormTemplateSettingsView .ui-combobox input,
+            .FormsDesignerView .settingsPanel .FormElementSettingsView .ui-combobox input {
+                width: 148px;
+            }
+
+
+
+        .FormsDesignerView .settingsPanel .FormTemplateSettingsView div > span:not(.anchor):not(.swoosh):not(.custom_button):first-child,
+        .FormsDesignerView .settingsPanel .FormElementSettingsView div > span:not(.anchor):not(.swoosh):not(.custom_button):first-child {
+            max-width: 115px;
+            line-height: 20px;
+        }
+
+        .FormsDesignerView .settingsPanel .defaultContentTypeContainer {
+            padding: 0 15px;
+            position: relative;
+        }
+
+            .FormsDesignerView .settingsPanel .defaultContentTypeContainer select {
+                margin: 0 5px 0;
+                width: 173px;
+            }
+
+            .FormsDesignerView .settingsPanel .defaultContentTypeContainer span {
+                line-height: 20px;
+            }
+
+            .FormsDesignerView .settingsPanel .defaultContentTypeContainer .gearIconSmall {
+                position: absolute;
+                top: 3px;
+                right: 3px;
+            }
+
+    .FormsDesignerView .formTemplateButtonPanel {
+        position: absolute;
+        left: 6px;
+        bottom: 7px;
+    }
+
+        .FormsDesignerView .formTemplateButtonPanel .short_btn {
+            cursor: pointer;
+            height: 23px;
+            line-height: 23px;
+            padding: 1px 0;
+            width: 77px;
+            white-space: nowrap;
+        }
+
+    .FormsDesignerView .designerCanvas {
+        border-radius: 4px;
+        border: 1px solid #aaa;
+        position: relative;
+        display: inline-block;
+    }
+
+    .FormsDesignerView .designerCanvasContainer {
+        margin: 0 10px 0 338px;
+        position: relative;
+        width: auto;
+    }
+
+        .FormsDesignerView .designerCanvasContainer .designerCanvas {
+            position: absolute;
+            top: 85px;
+            bottom: 5px;
+            left: 0;
+            max-height: 100%;
+        }
+
+    .FormsDesignerView .fieldErrorMessageContainer {
+        top: 25%;
+        width: 99%;
+        position: absolute;
+    }
+
+        .FormsDesignerView .fieldErrorMessageContainer .fieldErrorMessage,
+        .FormsDesignerView .settingsPanel div.fieldErrorMessage {
+            margin: auto;
+            border: 1px solid #000;
+            border-radius: 15px;
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#d8e4f3', endColorstr='#4c7ca9');
+            background: -webkit-gradient(linear, left top, left bottom, from(#d8e4f3), to(#4c7ca9));
+            background: -moz-linear-gradient(top, #d8e4f3, #4c7ca9); /* for firefox 3.6+ */
+            background: linear-gradient(to bottom, #d8e4f3 0%, #4c7ca9 100%); /* W3C (IE10) maybe others soon.*/
+            box-shadow: 0 1px 3px 0 rgba(81, 203, 238, 0.5);
+        }
+
+    .FormsDesignerView .fieldErrorMessage.addAFieldMessage {
+        padding: 20px 25px;
+        width: 50%;
+    }
+
+    .FormsDesignerView .settingsPanel .fieldErrorMessage {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .FormsDesignerView .errorMessage {
+        color: #a60000;
+        margin-right: 10px;
+        margin-bottom: 0;
+        padding: 0;
+    }
+
+    .FormsDesignerView .greenLight {
+        color: #009900;
+    }
+
+    .FormsDesignerView .custom_button.disabled {
+        background-color: #999;
+        background-image: none;
+        cursor:default;
+    }
+
+    .FormsDesignerView .editingFormulasOverlay {
+        display: none;
+        z-index: 1000;
+        opacity: .6;
+    }

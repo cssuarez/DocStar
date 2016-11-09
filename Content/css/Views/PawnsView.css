@@ -1,0 +1,112 @@
+﻿#container_pawnsConfig .warningErrorClass {
+    color: #a60000;
+    padding-left: 168px;
+    width: 100%;
+}
+
+#container_pawnsConfig {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+    #container_pawnsConfig #resultLimit, #sendEmailForzeroItem, #workflowEmailDigestSystem {
+        position: relative;
+    }
+
+    #container_pawnsConfig #resultLimit {
+        width: 35px;
+    }
+
+    #container_pawnsConfig .pawnItems {
+        width: 100%;
+        margin: 5px 0;
+        float: left;
+    }
+
+    #container_pawnsConfig fieldset .captionLabel {
+        min-width: 144px;
+    }
+
+    #container_pawnsConfig .ui-combobox .isCombo {
+        width: 265px;
+    }
+
+    #container_pawnsConfig .captionLabel {
+        text-align: right;
+        min-width: 155px;
+        vertical-align: central;
+        float: left;
+        margin: 0px 10px 0 0;
+    }
+
+        #container_pawnsConfig .captionLabel.spacingTop {
+            margin: 3px 10px 0 0;
+        }
+
+    #container_pawnsConfig .ui-icon.ui-icon-help {
+        width: 16px;
+        height: 16px;
+        min-width: 16px;
+        float: right;
+        cursor: pointer;
+    }
+
+    #container_pawnsConfig label > span {
+        min-width: 60px;
+    }
+
+#lastSent, #recipeintEmailAddress, #detailLevel, #sendoption, #filterqueue, #filterworkflow, #recipeintEmailAddress, #ruleSchedule {
+    min-width: 300px;
+}
+
+#sort {
+    width: 190px;
+}
+
+#sortOrder {
+    width: 95px;
+}
+
+#container_pawnsConfig #resultlimitdv {
+    display: block;
+    height: 20px;
+}
+
+#columnsChooserdv .multiselect {
+    width: 300px;
+    height: 110px;
+    min-width: 300px;
+}
+
+#sendEmailForzeroItemdv .captionLabel {
+    left: 165px;
+    margin: 0 10px 15px 0;
+    text-align: left;
+}
+
+#sendEmailForzeroItemdv label {
+    left: 165px;
+}
+
+#scheduledv {
+    display: inline-block;
+    position: relative;
+}
+
+    #scheduledv .metaLabel {
+        min-width: 155px;
+    }
+
+    #scheduledv .schedulingLayout {
+        width: 500px;
+    }
+
+        #scheduledv .schedulingLayout input[name="ExecutionTime"] {
+            width: 117px;
+        }
+
+        #scheduledv .schedulingLayout select[name="ExecutionType"] {
+            width: 70px;
+            margin: 0 0 0 5px;
+        }

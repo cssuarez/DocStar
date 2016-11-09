@@ -1,0 +1,71 @@
+﻿.FormTemplateCategoryView {
+    width: 175px;
+    max-width: 175px;
+    padding: 16px 10px;
+    margin: 5px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    float: left;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 2px 2px 2px rgba(150, 150, 150, .5);
+}
+
+    .FormTemplateCategoryView .label {
+        cursor:default;
+        margin: 7px 0 0 0;
+        display: inline-block;
+        width: 100%;
+        max-width: 100%;
+        text-overflow: ellipsis;
+        text-align: center;
+        overflow: hidden;
+        font-size: 13px;
+        font-weight: bold;
+        white-space: nowrap;
+    }
+
+    .FormTemplateCategoryView .buttonContainer {
+        position: absolute;
+        top: 0;
+        right: 5px;
+    }
+
+        .FormTemplateCategoryView .buttonContainer > span {
+            float: left;
+            cursor: pointer;
+            position: relative;
+            top: 1px;
+        }
+
+            .FormTemplateCategoryView .buttonContainer > span.createForm {
+                margin: 0 2px 0 0;
+            }
+
+/*.FormTemplateCategoryView .createForm {
+        position: absolute;
+        left: -1px;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+    }
+
+    .FormTemplateCategoryView .custom_button {
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#CDDEEF', endColorstr='#0E2D4D');
+        background: -webkit-gradient(linear, left top, left bottom, from(#CDDEEF), to(#0E2D4D));
+        background: -moz-linear-gradient(top, #CDDEEF, #0E2D4D);
+        background: linear-gradient(to bottom, #CDDEEF 0%, #0E2D4D 100%);
+    }
+
+        .FormTemplateCategoryView .custom_button:active {
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0E2D4D', endColorstr='#CDDEEF');
+            background: -webkit-gradient(linear, left top, left bottom, from(#0E2D4D), to(#CDDEEF));
+            background: -moz-linear-gradient(top, #0E2D4D, #CDDEEF);
+            background: linear-gradient(to bottom, #0E2D4D 0%, #CDDEEF 100%);
+        }
+
+        .FormTemplateCategoryView .custom_button.disabled,
+        .FormTemplateCategoryView .custom_button.disabled:active {
+            background-color: #999;
+            background-image: none;
+        }*/

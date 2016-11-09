@@ -1,0 +1,122 @@
+﻿.FieldedSearchView {
+    display: inline-block;
+    height: 42px;
+    position: relative;
+    width: 100%;
+}
+
+    .FieldedSearchView .displayNone {
+        display: none;
+    }
+
+    .FieldedSearchView select {
+        width: 100%;
+    }
+
+    .FieldedSearchView .database_field, .FieldedSearchView .database_field_criteria {
+        float: left;
+        margin: 7px 0 0 4px;
+        position: relative;
+        width: 25%;
+    }
+
+    .FieldedSearchView .database_field_input span.warningErrorClass {
+            float: left;
+    	left: 7px;
+    	position: relative;
+    	top: 7px;
+    	width: 40%;
+    }
+
+    .FieldedSearchView .del_field_btn {
+        float: left;
+        margin: 9px 0 0 9px;
+    }
+
+    .FieldedSearchView .field_search_btn {
+        float: left;
+        left: 15px;
+        position: relative;
+        top: 15px;
+        width: 96%;
+    }
+
+    .FieldedSearchView span.ui-combobox {
+        width: 100%;
+    }
+
+    .FieldedSearchView .database_field_text {
+        float: left;
+        left: 10px;
+        position: relative;
+        top: 7px;
+        width: 24%;
+    }
+
+    .FieldedSearchView .rangeStart {
+        float: left;
+        left: 16px;
+        position: relative;
+        top: 7px;
+        width: 12%;
+    }
+
+    .FieldedSearchView .rangeEnd {
+        float: left;
+        left: 20px;
+        position: relative;
+        top: 7px;
+        width: 12%;
+    }
+
+    .FieldedSearchView .field_search_field .database_field_delete {
+        background: none;
+        border: none;
+        float: left;
+        position: absolute;
+        top: 10px;
+    }
+
+        .FieldedSearchView .field_search_field .database_field_delete input {
+            float: left;
+            height: 20px;
+            position: relative;
+            width: 20px;
+        }
+
+    .FieldedSearchView .field_search_field .datepicker_warning {
+        float: left;
+        height: 16px;
+        position: relative;
+        right: 200px;
+        top: 18px;
+        width: 16px;
+    }
+
+        .FieldedSearchView .field_search_field .datepicker_warning p {
+            position: relative;
+            top: 0;
+            width: 230px;
+            z-index: 1;
+        }
+
+    .FieldedSearchView .add_field_btn {
+        background-image: url("../../../Content/images/s.png");
+        background-position: -66px -178px;
+        border: 1px solid #000000;
+        bottom: 13px;
+        color: #FFFFFF;
+        cursor: default;
+        float: left;
+        height: 20px;
+        line-height: 20px;
+        position: absolute;
+        right: 15px;
+        text-align: center;
+        width: 35px;
+    }
+
+        .FieldedSearchView .add_field_btn:active {
+            background-image: url("../../../Content/images/s.png");
+            background-position: -66px -207px;
+        }

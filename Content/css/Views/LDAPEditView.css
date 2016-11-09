@@ -1,0 +1,13 @@
+﻿.LDAPEditView {
+    width: 100%;
+    height: 100%;
+}
+
+    .LDAPEditView .StaticDataGridView {
+        width: 100%;
+        height: 175px;
+    }
+
+        .LDAPEditView .StaticDataGridView .customGridTable {
+            height: 100%;
+        }

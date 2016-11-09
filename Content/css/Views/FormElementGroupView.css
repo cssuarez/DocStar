@@ -1,0 +1,38 @@
+﻿.FormElementGroupView .formElementGroupHandle:not(.ignore) {
+    position: absolute;
+    border: 1px solid #000;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F9F9F9', endColorstr='#FFFFFF');
+    background: -webkit-gradient(linear, left top, left bottom, from(#F9F9F9), to(#FFFFFF));
+    background: -moz-linear-gradient(top, #F9F9F9, #FFFFFF); /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #F9F9F9 0%, #FFFFFF 100%); /* W3C (IE10) maybe others soon.*/
+    z-index: 25; /* Added so the group handle will overlay other elements */
+}
+
+.FormElementGroupView.formElementGroupHelper .formElementGroupHandle:not(.ignore) {
+    z-index: auto;
+}
+
+.FormElementGroupView .formElementGroupHandle.selected,
+.FormElementGroupView .formElementMarkup.selected {
+    border: 1px solid #51CBEE;
+    box-shadow: 0 1px 3px 0 rgba(81, 203, 238, 0.5);
+}
+
+#masterForm .FormElementGroupView .groupPreviewDisplayContainer > div.formElementMarkup {
+    padding: 6px; /* Added to match the padding of the initial elements in the designer*/
+    z-index: 1; /* Added so the non-editable group elements will overlay other elements */
+}
+
+.ui-dialog .droppedElement div.customFieldMetaEditView {
+    width: 700px;
+}
+
+.ui-dialog .droppedElement .customFieldMetaEditView ol.unstyledList {
+    float: left;
+    width: 48%;
+    display: inline-block;
+}
+
+    .ui-dialog .droppedElement .customFieldMetaEditView ol.unstyledList label {
+        width: 100px;
+    }

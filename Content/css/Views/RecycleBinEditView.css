@@ -1,0 +1,26 @@
+﻿.RecycleBinEditView {
+    width: 100%;
+    height: 100%;
+}
+
+    .RecycleBinEditView .deletedDocsGridContainer {
+        position: absolute;
+        top: 35px;
+        left: 5px;
+        right: 5px;
+        bottom: 45px;
+    }
+
+    .RecycleBinEditView .StaticDataGridView {
+        width: 100%;
+        height: 100%;
+    }
+
+        .RecycleBinEditView .StaticDataGridView .customGridTable {
+            height: 100%;
+        }
+
+    .RecycleBinEditView .buttons {
+        position: absolute;
+        bottom: 0;
+    }

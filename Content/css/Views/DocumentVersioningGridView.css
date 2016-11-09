@@ -1,0 +1,9 @@
+﻿.DocumentVersioningGridView {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+    .DocumentVersioningGridView .customGridHeader {
+        width: 20%;
+    }

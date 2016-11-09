@@ -1,0 +1,17 @@
+﻿.ImportLDAPView {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+    .ImportLDAPView select {
+        width: 65%;
+    }
+
+    .ImportLDAPView .ImportLDAPGridView {
+        position: absolute;
+        top: 30px;
+        bottom: -5%;
+        left: 0;
+        right: 0;
+    }

@@ -1,0 +1,76 @@
+﻿.DocumentNativeView {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+    .DocumentNativeView .viewer_menubar .view_menu {
+        float: left;
+        position: relative;
+        margin: 0 0 0 3px;
+    }
+
+    .DocumentNativeView .viewer_menubar .viewer_navigation {
+        float: left;
+        display: inline-block;
+        margin-left: 6px;
+        margin: 3px 0 0 6px;
+    }
+
+    .DocumentNativeView .viewer_menubar .viewer_results_type {
+        float: left;
+        margin: 0 1px;
+        position: relative;
+    }
+
+    .DocumentNativeView .viewer_menubar .navControl {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        float: left;
+        height: 16px;
+        position: relative;
+    }
+
+    .DocumentNativeView .viewer_menubar input {
+        float: left;
+        height: 12px;
+        margin: 0px 3px;
+        position: relative;
+        text-align: center;
+        top: -3px;
+        width: 40px;
+    }
+
+
+    .DocumentNativeView .nativeViewerContainer {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        margin: 32px 0 0 0;
+    }
+
+        .DocumentNativeView .nativeViewerContainer .fullIframe {
+            height: 100%;
+            width: 100%;
+        }
+
+            .DocumentNativeView .nativeViewerContainer .fullIframe.hideNative {
+                display: none;
+            }
+
+        .DocumentNativeView .nativeViewerContainer .iconIframe {
+            height: 32px;
+            width: 32px;
+        }
+
+        .DocumentNativeView .nativeViewerContainer .downloadNativeDocument {
+            top: -10px;
+            position: relative;
+        }
+
+    .DocumentNativeView iframe.download {
+        display: none;
+    }

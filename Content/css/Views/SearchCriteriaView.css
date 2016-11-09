@@ -1,0 +1,255 @@
+﻿.SearchCriteriaView {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+    .SearchCriteriaView .items_location_container, .SearchCriteriaView .fieldSearchViewContainer, .SearchCriteriaView .text_container {
+        float: left;
+        position: relative;
+        width: 100%;
+    }
+
+    .SearchCriteriaView .items_location_container {
+        display: inline-block;
+        height: 100%;
+    }
+
+        .SearchCriteriaView .items_location_container .items_label {
+            display: inline-block;
+            float: left;
+            left: 12px;
+            position: relative;
+            top: 12px;
+            width: 1%;
+        }
+
+        .SearchCriteriaView .items_location_container .items_checkbox {
+            left: 35px;
+            width: 25%;
+            margin: 7px 0 0;
+        }
+
+            .SearchCriteriaView .items_location_container .items_checkbox div {
+                float: left;
+                left: 12px;
+                margin: 3px 0 0;
+                position: relative;
+                width: 100%;
+            }
+
+                .SearchCriteriaView .items_location_container .items_checkbox div span {
+                    left: 1px;
+                    position: relative;
+                }
+
+        .SearchCriteriaView .items_location_container .items_radio {
+            margin: 10px 0;
+        }
+
+            .SearchCriteriaView .items_location_container .items_radio > div {
+                float: left;
+                margin: 0 7px;
+            }
+
+                .SearchCriteriaView .items_location_container .items_radio > div input[name="pdsearch"] {
+                    margin: 0 3px;
+                }
+
+        .SearchCriteriaView .items_location_container > div {
+            display: inline-block;
+            float: left;
+            position: relative;
+        }
+
+        .SearchCriteriaView .items_location_container .items_search {
+            left: 30px;
+            width: 74%;
+        }
+
+            .SearchCriteriaView .items_location_container .items_search .contenttype .contenttype_dropdown_text {
+                float: left;
+                overflow: hidden;
+                width: 85%;
+            }
+
+            .SearchCriteriaView .items_location_container .items_search .contenttype .dropdown_arrow {
+                float: right;
+            }
+
+            .SearchCriteriaView .items_location_container .items_search .items_dropdown_title {
+                position: relative;
+                top: -1px;
+            }
+
+            .SearchCriteriaView .items_location_container .items_search .items_dropdown_title, .SearchCriteriaView .items_location_container .items_search .items_text_title {
+                display: inline-block;
+                font-size: 11px;
+                margin: 0 0 0 0;
+                text-align: right;
+                width: 83px;
+            }
+
+        .SearchCriteriaView .items_location_container .folder_criteria {
+            display: inline-block;
+            position: relative;
+            width: 55%;
+        }
+
+        .SearchCriteriaView .items_location_container .container_search {
+            width: 100%;
+        }
+
+        .SearchCriteriaView .items_location_container .ct_search {
+            position: relative;
+            top: 10px;
+        }
+
+            .SearchCriteriaView .items_location_container .ct_search select {
+                width: 58%;
+            }
+
+    .SearchCriteriaView .fieldSearchViewContainer {
+        max-height: 140px;
+        display: inline-block;
+        overflow: hidden;
+    }
+
+    .SearchCriteriaView .text_container {
+        display: inline-block;
+        height: 100%;
+        position: relative;
+        width: 100%;
+    }
+
+        .SearchCriteriaView .text_container .text_word_search {
+            display: inline-block;
+            float: left;
+            height: 100%;
+            position: relative;
+            top: 7px;
+            width: 29%;
+        }
+
+            .SearchCriteriaView .text_container .text_word_search span {
+                display: inline-block;
+                float: left;
+                margin: 5px 0 0 12px;
+                position: relative;
+                text-align: left;
+                width: 100%;
+            }
+
+        .SearchCriteriaView .text_container .text_vocabulary {
+            display: inline-block;
+            left: 10px;
+            position: relative;
+            top: 7px;
+            width: 70%;
+        }
+
+            .SearchCriteriaView .text_container .text_vocabulary .text_word_phrase_text {
+                display: inline-block;
+                position: relative;
+                top: 0;
+                width: 85%;
+            }
+
+            .SearchCriteriaView .text_container .text_vocabulary .vocab_suggestions_container {
+                border: 1px solid #999;
+                display: inline-block;
+                height: 70px;
+                left: 1px;
+                position: relative;
+                top: 3px;
+                width: 86%;
+                margin-bottom: 20px;
+            }
+
+                .SearchCriteriaView .text_container .text_vocabulary .vocab_suggestions_container .vocab_suggestions {
+                    cursor: pointer;
+                    height: 69%;
+                    list-style: none;
+                    padding: 0;
+                    position: relative;
+                    resize: none;
+                    text-indent: 5px;
+                    top: -10px;
+                    width: 100%;
+                }
+
+            .SearchCriteriaView .text_container .text_vocabulary span {
+                display: inline-block;
+                float: left;
+                left: 5px;
+                position: relative;
+                text-align: right;
+                top: 3px;
+                width: 133px;
+            }
+
+    .SearchCriteriaView .search {
+        float: right;
+        position: relative;
+    }
+
+    .SearchCriteriaView .search_btns {
+        float: right;
+        display: inline-block;
+        height: 35px;
+        position: relative;
+    }
+
+        .SearchCriteriaView .search_btns .warningErrorClass {
+            background: #FFF;
+            margin: 10px 1%;
+            padding: 0;
+            position: absolute;
+            text-align: center;
+            width: 98%;
+            z-index: 1;
+            top: 55px;
+            left: 0;
+        }
+
+        .SearchCriteriaView .search_btns .reset_btn {
+            background-image: url("../../../Content/images/s.png");
+            background-position: -66px -178px;
+            border: 1px solid #000;
+            color: #FFF;
+            cursor: pointer;
+            float: left;
+            height: 25px;
+            line-height: 25px;
+            position: relative;
+            text-align: center;
+            width: 37px;
+        }
+
+            .SearchCriteriaView .search_btns .reset_btn:active {
+                background-image: url("../../../Content/images/s.png");
+                background-position: -66px -207px;
+            }
+
+        .SearchCriteriaView .search_btns .search_btn {
+            background-image: url("../../../Content/images/s.png");
+            background-position: -66px -178px;
+            border: 1px solid #000;
+            color: #FFF;
+            cursor: pointer;
+            float: left;
+            height: 25px;
+            line-height: 25px;
+            position: relative;
+            text-indent: 3px;
+            width: 60px;
+        }
+
+            .SearchCriteriaView .search_btns .search_btn:active {
+                background-image: url("../../../Content/images/s.png");
+                background-position: -66px -207px;
+            }
+
+            .SearchCriteriaView .search_btns .search_btn .button_icon {
+                right: 1px;
+            }

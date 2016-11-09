@@ -1,0 +1,27 @@
+﻿.DocumentMetaVersioningView {
+    width: 100%;
+    min-height: 215px;
+    position: relative;
+}
+
+    .DocumentMetaVersioningView .versioningButtons {
+        text-align: right;
+        margin-top: 4px;
+        position: relative;
+        right: 5px;
+    }
+
+    .DocumentMetaVersioningView .custom_button {
+        width: 60px;
+        padding: 0px 4px;
+    }
+
+
+        .DocumentMetaVersioningView .custom_button.disabled {
+            background-color: #999;
+            background-image: none;
+        }
+
+    .DocumentMetaVersioningView .DocumentVersioningGridViewContainer {
+        height: 175px;
+    }

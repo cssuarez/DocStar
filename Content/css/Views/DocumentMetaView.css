@@ -1,0 +1,166 @@
+﻿.DocumentMetaView {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: white;
+}
+
+    .DocumentMetaView .view_document_data_scroll {
+        float: left;
+        margin: 0px 3px 0px 0px;
+        max-height: 92%;
+        overflow: hidden;
+        padding: 0px;
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+    .DocumentMetaView .metaPanelWithPagerView{
+         max-height: calc(92% - 33px);
+    }
+
+        .DocumentMetaView .view_document_data_scroll ul {
+            list-style: outside none none;
+            width: 100%;
+            position: relative;
+            display: inline-block;
+            margin: 0px;
+            padding: 0px;
+        }
+
+    .DocumentMetaView div.closed {
+        display: none;
+    }
+
+    .DocumentMetaView .meta_accordions > li {
+        display: inline-block;
+        min-height: 20px;
+        width: 100%;
+    }
+
+    .DocumentMetaView .meta_accordions > li.displayNone {
+        display: none;
+    }
+
+    .DocumentMetaView .meta_accordion_title_closed .gearIcon {
+        background-position: -272px -209px;
+    }
+
+    .DocumentMetaView .meta_accordion_title_closed {
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#D4E8FC', endColorstr='#032342');
+        background: -webkit-gradient(linear, left top, left bottom, from(#D4E8FC), to(#032342));
+        background: -moz-linear-gradient(top, #D4E8FC, #032342); /* for firefox 3.6+ */
+        background: linear-gradient(to bottom, #D4E8FC 0%, #032342 100%); /* W3C (IE10) maybe others soon.*/
+        color: #FFF;
+    }
+
+    .DocumentMetaView .meta_accordion_title_open {
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FCEFC7', endColorstr='#F1B616');
+        background: -webkit-gradient(linear, left top, left bottom, from(#FCEFC7), to(#F1B616));
+        background: -moz-linear-gradient(top, #FCEFC7, #F1B616); /* for firefox 3.6+ */
+        background: linear-gradient(to bottom, #FCEFC7 0%, #F1B616 100%); /* W3C (IE10) maybe others soon.*/
+        color: #000;
+    }
+
+    .DocumentMetaView .meta_accordion_title {
+        cursor: pointer;
+        float: left;
+        font-weight: bold;
+        padding: 3px 0 4px 0;
+        width: 100%;
+    }
+
+        .DocumentMetaView .meta_accordion_title span.anchor {
+            float: left;
+            left: 0;
+            line-height: 19px;
+            padding: 0 0 0 25px;
+            position: absolute;
+            text-decoration: none;
+            top: 0;
+            width: 100%;
+        }
+
+    .DocumentMetaView .meta_accordion_title_closed span.anchor {
+        color: #FFF;
+    }
+
+    .DocumentMetaView .meta_accordion_title_open span.anchor {
+        color: #000;
+    }
+
+    .DocumentMetaView .meta_accordion_title_closed .title_arrow {
+        background-image: url("../../../Content/images/s.png");
+        background-position: -46px -41px;
+    }
+
+    .DocumentMetaView .meta_accordion_title_open .title_arrow {
+        background-image: url("../../../Content/images/s.png");
+        background-position: -60px -41px;
+    }
+
+    .DocumentMetaView .meta_accordion {
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F9F9F9', endColorstr='#FFFFFF');
+        background: -webkit-gradient(linear, left top, left bottom, from(#F9F9F9), to(#FFFFFF));
+        background: -moz-linear-gradient(top, #F9F9F9, #FFFFFF); /* for firefox 3.6+ */
+        background: linear-gradient(to bottom, #F9F9F9 0, #FFFFFF 100%); /* W3C (IE10) maybe others soon.*/
+        border: 1px solid #000;
+        border-left: 0;
+        border-right: 0;
+        display: inline-block;
+        position: relative;
+        width: 100%;
+    }
+
+    .DocumentMetaView .meta_accordion_title > span {
+        float: right;
+        height: 20px;
+        position: relative;
+        right: 15px;
+        top: 2px;
+        width: 90px;
+    }
+
+    .DocumentMetaView .meta_save_container {
+        bottom: 1px;
+        display: inline-block;
+        float: left;
+        height: 45px;
+        left: 0px;
+        position: relative;
+        width: 100%;
+    }
+
+        .DocumentMetaView .meta_save_container hr {
+            display: inline-block;
+            float: left;
+            left: 1%;
+            position: relative;
+            top: 0px;
+            width: 98%;
+        }
+        
+        .DocumentMetaView .meta_save_container .noApprovalStampNotImaged {
+            margin: 3px;
+        }
+
+        .DocumentMetaView .meta_save_container .throbber {
+            margin: 3px;
+        }
+
+        .DocumentMetaView .meta_save_container .saveDocumentButton {
+            background-image: url("../../../Content/images/s.png");
+            background-position: -66px -178px;
+            border: 1px solid #000;
+            bottom: 7px;
+            color: #FFF;
+            position: absolute;
+            right: 9px;
+            text-align: center;
+        }
+
+            .DocumentMetaView .meta_save_container .saveDocumentButton.disabled {
+                background-color: #999;
+                background-image: none;
+                cursor:default;
+            }

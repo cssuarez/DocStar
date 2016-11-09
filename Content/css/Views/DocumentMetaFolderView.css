@@ -1,0 +1,51 @@
+﻿.DocumentMetaFolderView {
+    width: 100%;
+    position: relative;
+}
+
+    .DocumentMetaFolderView.metadata_viewer .viewer_meta_title {
+        text-align: left;
+        width: 125px;
+        min-width: 125px;
+        vertical-align: middle;
+        padding-left: 3px;
+    }
+
+    .DocumentMetaFolderView.metadata_viewer .valueTextArea .folderList {
+        border: 1px solid #AAA;
+        min-height: 20px;
+        width: 92%;
+    }
+
+        .DocumentMetaFolderView.metadata_viewer .valueTextArea .folderList .folderName {
+            margin: 3px 0 3px 3px;
+            float: left;
+        }
+
+        .DocumentMetaFolderView.metadata_viewer .valueTextArea .folderList .removeFolder {
+            display: none;
+            float: right;
+            margin: 2px 0 0 0;
+        }
+
+        .DocumentMetaFolderView.metadata_viewer .valueTextArea .folderList li {
+            padding: 0px;
+        }
+
+            .DocumentMetaFolderView.metadata_viewer .valueTextArea .folderList li:hover {
+                color: #363636;
+                background: none repeat-x scroll 50% 50% #FBF9D0;
+            }
+
+                .DocumentMetaFolderView.metadata_viewer .valueTextArea .folderList li:hover span.removeFolder {
+                    display: block;
+                }
+
+            .DocumentMetaFolderView.metadata_viewer .valueTextArea .folderList li span.removeFolder:hover {
+                display: block;
+            }
+
+    .DocumentMetaFolderView.metadata_viewer .folder_btns {
+        float: right;
+        padding: 5px 12px;
+    }

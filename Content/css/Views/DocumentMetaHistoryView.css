@@ -1,0 +1,98 @@
+﻿.DocumentMetaHistoryView {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+    .DocumentMetaHistoryView .histTabs {
+        max-width: 99%;
+        width: 99%;
+        display: inline-block;
+        list-style: outside none none;
+        margin: 0 0 0 1%;
+        padding: 0;
+        position: relative;
+    }
+
+        .DocumentMetaHistoryView .histTabs .wfTab {
+            background: linear-gradient(to bottom, #ffffff 0px, #bdbaba 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+            border: 1px solid #b3b5b7;
+            border-top-left-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+            float: left;
+            height: 20px;
+            padding: 0;
+            width: 24%;
+        }
+
+            .DocumentMetaHistoryView .histTabs .wfTab.selected {
+                background: linear-gradient(to bottom, #fbedc3 0%, #f1b71a 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+                border-bottom: 1px solid #f1b71a;
+            }
+
+            .DocumentMetaHistoryView .histTabs .wfTab span {
+                display: inline-block;
+                line-height: 20px;
+                text-align: center;
+                width: 100%;
+            }
+
+    .DocumentMetaHistoryView .wfChatLogListCont {
+        border: 1px solid #f1b71a;
+        margin: 0 0 0 1%;
+        overflow: hidden;
+        position: relative;
+        text-align: left;
+        max-width: 97%;
+    }
+
+        .DocumentMetaHistoryView .wfChatLogListCont .approvalsList {
+            display: inline-block;
+            list-style: outside none none;
+            margin: 3px;
+            max-height: 200px;
+            min-height: 20px;
+            overflow: hidden;
+            padding: 0;
+            position: relative;
+            width: 98%;
+            word-wrap: break-word;
+        }
+
+            .DocumentMetaHistoryView .wfChatLogListCont .approvalsList li {
+                border: 1px solid #000;
+                float: left;
+                left: 1%;
+                margin: 2px 0;
+                position: relative;
+                white-space: normal;
+                width: 97.5%;
+                word-wrap: break-word;
+            }
+
+                .DocumentMetaHistoryView .wfChatLogListCont .approvalsList li.currentUserApproval {
+                    background: none repeat scroll 0 0 #add8e6;
+                }
+
+
+                .DocumentMetaHistoryView .wfChatLogListCont .approvalsList li div {
+                    float: left;
+                    margin: 0 2px;
+                }
+
+                    .DocumentMetaHistoryView .wfChatLogListCont .approvalsList li div.item_type_icon {
+                        left: 0;
+                    }
+
+                    .DocumentMetaHistoryView .wfChatLogListCont .approvalsList li div.reason {
+                        max-height: 100px;
+                        overflow: auto;
+                    }
+
+                    .DocumentMetaHistoryView .wfChatLogListCont .approvalsList li div.name {
+                        margin: 2px;
+                        max-width: 90%;
+                        width: 90%;
+                        word-wrap: break-word;
+                    }

@@ -1,0 +1,17 @@
+﻿.DocumentMetaRelatedItemsView {
+    width: 100%;
+    height: 165px; /* Allows for 6 visible related items, without scrolling*/
+    position: relative;
+}
+
+    .DocumentMetaRelatedItemsView .typeHeader {
+        width: 30px;
+    }
+
+    .DocumentMetaRelatedItemsView .rd_container {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }

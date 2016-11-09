@@ -1,0 +1,41 @@
+﻿.FormsDesignerCanvasView {
+    border-radius: 4px;
+    border: 1px solid #aaa;
+    display: inline-block;
+    position: absolute;
+    top: 101px;
+    bottom: 5px;
+    left: 0;
+    right: 0;
+    max-height: 100%;
+}
+
+    .FormsDesignerCanvasView .templateFieldContainer {
+        position: relative;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#909090', endColorstr='#808080');
+        background: -webkit-gradient(linear, left top, left bottom, from(#909090), to(#808080));
+        background: -moz-linear-gradient(top, #909090, #808080); /* for firefox 3.6+ */
+        background: linear-gradient(to bottom, #909090 0%, #808080 100%); /* W3C (IE10) maybe others soon.*/
+    }
+
+    .FormsDesignerCanvasView .canvas {
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
+        max-width: 100%;
+        overflow: auto;
+        position: relative;
+    }
+
+        .FormsDesignerCanvasView .canvas > div {
+            position: relative;
+            border: 1px solid #000;
+            box-shadow: 2px 2px 4px #000;
+            margin: 10px auto;
+            background-color: #F9F9F9;
+        }
+
+            .FormsDesignerCanvasView .canvas > div.gridBackground {
+                background-image: url('../../images/dynamicAnchorBg.jpg');
+                background-position: -1px -1px;
+            }

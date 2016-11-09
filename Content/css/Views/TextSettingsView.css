@@ -1,0 +1,39 @@
+﻿.TextSettingsView {
+    width: 100%;
+}
+
+    .TextSettingsView > div {
+        margin: 5px 0;
+    }
+
+    .TextSettingsView .fontAlignments,
+    .TextSettingsView .fontStyles {
+        margin: 5px;
+    }
+
+    .TextSettingsView .fontColors {
+        margin: 0 5px;
+    }
+
+    .TextSettingsView .toggle_btn {
+        background-image: url("../../../Content/images/s.png");
+        background-position: -2px -178px;
+        display: inline-block;
+        float: left;
+        height: 16px;
+        width: 18px;
+        cursor: pointer;
+    }
+
+        .TextSettingsView .toggle_btn.pressed {
+            background-position: -2px -200px;
+        }
+
+    .TextSettingsView .fontStyles .toggle_btn span {
+        background-image: url("../../../Content/images/s.png");
+        display: inline-block;
+    }
+
+    .TextSettingsView .jPicker .Icon {
+        position: relative;
+    }

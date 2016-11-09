@@ -1,0 +1,11 @@
+﻿.DocumentVersioningGridItemView .ui-icon.displayNone {
+    display: none;
+}
+.DocumentVersioningGridItemView:hover .ui-icon.displayNone {
+    display: block;
+}
+
+.DocumentVersioningGridItemView.selected {
+    background: none repeat-x scroll 50% 50% #fbf9d0;
+    color: #363636;
+}

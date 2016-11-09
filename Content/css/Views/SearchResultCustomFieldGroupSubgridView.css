@@ -1,0 +1,8 @@
+﻿.SearchResultCustomFieldGroupSubgridView .cfvWFButtonContainer {
+    width: 65%;
+    margin: auto;
+}
+
+    .SearchResultCustomFieldGroupSubgridView .cfvWFButtonContainer .custom_button.short_btn {
+        width: 50px;
+    }

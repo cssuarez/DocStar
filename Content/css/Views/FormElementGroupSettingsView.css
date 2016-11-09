@@ -1,0 +1,15 @@
+﻿.FormElementGroupSettingsView span.warningErrorClass {
+    float: right;
+}
+
+.FormElementGroupSettingsView select[name="SortById"] {
+    width: 155px;
+}
+
+.FormElementGroupSettingsView input[name="MaxPerPage"].flow {
+    width: 148px;
+}
+
+.FormElementGroupSettingsView span.flow {
+    margin: 0 0 0 2px;
+}

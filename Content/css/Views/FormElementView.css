@@ -1,0 +1,123 @@
+﻿.FormElementView .formElementMarkup {
+    padding: 5px;
+    border: 1px solid #999;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F9F9F9', endColorstr='#FFFFFF');
+    background: -webkit-gradient(linear, left top, left bottom, from(#F9F9F9), to(#FFFFFF));
+    background: -moz-linear-gradient(top, #F9F9F9, #FFFFFF); /* for firefox 3.6+ */
+    background: linear-gradient(to bottom, #F9F9F9 0%, #FFFFFF 100%); /* W3C (IE10) maybe others soon.*/
+    cursor: default;
+}
+
+    .FormElementView .formElementMarkup.ui-draggable-dragging {
+        z-index: 100;
+    }
+
+    .FormElementView .formElementMarkup.selected {
+        border: 1px solid #51CBEE;
+        box-shadow: 0 1px 3px 0 rgba(81, 203, 238, 0.5);
+    }
+
+    .FormElementView .formElementMarkup.editingHighlight:not(.selected) {
+        border: 1px solid #00FF00;
+        box-shadow: 0 1px 3px 0 rgba(0, 255, 0, 0.5);
+        cursor: pointer;
+    }
+
+    .FormElementView .formElementMarkup.errorHighlight {
+        border: 1px solid #AA0000;
+        box-shadow: 0 1px 3px 0 rgba(170, 0, 0, 0.5);
+    }
+
+    .FormElementView .formElementMarkup [readonly] {
+        background-color: #F0F0F0;
+    }
+
+.FormElementView .formElementLabel.ui-resizable {
+    border: 1px dotted #000;
+    margin: -1px;
+}
+
+.FormElementView input[type="checkbox"] {
+    box-shadow: none;
+}
+
+.FormElementView textarea {
+    resize: none;
+}
+
+.FormElementView .ui-wrapper {
+    overflow: visible;
+    display: inline-flex;
+}
+
+.FormElementView .formElementMarkup:not(.selected) .ui-resizable-handle {
+    display: none;
+}
+
+.FormElementView .ui-resizable-handle {
+    border: 1px solid #000;
+}
+
+    .FormElementView .ui-resizable-handle.ui-resizable-n,
+    .FormElementView .ui-resizable-handle.ui-resizable-s {
+        background: #fff;
+        left: 50%;
+        width: 5px;
+        height: 5px;
+        z-index: 100;
+    }
+
+    .FormElementView .ui-resizable-handle.ui-resizable-e,
+    .FormElementView .ui-resizable-handle.ui-resizable-w {
+        background: #fff;
+        width: 5px;
+        height: 5px;
+        top: 40%;
+        z-index: 100;
+    }
+
+    .FormElementView .ui-resizable-handle.ui-resizable-ne,
+    .FormElementView .ui-resizable-handle.ui-resizable-se,
+    .FormElementView .ui-resizable-handle.ui-resizable-nw,
+    .FormElementView .ui-resizable-handle.ui-resizable-sw {
+        background: #fff;
+        width: 5px;
+        height: 5px;
+        z-index: 100;
+    }
+
+    .FormElementView .ui-resizable-handle.ui-resizable-n {
+        top: -4px;
+    }
+
+    .FormElementView .ui-resizable-handle.ui-resizable-s {
+        bottom: -4px;
+    }
+
+    .FormElementView .ui-resizable-handle.ui-resizable-e {
+        right: -4px;
+    }
+
+    .FormElementView .ui-resizable-handle.ui-resizable-w {
+        left: -4px;
+    }
+
+    .FormElementView .ui-resizable-handle.ui-resizable-ne {
+        top: -4px;
+        right: -4px;
+    }
+
+    .FormElementView .ui-resizable-handle.ui-resizable-se {
+        bottom: -4px;
+        right: -4px;
+    }
+
+    .FormElementView .ui-resizable-handle.ui-resizable-nw {
+        top: -4px;
+        left: -4px;
+    }
+
+    .FormElementView .ui-resizable-handle.ui-resizable-sw {
+        bottom: -4px;
+        left: -4px;
+    }

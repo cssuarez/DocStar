@@ -1,0 +1,83 @@
+﻿.DocumentViewerMenuView {
+    float: left;
+    left: 5px;
+    position: relative;
+    top: 0;
+}
+
+    .DocumentViewerMenuView .submenu li span {
+        display: inline-block;
+        float: left;
+        height: 16px;
+        width: 16px;
+        z-index: 1;
+    }
+
+    .DocumentViewerMenuView ul.children {
+        padding: 0 0 5px 0;
+        width: 180px;
+    }
+
+    .DocumentViewerMenuView li span.ui-icon-check, .DocumentViewerMenuView .submenu li span.ui-icon-check {
+        top: 2px;
+        position: relative;
+    }
+
+    .DocumentViewerMenuView li span {
+        display: inline-block;
+        float: left;
+        height: 16px;
+        width: 16px;
+        z-index: 1;
+    }
+    .DocumentViewerMenuView li span.anchor {
+        width: auto;
+    }
+
+        .DocumentViewerMenuView li span.right_icon, .DocumentViewerMenuView .submenu li span.right_icon {
+            float: right;
+            position: absolute;
+            right: 0;
+            top: 3px;
+        }
+
+    .DocumentViewerMenuView .dropdown ul li span.anchor, .DocumentViewerMenuView .submenu li span.anchor {
+        float: none;
+        font-weight: normal;
+        position: relative;
+        width: 100%;
+    }
+
+    .DocumentViewerMenuView .dropdown_arrow {
+        position: absolute;
+        right: 1px;
+        top: 3px;
+    }
+
+    .DocumentViewerMenuView .parent {
+        font-weight: normal;
+        height: 8px;
+        line-height: 8px;
+        padding: 5px 14px 5px 5px;
+    }
+
+
+    .DocumentViewerMenuView li:hover {
+        background: #E6E6E6;
+    }
+
+    .DocumentViewerMenuView .menu_item {
+        display: inline-block;
+        margin: 0;
+        position: relative;
+        width: 100%;
+    }
+
+        .DocumentViewerMenuView .menu_item .left_icon {
+            float: left;
+            left: 2px;
+        }
+
+    .DocumentViewerMenuView .dropdown ul.children {
+        overflow: visible;
+    }

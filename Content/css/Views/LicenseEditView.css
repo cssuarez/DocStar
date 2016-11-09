@@ -1,0 +1,19 @@
+﻿.LicenseEditView {
+    width: 100%;
+    height: 100%;
+}
+
+    .LicenseEditView fieldset {
+        position: relative;
+    }
+
+        .LicenseEditView fieldset > .StaticDataGridView {
+            position: absolute;
+            left: 5px;
+            right: 5px;
+            height: 210px;
+        }
+
+    .LicenseEditView .subgridRow .StaticDataGridView {
+        position: relative;
+    }

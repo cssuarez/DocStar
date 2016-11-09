@@ -1,0 +1,41 @@
+﻿.DocumentPagerView .metaNavigationContainer {
+        width: 100%;
+        display: inline-block;
+        padding: 10px 0 5px 0;
+        background-color: #FFF;
+    }
+
+    .DocumentPagerView .meta_navigation {
+        display: table;
+        margin: 0 auto;
+    }
+
+        .DocumentPagerView .meta_navigation > span.metadata_navigation_start,
+        .DocumentPagerView .meta_navigation > span.metadata_navigation_prev,
+        .DocumentPagerView .meta_navigation > span.metadata_navigation_next,
+        .DocumentPagerView .meta_navigation > span.metadata_navigation_end {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            float: left;
+            height: 16px;
+            position: relative;
+            width: 16px;
+        }
+
+        .DocumentPagerView .meta_navigation .metadata_results_type,
+        .DocumentPagerView .meta_navigation .metadata_results_max {
+            float: left;
+            padding: 0 12px;
+            position: relative;
+        }
+
+        .DocumentPagerView .meta_navigation .metadata_results_counter {
+            float: left;
+            height: 12px;
+            margin: 0 12px;
+            position: relative;
+            text-align: center;
+            top: -3px;
+            width: 40px;
+        }

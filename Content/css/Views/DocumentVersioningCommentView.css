@@ -1,0 +1,55 @@
+﻿.DocumentVersioningCommentView {
+    left: -1px;
+    position: relative;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 5px;
+    padding: 0px;
+    display: table;
+}
+
+    .DocumentVersioningCommentView .versChatLogListContainer {
+        border: 1px solid black;
+        position: relative;
+        margin: 0px;
+    }
+
+        .DocumentVersioningCommentView .versChatLogListContainer .showCurrentAndPreviousComments {
+            cursor: pointer;
+        }
+
+        .DocumentVersioningCommentView .versChatLogListContainer hr {
+            display: inline-block;
+            left: 2%;
+            position: relative;
+            width: 96%;
+        }
+
+        .DocumentVersioningCommentView .versChatLogListContainer ul {
+            margin: 4px;
+        }
+
+        .DocumentVersioningCommentView .versChatLogListContainer > span {
+            margin: 3px;
+        }
+
+    .DocumentVersioningCommentView .versChatLogEntry .chatIcon {
+        padding: 3px;
+    }
+
+    .DocumentVersioningCommentView .versChatLogEntry .versChatInput {
+        width: 98%;
+    }
+
+    .DocumentVersioningCommentView .versionComment pre {
+        white-space: normal;
+        word-break:break-all;
+    }
+
+    .DocumentVersioningCommentView .versionComment .displayNone {
+        display: none;
+    }
+
+    .DocumentVersioningCommentView .versionComment:hover .displayNone {
+        display: block;
+    }

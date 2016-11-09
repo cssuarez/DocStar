@@ -1,0 +1,114 @@
+﻿.DocumentView {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+    .DocumentView .DocumentViewLeft {
+        height: 100%;
+        position: relative;
+        float: left;
+        z-index: 20;
+    }
+
+    .DocumentView .DocumentViewRight {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+
+    /*#region Document Hits */
+
+    .DocumentView .documentNavigator {
+        background: #DAE9F8;
+        border: 1px solid #000;
+        color: black;
+        cursor: default;
+        display: none;
+        font-weight: normal;
+        height: 15px;
+        line-height: 15px;
+        padding: 7px 5px;
+        position: absolute;
+        top: 32px;
+        z-index: 98;
+    }
+
+        .DocumentView .documentNavigator div {
+            display: inline-block;
+            float: left;
+        }
+
+        .DocumentView .documentNavigator span {
+            cursor: default;
+            display: inline-block;
+            float: left;
+            margin: 0 15px 0 0;
+        }
+
+            .DocumentView .documentNavigator span.ui-icon {
+                cursor: pointer;
+                margin: 0;
+            }
+
+            .DocumentView .documentNavigator span.closeDocNav {
+                margin: 0 5px 0 0;
+            }
+
+    .DocumentView .documentText {
+        background: #FFF;
+        border: 1px solid #000;
+        bottom: 7px;
+        display: none;
+        height: 300px;
+        left: 0;
+        position: absolute;
+        width: 99.7%;
+    }
+
+    .DocumentView .documentTextHeader {
+        background: #DAE9F8;
+        border-bottom: 1px solid #000;
+        height: 15px;
+        padding: 7px 0;
+        position: relative;
+        width: 100%;
+    }
+
+        .DocumentView .documentTextHeader span {
+            display: inline-block;
+            float: left;
+            line-height: 15px;
+            margin: 0 5px 0 10px;
+        }
+
+            .DocumentView .documentTextHeader span.closeDocText {
+                cursor: pointer;
+            }
+
+    .DocumentView .documentTextContent {
+        height: 265px;
+        overflow: auto;
+    }
+
+        .DocumentView .documentTextContent pre {
+            font-family: verdana;
+            font-size: 11px;
+            margin: 5px 0 5px 15px;
+            max-height: 100%;
+        }
+
+    .DocumentView .hitHighlight {
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#51CBEE', endColorstr='#51CBEE');
+        background: #51CBEE;
+    }
+
+    .DocumentView .annoHighlight {
+        background: #51CBEE;
+        display: inline-block;
+        opacity: .75;
+        position: absolute;
+    }
+/*#endregion Document Hits*/

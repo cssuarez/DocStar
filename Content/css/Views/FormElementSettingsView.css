@@ -1,0 +1,97 @@
+﻿.FormElementSettingsView {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+    .FormElementSettingsView .accordion {
+        width: 100%;
+        height: 100%;
+        padding: 5px 0;
+    }
+
+    .FormElementSettingsView .fieldSettingsContainer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 68px;
+        padding: 0px 4px 0 5px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        max-height: 100%;
+    }
+
+        .FormElementSettingsView .fieldSettingsContainer > div {
+            margin: 5px 0;
+        }
+
+            .FormElementSettingsView .fieldSettingsContainer > div[data-accid] .accordion_title {
+                position: relative;
+                left: -5px;
+                padding-left: 9px;
+            }
+
+                .FormElementSettingsView .fieldSettingsContainer > div[data-accid] .accordion_title > .accordion_title_contents {
+                    margin-left: -9px;
+                }
+
+            .FormElementSettingsView .fieldSettingsContainer > div[data-accid="formElementFormulaAccState"] {
+                position: relative;
+            }
+
+                .FormElementSettingsView .fieldSettingsContainer > div[data-accid="formElementFormulaAccState"] .accordion.open {
+                    width: calc(100% + 7px);
+                    left: -4px;
+                }
+
+    .FormElementSettingsView .accordion > hr {
+        position: absolute;
+        bottom: 27px;
+        width: 100%;
+    }
+
+    .FormElementSettingsView .posBottom {
+        bottom: 40px;
+    }
+
+    .FormElementSettingsView .buttonContainer {
+        display: table;
+        margin: 0 auto;
+    }
+
+    .FormElementSettingsView .TextSettingsView {
+        float: right;
+    }
+
+    .FormElementSettingsView label {
+        width: 100%;
+        display: inline-block;
+        margin: 2px 0;
+    }
+
+    .FormElementSettingsView span.editBackingStore {
+        float: right;
+    }    
+
+    .FormElementSettingsView label > select[name="BackingStoreId"]:not(.fieldBackingStoreWithoutIcon) {
+        width: 154px; /* field backing store: allow room for two icons, edit and add*/
+    }
+        .FormElementSettingsView label > select[name="BackingStoreId"].imgBackingStores {
+            width: 169px; /* image backing store: one icon does both edit and add */
+        }
+    
+        .FormElementSettingsView label > select[name="BackingStoreId"][disabled] {
+            width: 185px; /* constant backing store: no editing / no icons (detected with disabled attribute) */
+        }
+
+    .FormElementSettingsView label > input,
+    .FormElementSettingsView label > select,
+    .FormElementSettingsView label > textarea,
+    .FormElementSettingsView label > .ui-combobox {
+        float: right;
+    }
+
+    .FormElementSettingsView fieldset {
+        margin: 0;
+    }
