@@ -1,0 +1,156 @@
+﻿@using Astria.Framework.Utility;
+<div class="vert_seperator_hidable">
+</div>
+<span class="collapsedAnnotationMenuButton"></span>
+<div class="annotations_menu">
+    {{ if(it.allowEditing && it.allowAnnotate) { }}
+    <div class="toggle_btn custom_button {{=it.isPressed === 'Sticky' ? 'pressed' : ''}}">
+        <span name="Sticky" value="Sticky" class="sticky_icon sPngIB fleft" title="@Constants.i18n("stickyNote")">
+        </span>
+    </div>
+    <div class="toggle_btn custom_button {{=it.isPressed === 'Text' ? 'pressed' : ''}}">
+        <span name="Text" value="Text" class="text_icon sPngIB fleft" title="@Constants.i18n("text")">
+        </span>
+    </div>
+    <div class="toggle_btn custom_button {{=it.isPressed === 'Highlight' ? 'pressed' : ''}}">
+        <span name="Highlight" value="Highlight" class="highlight_icon sPngIB fleft" title="@Constants.i18n("highlight")">
+        </span>
+    </div>
+    <div class="toggle_btn custom_button {{=it.isPressed === 'Line' ? 'pressed' : ''}}">
+        <span name="Line" value="Line" class="line_icon sPngIB fleft" title="@Constants.i18n("line")">
+        </span>
+    </div>
+    <div class="toggle_btn custom_button {{=it.isPressed === 'Arrow' ? 'pressed' : ''}}">
+        <span name="Arrow" value="Arrow" class="arrow_icon sPngIB fleft" title="@Constants.i18n("arrow")">
+        </span>
+    </div>
+    <div class="toggle_btn custom_button {{=it.isPressed === 'Rectangle' ? 'pressed' : ''}}">
+        <span name="Rectangle" value="Rectangle" class="box_icon sPngIB fleft" title="@Constants.i18n("box")">
+        </span>
+    </div>
+    <div class="toggle_btn custom_button {{=it.isPressed === 'Ellipse' ? 'pressed' : ''}}">
+        <span name="Ellipse" value="Ellipse" class="ellipse_icon sPngIB fleft" title="@Constants.i18n("ellipse")">
+        </span>
+    </div>
+    <div class="toggle_btn custom_button modifyRedactions {{=it.isPressed === 'Redaction' ? 'pressed' : ''}}">
+        <span value="Redaction" class="redaction_icon sPngIB fleft" title="@Constants.i18n("redactionArea")">
+        </span>
+    </div>
+    <div class="toggle_btn custom_button {{=it.isPressed === 'TextStamp' ? 'pressed' : ''}}">
+        <span name="Text" value="TextStamp" class="textstamp_icon sPngIB fleft" title="@Constants.i18n("textRubberStamp")">
+        </span>
+    </div>
+    <div class="toggle_btn custom_button {{=it.isPressed === 'ImageStamp' ? 'pressed' : ''}}">
+        <span name="ImageStamp" value="ImageStamp" class="imagestamp_icon sPngIB fleft" title="@Constants.i18n("imageRubberStamp")">
+        </span>
+    </div>
+    <div class="custom_button modifyAnnotationRedactions">
+        <span class="deleteIcon sPngIB fleft" title="@Constants.i18n("deleteSelected")"></span>
+    </div>
+    {{ } }}
+
+    {{ if(it.showAnnotations) { }}
+    <div class="showHideAnno custom_button modifyAnnotationRedactions pressed">
+        <span class="show_annotations_icon sPngIB fleft" title="@Constants.i18n("hideAnnotations")">
+        </span>
+    </div>
+    {{ } else { }}
+    <div class="showHideAnno custom_button modifyAnnotationRedactions">
+        <span class="show_annotations_icon sPngIB fleft" title="@Constants.i18n("showAnnotations")">
+        </span>
+    </div>
+    {{ } }}
+    {{ if(it.allowEditing) { }}
+    <div style="{{=it.editingAnnotations ? 'display: block;' : 'display: none;'}}" class="custom_button cancelEditMode">
+        <span class="ui-icon ui-icon-cancel fleft" title="@Constants.i18n("exitEditMode")"></span>
+    </div>
+    <div class="annoProps custom_button no_text_select">
+        <a class="whiteIcon ui-icon ui-icon-triangle-1-s"></a>
+    </div>
+
+    <div class="annoPropsCont">
+        <div>
+            <a class="fillColor">@Constants.i18n("fillColor")</a>
+        </div>
+        <div class="borderPropCont">
+            <div>
+                <a class="borderColor">@Constants.i18n("borderColor")</a>
+            </div>
+            <div class="borderThickness">
+                <a>@Constants.i18n("borderThickness")</a>
+                <dl class="thickness dropdown shadow">
+                    <dt>
+                        <span class="parent">
+                            <span class="thickness_text" style="height: 1px;">&nbsp;</span>
+                            <span class="dropdown_arrow ui-icon ui-icon-triangle-1-s"></span>
+                        </span>
+                    </dt>
+                    <dd>
+                        <ul class="children clearfix">
+                            <li><span>@Constants.i18n("none")</span></li>
+                            <li><span class="anchor thick_one"></span></li>
+                            <li><span class="anchor thick_two"></span></li>
+                            <li><span class="anchor thick_four"></span></li>
+                        </ul>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="fontPropCont">
+            <div>
+                <select name="FontType">
+                    {{
+                    var i = 0; var length = it.fonts.length;
+                    for (i; i < length; i++) {
+                    var f = it.fonts[i];
+                    }}
+                    <option value="{{=f.Value}}" {{=f.Style}} {{=f.Selected}}>{{=f.Value}}</option>
+                    {{ } }}
+                </select>
+            </div>
+            <div>
+                <select name="FontSize">
+                    {{
+                    i = 0; length = it.sizes.length;
+                    for (i; i < length; i++) {
+                    var s = it.sizes[i];
+                    }}
+                    <option value="{{=s.Value}}" {{=s.Selected}}>{{=s.Value}}</option>
+                    {{ } }}
+                </select>
+            </div>
+            <div>
+                <div class="toggle_btn custom_button">
+                    <span class="FontStyleBold" title="@Constants.i18n("bold")" value="{{= Constants.fs.Bold}}">
+                    </span>
+                </div>
+                <div class="toggle_btn custom_button">
+                    <span class="FontStyleItalic" title="@Constants.i18n("italic")" value="{{= Constants.fs.Italic}}">
+                    </span>
+                </div>
+                <div class="toggle_btn custom_button">
+                    <span class="FontStyleUnderLine" title="@Constants.i18n("underline")" value="{{= Constants.fs.Underline}}">
+                    </span>
+                </div>
+                <div class="toggle_btn custom_button">
+                    <span class="FontStyleStrike" title="@Constants.i18n("strikethrough")" value="{{= Constants.fs.Strikethrough}}">
+                    </span>
+                </div>
+            </div>
+            <div>
+                <a class="fontColor"></a>
+            </div>
+        </div>
+        <div class="annoPropsMore">
+        </div>
+    </div>
+    <div class="imageStamps" style="display: none;">
+        <ul></ul>
+    </div>
+    <div class="textStamps" style="display: none;">
+        <ul></ul>
+    </div>
+    {{ } }}
+</div>
+<div class="vert_seperator_hidable">
+</div>

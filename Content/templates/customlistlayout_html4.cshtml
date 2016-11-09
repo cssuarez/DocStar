@@ -1,0 +1,79 @@
+﻿@using Astria.Framework.Utility;
+{{
+    var textBoxText = '';
+    var first = true;
+    var disabled = '';
+    if (it.selected.get('Id') !== Constants.c.emptyGuid) {
+        disabled = 'disabled="disabled"';
+    }
+    _.each(it.selected.get("Items"), function(item) {  
+        if (first) {
+            textBoxText += item;
+            first = false;
+        }
+        else {
+            textBoxText += String.fromCharCode(13) + item;
+        }      
+    });    
+}}
+<h2>@Constants.i18n("editLists")</h2>
+<div id="customlists_layout">
+    <fieldset>
+        <legend>@Constants.i18n("lists")</legend>
+        <ol class="unstyledList">
+            <li>
+                <span class="metalabel fleft">@Constants.i18n("selectList"):</span>
+                <select name="customLists" size="10">
+                    {{ it.list.each(function(item) { }}
+                    {{ if (it.selected.get("Id") === item.get("Id")) { }}
+                        <option value="{{= it.selected.get('Id') }}" selected="selected">{{= Utility.safeHtmlValue(item.get('Name'), {attrs:{title: item.get('Name')}, tag:'span'})}}</option>
+                    {{ } else { }}
+                        <option value="{{= item.get('Id') }}">{{= Utility.safeHtmlValue(item.get('Name'), {attrs:{title: item.get('Name')}, tag:'span'})}}</option>
+                    {{ } }}    
+                {{ }); }}
+                </select>
+            </li>
+        </ol>
+        <ol class="unstyledList">
+            <li>
+                <label>@Constants.i18n("name"):</label>
+                {{if (it.selected.get('Id') !== Constants.c.emptyGuid) { }}
+                    {{= Utility.safeHtmlValue(it.selected.get('Name'), {attrs:{title: it.selected.get('Name'), name:'listName', disabled:'disabled', type:'text'}, tag:'input'})}}
+                {{ } 
+                  else { }}
+                    {{= Utility.safeHtmlValue(it.selected.get('Name'), {attrs:{title: it.selected.get('Name'), name:'listName', type:'text'}, tag:'input'})}}
+                {{ } }}
+
+                <span class="alphaNumeric" style="display: none;"></span>
+            </li>
+            <li>
+                <label title="@Constants.i18n("readOnlyTT")">@Constants.i18n("readOnly"):</label>
+                {{if(it.selected.get('ReadOnly')) { }}
+                <input type="checkbox" name="readOnly" checked="checked" title="@Constants.i18n("readOnlyTT")" />
+                {{ } else { }}
+                <input type="checkbox" name="readOnly" title="@Constants.i18n("readOnlyTT")" />
+                {{ } }}
+            </li>
+            <li>
+                <label title="@Constants.i18n("sortListTT")">@Constants.i18n("sortList"):</label>
+                {{if(it.selected.get('SortList')) { }}
+                <input type="checkbox" name="sortList" checked="checked" title="@Constants.i18n("sortListTT")" />
+                {{ } else { }}
+                <input type="checkbox" name="sortList" title="@Constants.i18n("sortListTT")" />
+                {{ } }}
+            </li>
+                <li>
+                <label>@Constants.i18n("listItems"):</label>
+                <textarea wrap="off" id="clist_txtarea" name="items" rows="8" cols="22">{{= textBoxText}}</textarea>
+            </li>
+        </ol>
+    </fieldset>
+</div>
+<div id="delete_list" style="display: none;">
+    <span>@Constants.i18n("deleteListText")</span>
+</div>
+<div class="buttons">
+    <input type="button" id="save_cl" name="save_cl" value="@Constants.i18n("save")" disabled="disabled" />
+    <input type="button" id="delete_cl" name="delete_cl" value="@Constants.i18n("delete")"  />
+    <input type="hidden" name="errors_cl" />
+</div>

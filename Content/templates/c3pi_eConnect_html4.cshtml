@@ -1,0 +1,28 @@
+﻿@using Astria.Framework.Utility;
+<div>
+    <fieldset>
+        <legend>@Constants.i18n("settings")</legend>
+        <ol class="unstyledList" >
+            <li>
+                <label>@Constants.i18n("connectionString"):</label>
+                <span class="wideInput">
+                    <input type="text" name="ConnectionString" value="{{=it.ConnectionString || ''}}" />
+                </span>                
+            </li>
+            {{
+            var multiDB = (it.ConnectionString || '').indexOf('@@DBName') >= 0;
+            }}
+            <li>
+                <label>@Constants.i18n("multipleDatabases"):</label>
+                <input type="checkbox" name="MultiDB" title="@Constants.i18n("multipleDatabases_desc")"  {{= multiDB ? "checked=checked" : "" }}/>
+            </li>
+            <li class="defaultDB" {{= multiDB ? '' : 'style="display:none;"' }} >
+                <label>@Constants.i18n("default@DBName"):</label>
+                <span>
+                    <input type="text" name="DefaultDBName" value="{{=it.DefaultDBName || ''}}" />
+                </span>                
+            </li>
+            @*add more settings here if needed*@
+        </ol>
+    </fieldset>
+</div>    

@@ -1,0 +1,14 @@
+﻿@using Astria.Framework.Utility;
+<div class="vert_seperator_hidable sPng">
+</div>
+<div class="annotations_menu">
+    {{ if(it.showStamps) { }}
+    <div class="showHideStamps custom_button long_btn pressed">
+        <span class="fleft" title="@Constants.i18n("hideApprovalStamps")">@Constants.i18n("hideApprovalStamps")</span>
+    </div>
+    {{ } else { }}
+    <div class="showHideStamps custom_button long_btn">
+        <span class="fleft" title="@Constants.i18n("showApprovalStamps")">@Constants.i18n("showApprovalStamps")</span>
+    </div>
+    {{ } }}
+</div>

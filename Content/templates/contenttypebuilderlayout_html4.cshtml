@@ -1,0 +1,85 @@
+﻿@using Astria.Framework.Utility;
+<img class="throbber loadingThrobberHorizontalPosCenter" src="@System.Web.Mvc.UrlHelper.GenerateContentUrl("~/Content/themes/default/throbber.gif", new HttpContextWrapper(HttpContext.Current))" alt="" />
+<div id="contentTypeBuilderTabs">
+    <ul>
+        <li id="contentTypeBuilderTab" class="leftMostTabBorder"><a href="#contentTypeBuilderTabs_ContentTypeBuilder">@Constants.i18n("contentTypeBuilder")</a></li>
+        {{ if (it.canViewAdvanced) { }}
+            <li id="contentTypeBuilderAdvancedTab" class="centerTabBorder"><a href="#contentTypeBuilderTabs_ContentTypeBuilderAdvanced">@Constants.i18n("advanced")</a></li>
+        {{ } }}
+    </ul>
+    <div id="contentTypeBuilderTabs_ContentTypeBuilder">
+        <div class="contentTypeContainer">
+            <div class="displayTable fullWidth spacingTopBottom">
+                <div class="displayTableCell">
+                    @* Don't allow hiding of the content type yet. *@
+                    @*<div title="@Constants.i18n("hideField")" class="displayTableCell showEyeIcon sPngIB fleft"></div>*@
+                </div>
+                <div class="displayTableCell fieldLabelContainer">
+                    <span>@Constants.i18n("contentType")</span>
+                </div>
+                <div class="displayTableCell fullWidth">
+                    <select name="Name" class="metaselect">
+                        {{ 
+                        var idx = 0;
+                        var length = it.listct.length;
+                        for(idx; idx < length; idx++) {
+                            var item = it.listct.at(idx);
+                            var name = Utility.safeHtmlValue(item.get('Name'));
+                    }}
+                        {{ if(it.selectedContentType.get("Id") === item.get('Id')) { }}
+                                <option value="{{= item.get('Id') }}" selected="selected">{{= name }}</option>
+                        {{ } else { }}
+                                <option value="{{= item.get('Id') }}">{{= name }}</option>
+                        {{ } }}
+                    {{ } }}
+                    </select>
+                </div>
+                {{if(it.displayDelete) { }}
+                <div class="displayTableCell verticalAlignMiddle">
+                    <span class="ui-icon ui-icon-close" title="@Constants.i18n("delete")"></span>
+                </div>
+                {{ } }}
+            </div>
+            {{ if(it.canView) { }}
+            <div class="displayTable">
+                <div class="displayTableCell"></div>
+                <div class="displayTableCell fieldLabelContainer">
+                    <span>@Constants.i18n("contentTypeSecurityClass")</span>
+                </div>
+                <div class="displayTableCell fullWidth">
+                    <select name="SecurityClassId" class="metaselect">
+                        {{
+                            var idx = 0;
+                            var length = it.listsc.length;
+                            for(idx; idx < length; idx++) {
+                                var item = it.listsc.at(idx);
+                                var name = Utility.safeHtmlValue(item.get('Name'));
+                        }}
+                            {{ if(it.selectedContentType.get("SecurityClassId") === item.get('Id')) { }}
+                            <option value="{{= item.get('Id') }}" selected="selected">{{= name }}</option>
+                            {{ } else { }}
+                            <option value="{{= item.get('Id') }}">{{= name }}</option>
+                            {{ } }}
+                        {{ } }}
+                    </select>
+                </div>
+            </div>
+            {{ } else { }}
+            <div class="fullWidth">
+                <span class="AlignCenter inlineblock">{{=it.insufficientPermissionsMessage}}</span>
+            </div>
+            {{ } }}
+        </div>
+        {{ if(it.canView) { }}
+        <div class="ctbFieldsContainer fullWidth spacingTopSmall">
+            @* Render field elements for editing/creating fields for a content type *@
+        </div>
+        {{ } }}
+    </div>
+    {{ if (it.canViewAdvanced) { }}
+        <div id="contentTypeBuilderTabs_ContentTypeBuilderAdvanced">
+            @* render content type ad-hoc permissions *@
+            @* render content type sync action editor *@
+        </div>
+    {{ } }}
+</div>

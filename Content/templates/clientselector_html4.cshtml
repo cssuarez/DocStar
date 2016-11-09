@@ -1,0 +1,45 @@
+﻿@using Astria.Framework.Utility;
+<div class="clientSelector">
+    {{ if (it.label) { }}
+    <label>{{=it.label }}</label>
+    {{ } }}
+    <div class="fleft source">
+        {{ if (it.allowServer || !it.clientIsSelected) { }}
+        <select name="clientOrServer" > 
+            <option value="client" {{=it.clientSelected }} >@Constants.i18n("useClient")</option>
+            <option value="server" {{=it.serverSelected }} >@Constants.i18n("useServer")</option>
+        </select> 
+        {{ } else { }}
+        <span>@Constants.i18n("automationConnectionPrompt"):</span>
+        {{ } }}
+    </div>
+    {{ if (it.clientIsSelected) { }}
+    <div class="fleft">
+        <select name="MachineId" class="fleft spacingLeftRight">
+            {{
+            var length = it.automationConnections.length;
+            if (length === 0) {
+            }}
+            <option value="-1" >@Constants.i18n("noAutomationConnectionsAvailable")</option>
+            {{ 
+            } else {
+            }}
+            <option value="-1" >@Constants.i18n("chooseAnAutomationConnection")</option>
+            {{
+                for (var i = 0; i < length; i++) {
+                    var ac = it.automationConnections[i];
+                    var selected = it.machineId == ac.MachineId ? 'selected="selected"' : '';
+            }}
+            <option value="{{=ac.MachineId}}" {{=selected}} >{{=ac.MachineName}}</option>
+            {{  } 
+            }
+            if  (it.clientNotFound) {
+            }}
+            <option value="-1" selected="selected">@Constants.i18n("configuredAutomationConnectionNotFound")</option>
+            {{ } }}
+        </select>
+        <span class="{{=it.indicatorClass}}"></span>
+    </div>
+    {{ } }}
+</div>
+

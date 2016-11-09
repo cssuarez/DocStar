@@ -1,0 +1,30 @@
+﻿@using Astria.Framework.Utility;
+<div class="customFieldGroupItemsLibraryView">
+    <div class="customFieldGroupItemsLibraryViewScroll">
+        <div class="cfgGridsContainer">
+            @* custom field group layout rendered here *@
+        </div>
+    </div>
+    @* Allow adding/removing of custom field groups *@
+    {{ if(it.editable && it.hasModifyPermission) { }}
+    <div class="cfgUIContainer displayTable fullWidth">
+        <div class="fullWidth displayTableRow">
+            {{ if(it.listcfgs && it.listcfgs.length > 0) { }}
+                <select class="customFieldGroup ignore displayTableCell">
+                    {{ 
+                        var idx = 0;
+                        var length = it.listcfgs.length;
+                        for(idx = 0; idx < length; idx++) {
+                            var cfg = it.listcfgs[idx];
+                    }}
+                            <option id="{{=cfg.Id}}">{{= Utility.safeHtmlValue(cfg.Name)}}</option>
+                    {{
+                        }
+                    }}
+                </select>
+            {{ } }}
+            <span class="addGroup fright custom_button short_btn shadow displayTableCell">@Constants.i18n("add")</span>
+        </div>
+    </div>
+    {{ } }}
+</div>

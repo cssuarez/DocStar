@@ -1,0 +1,106 @@
+﻿@using Astria.Framework.Utility;
+
+<div class="viewer_menubar">
+    <div class="view_menu">
+        @*Place Menu Here from DocumentViewerMenuView*@
+    </div>
+    <div class="viewer_navigation">
+        <span class="ui-icon ui-icon-seek-start navigation_start navControl"></span>
+        <span class="ui-icon ui-icon-seek-prev navigation_prev navControl"></span>
+        <span class="viewer_results_type no_text_select">@Constants.i18n("page")</span>
+        <input name="currentPage" type="text" value="{{=it.currentPage }}" />
+        <span class="viewer_results_max no_text_select navControl">@Constants.i18n("of") {{=it.maxPages}}</span>
+        <span class="ui-icon ui-icon-seek-next navigation_next navControl"></span>
+        <span class="ui-icon ui-icon-seek-end navigation_end navControl"></span>
+    </div>
+    {{if (!it.regionViewer) { }}
+    {{
+        var rotateHideAttribute = '';
+        if(!it.canRotate) {
+            rotateHideAttribute = 'style="display:none;"';
+        }
+    }}
+    <span class="rotateSeperator sPng vert_seperator_hidable {{=it.nativeHideClass}}" {{=rotateHideAttribute}}></span>
+    <div class="rotate_menu {{=it.nativeHideClass}}" {{=rotateHideAttribute}}>
+        <span class="sPng rotateAllLeft_icon rotateControl" data-rotatevalue="-90" data-rotateall="true" title="@Constants.i18n("rotateAllLeft")"></span>
+        <span class="sPng rotateLeft_icon rotateControl" data-rotatevalue="-90" title="@Constants.i18n("rotateLeft")"></span>
+        <span class="sPng rotateRight_icon rotateControl" data-rotatevalue="90" title="@Constants.i18n("rotateRight")"></span>
+        <span class="sPng rotateAllRight_icon rotateControl" data-rotatevalue="90" data-rotateall="true" title="@Constants.i18n("rotateAllRight")"></span>
+    </div>
+    <div class="bookmarks_container">
+    </div>
+    <div class="anno_menu_cont sPng {{=it.nativeHideClass}}">
+    </div>
+    <div class="documentNavigator" style="{{=it.showDocumentHits ? 'display: block;' : 'display: none;'}}">
+        <span class="closeDocNav ui-icon ui-icon-close"></span>
+        <span class="hitText">@Constants.i18n("showingHit") &nbsp;</span>
+        <div class="hitCounters">
+            <span class="hitStart">{{=it.hitStart}}</span>
+            <span>&nbsp;@Constants.i18n("of")</span>
+            <span class="hitEnd">{{=it.hitEnd}}</span>
+        </div>
+        <span class="nextHit ui-icon ui-icon-arrowthick-1-s"></span>
+        <span>@Constants.i18n("next")</span>
+        <span class="prevHit ui-icon ui-icon-arrowthick-1-n"></span>
+        <span>@Constants.i18n("previous")</span>
+        <span class="highlightAll ui-icon ui-icon-pencil"></span>
+        <span>@Constants.i18n("highlightAll")</span>
+    </div>
+    <div class="dqRenderingInProgressContainer">
+        <span {{=it.renderingTitle}}>{{=it.renderingMessage}}</span>
+    </div>
+    {{ } }}
+</div>
+<div class="viewer_image {{=it.thumbnailsPreference}}">
+    {{if (it.showNative) { }}
+    {{if(it.canDownload) { }}
+    <iframe class="{{=it.iframeClass}}" src="{{=it.iframeSource}}" frameborder="0" />
+    {{if(it.typeNotSupported) { }}
+    <a class="downloadNativeDocument shadow long_btn no_text_select custom_button">@Constants.i18n("clickToDownload")</a>
+    <iframe class="download"></iframe>
+    {{ } }}
+    {{ } else { }}
+    <span>{{=it.noDownloadMessage}}</span>
+    {{ } }}
+    {{ } else { }}
+    <div class="img_container shadow_glow">
+        <div class="transformCont">
+            <img name="image_full" alt="" class="element_transition" src="{{= it.imageSource}}" />
+            <div class="markContainer">
+            </div>
+            <div class="regionContainer">
+            </div>
+        </div>
+        <div class="editMarkContainer">
+        </div>
+        <input class="rot" type="hidden" value="0" />
+        <div class="modalThrobberCont" style="display: none;">
+            <img src="@System.Web.Mvc.UrlHelper.GenerateContentUrl("~/Content/images/large_throbber.gif", new HttpContextWrapper(HttpContext.Current))" alt="Alternate Text" />
+        </div>
+        <div class="burningInAnnotationsCont {{=it.burnInClass}}">
+            <div class="burningInOverlay fullWidth fullHeight inlineblock"></div>
+            <div class="burningInMessageCont">
+                <img src="@System.Web.Mvc.UrlHelper.GenerateContentUrl("~/Content/images/large_throbber.gif", new HttpContextWrapper(HttpContext.Current))" alt="Alternate Text" />
+                <div>
+                    <span>@Constants.i18n("burningInMarks")</span>
+                    <span>@Constants.i18n("workingNormally")</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ } }}
+    <div class="documentText" style="{{=it.showDocumentText ? 'display: none' : ''}}">
+        <div class="documentTextHeader">
+            <span class="closeDocText ui-icon ui-icon-close"></span>
+            <span>@Constants.i18n("documentText")</span>
+        </div>
+        <div class="documentTextContent">
+            <pre>
+                {{=Utility.safeHtmlString(it.docText)}}
+            </pre>
+        </div>
+    </div>
+</div>
+<div class="DocumentImageViewThumbnailContainer">
+    @* Insert ThumbnailView Here *@
+</div>

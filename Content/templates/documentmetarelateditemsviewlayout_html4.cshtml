@@ -1,0 +1,35 @@
+﻿@using Astria.Framework.Utility;
+<img alt="Loading" src="{{= Constants.Url_Base + 'Content/themes/default/throbber.gif'}}" id="rdthrobber" style="position: absolute; z-index: 1; left: 125px; top: 74px; display: none;" />
+<div class="rd_container">
+    <table class="relatedDocumentsGrid customGridTable">
+        <thead>
+            <tr>
+                <th class="customGridHeader typeHeader">
+                    @Constants.i18n("type")
+                </th>
+                <th class="customGridHeader customGridSortable" data-columnid="@Constants.SF_TITLE">
+                    @Constants.i18n("title")
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {{
+                var idx = 0;
+                var length = it.rows.length;
+                for (idx; idx < length; idx++) {
+                    var row = it.rows[idx];
+            }}
+            <tr data-rowid="{{= row.id}}">
+                @*type*@
+                <td class="customGridDataCell">
+                    <div class="item_type_icon {{=row.typeClass}}"></div>
+                </td>
+                @* title *@
+                <td class="customGridDataCell" style="{{=it.align}}">
+                    {{=Utility.safeHtmlValue(row.title, {tag: 'a', attrs: {title: row.title, target: '_blank', href: Constants.Url_Base + "#Retrieve/viewByVersionId/" + row.versionId} })}}
+                </td>
+            </tr>
+            {{ } }}
+        </tbody>
+    </table>
+</div>

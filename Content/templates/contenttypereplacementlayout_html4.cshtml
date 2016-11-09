@@ -1,0 +1,15 @@
+﻿@using Astria.Framework.Utility;
+<span>@Constants.i18n("replaceContentType")</span>
+<span class="replace_text">{{=it.ctToReplace.Name}}</span>
+<select>
+{{
+    var idx = 0;
+    var length = it.cts.length;
+    for(idx; idx < length; idx++) {
+        var ct = it.cts.at(idx);
+        if(ct.get('Id') !== Constants.c.emptyGuid && ct.get('Id') !== it.ctToReplace.Id) {
+}}
+            {{=Utility.safeHtmlValue(ct.get('Id'), { tag: 'option', text: ct.get('Name') }) }}
+        {{ } }}
+    {{ } }}
+</select>

@@ -1,0 +1,20 @@
+﻿<span class="viewer_meta_title displayTableCell">{{=Constants.c.folders}}:</span>
+<div class="displayTableCell fullWidth valueTextArea">
+    <ul class="folderList unstyledList">
+        {{
+        var i = 0;
+        var length = it.folders.length;
+        for (i; i < length; i++) {
+            var f = it.folders[i];
+        }}
+        <li>
+            <div class="folderName">{{=f.Name}}</div>
+            <span data-folderid="{{=f.Id}}" class="removeFolder ui-icon ui-icon-circle-close" {{=f.removeStyle}}></span>
+        </li>
+        {{ } }}
+    </ul>
+</div>
+<div class="folder_btns">
+    <a class="custom_button short_btn no_text_select shadow addFolder" {{=it.addStyle}}>Add Folder</a>
+    <a class="custom_button short_btn no_text_select shadow moveTo" {{=it.moveStyle}}>Move To</a>
+</div>

@@ -1,0 +1,20 @@
+﻿@using Astria.Framework.Utility;
+<div class="approvalrequestDialog">
+    <div>
+        <span>@Constants.i18n("userOrRole"):</span>
+        <select></select>
+    </div>
+    <div id="approvalRequired" style="display:none" >
+        <span>@Constants.i18n("setRequiredText"):</span>
+        <input type="text" name="setRequired"/>
+    </div>
+    <div>
+        <span>@Constants.i18n("notify"):</span>
+        <input type="checkbox" name="Notify"/>
+    </div>
+    <div>
+        <span class="success_message" style="display:none;">@Constants.i18n("appRequestSuccess")</span>
+        <img id="req_throbber" alt="" src="@System.Web.Mvc.UrlHelper.GenerateContentUrl("~/Content/themes/default/throbber.gif", new HttpContextWrapper(HttpContext.Current))" />
+        <input name="app_err_msg" type="hidden" />
+    </div>
+</div>

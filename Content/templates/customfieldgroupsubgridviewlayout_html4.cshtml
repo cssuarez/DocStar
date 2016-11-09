@@ -1,0 +1,14 @@
+﻿@using Astria.Framework.Utility;
+@* Span 3 columns - select, subgrid, and edit *@
+<td colspan="{{=it.numColsToIndent}}" style="height: 0px;">
+    @* Workflow Icons *@
+    <div class="displayNone cfvWFButtonContainer">
+        <span class="refreshCFG spacingTopBottom custom_button short_btn" title="@Constants.i18n("refresh")">@Constants.i18n("refresh")</span>
+        <span class="next spacingTopBottom custom_button short_btn" title="@Constants.i18n("next")">@Constants.i18n("submit")</span>
+    </div>
+</td>
+<td class="SubgridViewContainer" colspan="{{=it.numColsToSpan}}">
+    @* Have subgrid span the rest of the columns not indented *@
+    @* Insert Sub Grid's View's Here *@
+    <span class="throbber"></span>
+</td>

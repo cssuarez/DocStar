@@ -1,0 +1,36 @@
+﻿@using Astria.Framework.Utility;
+{{
+    var alignment;
+    var totaled = false;
+    if(it && !$.isEmptyObject(it)) {
+        alignment = it.Alignment;
+        totaled = Utility.convertToBool(it.Totaled);
+    }
+    alignment = alignment || 'right';
+    var dummy = '';
+}}
+<div class="inlineblock fleft">
+    <div title="@Constants.i18n("alignLeft")" class="inlineblock fleft toggle_btn grayGradient {{=alignment === 'left' ? 'pressed' : ''}}">
+        <div class="inlineblock fleft wysiwygGifIB alignLeftIcon custom_button">
+            <input type="hidden" name="Alignment" value="left" />
+        </div>
+    </div>
+    <div title="@Constants.i18n("alignCenter")" class="inlineblock fleft toggle_btn grayGradient {{=alignment === 'center' ? 'pressed' : ''}}">
+        <div class="inlineblock fleft wysiwygGifIB alignCenterIcon custom_button">
+            <input type="hidden" name="Alignment" value="center" />
+        </div>
+    </div>
+    <div title="@Constants.i18n("alignRight")" class="inlineblock fleft toggle_btn grayGradient {{=alignment === 'right' ? 'pressed' : ''}}">
+        <div class="inlineblock fleft wysiwygGifIB alignRightIcon custom_button">
+            <input type="hidden" name="Alignment" value="right" />
+        </div>
+    </div>
+</div>
+<div class="inlineblock fleft spacingLeftRight">
+    <div title="@Constants.i18n("totaled")" class="inlineblock fleft toggle toggle_btn grayGradient {{=totaled === true ? 'pressed' : ''}}">
+        <div class="inlineblock fleft sPngIB sumIcon custom_button">
+            <input type="hidden" name="Totaled" value="{{=totaled}}" />
+        </div>
+    </div>
+</div>
+@*<div>@Constants.i18n("sum")</div>*@

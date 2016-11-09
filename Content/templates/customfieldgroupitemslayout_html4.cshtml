@@ -1,0 +1,18 @@
+﻿@using Astria.Framework.Utility;
+<div class="posRel spacingBottomSmall">
+    {{ if(it.groupName) { }}
+    <div class="spacingTopBottom">
+        {{= Utility.safeHtmlValue(it.groupName,{attrs:{title: it.groupName}, 'class': 'groupName inlineblock bold spacingLeftRight'})}}
+        {{ if(it.canDelete) { }}
+        <span id="{{=it.groupId}}" class="deleteGroup ui-icon ui-icon-circle-close fright" title="@Constants.i18n("remove")"></span>
+        {{ } }}
+    </div>
+    {{ } }}
+    <table id="{{= it.gridId}}"></table>
+    @* Workflow Icons *@
+    <div class="displayNone posAbs cfvWFButtonContainer">
+        <span class="refreshCFG spacingTopBottom custom_button short_btn" title="@Constants.i18n("refresh")">@Constants.i18n("refresh")</span>
+        <span class="next spacingTopBottom custom_button short_btn" title="@Constants.i18n("next")">@Constants.i18n("submit")</span>
+    </div>
+</div>
+<div id="{{= it.gridId + '_pager'}}"></div>

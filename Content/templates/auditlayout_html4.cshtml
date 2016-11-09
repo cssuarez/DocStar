@@ -1,0 +1,79 @@
+﻿@using Astria.Framework.Utility;
+<h2>@Constants.i18n("searchAudit")</h2>
+<div id="searchAuditDiv">
+    <ol id="audit_search_terms" class="left_labeled_layout ib inlineblock">
+        <li>
+            <label>@Constants.i18n("userName"):</label>
+            <input type="text" name="User" value="{{=it.username}}" />
+        </li>
+        <li>
+            <label>@Constants.i18n("title"):</label>
+            <input type="text" name="Title" value="{{=it.title}}" />
+        </li>
+        <li>
+            <label>@Constants.i18n("description"):</label>
+            <input type="text" name="Description" value="{{=it.description}}" />
+        </li>
+
+        <li>
+            <label>@Constants.i18n("startDateAudit"):</label>
+            <input id="startDate" type="text" name="StartDate" value="{{=it.startDate}}" />
+        </li>
+        <li>
+            <label>@Constants.i18n("endDateAudit"):</label>
+            <input id="endDate" type="text" name="EndDate" value="{{=it.endDate}}" />
+        </li>
+        <li>
+            <label>@Constants.i18n("actionType"):</label>
+            <select name="Type">
+                {{
+                var i = 0; var length = it.actionTypes.length;
+                for(i; i < length; i++) {
+                    var at = it.actionTypes[i];
+                }}
+                <option value="{{=at.value}}" {{=at.selected}}>{{=at.text}}</option>
+                {{ } }}
+            </select>
+        </li>
+        <li>
+            <label>@Constants.i18n("searchType"):</label>
+            <select name="EntityType">
+                {{
+                i = 0; length = it.entityTypes.length;
+                for(i; i < length; i++) {
+                    var et = it.entityTypes[i];
+                }}
+                <option value="{{=et.value}}" {{=et.selected}}>{{=et.text}}</option>
+                {{ } }}
+            </select>
+        </li>
+    </ol>
+</div>
+<div id="clearAuditDiv" style="{{=it.clearAuditStyle}}">
+    <fieldset id="clearAuditFS">
+        <legend>@Constants.i18n("clearAudit"):</legend>
+        <div>
+            <input type="radio" name="auditClearType" {{=it.purgeAllSelected}} value="purgeAllAudit" />@Constants.i18n("purgeAllAudit")
+        </div>
+        <div id="clearAuditDTLbl">
+            <input type="radio" name="auditClearType" {{=it.purgeByDateSelected}} value="purgeAuditByDate" />@Constants.i18n("purgeAuditByDate") &nbsp
+        </div>
+        <div id="clearAuditDTInput">
+            <input id="auditPurgeDate" name="auditPurgeDate" value="{{=it.purgeDate}}" {{=it.purgeDateDisabled}} />
+        </div>
+        <div>
+            <input type="button" name="submitAuditClear" value="@Constants.i18n("submit")" />
+        </div>
+    </fieldset>
+</div>
+<div class="inlineblock auditGrid">
+</div>
+<div class="auditButtons">
+    <div class="auditMargin">
+        <input type="button" name="search" value="@Constants.i18n("search")" />
+        <input type="button" name="clear" value="@Constants.i18n("clear")" />        
+    </div>
+    <div>
+        <span id="statusMsg">{{it.statusMessage}}</span>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+﻿@using Astria.Framework.Utility;
+{{if (it.draftExists) { }}
+<div class="fright">
+    <span class="spacingLeftRight">@Constants.i18n("draftOwner")</span>
+    <select class="spacingRight" name="NewDraftOwnerId">
+        {{
+            var i = 0; var length = it.draftOwners.length;
+            for(i; i < length; i++) {
+                var o = it.draftOwners[i];
+        }}
+        <option value="{{=o.value}}" {{=o.selected}}>{{=o.name}}</option>
+        {{ } }}
+    </select>
+    <span class="takeOwnership custom_button short_btn">@Constants.i18n("takeOwnership")</span>
+</div>
+<div class="fright">
+    <div class="fleft clearfix spacingLeftTopBottom">
+        <label title="{{=it.uncompleteFormTooltip}}">
+            <input type="checkbox" name="Uncomplete" {{=it.enableUncomplete ? '' : 'disabled="disabled"'}} />
+            <span class="spacingLeftSmall">@Constants.i18n("uncompleteForm")</span>
+        </label>
+    </div>
+    <div class="fleft clearfix spacingLeftTopBottom downloadOption">
+        <label>
+            <input type="checkbox" name="Download" class="spacingRight" checked="checked">
+            <span class="spacingLeftSmall">@Constants.i18n("downloadTo")</span>
+        </label>
+        <span class="systraySelection" title="{{=it.systrayTitle}}">{{=it.systrayName}}</span>
+    </div>
+</div>
+{{ } else { }}
+<textarea class="fullWidth threeQuarterHeight inlineblock fleft textareaResizeNone"></textarea>
+<div class="fright">
+    <div class="fleft clearfix spacingLeftTopBottom">
+        <label title="{{=it.uncompleteFormTooltip}}">
+            <input type="checkbox" name="Uncomplete" {{=it.enableUncomplete ? '' : 'disabled="disabled"'}} />
+            <span class="spacingLeftSmall">@Constants.i18n("uncompleteForm")</span>
+        </label>
+    </div>
+    <div class="fleft clearfix spacingLeftTopBottom">
+        <label>
+            <input type="checkbox" name="Download" checked="checked">
+            <span class="spacingLeftSmall">@Constants.i18n("downloadTo")</span>
+        </label>
+        <span class="systraySelection" title="{{=it.systrayTitle}}"> {{=it.systrayName}}</span>
+    </div>
+</div>
+{{ } }}

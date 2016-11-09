@@ -1,0 +1,35 @@
+﻿@using Astria.Framework.Utility;
+{{
+    var dataUsageReport = it;
+}}
+<h2>@Constants.i18n("dataUsageReport")</h2>
+<fieldset id="dataUsageContainer">
+    <div>
+        <ol class="left_labeled_layout">
+            <li>
+                <label>@Constants.i18n("dataBaseSize"):</label>
+                <span>{{=dataUsageReport.DatabaseSize}}</span>
+            </li>
+            <li>
+                <label>@Constants.i18n("solrIndexSize"):</label>
+                <span>{{=dataUsageReport.SolrIndexSize}}</span>
+            </li>
+            <li>
+                <label>@Constants.i18n("storageOnDisk"):</label>
+                <span>{{=dataUsageReport.StorageOnDisk}}</span>
+            </li>
+            <li>
+                <label>@Constants.i18n("itemInRecycleBin"):</label>
+                <span>{{=dataUsageReport.ItemsInRecycleBin}}</span>
+            </li>
+            <li>
+                <label>@Constants.i18n("noOfRecordInAudit"):</label>
+                <span>{{=dataUsageReport.AuditTableRows}}</span>
+            </li>
+            <li>
+                <label>@Constants.i18n("sizeOfAuditTable"):</label>
+                <span>{{=dataUsageReport.AuditTableSize}}</span>
+            </li>
+        </ol>
+    </div>
+</fieldset>

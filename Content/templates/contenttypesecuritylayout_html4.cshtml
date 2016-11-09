@@ -1,0 +1,49 @@
+﻿@using Astria.Framework.Utility;
+<fieldset>
+    <legend>@Constants.i18n("contentTypeSecurity")</legend>
+    <div class="metaarea displayTable fullWidth">
+        <span class="metalabel displayTableCell">@Constants.i18n("securityClass"):</span>
+        <select name="securityClass" class="displayTableCell fullWidth">
+            {{ it.listsc.each(function(item) { }}
+                {{ if (it.selectedContentType.get('SecurityClassId') === item.get("Id")) { }}
+                    <option value="{{= item.get('Id') }}" selected="selected">{{= item.get('Name') }}</option>
+                {{ } else { }}
+                    <option value="{{= item.get('Id') }}">{{= item.get('Name') }}</option>
+                {{ } }}
+            {{ }); }}
+        </select>
+    </div>
+    <div class="displayTable">
+        <div id="ct_userGroupTab" class="displayTableRow">
+            <ul>
+                <li class="leftMostTabBorder"><a href="#users">@Constants.i18n("users")</a></li>
+                <li class="centerTabBorder"><a href="#groups">@Constants.i18n("groups")</a></li>
+            </ul>
+            <div id="users">
+                <select name="ct_users" size="10" class="ctlist">
+                    {{ it.listu.each(function(item) {
+                        if(item.get('Id') !== Constants.c.emptyGuid) {
+                    }}
+                            <option value="{{= item.get('Id') }}">{{= item.get('Username') }}</option>
+                    {{  }
+                    }); }}
+                </select>
+            </div>
+            <div id="groups">
+                <select name="ct_roles" size="10" class="ctlist">
+                    {{ it.listr.each(function(item) { }}
+                        <option value="{{= item.get('Id') }}">{{= item.get('Name') }}</option>
+                    {{ }); }}
+                </select>
+            </div>
+        </div>
+        <div class="displayTable">
+            <span class="metalabel spacingTopLeft displayTableCell">@Constants.i18n("adhocPermissions"):</span>
+            <div class="displayTableRow">
+                <div class="permissions">
+                    @*Permissions go here*@
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>

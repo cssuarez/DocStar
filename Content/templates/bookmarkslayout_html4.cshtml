@@ -1,0 +1,25 @@
+﻿@using Astria.Framework.Utility;
+<span class="sPng vert_seperator {{=it.seperatorClass}}"></span>
+<dl class="bookmarksMenu dropdown {{=it.bookmarksClass}}">
+    <dt>
+        <span class="toggle_btn custom_button" title="@Constants.i18n("bookmarks")">
+            <span class="show_bookmarks_icon sPngIB fleft"></span>
+        </span>
+    </dt>
+    <dd>
+        <ul class="children">
+            {{
+            var i = 0;
+            var length = it.bookmarks.length;
+            for (i; i < length; i++) {
+                var bm = it.bookmarks[i];
+            }}
+            <li>
+                <span class="bookmarkItem anchor" data-bookmarkid="{{=bm.Id}}">
+                    {{=bm.Name}}
+                </span>
+            </li>
+            {{ } }}
+        </ul>
+    </dd>
+</dl>

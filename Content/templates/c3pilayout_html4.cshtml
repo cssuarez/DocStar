@@ -1,0 +1,118 @@
+﻿@using Astria.Framework.Utility;
+<div>
+    @* Connection name error*@
+    <input type="hidden" class="ignore" name="DLCName" />
+    {{ if (it.model) { }}
+        <div class="c3piSettings">
+            <div class="spacingBottomSmall">
+                <span class="spacingLeft">@Constants.i18n("type"): {{=Constants.c['c3p_' + Utility.reverseMapObject(Constants.c3p)[it.thirdPartyType]] }}</span>
+                <span class="spacingLeft">@Constants.i18n("prefix"): {{=it.prefix}}</span>
+                <input type="hidden" name="ThirdPartyType" value="{{=it.thirdPartyType}}" />
+                <input type="hidden" name="Prefix" value="{{=it.prefix}}" /><span>_</span>
+            </div>
+            <span class="inputErrorClass invalidSettings" style="display:none" >@Constants.i18n("invalidSettings")</span>
+        </div>
+        {{ 
+        }}
+        <div class="c3piQueries">
+            <fieldset name="queries">
+                <legend>@Constants.i18n("dataLinkQueries")</legend>
+                <div class="inlineblock">
+                    <div class="fleft">
+                        <select name="queries" size="7">
+                            {{ 
+                            var length = it.queries.length;
+                            var i;
+                            for (i = 0; i < length; i++) {
+                            }} 
+                                <option value="{{=i}}" title="{{=it.queries[i].Name}}" >{{=it.queries[i].Name}}</option>
+                            {{ } }}
+                        </select>
+                    </div>
+                    <div class="fleft spacingLeft">
+                        <ol class="unstyledList">
+                            <li>
+                                <input type="radio" name="dataLinkAction" value="Query" disabled="disabled" />
+                                <span>@Constants.i18n("readData")</span>
+                            </li>
+                            <li>
+                                <input type="radio" name="dataLinkAction" value="Update" disabled="disabled" />
+                                <span>@Constants.i18n("populateData")</span>
+                            </li>
+                                <input type="checkbox" name="TypeAhead" disabled="disabled" />
+                                <span>@Constants.i18n("typeAhead")</span>
+                            <li>
+                            <li>
+                                <input type="checkbox" name="Dropdown"  disabled="disabled" />
+                                <span>@Constants.i18n("dropdown")</span>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="fleft spacingLeft">
+                        <div>@Constants.i18n("parameters")</div>
+                        <select name="parameters" size="6">
+                        </select>
+                    </div>
+                    <div class="fleft params">
+                        <ol class="narrow unstyledList">
+                            <li>
+                                <label>@Constants.i18n("name"):</label>
+                                <input name="ParameterName" type="text" disabled="disabled" />
+                            </li>
+                            <li>
+                                <label>@Constants.i18n("type"):</label>
+                                <input name="ParameterType" type="text" disabled="disabled" />
+                            </li>
+                            <li>
+                                <label>@Constants.i18n("value"):</label>
+                                <input name="ParameterValue" type="text" />
+                            </li>
+                            <li>
+                                <label>@Constants.i18n("required"):</label>
+                                <input name="ParameterRequired" type="checkbox" disabled="disabled" />
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="AlignCenter"><input type="button" name="test" disabled="disabled" value="@Constants.i18n("test")" /></div>
+            </fieldset>
+        </div>
+    {{ } else { 
+        if (it.licenses.length === 0 ) { }}
+        <span class="inputErrorClass">@Constants.i18n("unlicensed")</span>
+        {{ } }}
+        <div class="c3piSettings">
+            <ol class="unstyledList">
+                <li>
+                    <label>@Constants.i18n("type"):</label>
+                    {{ 
+                    var checked = 'checked="checked"';
+                    for (var item in Constants.c3p) { }}
+                        <input {{= checked}} type="radio" name="ThirdPartyType" value="{{=Constants.c3p[item]}}" />
+                        <span>{{= Constants.c['c3p_' + item] }}</span>
+                        {{ 
+                        var checked = '';
+                    } }}
+                    @*bogus MAS 200 item may be added for testing selection behaviors:
+                    <input type="radio" name="ThirdPartyType" value="1" />
+                    <span>MAS 200</span>
+                    *@
+                </li>
+                <li>
+                    <label>@Constants.i18n("prefix")</label>
+                    <input type="text" name="Prefix" />
+                    <span>_</span>
+                </li>
+                <li><label>&nbsp;</label><span>@Constants.i18n("c3pi_uninitialized")</span></li>
+            </ol>
+        </div>
+    {{ } }}
+    <div class="buttons">
+        <input type="button" value="@Constants.i18n("save")" name="save" disabled="disabled" >
+        {{ if (it.model) { }}
+            @*<input type="button" value="@Constants.i18n("saveas")" name="saveas" > not currently available*@
+            <input type="button" value="@Constants.i18n("delete")" name="delete" >
+        {{ } }}
+        <span class="inputErrorClass unlicensed" style="display:none">@Constants.i18n("unlicensed")</span>
+    </div>
+</div>

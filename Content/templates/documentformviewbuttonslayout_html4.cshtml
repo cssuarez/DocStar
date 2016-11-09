@@ -1,0 +1,20 @@
+﻿@using Astria.Framework.Utility;
+<div class="submitButtonContainer" style="top:{{=it.top}}px;">
+    {{if (it.showPrevious) { }}
+    <a class="shadow short_btn no_text_select navigation_prev">
+        @Constants.i18n("back")
+    </a> 
+    {{ } if (it.showSubmit) { }}
+    <a class="shadow short_btn no_text_select submitForm">
+        {{if (!it.saveExecuting) { }}
+        @Constants.i18n("submit")
+        {{ } else { }}
+        <span class="throbber"></span>
+        {{ } }}
+    </a>
+    {{ } if (it.showNext) { }}
+    <a class="shadow short_btn no_text_select navigation_next">
+        @Constants.i18n("next")
+    </a> 
+    {{ } }}
+</div>

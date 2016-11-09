@@ -1,0 +1,30 @@
+﻿@using Astria.Framework.Utility;
+{{ if (it.errorMsg) { }}
+    <div class="error">
+        {{= it.errorMsg }}
+    </div>
+{{
+    } else {   
+}}
+<div>
+    <h2>@Constants.i18n("c3pi")</h2>
+    <select name="connection">
+        <option value="-1" {{=it.selected ? '' : 'selected="selected"'}}>{{=Constants.c.newTitle}}</option>
+        {{
+            if (it.models) {
+                var length = it.models.length;
+                var i;
+                for (i = 0; i < length; i++) {
+                    var attribs = "";
+                    if (it.selected && it.selected.get('Id') === it.models[i].get('Id') ) {
+                        attribs = 'selected="selected"';
+                    }
+        }}
+            <option value="{{=i}}" {{=attribs}}>{{=it.models[i].get('Name')}}</option>
+        {{      }
+            } 
+        }}
+    </select>
+    <div class="throbber verticalAlignMiddle"></div>
+</div>
+{{  } }}

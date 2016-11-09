@@ -1,0 +1,23 @@
+﻿@using Astria.Framework.Utility;
+<div class="categoryItemsLayout">
+    <ul class="unstyledList">
+        {{
+            var idx = 0;
+            var length = it.categoryItems.length;
+            for(idx; idx < length; idx++) {
+                var categoryItem = it.categoryItems[idx];
+                var tooltip = categoryItem.Disabled ? categoryItem.DisabledTooltip : categoryItem.DisplayName;
+        }}
+                <li id="{{=categoryItem.Id}}" class="categoryItem {{=categoryItem.Disabled ? 'disabled' : '' }}" title="{{=tooltip}}">
+                    {{ if(categoryItem.Id === Constants.c.emptyGuid) { }}
+                        <img class="fleft inlineblock" src="@System.Web.Mvc.UrlHelper.GenerateContentUrl("~/Content/images/transparent.png", new HttpContextWrapper(HttpContext.Current))" />
+                    {{ } else { }}
+                        <img class="fleft inlineblock throbber" alt="@Constants.i18n("thumbnailPreview")" src="@System.Web.Mvc.UrlHelper.GenerateContentUrl("~/Content/themes/default/throbber.gif", new HttpContextWrapper(HttpContext.Current))" />
+                    {{ } }}
+                    <span class="fleft inlineblock">{{=categoryItem.DisplayName}}</span>
+                </li>
+        {{
+            }
+        }}
+    </ul>
+</div>

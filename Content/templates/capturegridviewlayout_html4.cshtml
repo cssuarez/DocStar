@@ -1,0 +1,40 @@
+﻿@using Astria.Framework.Utility;
+<table class="customGridTable">
+    <thead>
+        <tr>
+            <th class="customGridHeader selectionHeader">
+                <input type="checkbox" class="selectAllItems" {{=it.allSelected ? 'checked="checked"' : ''}} />
+            </th>
+            <th class="customGridHeader editHeader nonResizable">
+                @Constants.i18n("edit")
+            </th>
+            {{
+                var i = 0;
+                var length = it.headers.length;
+                for (i; i < length; i++) {
+                    if (it.headers[i] === undefined) { continue; }
+            }}
+            <th class="customGridHeader customGridSortable" style="{{=it.headers[i].style}}" data-columnid="{{=it.headers[i].colId}}">
+                <div>
+                    {{=it.headers[i].value}}
+                    {{if (it.headers[i].hasColumnEdit) { }}
+                    <span class="columnEdit ui-button-icon-primary ui-icon ui-icon-pencil"></span>
+                    {{ } }}
+                </div>
+            </th>
+            {{ } }}
+        </tr>
+    </thead>
+    <tbody>
+        @*Set Views Rendered Here*@
+    </tbody>
+    <tfoot>
+        <tr class="customGridPager">
+            <td colspan="{{=it.headers.length + 2}}"> @*+2 for the static columns checkbox and edit*@
+                <div class="fleft customGridPagerButton">
+                    <span class="columnSelector ui-icon ui-icon-calculator"></span>
+                </div>
+            </td>
+        </tr>
+    </tfoot>
+</table>

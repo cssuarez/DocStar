@@ -1,0 +1,22 @@
+﻿@using Astria.Framework.Utility;
+<table class="customGridTable">
+    <thead>
+        <tr>
+            {{
+                var i = 0;
+                var length = it.headers.length;
+                for (i; i < length; i++) {
+                    if (it.headers[i] === undefined) { continue; }
+            }}
+            <th class="customGridHeader" style="{{=it.headers[i].style}}">
+                <div>
+                    {{=it.headers[i].value}}
+                </div>
+            </th>
+            {{ } }}
+        </tr>
+    </thead>
+    <tbody>
+        @*Set Views Rendered Here*@
+    </tbody>
+</table>

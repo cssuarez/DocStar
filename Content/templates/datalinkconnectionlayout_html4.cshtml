@@ -1,0 +1,128 @@
+﻿@using Astria.Framework.Utility
+{{
+    var dataLinkClosed = Utility.GetUserPreference('dataLinkConnections') || 'closed';
+    var connections = it.filteredConnections || it.list;
+    var isSuper = $('#isSuperAdmin').val().toLowerCase() === 'true';
+    var dlTypeSelectDisplay = 'hidden="hidden"';
+    var dlPromptDisplay = !it.selected.get('MachineId') ? 'style="display:none"' : '';
+    if (isSuper) {
+        dlTypeSelectDisplay = '';
+        dlPromptDisplay = 'style="display:none"';
+    } 
+    var serverDl = isSuper && !it.selected.get('MachineId');
+    var clientDlSelected = serverDl ? '' : 'selected="selected"';
+    var serverDlSelected = serverDl ? 'selected="selected"' : '';
+    var clientConnDisplay = !it.selected.get('MachineId') ? 'style="display:none"' : '';
+    var isThirdParty = false;
+    var thirdPartyType;
+    var dlt = it.selected && it.selected.get('DataLinkType');
+    var selectedQuery = it.selectedQuery;    
+    if (selectedQuery && selectedQuery.get('Id') !== Constants.c.emptyGuid) {
+        isThirdParty = dlt === Constants.dlt.ThirdParty;    
+        if (isThirdParty) {
+            var def = Utility.tryParseJSON(it.selected.get('Definition'));
+            if (def && def.ThirdPartyType >= 0) {
+                thirdPartyType = Utility.reverseMapObject(Constants.c3p)[def.ThirdPartyType];
+            }
+        }
+    }
+}}
+<fieldset id="dataLinkConnections" class="fsAccordion {{=dataLinkClosed}}">
+    <legend>
+        {{ if(dataLinkClosed === 'closed') { }}
+            <span class="fleft ui-icon ui-icon-plus"></span>
+        {{ } else { }}
+            <span class="fleft ui-icon ui-icon-minus"></span>
+        {{ } }}
+        <span class="fsAccordionTitle">@Constants.i18n("dataLinkConnections")</span>
+    </legend>
+    <div class="fsAccordionBody {{=dataLinkClosed}}">
+        <ol class="unstyledList">
+            <li>
+                {{ if (!isThirdParty) { }}
+                <select id="dataLinkConnectionList" name="Name" size="10">
+                    {{ connections.each(function (item) { }}
+                    {{ if (item.get('DataLinkType') === Constants.dlt.ThirdParty) { 
+                        return;
+                       } 
+                       if (item.get('Id') === it.selected.get('Id')) { }}
+                    <option selected="selected" value="{{= item.get('Id') }}">{{= item.get('Name') }}</option>
+                    {{ } else { }}
+                    <option value="{{= item.get('Id') }}">{{= item.get('Name') }}</option>
+                    {{ } }}
+                    {{ }); }}
+                </select>
+                {{ } else { 
+                  var connectionName = it.selected.get('Name');
+                  if (connectionName !== thirdPartyType) {
+                }}
+                <span class="metalabel">@Constants.i18n("dataLinkConnection"):</span>
+                <span class="metalabel">{{= connectionName }}</span>
+                {{ } }}
+                {{ } }}
+                <span class="metalabel">@Constants.i18n("dataSourceType"):</span>
+                {{  var revDLT = Utility.reverseMapObject(Constants.dlt);
+                if (it.selected.get('Id') === Constants.c.emptyGuid) {
+                  for(var item in Constants.dlt) {
+                    if (item === "ThirdParty") {
+                      continue; 
+                    }
+                    var checked = '';
+                    if(item === revDLT[it.selected.get('DataLinkType')]) {
+                      checked = 'checked="checked"';
+                    }
+                }}
+                                        
+                <input {{= checked}} class="{{= item }}" type="radio" name="DataLinkType" value="{{= Constants.dlt[item]}}" />
+                <span class="metalabel" title="{{= Constants.c['dlt_d_' + item ] }}">{{= Constants.c['dlt_' + item] }}</span>
+                                        
+                {{ }
+                } else { 
+                    var typeName = revDLT[dlt];
+                    var typeLabel = isThirdParty ? thirdPartyType : Constants.c['dlt_' + typeName];
+                }}
+                                        
+                <span class="metalabel">{{= typeLabel}}</span>
+                <input type="hidden" name="DataLinkType" class="{{= typeName}}" value="{{= dlt }}" />
+                {{ if (!isThirdParty) { }}
+                <span id="deleteDataLinkConn" class="deleteIcon sPngIB no_text_select" title="@Constants.i18n("delete")">&nbsp;</span>
+                {{ } }}
+                {{ }
+                if (!isThirdParty) { }}
+                <span id="saveDataLinkConn" class="saveIcon sPngIB no_text_select" title="@Constants.i18n("saveConn")">&nbsp;</span>
+                @*<span id="saveDataLinkConnAs" class="saveAsIcon sPngIB no_text_select" title="@Constants.i18n("saveConnAs")">&nbsp;</span>*@
+                {{ } }}
+            </li>   
+            <li class="">
+                @* Data Link Connection name error*@
+                <input type="hidden" class="ignore" name="DLCName" />
+            </li>         
+            <li>                
+                <div id="automationDLConnStatus" class="center" >
+                {{ if (!isThirdParty) { }}
+                    <div class="fleft">
+                        <select id="selectDLService" {{=dlTypeSelectDisplay}} > 
+                            <option value="Client" {{=clientDlSelected}} >@Constants.i18n("useClient")</option>
+                            <option value="Server" {{=serverDlSelected}} >@Constants.i18n("useServer")</option>
+                        </select> 
+                        <span id="automationDLPrompt" {{=dlPromptDisplay}}>@Constants.i18n("automationConnectionPrompt"):</span>
+                    </div>
+                    <div id="clientConnectionHideContainer" class="fleft" {{=clientConnDisplay}}>
+                        <div id="clientSelection" class="fleft"></div>
+                        <div id="connectionDLstatus" class="fleft">
+                            <select id="automationServiceSelect" name="MachineId" class="fleft spacingLeftRight"><option>@Constants.i18n("loadText")</option></select>
+                            <span id="automationDLConnStatusIcon" class="connectionIndicator"></span>
+                            <span id="automationDLConnStatusText" class="inlineblock fleft connectionIndicator">@* Systray Connection Status Text goes here *@</span>
+                        </div>
+                    </div>
+                {{ } }}
+                </div>
+              </li>           
+            <li>
+                <div id="dataLinkTypeTemplate">
+                    @*Insert DLT Templates here as described below*@
+                </div>
+            </li>
+        </ol>
+    </div>
+</fieldset>

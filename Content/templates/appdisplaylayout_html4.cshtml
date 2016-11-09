@@ -1,0 +1,13 @@
+﻿@using Astria.Framework.Utility;
+@* Approval Display Icon and Data *@
+<div class="ApprovalDiv approvalTypeIcon fullWidth fullHeight inlineblock" title="{{=it.title}}">
+    <span class=""></span>
+    <span class="sPng {{=it.appState}}"></span>
+    <span class="approvalData">{{=it.approvalCountData}}</span>
+    {{ if(it.hasAppRequests) { }}
+    <span class="item_type_icon requested" style="left:0!important"></span>
+    <span class="approvalData">
+        {{=it.reqResult}}
+    </span>
+    {{ } }}
+</div>

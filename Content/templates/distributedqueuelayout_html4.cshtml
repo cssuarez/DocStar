@@ -1,0 +1,113 @@
+﻿@using Astria.Framework.Utility;
+{{ 
+    @*var hasViewDQ = Utility.checkGP(it.gp, Constants.gp.View_DistributedQueues);*@
+    var hasAdminDQ = Utility.checkGP(it.gp, Constants.gp.Admin_DistributedQueues);
+    var dqTotal = window.dqSearchResult ? window.dqSearchResult.Total : '';
+}}
+<h2>@Constants.i18n("distributedQueueManagement")</h2>
+<fieldset>
+    <legend><span>@Constants.i18n("distributedQueue") @("(")</span><span id="dq_total">{{= dqTotal }}</span>):</legend>
+    @*DQ Grid Here*@
+    <div id="dq_refresh_div" class="spacingBottomSmall">
+        <label>@Constants.i18n("limit")</label>
+        <input id="dqResultLimit" value="20" />
+    {{ if(Utility.isSuperAdmin()) { }}
+        <input id="dqAllInstances" type="checkbox" /> @Constants.i18n("allInstances")
+    {{ } }}
+        <a id="dq_refresh" class="custom_button short_btn inlineblock" href="javascript:void(0)">@Constants.i18n("refresh")</a>
+    </div>
+    <div id="dq_delete_div">
+    {{ if(hasAdminDQ) { }}
+        <a id="dq_delete" class="custom_button short_btn inlineblock" href="javascript:void(0)">@Constants.i18n("delete")</a>
+    {{ } }}
+    </div>
+    <div id="DistributedQueueDTO">
+        <ol class="unstyledList">
+            <li>
+                <label>@Constants.i18n("created"):</label>
+                <input type="text" name="Created" readonly="readonly" />
+            </li>
+            <li>
+                <label>@Constants.i18n("sortDate"):</label>
+                <input type="text" name="SortDate" readonly="readonly" />
+            </li>
+            <li>
+                <label>@Constants.i18n("processStarted"):</label>
+                <input type="text" name="ProcessStarted" readonly="readonly" />
+            </li>
+            <li>
+                <label>@Constants.i18n("componentName"):</label>
+                <input type="text" name="ComponentName" readonly="readonly" />
+            </li>
+            <li>
+                <label>@Constants.i18n("arguments"):</label>
+                <input type="text" name="Arguments" readonly="readonly" />
+            </li>
+            <li>
+                <label>@Constants.i18n("companyName"):</label>
+                <input type="text" name="CompanyName" readonly="readonly" />
+            </li>
+            <li>
+                <label>@Constants.i18n("runLocation"):</label>
+                <input type="text" name="RunLocation" readonly="readonly" />
+            </li>
+            <li>
+                <label>@Constants.i18n("failureCount"):</label>
+                <input type="text" name="FailureCount" readonly="readonly" />
+            </li>
+            <li>
+                <label>@Constants.i18n("error"):</label>
+                <input type="text" name="Error" readonly="readonly" />
+            </li>
+        </ol>        
+    </div>
+</fieldset>
+<fieldset>
+    <legend><span>@Constants.i18n("distributedQueueProcessors") @("(")</span><span>{{= it.dqps.length}}</span>):</legend>
+    @*Processor Grid Here*@
+    <div id="dqp_hide_div">
+    {{ if(hasAdminDQ) { }}
+        <a id="dqp_hide" class="custom_button short_btn inlineblock" href="javascript:void(0)">@Constants.i18n("clearOld")</a>
+    {{ } }}
+    </div>
+    <div id="DistributedQueueProcessorDTO">
+        <ol class="unstyledList">
+            <li>
+                <label>@Constants.i18n("userName"):</label>
+                <input type="hidden" name="Id" />
+                <input type="hidden" name="MachineID" />
+                <input type="text" name="UserName" readonly="readonly" />
+            </li>
+            <li>
+                <label>@Constants.i18n("clientVersion"):</label>
+                <input type="text" name="ClientVersion" readonly="readonly" />
+            </li>
+            <li>
+                <label>@Constants.i18n("publicAddress"):</label>
+                <input type="text" name="PublicIP" readonly="readonly" />
+            </li>
+            <li>
+                <label>@Constants.i18n("privateAddress"):</label>
+                <input type="text" name="PrivateIP" readonly="readonly" />
+            </li>
+            <li>
+                <label>@Constants.i18n("flags"):</label>
+                <input type="text" name="Flags" readonly="readonly" />
+            </li>
+            <li>
+                <label>@Constants.i18n("lastCommunication"):</label>
+                <input type="text" name="LastCommunication" readonly="readonly" />
+            </li>
+            <li>
+                <label>@Constants.i18n("failures"):</label>
+                <input type="text" name="Failures" readonly="readonly" />
+            </li>
+            {{ if(hasAdminDQ) { }}
+                <li>
+                    <label>@Constants.i18n("disabled"):</label>
+                    <input type="checkbox" name="Disabled" />
+                </li>
+            {{ } }}
+        </ol>
+    </div>
+</fieldset>

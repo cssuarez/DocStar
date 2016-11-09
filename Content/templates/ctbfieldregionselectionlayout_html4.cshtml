@@ -1,0 +1,19 @@
+﻿@using Astria.Framework.Utility;
+<div>
+    @* Insert OCR/Barcode results here *@
+    <textarea class="fullWidth textareaResizeNone">{{=it.regionResults}}</textarea>
+</div>
+<div class="regionSettingsContainer">
+    <label>
+        <input type="radio" name="regionType" value="ocr" {{=it.ocrChecked}} />
+        <span>@Constants.i18n("ocr")</span>
+    </label>
+    <label>
+        <input type="radio" name="regionType" value="barcode" {{=it.barcodeChecked}} />
+        <span>@Constants.i18n("barcode")</span>
+    </label>
+    <span class="executeRegionSelection refreshIcon sPngIB"></span>
+</div>
+<div class="settings">
+    @* Render OCR or Barcode settings here - Reuse the layout from Task Editor for OCR/Barcode *@
+</div>

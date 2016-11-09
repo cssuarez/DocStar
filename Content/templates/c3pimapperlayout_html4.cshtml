@@ -1,0 +1,32 @@
+﻿@using Astria.Framework.Utility;
+<div>
+    <fieldset>
+        <legend><span style="float: left;" class="ui-icon ui-icon-plus"></span>@Constants.i18n("mappings")</legend>
+        <div style="display:none">
+            <ol class="unstyledList mapper" >
+                {{ 
+                var idx;
+                var length = it.args.length;
+                for (idx = 0; idx < length; idx++) {
+                    var arg = it.args[idx];
+                }}
+                <li>
+                    <label>{{=arg.Name}}</label>
+                    <select data-name="{{=arg.Name}}" data-type="{{=arg.Type}}">
+                        <option value="">&nbsp;</option>
+                        {{
+                        var i;
+                        var l = it.fields.length;
+                        for (i = 0; i < l; i++) {
+                            var fld = it.fields[i].attributes;
+                            var selected = fld.Name === arg.Field ? 'selected="selected"' : '';
+                        }}
+                        <option value="{{=fld.Name}}" data-type="{{=fld.Type}}" {{=selected}} >{{=fld.Name}}</option>
+                        {{ } }}
+                    </select>
+                </li>
+                {{ } }}
+            </ol>
+        </div>
+    </fieldset>
+</div>    

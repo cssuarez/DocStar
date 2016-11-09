@@ -1,0 +1,12 @@
+﻿<select class="multiselect" multiple="multiple">
+{{
+    var idx = 0;
+    var length = it.fields.length;
+    for(idx; idx < length; idx++) {
+        var f = it.fields[idx];
+        var attrs = {title: f.Name};
+        if (f.Selected >= 0) { attrs.selected = 'selected'; }
+}}
+    {{=Utility.safeHtmlValue(f.Id, { attrs: attrs, tag: 'option', text: f.Name})}}
+{{ } }}
+</select>

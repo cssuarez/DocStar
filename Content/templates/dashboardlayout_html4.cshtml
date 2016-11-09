@@ -1,0 +1,24 @@
+﻿@using Astria.Framework.Utility;
+<div class="db_group">
+    <div class="header">
+        <div class="db_tabs">
+            <div class="header_item groupByAssignee {{=!it.groupByWorkflow ? 'selected' : ''}}">
+                <span>@Constants.i18n("groupByAssignee")</span>
+            </div>
+            <div class="header_item groupByWorkflow {{=it.groupByWorkflow ? 'selected' : ''}}">
+                <span>@Constants.i18n("groupByWorkflow")</span>
+            </div>
+        </div>
+    </div>
+    <div class="db_wfItems">
+        <div class="WorkflowItemsPerAssigneeContainer">
+            @* Render WorkflowItemsPerAssigneeView Here *@
+        </div>
+        <div class="WorkflowItemsPerStepContainer">
+            @* Render WorkflowItemsPerStepView Here *@
+        </div>
+    </div>
+    <div class="db_err_cont">
+        <input type="hidden" name="db_err" />
+    </div>
+</div>

@@ -1,0 +1,506 @@
+﻿@using Astria.Framework.Utility;
+@using Astria.Framework.DataContracts;
+<div id="capture_layout">
+    <div class="resize-document">
+        <div class="accordionsContainer">
+            @* Scan accordion layout *@
+            <div id="scanAcc">
+                <div class="accordion_title accordion_title_{{=it.scanAccClosed}} disabled">
+                    <div class="accordion_title_contents">
+                        <div class="title_arrow fleft">
+                        </div>
+                        <span class="anchor">@Constants.i18n("scanU")</span>
+                        <div id="systrayConnStatus" class="center ui-state-error">
+                            <span id="systrayConnStatusIcon" style="display: none;"></span>
+                            <span id="systrayConnStatusText" class="inlineblock fleft">@* Systray Connection Status Text goes here *@</span>
+                        </div>
+                        <span class="swoosh"></span>
+                    </div>
+                </div>
+                <div class="accordion {{=it.scanAccClosed}}">
+                    <div>
+                        <div>
+                            <div id="scanDevices" class="labelAboveSelectCont">
+                                <span>@Constants.i18n("device")</span>
+                                <dl class="devices dropdown shadow">
+                                    {{=it.scanDevicesHTML}}
+                                </dl>
+                            </div>
+                            <div id="scanSettings" class="labelAboveSelectCont">
+                                <span>@Constants.i18n("settings")</span>
+                                <dl class="settings dropdown shadow">
+                                    @* Filled out when ClientService.setAcquireDataHTML() is called *@
+                                </dl>
+                            </div>
+                            <div class="buttons">
+                                <span id="editSetting" class="custom_button short_btn shadow">@Constants.i18n("edit")</span>
+                                <span id="newSetting" class="custom_button short_btn shadow">@Constants.i18n("new")</span>
+                                <span id="deleteSetting" class="custom_button short_btn shadow">@Constants.i18n("delete")</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div id="scanContentType" class="labelAboveSelectCont">
+                                <span class="labelAboveSelect">@Constants.i18n("contentType")</span>
+                                {{ if(it.hasContentTypePermissions) { }}
+                                <span class="spacingLeftSmall gearIconSmall sPngIB" title="@Constants.i18n("contentTypeBuilder")"></span>
+                                {{ } }}
+                                <dl class="contentType dropdown shadow">
+                                    @*Fill in the contenttype dropdown*@
+                                    {{=it.scanContentTypesHTML }}
+                                </dl>
+                            </div>
+                            <div id="scanSplitOptions" class="fleft inlineblock posBottom">
+                                <div class="fleft">
+                                    <input type="radio" name="ScanTypeSelection" value="@((int)SplitMethod.SinglePage)" />
+                                    <span class="radioLabelSpacing">@Constants.i18n("singlePage")</span>
+                                </div>
+                                <div class="fleft">
+                                    <input type="radio" name="ScanTypeSelection" checked="checked" value="@((int)SplitMethod.Multipage)" />
+                                    <span class="radioLabelSpacing">@Constants.i18n("multipage")</span>
+                                </div>
+                                <div class="fleft">
+                                    <input type="radio" name="ScanTypeSelection" class="scanTypeSeparator" value="@((int)SplitMethod.BlankPageSeparator)" />
+                                    <span class="radioLabelSpacing">@Constants.i18n("separator", Constants.i18n("blankPage"))</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="fleft spacingBottom">
+                                <span id="scanDirect" class="custom_button long_btn shadow" title="@Constants.i18n("scannowTT")">@Constants.i18n("scannow")</span>
+                                <span id="scanPreview" class="custom_button long_btn shadow" title="@Constants.i18n("captureTT")">@Constants.i18n("scanpreview")</span>
+                                <span id="cancelScan" class="custom_button long_btn shadow disabled">@Constants.i18n("cancel")</span>
+                            </div>
+                            <div class="inlineblock fleft spacingTopLeft paddingRight">
+                                <div class="fleft inlineblock">
+                                    {{ if(it.isPromptToContinue) { }}
+                                    <input id="promptToContinue" type="checkbox" checked="checked" />
+                                    {{ } else { }}
+                                    <input id="promptToContinue" type="checkbox" />
+                                    {{ } }}
+                                    <span>@Constants.i18n("promptToContinue")</span>
+                                </div>
+                                <div class="fleft inlineblock spacingLeft" title="@Constants.i18n("autoViewImportDesc")">
+                                    {{ if(it.autoViewImport) { }}
+                                    <input class="autoViewImport" type="checkbox" checked="checked" />
+                                    {{ } else { }}
+                                    <input class="autoViewImport" type="checkbox" />
+                                    {{ } }}
+                                    <span>@Constants.i18n("autoViewImport")</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="disabledAccordion disabled">
+                    </div>
+                </div>
+            </div>
+            @* Import accordion layout *@
+            <div id="importAcc">
+                <div class="accordion_title accordion_title_{{=it.importAccClosed}}">
+                    <div class="accordion_title_contents">
+                        <div class="title_arrow">
+                        </div>
+                        <span class="anchor">@Constants.i18n("importU")</span> <span class="swoosh"></span>
+                    </div>
+                </div>
+                <div class="accordion {{=it.importAccClosed}}">
+                    <div id="captureImportTabs">
+                        <ul>
+                            <li id="importTab"><a href="#captureImportTabs_Import">@Constants.i18n("importU")</a></li>
+                            <li id="batchImportTab"><a href="#captureImportTabs_BatchImport">@Constants.i18n("batchimportU")</a></li>
+                        </ul>
+                        <div id="captureImportTabs_Import">
+                            <div class="fullWidth spacingBottom fleft inlineblock">
+                                <div id="importContentType" class="labelAboveSelectCont">
+                                    <span class="labelAboveSelect">@Constants.i18n("contentType")</span>
+                                    {{ if(it.hasContentTypePermissions) { }}
+                                    <span class="spacingLeftSmall fleft gearIconSmall sPngIB" title="@Constants.i18n("contentTypeBuilder")"></span>
+                                    {{ } }}
+                                    <dl class="contentType dropdown shadow">
+                                        @*Fill in the contenttype dropdown*@
+                                        {{=it.importContentTypesHTML }}
+                                    </dl>
+                                </div>
+                                <div class="importHTML">
+                                    <iframe id="uploadiframe_0" frameborder="0" src="Acquire/ImportFrame"></iframe>
+                                    <iframe id="uploadiframe_1" frameborder="0" src="Acquire/ImportFrame"></iframe>
+                                </div>
+                                <div class="buttons">
+                                    <span class="openBrowse fleft custom_button short_btn shortHeightBtn shadow">@Constants.i18n("browse")</span>
+                                    <span class="browseSelection fleft custom_button no_text_select shadow splitBtn splitBtnShortHeight">
+                                        <a class="whiteIcon ui-icon ui-icon-triangle-1-s"></a>
+                                    </span>
+                                    <ul class="buttonOptions" style="display: none">
+                                        <li>
+                                            <span class="ui-icon ui-icon-close buttonOptionsClose">&nbsp;</span>
+                                        </li>
+                                        <li>
+                                            <div>
+                                                @Constants.i18n("browseOptions")
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <span>@Constants.i18n("osFileBrowse"):</span>
+                                            {{ if(it.osFileBrowseType) { }}
+                                        <input value="{{=Constants.im.OSFileBrowse}}" type="radio" name="browseType" checked="checked" />
+                                            {{ } else { }}
+                                        <input value="{{=Constants.im.OSFileBrowse}}" type="radio" name="browseType" />
+                                            {{ } }}
+                                        </li>
+                                        <li>
+                                            <span>@Constants.i18n("webFileBrowse"):</span>
+                                            {{ if(it.webFileBrowseType) { }}
+                                        <input value="{{=Constants.im.WebFileBrowse}}" type="radio" name="browseType" checked="checked" />
+                                            {{ } else { }}
+                                        <input value="{{=Constants.im.WebFileBrowse}}" type="radio" name="browseType" />
+                                            {{ } }}
+                                        </li>
+                                        <li>
+                                            <span>@Constants.i18n("htmlFileSelect"):</span>
+                                            {{ if(it.htmlFileSelectType) { }}
+                                        <input value="-1" type="radio" name="browseType" checked="checked" />
+                                            {{ } else { }}
+                                        <input value="-1" type="radio" name="browseType" />
+                                            {{ } }}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="fleft inlineblock">
+                                <input class="preProcessing" type="checkbox" checked="{{=it.preProcess }}" />
+                                <span>@Constants.i18n("preProcessing")</span>
+                                <span class="preProcessingOptions custom_button short_btn shadow">@Constants.i18n("preProcessingOptions2")</span>
+                            </div>
+                            {{ if(window.versioningLicensed) { }}
+                            <div class="createAs fleft inlineblock spacingLeft horizontalRadioLabelContainer">
+                                <span>@Constants.i18n("createAs"):</span>
+                                <div class="horizontalRadioLabelContainer inlineblock">
+                                    {{ if(!it.createAsPref || it.createAsPref === 'published') { }}
+                                    <input type="radio" class="published" checked="checked" name="IsDraft" />
+                                    {{ } else { }}
+                                <input type="radio" class="published" name="IsDraft" />
+                                    {{ } }}
+                                    <span class="radioLabelSpacing">@Constants.i18n("published")</span>
+                                    {{ if(it.createAsPref === 'draft') { }}
+                                    <input type="radio" class="draft" checked="checked" name="IsDraft" />
+                                    {{ } else { }}
+                                <input type="radio" class="draft" name="IsDraft" />
+                                    {{ } }}
+                                    <span class="radioLabelSpacing">@Constants.i18n("draft")</span>
+                                </div>
+                            </div>
+                            {{ } }}
+                            <div title="@Constants.i18n("autoViewImportDesc")" class="fleft inlineblock fullWidth">
+                                {{ if(it.autoViewImport) { }}
+                            <input class="autoViewImport" type="checkbox" checked="checked" />
+                                {{ } else { }}
+                            <input class="autoViewImport" type="checkbox" />
+                                {{ } }}
+                                <span>@Constants.i18n("autoViewImport")</span>
+                            </div>
+                        </div>
+                        <div id="captureImportTabs_BatchImport">
+                            <span>@Constants.i18n("batchImport_SL_Note")</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @* List actions and Import buttons layout *@
+            <div class="captureBtns fleft inlineblock fullWidth">
+                <div id="captureListActions" class="fleft">
+                    <dl class="dropdown shadow">
+                        <dt>
+                            <span class="parent">
+                                @Constants.i18n("listAction")
+                                <span class="dropdown_arrow ui-icon ui-icon-triangle-1-s"></span>
+                            </span>
+                        </dt>
+                        <dd>
+                            <ul class="children clearfix">
+                                <li>
+                                    <span class="merge anchor">@Constants.i18n("resultActionsMerge")</span>
+                                </li>
+                                <li>
+                                    <span class="unmerge anchor">@Constants.i18n("resultActionsUnmerge")</span>
+                                </li>
+                                <li>
+                                    <span class="removeFromImport anchor">@Constants.i18n("delete")</span>
+                                </li>
+                                <li>
+                                    <hr />
+                                </li>
+                                <li>
+                                    <span class="anchor">@Constants.i18n("clearMessages")</span>
+                                </li>
+                                <li>
+                                    <hr />
+                                </li>
+                                <li>
+                                    <span class="columnChooser anchor">@Constants.i18n("columnChooser")</span>
+                                </li>
+                            </ul>
+                        </dd>
+                    </dl>
+                </div>
+                {{= it.progressBarLayout}}
+                <div class="fright">
+                    <span class="cancelImport disabled fleft custom_button short_btn shadow_bottom">@Constants.i18n("cancel")</span>
+                    <span class="submitImport disabled fleft custom_button short_btn shadow_bottom">@Constants.i18n("submit")</span>
+                </div>
+            </div>
+        </div>
+        <div class="gridContainer">
+            @* Magic grid layout *@
+            <div class="captureGridCont">
+                @* Capture Grid Rendered Here *@
+                {{ if(it.noContentTypesAvailable) { }}
+                <span class="warningErrorClass">@Constants.i18n("noContentTypesAvailable")</span>
+                {{ } }}
+            </div>
+            <div class="processingGridCont" style="display: none;">
+                @* Processing Grid Rendered Here *@
+            </div>
+            {{ if(it.noContentTypesAvailable || it.isReadOnlyUser) { }}
+            <div class="noContentTypesAvailable disabled"></div>
+            {{ } }}
+        </div>
+    </div>
+    @* Import Preview layout *@
+    <div class="document_preview light_shadow_left">
+        <div class="document_preview_viewer">
+        </div>
+        <div class="modalThrobberCont" style="display: none;">
+            <img src="@System.Web.Mvc.UrlHelper.GenerateContentUrl("~/Content/images/large_throbber.gif", new HttpContextWrapper(HttpContext.Current))" alt="Alternate Text" />
+        </div>
+        <img style="display: none;" src="@System.Web.Mvc.UrlHelper.GenerateContentUrl("~/Content/images/s.png", new HttpContextWrapper(HttpContext.Current))" class="document_preview_image shadow" alt="" />
+    </div>
+    <div id="scanOptionsDialog" style="display: none;">
+        <div id="hasAdvancedSettings" class="fullWidth inlineblock fleft">
+            @Constants.i18n("containsAdvancedSettings")
+        </div>
+        <div class="fleft">
+            <div>
+                <input type="hidden" name="Id" />
+            </div>
+            <div>
+                <span class="label">@Constants.i18n("name"):</span>
+                <input type="text" name="Name" />
+            </div>
+            <div>
+                <span class="label">@Constants.i18n("rotate"):</span>
+                <select name="Rotation">
+                    <option selected="selected">0</option>
+                    <option>90</option>
+                    <option>180</option>
+                    <option>270</option>
+                </select>
+            </div>
+            <div>
+                <input type="hidden" name="ScannerName" />
+            </div>
+            <div>
+                <span class="label">@Constants.i18n("resolution"):</span>
+                <input type="text" value="200" name="Resolution" class="advancedSetting" />
+                <span>@Constants.i18n("dpi")</span>
+            </div>
+            <div>
+                <span class="label">@Constants.i18n("pageSize"):</span>
+                <select name="PageSize" class="advancedSetting">
+                    {{
+                        var i = 0;
+                        var length = it.pageSizes.length;
+                        for(i; i < length; i++) {
+                    }}
+                    <option value="{{=it.pageSizes[i].value}}">{{=it.pageSizes[i].text }}</option>
+                    {{ } }}
+                </select>
+            </div>
+            <div>
+                <span class="label">@Constants.i18n("color"):</span>
+                <input type="radio" name="Color" value="{{=Constants.cs.BlackAndWhite}}" class="advancedSetting" />
+                <span class="radioLabelSpacing">@Constants.i18n("bw")</span>
+                <input type="radio" name="Color" value="{{=Constants.cs.GreyScale}}" class="advancedSetting" />
+                <span class="radioLabelSpacing">@Constants.i18n("greyscale")</span>
+                <input type="radio" name="Color" value="{{=Constants.cs.Color}}" class="advancedSetting" checked="checked" />
+                <span class="radioLabelSpacing">@Constants.i18n("color")</span>
+            </div>
+            <div>
+                <span class="label">@Constants.i18n("duplex"):</span>
+                <input type="checkbox" name="Duplex" class="advancedSetting" />
+            </div>
+            <div>
+                <span class="label">@Constants.i18n("removeBlanks"):</span>
+                <input type="checkbox" name="RemoveBlankPages" />
+            </div>
+            <div>
+                <span class="label">@Constants.i18n("blankThreshold"):</span>
+                <input type="text" value="5" name="BlankPageThreshold" />
+                <span>@Constants.i18n("nonWhite")</span>
+            </div>
+            <div>
+                <span class="label">@Constants.i18n("blankMargin"):</span>
+                <input type="text" value="10, 10, 10, 10" name="BlankPageMargin" />
+                <span>@Constants.i18n("ltrbPixels")</span>
+            </div>
+            <div>
+                <span class="label">@Constants.i18n("autoSizeDetection"):</span>
+                <input type="checkbox" name="AutoSizeDetection" />
+            </div>
+            <div>
+                <span class="label">@Constants.i18n("deskew"):</span>
+                <input type="checkbox" name="Deskew" />
+            </div>
+            <div>
+                <span class="label">@Constants.i18n("despeckle"):</span>
+                <input type="checkbox" name="Despeckle" />
+            </div>
+            <div>
+                <span class="label">@Constants.i18n("splitMethod"):</span>
+                <input type="radio" name="SplitMethod" value="{{=Constants.capm.SinglePage}}" />
+                <span class="radioLabelSpacing">@Constants.i18n("singlePage")</span>
+                <input type="radio" name="SplitMethod" value="{{=Constants.capm.Multipage}}" checked="checked" />
+                <span class="radioLabelSpacing">@Constants.i18n("multipage")</span>
+                <input type="radio" name="SplitMethod" value="{{=Constants.capm.BlankPageSeparator}}" />
+                <span class="radioLabelSpacing">@Constants.i18n("blankPage")</span>
+                <div class="noLabelRow barcodeSeparatorOptions">
+                    <input type="radio" name="SplitMethod" value="{{=Constants.capm.AnyBarcodeSeparator}}" />
+                    <span class="radioLabelSpacing">@Constants.i18n("set_AnyBarcodeSeparator")</span>
+                    <input type="radio" name="SplitMethod" value="{{=Constants.capm.BarcodeChange}}" />
+                    <span class="radioLabelSpacing">@Constants.i18n("set_BarcodeChange")</span>
+                    <input type="radio" name="SplitMethod" value="{{=Constants.capm.SpecificBarcodeSeparator}}" />
+                    <span class="radioLabelSpacing">@Constants.i18n("set_SpecificBarcodeSeparator")</span>
+                    <input type="text" name="BarcodeText" />
+                </div>
+                <div class="displayNone">
+                    <span class="label">@Constants.i18n("splitDetectSides"):</span>
+                    <select name="SplitDetectSides">
+                        <option value="{{=Constants.dps.Either}}">@Constants.i18n("either")</option>
+                        <option value="{{=Constants.dps.Front}}">@Constants.i18n("front")</option>
+                        <option value="{{=Constants.dps.Back}}">@Constants.i18n("back")</option>
+                    </select>
+                </div>
+            </div>
+            <div class="displayNone">
+                <span class="label">@Constants.i18n("removeBarcodeCoversheet"):</span>
+                <input type="checkbox" name="RemoveBarcodeCoversheet" />
+            </div>
+            <div>
+                <span class="label">@Constants.i18n("onePagePerFile"):</span>
+                <input type="checkbox" name="OnePagePerFile" />
+            </div>
+        </div>
+        <div class="fright">
+            <div class="scanOptionsBarcodeLicense">
+                <div class="barcodeLicenseText">
+                    <span>@Constants.i18n("barcodeLicenseSelection")</span>
+                </div>
+                <div class="spacingTopBottom">
+                    <div class="spacingTopBottom">
+                        <input type="radio" name="barcodeRequest" value="{{=Constants.tk.Accusoft1DBarcode}}" checked="checked" />
+                        <span class="radioLabelSpacing">@Constants.i18n("request1D")</span>
+                    </div>
+                    <div class="spacingTopBottom">
+                        <input type="radio" name="barcodeRequest" value="{{=Constants.tk.Accusoft2DBarcode}}" />
+                        <span class="radioLabelSpacing">@Constants.i18n("request2D")</span>
+                    </div>
+                    <div id="requestBarcodeCont" class="spacingTopBottom">
+                        <span id="requestBarcode" class="custom_button short_btn shadow">@Constants.i18n("requestLicense")</span>
+                    </div>
+                    <div class="spacingTopBottom">
+                        <span name="requestBarcodeMessage"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fleft fullWidth inlineblock">
+            <div class="posAbs posBottom dialogPosRight">
+                <div class="spacingTopBottom fleft">
+                    <span id="clearScanSettings" class="custom_button short_btn shadow">@Constants.i18n("clear")</span>
+                </div>
+                <div class="spacingLeftTopBottom fleft">
+                    <span id="advancedScanSettings" class="custom_button long_btn shadow">@Constants.i18n("advancedSettings")</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="preProcDialog" style="display: none;">
+        <div class="spacingTopBottom">
+            <span class="fullWidth inlineblock AlignCenter">@Constants.i18n("nondestructiveOptions")</span>
+            <span class="label">@Constants.i18n("rotate"):</span>
+            <select class="rotation" name="Rotation">
+                <option selected="selected">0</option>
+                <option>90</option>
+                <option>180</option>
+                <option>270</option>
+            </select>
+        </div>
+        <hr />
+        <div class="spacingTopBottom">
+            <i>
+                <span class="fullWidth inlineblock AlignCenter">@Constants.i18n("destructiveOptions")</span>
+            </i>
+            <div class="spacingTopBottom">
+                <span class="label">@Constants.i18n("removeBlanks"):</span>
+                <input type="checkbox" name="RemoveBlankPages" />
+            </div>
+            <div class="spacingTopBottom">
+                <span class="label">@Constants.i18n("blankThreshold"):</span>
+                <input type="text" value="5" name="BlankPageThreshold" />
+                <span>@Constants.i18n("nonWhite")</span>
+            </div>
+            <div class="spacingTopBottom">
+                <span class="label">@Constants.i18n("blankMargin"):</span>
+                <input type="text" value="10, 10, 10, 10" name="BlankPageMargin" />
+                <span>@Constants.i18n("ltrbPixels")</span>
+            </div>
+            <div class="spacingTopBottom">
+                <span class="label">@Constants.i18n("deskew"):</span>
+                <input type="checkbox" name="Deskew" />
+            </div>
+            <div class="spacingTopBottom">
+                <span class="label">@Constants.i18n("despeckle"):</span>
+                <input type="checkbox" name="Despeckle" />
+            </div>
+            <div class="spacingTopBottom">
+                <span class="label fleft">@Constants.i18n("splitMethod"):</span>
+                <div class="inlineblock">
+                    <input type="radio" name="SplitMethod" value="{{=Constants.capm.SinglePage}}" />
+                    <span class="radioLabelSpacing">@Constants.i18n("singlePage")</span>
+                    <input type="radio" name="SplitMethod" checked="checked" value="{{=Constants.capm.Multipage}}" />
+                    <span class="radioLabelSpacing">@Constants.i18n("none")</span>  @*None - Multipage*@
+                    <input type="radio" name="SplitMethod" value="{{=Constants.capm.BlankPageSeparator}}" />
+                    <span class="radioLabelSpacing">@Constants.i18n("blankPage")</span>
+                    <div class="barcodeSeparatorOptions">
+                        <input type="radio" name="SplitMethod" value="{{=Constants.capm.AnyBarcodeSeparator}}" />
+                        <span class="radioLabelSpacing">@Constants.i18n("set_AnyBarcodeSeparator")</span>
+                        <input type="radio" name="SplitMethod" value="{{=Constants.capm.BarcodeChange}}" />
+                        <span class="radioLabelSpacing">@Constants.i18n("set_BarcodeChange")</span>
+                        <input type="radio" name="SplitMethod" value="{{=Constants.capm.SpecificBarcodeSeparator}}" />
+                        <span class="radioLabelSpacing">@Constants.i18n("set_SpecificBarcodeSeparator")</span>
+                        <input type="text" name="BarcodeText" />
+                    </div>
+                </div>
+            </div>
+            <div class="spacingTopBottom displayNone">
+                <span class="label">@Constants.i18n("removeBarcodeCoversheet"):</span>
+                <input type="checkbox" name="RemoveBarcodeCoversheet">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="webFileBrowseDialog" style="display: none;">
+    <div id="directoriesResize">
+        <div id="directoriesContainer">
+            <div id="webFileBrowseBack" class="fleft inlineblock">
+                <span class="ui-icon ui-icon-arrowreturnthick-1-w fleft">&nbsp;</span>
+                <span class="vert_seperator_hidable fleft sPng"></span>
+                <span id="webFileBrowseBackText"></span>
+            </div>
+            <hr />
+            <ul id="directories"></ul>
+        </div>
+    </div>
+    <div class="directoryContents fullHeight">
+    </div>
+    <img class="throbber dialogThrobberPos" style="display: none;" alt="" src="@System.Web.Mvc.UrlHelper.GenerateContentUrl("~/Content/themes/default/throbber.gif", new HttpContextWrapper(HttpContext.Current))" />
+</div>

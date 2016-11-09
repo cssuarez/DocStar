@@ -1,0 +1,58 @@
+﻿@using Astria.Framework.Utility;
+{{
+    var i = 0;
+    var length = 0;
+}}
+<ul class="unstyledList fieldsContainer">
+    <li class="displayTable">
+        <input class="documentId" type="hidden" value="{{=it.documentId}}" />
+        <input class="versionId" type="hidden" value="{{=it.versionId}}" />
+    </li>
+    <li class="displayTable metadata_viewer">
+        <span class="viewer_meta_title displayTableCell">@Constants.i18n("contentType"):</span>
+        <div class="displayTableCell fullWidth">            
+            {{ if (it.readOnlyContentType) { }}
+            {{= Utility.safeHtmlValue(it.contentTypeName, {attrs:{maxlength: 256, value: it.contentTypeName}, tag: 'span'})}}            
+            {{ } else { }}
+            <select class="contenttypeid">
+                {{
+                    length = it.contentTypes.length;
+                    for (i; i < length; i++) {
+                        var ct = it.contentTypes[i];
+                }}
+                <option value="{{=ct.Id}}" {{=ct.selected}}>{{=ct.Name}}</option>
+                {{ } }}
+            </select>
+            {{ } }}
+        </div>
+    </li>
+</ul>
+<div class="contentTypeFieldButtons">
+    <div class="addCfContainer fright displayTableCell {{=it.addFieldsClass}}">
+        <a class="shadow short_btn custom_button addField">@Constants.i18n("addField")</a>
+    </div>
+    <div class="saveCustomFieldsContainer fright spacingLeftRight displayTableCell">
+        <span class="shadow short_btn custom_button saveDocumentCFButton {{=it.saveClass}}">
+            {{if (!it.saveExecuting) { }}
+            @Constants.i18n("save")
+            {{ } else { }}
+            <span class="throbber"></span>
+            {{ } }}
+        </span>
+    </div>
+    <div class="syncActionContainer fleft spacingLeftRight displayTableCell {{=it.syncActionClass}}">
+        <a class="shadow long_btn no_text_select custom_button syncActionExecute {{=it.syncActionExecuting ? 'disabled' : ''}}">
+            {{if (!it.syncActionExecuting) { }}
+            @Constants.i18n("syncActionExecute")
+            {{ } else { }}
+            <span class="throbber"></span>
+            {{ } }}
+        </a>
+        <span class="syncActionPercentage"></span>
+    </div>
+</div>
+<div class="syncActionMessageContainer">
+    <span class="syncActionMessage"></span>
+    <span class="syncActionError"></span>
+    <span style="display: none;" class="ui-icon ui-icon-circle-close fright syncActionErrorDelete" title="@Constants.i18n("remove")"></span>
+</div>

@@ -1,0 +1,48 @@
+﻿@using Astria.Framework.Utility;
+<input id="{{= it.CFId}}" class="cf_id" type="hidden">
+
+{{if(it.isNew) { }}
+    @*Selectable Field Name*@
+<div class="cfsFormat displayTableCell">
+    <select class="cfsFormat">
+        <option selected="selected"></option>
+        {{var i = 0; var length = it.customFieldMetas.length;
+        for (i; i < length; i++) {
+        var cfm = it.customFieldMetas[i];
+        }}
+        <option value="{{=cfm.Id}}" {{=cfm.selected}}>{{=cfm.Name}}</option>
+        {{ } }}
+    </select>
+</div>
+{{ } else if(it.cfMeta) { }}
+    @*Read-Only Field Name*@
+    <div class="cfsFormat displayTableCell" data-cfmid="{{=it.cfMeta.Id}}" data-cftype="{{=it.cfMeta.Type}}">
+    <span class="inlineblock fullHeight" data-cfname="{{=it.cfMeta.Name}}" title="{{=it.cfMeta.Name}}">{{=it.cfMeta.Name}}:</span>
+</div>
+{{ } }}
+
+{{if(it.hasModifyPermissions) { }}
+    @*Editable Field Value*@
+    {{ if(it.IsBool) { }}
+        {{= Utility.safeHtmlValue(it.CFVal, {attrs:{type:'checkbox', checked: Utility.convertToBool(it.CFVal) ? 'checked' : undefined }, tag:'input', 'class':'cf_val ' + it.encodedName })}}
+    {{ } else { }}
+        {{= Utility.safeHtmlValue(it.CFVal, {attrs:{type:'text'}, tag:'input', css:{display:'none'}, 'class':'cf_val ' + it.encodedName})}}
+        <div tabindex="0" class="cf_displayVal displayTableCell {{= it.CFMetaId ? '' : 'cf_displayDisabled'}}">
+    {{= Utility.safeHtmlValue(it.CFDisplayVal, {attrs:{title: it.CFDisplayVal}, tag:'span'})}}
+    </div>
+    {{ } }}
+{{ } else { }}
+    @*Read-Only Field Value*@
+    {{ if(it.IsBool) { }}
+        {{= Utility.safeHtmlValue(it.CFVal, {attrs:{type:'checkbox', disabled: 'disabled', checked: it.CFVal ? 'checked' : undefined }, tag:'input', 'class':it.encodedName})}}
+    {{ } else { }}
+        {{= Utility.safeHtmlValue(it.CFDisplayVal, {attrs:{title: it.CFVal, readonly: 'readonly'}, tag:'textarea', 'class':it.encodedName})}}
+    {{ } }}
+{{ } }}
+
+{{if(it.hasModifyPermissions && !it.isDefaultField) { }}
+@*Remove Field*@
+<div class="del_cf displayTableCell" title="@Constants.i18n("remove")">
+    <span class="ui-icon ui-icon-circle-close"></span>
+</div>
+{{ } }}

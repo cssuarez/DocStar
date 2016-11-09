@@ -1,0 +1,22 @@
+﻿@using Astria.Framework.Utility;
+<div id="action_layout">
+    <h2>@Constants.i18n("editActions")</h2>
+    <fieldset>
+        <legend>@Constants.i18n("action")</legend>
+        <ol class="workflow">
+            <li>
+                <span>@Constants.i18n("selectAction"):</span>
+                <select>
+                </select>
+            </li>
+            <li>
+                <span>@Constants.i18n("name"):</span>
+                <input type="text" />
+            </li>
+        </ol>
+    </fieldset>
+    <div class="buttons">
+        <input id="save_buzz" type="button" value="@Constants.i18n("save")" />
+        <input id="del_buzz"type="button" value="@Constants.i18n("delete")" />
+    </div>
+</div>

@@ -1,0 +1,103 @@
+﻿@using Astria.Framework.Utility;
+<table class="customGridTable">
+    <thead>
+        <tr>
+            <th class="customGridHeader customGridSortable" data-columnid="ActionType" style="{{=it.colWidth}}">
+                @Constants.i18n("actionType")
+            </th>
+            <th class="customGridHeader customGridSortable" data-columnid="EntityType" style="{{=it.colWidth}}">
+                @Constants.i18n("entityType")
+            </th>
+            <th class="customGridHeader customGridSortable" data-columnid="CreatedOn" style="{{=it.colWidth}}">
+                @Constants.i18n("date")
+            </th>
+            <th class="customGridHeader customGridSortable" data-columnid="Title" style="{{=it.colWidth}}">
+                @Constants.i18n("title")
+            </th>
+            <th class="customGridHeader customGridSortable" data-columnid="Description" style="{{=it.colWidth}}">
+                @Constants.i18n("description")
+            </th>
+            <th class="customGridHeader customGridSortable" data-columnid="Username" style="{{=it.colWidth}}">
+                @Constants.i18n("username")
+            </th>
+            <th class="customGridHeader customGridSortable narrow" data-columnid="AuthorizedFor" style="{{=it.colWidth}}">
+                @Constants.i18n("guest")
+            </th>
+            <th class="customGridHeader customGridSortable" data-columnid="IPAddress" style="{{=it.colWidth}}">
+                @Constants.i18n("ipaddress")
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {{
+        var i = 0;
+        var length = it.rows.length;
+        for (i; i < length; i++) {
+            var r = it.rows[i];
+        }}
+        <tr class="{{=r.RowClass}}" data-rowid="{{=r.Id}}">
+            <td data-cellid="ActionType" class="customGridDataCell">
+                <div class="valueContainer">
+                    {{=r.ActionType || '&nbsp;'}}
+                </div>
+            </td>
+            <td data-cellid="EntityType" class="customGridDataCell">
+                <div class="valueContainer">
+                    {{=r.EntityType || '&nbsp;'}}
+                </div>
+            </td>
+            <td data-cellid="CreatedOn" class="customGridDataCell">
+                <div class="valueContainer">
+                    {{=r.Date || '&nbsp;'}}
+                </div>
+            </td>
+            <td data-cellid="Title" class="customGridDataCell">
+                <div class="valueContainer">
+                    {{=Utility.safeHtmlString(r.Title) || '&nbsp;'}}
+                </div>
+            </td>
+            <td data-cellid="Description" class="customGridDataCell">
+                <div class="valueContainer">
+                    {{=Utility.safeHtmlString(r.Description) || '&nbsp;'}}
+                </div>
+            </td>
+            <td data-cellid="Username" class="customGridDataCell">
+                <div class="valueContainer">
+                    {{=r.Username || '&nbsp;'}}
+                </div>
+            </td>
+            <td data-cellid="IsGuest" class="customGridDataCell">
+                <div class="valueContainer">
+                    {{=r.IsGuest ? Constants.c.guest : '&nbsp;'}}
+                </div>
+            </td>
+            <td data-cellid="IPAddress" class="customGridDataCell">
+                <div class="valueContainer">
+                    {{=r.IPAddressStr || '&nbsp;'}}
+                </div>
+            </td>
+        </tr>
+        {{ } }}
+        <tr class="emptyGridRow"><td colspan="6"></td></tr>
+    </tbody>
+    <tfoot>        
+        <tr class="customGridPager">
+            <td colspan="6">
+                <div class="fright viewCount">
+                    <span>{{=it.viewCount}}</span>
+                </div>
+                <div class="customGridPagerNavigation">
+                    <span class="navigateFirstPage ui-icon ui-icon-seek-first {{=it.firstClass}}"></span>
+                    <span class="navigatePreviousPage ui-icon ui-icon-seek-prev {{=it.prevClass}}"></span>
+                    <span class="ui-separator"></span>
+                    <span class="customGridPagerText">@Constants.i18n("page")</span>
+                    <input class="navigateToPage" {{=it.navigateInputEnabled ? '' : 'disabled="disabled"'}} type="number" value="{{=it.page}}" />
+                    <span class="customGridPagerText">{{=it.ofPages}}</span>
+                    <span class="ui-separator"></span>
+                    <span class="navigateNextPage ui-icon ui-icon-seek-next {{=it.nextClass}}"></span>
+                    <span class="navigateLastPage ui-icon ui-icon-seek-end {{=it.lastClass}}"></span>
+                </div>
+            </td>
+        </tr>
+    </tfoot>
+</table>

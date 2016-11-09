@@ -1,0 +1,87 @@
+﻿@using Astria.Framework.Utility;
+<div class="preAdditionalSelectedHTML inlineblock fleft">
+    <div class="fleft inlineblock spacingLeftRightSmall">
+        {{ if(it.displayDefault) { }}
+            {{ if(it.isDefault) { }}
+                <input title="@Constants.i18n("included")" name="IsDefault" type="checkbox" checked="checked" />
+            {{ } else { }}
+                <input title="@Constants.i18n("notIncluded")" name="IsDefault" type="checkbox" />
+            {{ } }}
+        {{ } else { }}
+            <input title="@Constants.i18n("alwaysIncluded")" name="IsDefaultIgnore" type="checkbox" checked="checked" disabled="disabled" />
+        {{ } }}
+    </div>
+    {{ if(it.displayReorderIcon) { }}
+        <div class="inlineblock fleft ctbIconContainer">
+            <span title="@Constants.i18n("reorder")" class="inlineblock sPngIB handleIcon"></span>
+        </div>
+    {{ } else { }}
+        <div class="inlineblock fleft ctbIconContainer">
+            <span class="inlineblock fleft">&nbsp;</span>
+        </div>
+    {{ } }}
+    {{ if(it.displayEdit) { }}
+        <div title="@Constants.i18n("edit")" class="inlineblock fleft ctbIconContainer">
+            <span class="inlineblock fleft ui-icon ui-icon-pencil"></span>
+        </div>
+    {{ } else { }}
+        <div class="inlineblock fleft ctbIconContainer">
+            <span class="inlineblock fleft">&nbsp;</span>
+        </div>
+    {{ } }}
+</div>
+<div class="inlineblock fleft limitLabelWidth">
+    <span class="no_text_select" title="{{=it.fieldName}}">{{=it.fieldName}}</span>
+</div>
+@*
+    defaultFieldHTML is used for displaying a fields ability to have its "default" content type value changed 
+    eg. a Default Workflow can be changed via a select list, so defaultFieldHTML would be a select list.
+    or a Default Folder can be changed via an input and folder icon, so defaultFieldHTML would be those.
+*@
+{{ if(it.defaultFieldHTML) { }}
+    <div class="defaultFieldHTMLContainer inlineblock spacingLeftRightSmall">
+        <div class="displayTableCell">
+            @*defaultFieldHTML is appended instead of injected here, so selected options in select lists are maintained properly*@
+        </div>
+    </div>
+{{ } }}
+<div class="additionalSelectedHTML inlineblock">
+    {{ if(it.displayRegion) { }} 
+        <div title="@Constants.i18n("createRegion")" class="inlineblock fleft spacingLeftRightSmall ctbIconContainer">
+            <span class="fleft sPngIB dashedRectangle"></span>
+        </div>
+    {{ } else { }}
+        <div class="inlineblock fleft spacingLeftRightSmall ctbIconContainer">
+            <span class="fleft inlineblock">&nbsp;</span>
+        </div>
+    {{ } }}
+    {{ if(it.displayRelated) { }}
+        <div class="inlineblock fleft spacingLeftRightSmall ctbIconContainer">
+            {{ if(it.isRelated) { }}
+                <span class="fleft sPngIB linkIcon" title="@Constants.i18n("isRelated")"></span>
+            {{ } else {}}
+                <span class="fleft sPngIB linkDisabledIcon" title="@Constants.i18n("isNotRelated")"></span>
+            {{ } }}
+        </div>
+    {{ } else { }}
+        <div class="inlineblock fleft spacingLeftRightSmall ctbIconContainer">
+            <span class="fleft inlineblock">&nbsp;</span>
+        </div>
+    {{ } }}
+    {{ if(it.displayShowHide) { }}
+        {{ if(it.showField) { }}
+            <div title="{{=it.showFieldTooltip}}" class="inlineblock fleft spacingLeftRightSmall ctbIconContainer">
+                <span class="fleft sPngIB showEyeIcon"></span>
+            </div>
+    {{ } else { }}
+            <div title="{{=it.hideFieldTooltip}}" class="inlineblock fleft spacingLeftRightSmall ctbIconContainer">
+                <span class="fleft sPngIB hideEyeIcon"></span>
+            </div>
+    {{ } }}
+    {{ } else { }}
+        <div class="inlineblock fleft spacingLeftRightSmall ctbIconContainer">
+            <span class="fleft inlineblock">&nbsp;</span>
+        </div>
+    {{ } }}
+</div>
+

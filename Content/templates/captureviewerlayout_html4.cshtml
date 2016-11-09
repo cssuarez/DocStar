@@ -1,0 +1,43 @@
+﻿@using Astria.Framework.Utility;
+<div class="view_viewer">
+    <div class="viewer_menubar">
+        <div class="arrow">
+            <span class="{{=it.isCollapsed ? 'collapse_arrow' : 'expand_arrow'}}"></span>
+        </div>
+        {{if(it.hasSelection) { }}
+        <div class="accordion_title_contents">
+            <div class="viewer_navigation controlBlock {{=it.viewerNavClass}}">
+                <span name="viewer_navigation_start" class="ui-icon ui-icon-seek-start navControl"></span>
+                <span name="viewer_navigation_prev" class="ui-icon ui-icon-seek-prev navControl"></span>
+                <span class="viewer_results_type no_text_select fleft">@Constants.i18n("page")</span>
+                <input name="viewer_results_counter" type="text" value="{{=it.page}}" maxlength="4" />
+                <span class="viewer_results_max no_text_select navControl">{{=it.ofPages}}</span>
+                <span name="viewer_navigation_next" class="ui-icon ui-icon-seek-next navControl"></span>
+                <span name="viewer_navigation_end" class="ui-icon ui-icon-seek-end navControl"></span>
+            </div>
+            <div class="sPng vert_seperator_hidable fleft {{=it.rotateClass}}" style="float: left; margin: 0 2px 0 10px;"></div>
+            <div id="rotateCapturePreview" class="controlBlock {{=it.rotateClass}}">
+                <span class="sPng rotateAllLeft_icon navControl" title="@Constants.i18n("rotateAllLeft")"></span>
+                <span class="sPng rotateLeft_icon navControl" title="@Constants.i18n("rotateLeft")"></span>
+                <span class="sPng rotateRight_icon navControl" title="@Constants.i18n("rotateRight")"></span>
+                <span class="sPng rotateAllRight_icon navControl" title="@Constants.i18n("rotateAllRight")"></span>
+            </div>
+            <div id="splitCapturePreviewSeparator" class="sPng vert_seperator_hidable fleft {{=it.splitClass}}" style="float: left; margin: 0 2px 0 10px;"></div>
+            <div id="splitCapturePreview" class="fleft controlBlock {{=it.splitClass}}">
+                <span class="sPng scissors split navControl" title="@Constants.i18n("split")"></span>
+                <span class="sPng scissorsDelete splitDelete navControl {{=it.splitDeleteClass}}" title="@Constants.i18n("deleteAndSplit")" style="height: 19px; margin: 1px 0 0 4px;"></span>
+            </div>
+        </div>
+        {{ } }}
+    </div>
+    {{if(it.hasSelection) { }}
+    <div class="viewer_image">
+        <div class="img_container shadow_glow">
+            <div class="transformCont">
+                <img name="image_full" alt="" class="element_transition" src="{{=it.imageSource}}" />
+            </div>
+            <input class="rot" type="hidden" value="0" />
+        </div>
+    </div>
+    {{ } }}
+</div>

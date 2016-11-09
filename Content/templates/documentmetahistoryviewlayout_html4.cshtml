@@ -1,0 +1,21 @@
+﻿<ul class="histTabs">
+    <li class="wfTab {{=it.userChatClass}}" data-chattype="userChat"><span class="no_text_select">{{= Constants.c.chatChat }}</span> </li>
+    <li class="wfTab {{=it.sysChatClass}}" data-chattype="sysChat"><span class="no_text_select">{{= Constants.c.sysChat }}</span> </li>
+    <li class="wfTab {{=it.allChatClass}}" data-chattype="allChat"><span class="no_text_select">{{= Constants.c.allChat }}</span> </li>
+    <li class="wfTab {{=it.approvalsClass}}" data-chattype="approvals"><span class="no_text_select">{{= Constants.c.approvals }}</span></li>
+</ul>
+<div class="wfChatLogListCont">
+    {{if(it.approvals) { }}
+    <ul class="approvalsList vert_scroll hor_scroll">
+        {{
+        var i = 0;
+        var length = it.approvals.length;
+        for (i; i < length; i++) {
+}}
+        {{=it.approvals[i]}}
+        {{ } }}
+    </ul>
+    {{ } else { }}
+    {{=it.chatHistory }}
+    {{ } }}
+</div>

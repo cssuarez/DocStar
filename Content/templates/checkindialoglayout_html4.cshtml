@@ -1,0 +1,45 @@
+﻿@using Astria.Framework.Utility;
+<textarea class="fullWidth halfHeight inlineblock fleft" name="VersionComment"></textarea>
+<div class="fullWidth inlineblock spacingTopBottom">
+    <div class="spacingTopBottom inlineblock">
+        <label>
+            <input type="radio" name="RemainAsDraft" checked="checked" value="false" />
+            <span class="labelSpacing">@Constants.i18n("published")</span>
+        </label>
+        <label>
+            <input type="radio" name="RemainAsDraft" value="true" />
+            <span class="labelSpacing">@Constants.i18n("draft")</span>
+        </label>
+        @* Allow Complete on check in only if document is part of a form *@
+        <label class="spacingLeft" title="{{=it.completeFormTooltip}}">
+            <input type="checkbox" name="Complete" {{=it.enableComplete ? '' : 'disabled="disabled"'}} />
+            <span>@Constants.i18n("completeForm")</span>
+        </label>
+    </div>
+    <div class="displayNone newDraftOwnerIdContainer">
+        <span class="spacingLeftRight labelSpacing">@Constants.i18n("draftOwner"):</span>
+        <select name="NewDraftOwnerId">
+            {{
+                var i = 0; var length = it.draftOwners.length;
+                for(i; i < length; i++) {
+                    var o = it.draftOwners[i];
+            }}
+            <option value="{{=o.value}}" {{=o.selected}}>{{=o.name}}</option>
+            {{ } }}
+        </select>
+        <span class="custom_button short_btn takeOwnership">@Constants.i18n("takeOwnership")</span>
+    </div>
+</div>
+{{ if (it.hasIncompleteWorkflow) { }}
+<div class="fullWidth inlineblock spacingTopBottom">
+    <input type="checkbox" name="RestartWorkflow" />
+    <span class="spacingLeftRight labelSpacing">@Constants.i18n("restartWf")</span>
+</div>
+{{ } }}
+<div class="inlineblock spacingTopBottom fullWidth">
+    <span class="fleft spacingRight" style="margin-top:4px;">@Constants.i18n("checkInContent"):</span>
+    <iframe class="uploadIframe" frameborder="0" src="{{=it.iframeSource}}" />
+</div>
+<div class="inlineblock spacingTopBottom fullWidth">
+    <span class="message"></span>
+</div>

@@ -1,0 +1,16 @@
+﻿@using Astria.Framework.Utility;
+{{ if(it.displayThumbnails) { }}
+    <div class="thumbs_cont {{=it.thumbnailsPreference}}">
+        <div name="image_thumbnails_container">
+            <div name="image_thumbnails" class="vert_scroll">
+            </div>
+        </div>
+    </div>
+{{ } else { }}
+    <div class="thumbs_cont" style="display: none;">
+        <div style="display: none;" name="image_thumbnails_container">
+            <div name="image_thumbnails" class="vert_scroll">
+            </div>
+        </div>
+    </div>
+{{ } }}

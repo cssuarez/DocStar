@@ -1,0 +1,89 @@
+﻿@using Astria.Framework.Utility;
+<div class="contentTypeDefaultsLayout">
+    <div class="input">
+        <span class="metalabel">@Constants.i18n("defaultSecurityClass"):</span>
+        <select name="DefaultSecurityClassId" class="metaselect">
+            {{ it.listsc.each(function(item) { }}
+            {{ if (it.selectedContentType.get('DefaultSecurityClassId') === item.get("Id")) { }}
+            <option value="{{= item.get('Id') }}" selected="selected">{{= item.get('Name') }}</option>
+            {{ } else { }}
+            <option value="{{= item.get('Id') }}">{{= item.get('Name') }}</option>
+            {{ } }}
+            {{ }); }}
+        </select>
+    </div>
+    <div class="input">
+        <span class="metalabel">@Constants.i18n("defaultWorkflow"):</span>
+        <select name="DefaultWorkflowId" class="metaselect">
+            <option value=""></option>
+            {{ it.listw.each(function(item) { }}
+            {{ if (it.selectedContentType.get('DefaultWorkflowId') === item.get("Id")) { }}
+            <option value="{{= item.get('Id') }}" selected="selected">{{= item.get('Name') }}</option>
+            {{ } else { }}
+            <option value="{{= item.get('Id') }}">{{= item.get('Name') }}</option>
+            {{ } }}
+            {{ }); }}
+        </select>
+    </div>
+    <div class="input">
+        <span class="metalabel">@Constants.i18n("defaultRecordsCategory"):</span>
+        <select name="DefaultRecordCategoryId" class="metaselect">
+            <option value=""></option>
+            {{ it.listrcs.each(function(item) { }}
+            {{ if (it.selectedContentType.get('DefaultRecordCategoryId') === item.get("Id")) { }}
+            <option value="{{= item.get('Id') }}" selected="selected">{{= item.get('Name') }}</option>
+            {{ } else { }}
+            <option value="{{= item.get('Id') }}">{{= item.get('Name') }}</option>
+            {{ } }}
+            {{ }); }}
+        </select>
+    </div>
+    <div class="input">
+        <span class="metalabel">@Constants.i18n("defaultInbox"):</span>
+        <select name="DefaultInboxId" class="metaselect">
+            <option value=""></option>
+            {{ it.listi.each(function(item) { }}
+            {{ if (it.selectedContentType.get('DefaultInboxId') === item.get("Id")) { }}
+            <option value="{{= item.get('Id') }}" selected="selected">{{= item.get('Name') }}</option>
+            {{ } else { }}
+            <option value="{{= item.get('Id') }}">{{= item.get('Name') }}</option>
+            {{ } }}
+            {{ }); }}
+        </select>
+    </div>
+    <div class="input">
+        <span class="metalabel">@Constants.i18n("defaultFolder"):</span>
+        {{
+        var folderName = $.isEmptyObject(it.selectedContentType.get('DefaultFolderName')) ? "" : it.selectedContentType.get('DefaultFolderName');
+        var folderId = $.isEmptyObject(it.selectedContentType.get('DefaultFolderId')) ? "" : it.selectedContentType.get('DefaultFolderId');
+        }}
+        <input type="text" name="DefaultFolderName" class="metainput" value="{{= folderName }}" readonly="readonly" />
+        <span class="sPngIB folder_icon"></span>
+        <input type="hidden" name="DefaultFolderId" value="{{= folderId }}" />
+    </div>
+    <div class="syncActionContainer">
+        @* Render Sync Action *@
+    </div>
+    {{
+    var relateAny = it.selectedContentType.get('RelateOn') === Constants.fro.AnyRelatedField;
+    var anySel = relateAny ? 'checked="checked"' : '';
+    var allSel = relateAny ? '' : 'checked="checked"';
+    }}
+    <div class="input">
+        <span class="metalabel alignTop">@Constants.i18n("relateOn"):</span>
+        <div class="fleft">
+            <div>
+                <label>
+                    <input type="radio" name="RelateOn" value="{{= Constants.fro.AnyRelatedField }}" {{=anySel}} />
+                    <span class="radioLabelSpacing">@Constants.i18n("anyRelatedField")</span>
+                </label>
+            </div>
+            <div>
+                <label>
+                    <input type="radio" name="RelateOn" value="{{= Constants.fro.AllRelatedFields }}" {{=allSel}} />
+                    <span class="radioLabelSpacing">@Constants.i18n("AllRelatedFields")</span>
+                </label>
+            </div>
+        </div>
+    </div>
+</div>

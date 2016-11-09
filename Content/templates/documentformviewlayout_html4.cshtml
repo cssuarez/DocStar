@@ -1,0 +1,39 @@
+﻿@using Astria.Framework.Utility;
+<div class="viewer_menubar">
+    <div class="accordion_title_contents">
+        <div class="view_menu">
+            @*Place Menu Here from DocumentViewerMenuView*@
+        </div>
+        <div id="nativeViewerNav" class="viewer_navigation">
+            <span class="ui-icon ui-icon-seek-start navigation_start navControl"></span>
+            <span class="ui-icon ui-icon-seek-prev navigation_prev navControl"></span>
+            <span class="viewer_results_type no_text_select">@Constants.i18n("file")</span>
+            <input name="currentPage" type="text" value="{{=it.currentItem }}" />
+            <span class="viewer_results_max no_text_select navControl">@Constants.i18n("of") {{=it.totalItems}}</span>
+            <span class="ui-icon ui-icon-seek-next navigation_next navControl"></span>
+            <span class="ui-icon ui-icon-seek-end navigation_end navControl"></span>
+        </div>
+        <div class="dqRenderingInProgressContainer">
+            <span {{=it.renderingTitle}}>{{=it.renderingMessage}}</span>
+        </div>
+        <div class="dqRenderingInProgressContainer">
+            <span {{=it.bookmarkLabel}}>{{=it.bookmarkLabel}}</span>
+        </div>
+        <div class="anno_menu_cont sPng">
+            @* Render Forms Annotation View Here *@
+        </div>
+    </div>
+</div>
+<div class="formPartContainer">
+</div>
+<div class="fileUploadInProgress gradient-aad4ff">
+    <div>
+        <span>@Constants.i18n("attachementsUploading")</span>
+    </div>
+    <div>
+        <span>@Constants.i18n("pleaseWait")</span>
+    </div>
+    <div>
+        <span class="progressIndeterminate"></span>
+    </div>
+</div>

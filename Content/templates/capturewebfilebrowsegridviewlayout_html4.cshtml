@@ -1,0 +1,56 @@
+﻿@using Astria.Framework.Utility;
+<table class="customGridTable">
+    <thead>
+        <tr>
+            <th class="customGridHeader selectionHeader">
+                <input type="checkbox" class="selectAllItems" {{=it.allSelected ? 'checked="checked"' : ''}} />
+            </th>
+            <th class="customGridHeader customGridSortable" data-columnid="Name">
+                @Constants.i18n("name")
+            </th>
+            <th class="customGridHeader customGridSortable" data-columnid="Created">
+                @Constants.i18n("created")
+            </th>
+            <th class="customGridHeader customGridSortable" data-columnid="Modified">
+                @Constants.i18n("modified")
+            </th>
+            <th class="customGridHeader customGridSortable" data-columnid="FileSize">
+                @Constants.i18n("fileSizeMB")
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {{
+        var i = 0;
+        var length = it.rows.length;
+        for (i; i < length; i++) {
+            var r = it.rows[i];
+        }}
+        <tr class="{{=r.RowClass}}" data-rowid="{{=r.Name}}">
+            <td class="customGridDataCell AlignCenter">
+                <input type="checkbox" class="selectedItem" data-modelid="{{=r.model.cid}}" {{=r.Selected ? 'checked="checked"' : ''}} />
+            </td>
+            <td data-cellid="Name" class="customGridDataCell">
+                <div class="valueContainer">
+                    {{=r.Name || '&nbsp;'}}
+                </div>
+            </td>
+            <td data-cellid="Created" class="customGridDataCell">
+                <div class="valueContainer">
+                    {{=r.Created || '&nbsp;'}}
+                </div>
+            </td>
+            <td data-cellid="Modified" class="customGridDataCell">
+                <div class="valueContainer">
+                    {{=r.Modified || '&nbsp;'}}
+                </div>
+            </td>
+            <td data-cellid="FileSize" class="customGridDataCell">
+                <div class="valueContainer">
+                    {{=r.FileSize || '&nbsp;'}}
+                </div>
+            </td>
+        </tr>
+        {{ } }}
+    </tbody>
+</table>

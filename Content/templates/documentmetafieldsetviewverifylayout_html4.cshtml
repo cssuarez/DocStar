@@ -1,0 +1,15 @@
+﻿@using Astria.Framework.Utility
+<td class="rowNumberCell customGridDataCell">
+    {{=it.rowNumber}}
+</td>
+
+{{
+var i = 0;
+var length = it.cells.length;
+for (i; i < length; i++) {
+    var cell = it.cells[i];
+}}
+<td class="customGridDataCell" style="{{=cell.style || ''}}">
+    {{=cell.value || '&nbsp;'}}
+</td>
+{{ } }}

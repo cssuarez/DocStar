@@ -1,0 +1,28 @@
+﻿@using Astria.Framework.Utility;
+{{
+    var i = 0;
+    var length = 0;
+}}
+<span class="viewer_meta_title displayTableCell">{{=it.label}}:</span>
+{{ if (it.readOnly) { }}
+<div class="displayTableCell fullWidth">
+    {{= Utility.safeHtmlValue(it.value, {attrs:{'class': it.fieldName, maxlength: 256, value: it.value}, tag: 'span'})}}
+</div>
+{{ } else if (!it.entityList) { }}
+<div class="displayTableCell fullWidth valueTextArea">
+    {{= Utility.safeHtmlValue(it.value, {attrs:{'class': it.fieldName, maxlength: 256, value: it.value}, tag: it.tag})}}
+</div>
+{{ } else { }}
+<div class="displayTableCell fullWidth">
+    <select>
+        <option></option>
+        {{
+        length = it.entities.length;
+        for (i; i < length; i++) {
+            var ent = it.entities[i];
+        }}
+        <option value="{{=ent.Id}}" {{=ent.selected}}>{{=ent.Name}}</option>
+        {{ } }}
+    </select>
+</div>
+{{ } }}

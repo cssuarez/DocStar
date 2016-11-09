@@ -1,0 +1,21 @@
+﻿@using Astria.Framework.Utility
+<td class="rowNumberCell customGridDataCell">
+    {{=it.rowNumber}}
+</td>
+
+{{
+var i = 0;
+var length = it.cells.length;
+for (i; i < length; i++) {
+    var cell = it.cells[i];
+}}
+<td data-encodedname="{{=cell.encodedName}}" data-cellid="{{=cell.valueId}}" class="customGridDataCell customGridEditCell {{=cell.className}}" style="{{=cell.style}}">
+    {{=cell.value || '&nbsp;'}}
+</td>
+{{ } }}
+
+{{if (it.canDelete) { }}
+<td class="deleteRowCell customGridDataCell">
+    <span class="deleteSet ui-icon ui-icon-circle-close fright" title="@Constants.i18n("remove")"></span>
+</td>
+{{ } }}

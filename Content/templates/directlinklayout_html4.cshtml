@@ -1,0 +1,26 @@
+﻿@using Astria.Framework.Utility;
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style type="text/css">        
+    </style>
+</head>
+<body>
+    <div id="email_body">
+        <span>{{= it.Body}}</span>
+    </div>
+    <br />    
+    <div id="download">
+        @String.Format(Constants.i18n("requestToView"), AstriaCookie.GetUsername())        
+        <br />
+        {{ 
+            var length = it.Urls.length;
+            for (var i = 0; i < length; i++) {
+        }}
+        <a id="link" href="{{= it.Urls[i]}}">@Constants.i18n("clickToView")</a> 
+        <br />
+        {{ } }}
+    </div>
+</body>
+</html>

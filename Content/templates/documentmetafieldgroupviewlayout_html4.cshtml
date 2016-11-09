@@ -1,0 +1,79 @@
+﻿@using Astria.Framework.Utility;
+{{ if(it.groupName) { }}
+<div class="spacingTopBottom">
+    {{= Utility.safeHtmlValue(it.groupName,{attrs:{title: it.groupName}, 'class': 'groupName inlineblock bold spacingLeftRight'})}}
+    {{ if(it.canDeleteGroup) { }}
+    <span data-groupid="{{=it.groupId}}" class="deleteGroup ui-icon ui-icon-circle-close fright" title="@Constants.i18n("remove")"></span>
+    {{ } }}
+</div>
+{{ } }}
+<table class="customGridTable">
+    <thead>
+        <tr>
+            <th class="customGridHeader rowNumberCell">
+                @Constants.i18n("item")
+            </th>
+            {{
+                var i = 0;
+                var length = it.headers.length;
+                for (i; i < length; i++) {
+                    if (it.headers[i] === undefined) { continue; }
+            }}
+            <th class="customGridHeader customGridSortable" style="{{=it.headers[i].style}}" data-columnid="{{=it.headers[i].metaId}}">
+                {{=it.headers[i].value}}
+            </th>
+            {{ } }}
+            {{ if(it.canDelete) { }}
+            <th class="customGridHeader deleteRowCell">
+                @Constants.i18n("delete")
+            </th>
+            {{ } }}
+        </tr>
+    </thead>
+    <tbody>
+        @*Set Views Rendered Here*@
+    </tbody>
+    <tfoot>
+        {{ if (it.footers.length > 0) { }}
+        <tr>
+            <td class="customGridDataCell"></td> @*Number Header*@
+            {{
+            var i = 0;
+            var length = it.footers.length;
+            for (i; i < length; i++) {
+                    if (it.footers[i] === undefined) { continue; }
+            }}
+            <td class="customGridDataCell" data-footerid="{{=it.footers[i].id}}" style="{{=it.footers[i].style}}">{{=it.footers[i].value}}</td>
+            {{ } }}
+            {{ if(it.canDelete) { }}
+            <td class="customGridDataCell"></td> @*Delete Header*@
+            {{ } }}
+        </tr>
+        {{ } }}
+        <tr class="customGridPager">
+            <td colspan="{{=it.headerCount + 2}}"> @*+2 for the static columns Number and Delete*@                
+                {{ if(!it.hideColumnSelect) { }}
+                <div class="fleft customGridPagerButton">
+                    <span class="columnSelector ui-icon ui-icon-calculator"></span>
+                </div>
+                {{ } }}
+                {{ if(it.canSave) { }}
+                <div class="fleft customGridPagerButton">
+                    <span class="saveChanges {{=it.enableSave ? '' : 'disabledIcon'}} ui-icon ui-icon-disk"></span>
+                </div>
+                <div class="fleft customGridPagerButton">
+                    <span class="cancelChanges {{=it.enableSave ? '' : 'disabledIcon'}} ui-icon ui-icon-cancel"></span>
+                </div>
+                {{ } }}
+                {{ if(it.hasModifyRights) { }}
+                <div class="fleft customGridPagerButton">
+                    <span class="addGroupSet ui-icon ui-icon-plus"></span>
+                </div>
+                {{ } }}
+            </td>
+        </tr>
+    </tfoot>
+</table>
+@* Display error messages for missing fields and missing datalink columns *@
+<div class="fullWidth spacingTopBottom warningErrorClass missingCFsErrMsgContainer"></div>
+<div class="fullWidth warningErrorClass missingDLCsErrMsgContainer"></div>
