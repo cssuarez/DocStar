@@ -1,0 +1,17 @@
+﻿@{
+    Layout = null;
+}
+@model Astria.Framework.DataContracts.ExceptionsML
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Error</title>
+</head>
+<body>
+    <div id="type"><span>@Model.Type</span></div>
+    <div id="data"><span>@Model.Data</span></div>
+    <div id="message"><span>@Model.Message</span></div>
+    <div id="stack"><span>@Model.Stack</span></div>
+</body>
+</html>

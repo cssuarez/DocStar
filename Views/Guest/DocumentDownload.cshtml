@@ -1,0 +1,71 @@
+﻿@using Astria.Framework.Utility;
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    @Styles.Render("~/Content/css/guestdownloadcss")
+    <title>@Constants.i18n("productTitle")</title>
+</head>
+<body>
+    <input type="hidden" id="useSSL" value="@Request.IsSecureConnection.ToString()" />
+    <input type="hidden" id="BaseURI" value="@Url.Content("~")" />
+    <input type="hidden" id="LoginURI" value="@Functions.GetAuthenticationProxyUrl()" />
+    <input type="hidden" id="ServerVD" value="@Functions.GetSetting(Constants.SERVER_VD, "/FusionServer")" />
+    @Scripts.Render("~/guestdownloadjs")
+    <div id="layout">
+        <div id="header">
+            <div class="small_docstar_logo">
+            </div>
+        </div>
+        <div id="two_col">
+            <div id="col_border_top">
+            </div>
+            <div id="browse" class="light_shadow_right show_panel">
+            </div>
+            <div id="main">
+                <div id="tabs">
+                    <div id="tab_panel_container">
+                        <iframe id="download"></iframe>
+                        <div id="link_pass_container">
+                            <div id="inner_link_pass_container">
+                                <div id="link_pass_contents">
+                                    <div id="pass_items">
+                                        <span id="link_pass_label">@Constants.i18n("enterPass"):</span>
+                                        <input id="link_pass" type="password" />
+                                        <a id="link_submit">@Constants.i18n("submit")</a>
+                                        <span id="link_submitted">@Constants.i18n("linkSubmitted")...</span>
+                                        <span id="link_downloading">@Constants.i18n("downloading")...</span>
+                                        <span style="display: none;" id="link_successful" class="AlignCenter">@Constants.i18n("linkSubmitionSuccessful")</span>
+                                        <span id="errors" class="errors">&nbsp;</span>
+                                    </div>
+                                    <div class="progressCont fleft">
+                                        <div class="progressIndeterminate">
+                                            <span></span>
+                                        </div>
+                                        <div class="progressBar">
+                                            <span class="progress"></span>
+                                            <span class="progressStatus"></span>
+                                        </div>
+                                    </div>
+                                    <div id="login_data">
+                                        <p>
+                                            @Constants.i18n("loginDemo")
+                                            <a target="_blank" href="@Constants.i18n("demoContactUsLink")">
+                                                @Constants.i18n("loginDemoHere")
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

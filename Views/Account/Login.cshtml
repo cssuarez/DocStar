@@ -1,0 +1,105 @@
+﻿@model Astria.UI.Web.Models.HomeModel
+@using Astria.Framework.Utility;
+@{    
+    //Layout = null;
+    String rememberme = "";
+    HttpCookie r_cookie = HttpContext.Current.Request.Cookies.Get("remember_me");
+    if (r_cookie != null && r_cookie.Value.Equals("1"))
+    {
+        rememberme = "checked=\"checked\" ";
+    }
+    String rememberlogin = "";
+    String loginvalue = "";
+    HttpCookie rl_cookie = HttpContext.Current.Request.Cookies.Get("remember_login");
+    if (rl_cookie != null)
+    {
+        loginvalue = rl_cookie.Values["username"];
+        rememberlogin = "checked=\"checked\" ";
+    }
+}
+<div id="login_div" style="display: none;">
+    <div id="inner_login">
+        <div id="login_form_container">
+            <div id="demo_pitch">
+                <div id="h1_fade" class="clearfix">
+                    <span class="fadein">e</span> <span class="fadein">c</span> <span class="fadein">l</span>
+                    <span class="fadein">i</span> <span class="fadein">p</span> <span class="fadein">s</span>
+                    <span class="fadein">e</span> <span class="fadein">3</span>
+                </div>
+                <h3>@Constants.i18n("byDocstar")</h3>
+                <p>@Constants.i18n("loginDemo") <a target="_blank" href="@Constants.i18n("demoContactUsLink")">@Constants.i18n("loginDemoHere")</a></p>                
+            </div>
+            <div id="login">
+                <form id="login_form" action="#" method="post" onkeydown='if(event.keyCode == 13) { Login.DoIt("#login_form", "#authMessage") }'>
+                    <p id="login_error">
+                    </p>
+                    <ol>
+                        <li>
+                            <input id="ssoButton" type="button" value="@Constants.i18n("ssoButton")" onclick="Login.runIntegratedAuthentication();" />
+                        </li>
+                        <li>
+                            <label for="username">
+                                @Constants.i18n("username")
+                            </label>
+                            <input type="text" name="username" id="userName" value="@loginvalue" />
+                        </li>
+                        <li>
+                            <label for="password">
+                                @Constants.i18n("password")
+                            </label>
+                            <input type="password" name="password" />
+                        </li>
+                        <li>
+                            <input id="loginButton" type="button" value="@Constants.i18n("login")" onclick="Login.DoIt('#login_form', '#authMessage');" />                            
+                        </li>
+                        <li id="rememberMe">
+                            <input type="checkbox" @rememberme name="remember_me" title="@Constants.i18n("rememberMe_tt")" />
+                            <span title="@Constants.i18n("rememberMe_tt")">@Constants.i18n("rememberMe")</span>
+                        </li>
+                        <li id="rememberUsername">
+                            <input type="checkbox" @rememberlogin name="remember_login" title="@Constants.i18n("rememberUsername_tt")" />
+                            <span title="@Constants.i18n("rememberUsername_tt")">@Constants.i18n("rememberUsername")</span>
+                        </li>
+                    </ol>
+                </form>
+                <p id="agreement">
+                    @Constants.i18n("loginEula") <a target="_blank" href="@Constants.i18n("loginEulaLink")">@Constants.i18n("loginEulaText")</a>
+                    @Constants.i18n("and") <a target="_blank" href="@Constants.i18n("loginEulaRulesOfUseLink")">@Constants.i18n("loginEulaRulesOfUseText")</a>
+                </p>
+                <div id="sso_indicator_container">
+                    <img id="req_throbber" alt="" src="@System.Web.Mvc.UrlHelper.GenerateContentUrl("~/Content/themes/default/throbber.gif", new HttpContextWrapper(HttpContext.Current))" />
+                    <span>@Constants.i18n("ssoLoginProgress")</span>
+                    <iframe id="integratedAuthentication" frameborder="0" height="1" width="1" src="about:blank"></iframe>
+                </div>
+            </div>
+        </div>
+        <div id="authMessage_container">
+            <div id="authMessage" class="authmessage">
+                @{ var message = String.IsNullOrWhiteSpace(Model.Message) ? "" : Constants.i18n("loginRequiredReason_" + Model.Message); @message }
+            </div>
+            <div id="ssoMessageContainer">
+                <span class="ssoFailed">@Constants.i18n("ssoLoginFailedCopy1")</span>
+                <br />
+                <br />
+                <span class="ssoFailed">@Constants.i18n("ssoLoginFailedCopy2")</span>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $ = jQuery;
+    $(document).ready(function () {
+        //determine the background width
+        //TODO need better images.
+        //$('body').css({'background-image': 'url("' + Constants.Url_Base + 'Content/s.jpg")', 'background-repeat':'no-repeat', 'background-position': 'center'});
+        //$('#login_form_container').hover(
+        $('#login_div').fadeIn('fast', function () { $('input[name="username"]').focus().select(); });
+        Login.init();
+        // Hiding and showing body when it is finished loading to prevent html showing before css is applied
+        $('#masterOfAll').show();
+
+    });
+    if (parent.location !== window.location) {
+        parent.location = window.location;
+    }
+</script>

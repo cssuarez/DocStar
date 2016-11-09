@@ -1,0 +1,14 @@
+﻿@model Astria.UI.Web.Models.RetrieveModel
+
+@{
+    Layout = null;
+}
+
+<li id="folder_root"><a href="#">Folders</a>
+    <ul>
+        @foreach (Astria.Framework.DataContracts.ContainerInfo folder in Model.Folders)
+        {
+            <li><a href="#" onclick="Retrieve.GetDocumentsByFolder('@folder.Id.ToString()')">@folder.Name</a></li>
+        }
+    </ul>
+</li>

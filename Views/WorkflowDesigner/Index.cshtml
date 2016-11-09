@@ -1,0 +1,993 @@
+﻿@using Astria.Framework.Utility;
+@using Astria.Framework.DataContracts;
+@using Astria.UI.Web.Utility;
+@using Astria.UI.Web.Models;
+@model Astria.UI.Web.Models.HomeModel
+@{
+    Layout = null;
+    var userName = AstriaCookie.GetUsername();
+}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    @Styles.Render("~/Content/css/Views/defaultcss")
+    @Styles.Render("~/Content/css/workflowcss")
+    <title>@Constants.i18n("workflowDesigner")</title>
+</head>
+<body>
+    <input type="hidden" id="useSSL" value="@Request.IsSecureConnection.ToString()" />
+    <input type="hidden" id="BaseURI" value="@Url.Content("~")" />
+    <input type="hidden" id="LoginURI" value="@Functions.GetAuthenticationProxyUrl()" />
+    <input type="hidden" id="ServerVD" value="@Functions.GetSetting(Constants.SERVER_VD, "/FusionServer")" />
+    @Scripts.Render("~/defaultjs")
+    @Scripts.Render("~/workflowjs")
+    @*
+        Used to preload images, always hidden
+    *@
+    <img id="imgLoader" src="@System.Web.Mvc.UrlHelper.GenerateContentUrl("~/Content/images/transparent.png", new HttpContextWrapper(HttpContext.Current))" alt="imageloader" style="display:none" />
+    <div style="display: none;" id="section_container">
+        <div id="section" class="clearfix">
+            <div id="header" class="clearfix">
+                <div class="small_docstar_logo"></div>
+                <div class="right choose">
+                    <select id="wf_name" name="workflow">
+                        <option selected="selected" value="choose">@Constants.i18n("chooseWorkflow")</option>
+                    </select>
+                    <input id="edit_process" style="display:none;" type="button" name="edit_process" value="@Constants.i18n("edit")" />
+                    <input type="button" name="Save" value="@Constants.i18n("save")" />
+                    <input id="saveas_button" type="button" name="SaveAs" value="@Constants.i18n("saveas")" />
+                    <input id="delete" type="button" name="Delete" value="@Constants.i18n("delete")"/>
+                    <input id="email" type="button" name="Email" value="@Constants.i18n("email")"/>
+                    <input id="userLogout" style="display: none;" type="button" name="Logout" value="@Constants.i18n("logout") - @userName" title="@userName" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="main_container">
+        <div id="main_panel">
+        </div>
+    </div>
+    <div style="display: none;" class="contextMenu" id="myMenu1">
+        <ul>
+            <li id="addstep">@Constants.i18n("addStep")</li>
+            <li id="saveworkflow">@Constants.i18n("save")</li>
+            <li id="saveas_context">@Constants.i18n("saveas")</li>
+            <li id="close">@Constants.i18n("close")</li>
+        </ul>
+    </div>
+    <div style="display: none;" class="contextMenu" id="actionLibContextMenu">
+        <ul>
+            <li id="addALItem">@Constants.i18n("add")</li>
+            <li id="editALItem">@Constants.i18n("edit")</li>
+            <li id="deleteALItem">@Constants.i18n("delete")</li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Workflow.init();
+            if (window.location.hash.length > 0 && window.location.hash !== '#choose') {
+                //load it.      
+                var exists = false;
+                var id = window.location.hash.substring(1);
+                if (window.allData.Workflows) {
+                    $.map(window.allData.Workflows, function (value, key) {
+                        //do not check type...the double == is on PURPOSE!!!!!
+                        if (id == value.Id) {
+                            exists = true;
+                        }
+                    });
+                }
+                if (exists === true) {
+                    $('#wf_name').val(window.location.hash.substring(1));
+                    Workflow.loadName();
+                } else {
+                    $('#logout_error').text(Constants.c.workflowWithId + ': ' + id + ' ' + Constants.c.doesNotExist);
+                    $('#logout').dialog('open');
+                }
+            }
+            window.parent.Utility.executeCallback(window.parent.Utility.inlineWorkflowDesignerIframeLoadedCallback);
+        });
+    </script>
+    <div id="dev">
+    </div>
+    <div id="delete_form" style="display:none;" title="@Constants.i18n("deleteWorkflowConfirm")">
+        <div class="item">
+            <span>@Constants.i18n("replaceWith"):</span>
+            <select name="process_replacement">
+                <option value="deleteprocess">@Constants.i18n("noReplacementWorkflow")</option>
+            </select>
+        </div>
+    </div>
+    <div id="saveas" style="display: none;" title="Save As">
+        <div class="errors">
+        </div>
+        <div class="item">
+            <span>@Constants.i18n("name"):</span>
+            <input class="new_name" type="text" name="new_name" />
+        </div>
+        <img class="throbber" style="display: none;" alt="" src="@UrlHelper.GenerateContentUrl("~/Content/themes/default/throbber.gif", new HttpContextWrapper(HttpContext.Current))" />
+    </div>
+    <div id="wfWarnings" style="display: none;" title="@Constants.i18n("warnings")">
+        <div class="warnings">
+        </div>
+    </div>
+    <div id="saveFailure" style="display:none;" title="@Constants.i18n("wfSaveFailed")">
+        <div class="item">
+            <p>@Constants.i18n("wfSaveFailedError")</p>
+            <div class="errors">
+            </div>
+            <p>@Constants.i18n("wfSaveFailedResolution")</p>
+        </div>
+    </div>
+    <!--
+    ************************************************************************************
+    *************************************Process Editor*********************************
+    ************************************************************************************
+    -->
+    <div style="display: none;" id="process_editor" title="">
+        <div class="item">
+            <span>@Constants.i18n("workflowName"):</span>
+            <input name="Name" type="text" />
+        </div>
+        <div class="item">
+            <span>@Constants.i18n("description"):</span>
+            <textarea rows="2" cols="20" name="Description"></textarea>
+        </div>
+        <div class="item">
+            <span>@Constants.i18n("startingStep"):</span>
+            <select name="StartingStep">
+            </select>
+        </div>
+        <div class="item">
+            <span>@Constants.i18n("triggerMode"):</span>
+            <input class="0" type="radio" name="TriggerMode" checked="checked" />
+            <span style="text-align: left; width: auto;">@Constants.i18n("none")</span>
+
+            <input class="1" type="radio" name="TriggerMode" />
+            <span style="text-align: left; width: auto;">@Constants.i18n("email")</span>
+
+            <input class="2" type="radio" name="TriggerMode" />
+            <span style="text-align: left; width: auto;">@Constants.i18n("reassign")</span>
+
+            <input class="3" type="radio" name="TriggerMode" />
+            <span style="text-align: left; width: auto;">@Constants.i18n("emailAndReassign")</span>
+        </div>
+        <div class="item">
+            <span>@Constants.i18n("exceptionAssignee"):</span>
+            <select name="ExceptionAssignee">
+            </select>
+        </div>
+        <div class="item">
+            <span>@Constants.i18n("securityClass"):</span>
+            <select name="SecurityClassId">
+            </select>
+        </div>
+    </div>
+    <!--
+    *******************************************************************
+    *************************STEP EDITOR***************************
+    *******************************************************************
+    -->
+    <div style="display: none;" id="dialog" title="">
+        <div class="editor">
+            <input class="ignore" type="hidden" name="wf_step_name" />
+            <div id="step_errors" style="display: none;" class="errors">
+                <ul id="error_list">
+                </ul>
+            </div>
+            <div class="item">
+                <span>@Constants.i18n("stepName")</span>
+                <input name="Name" type="text" />
+            </div>
+            <div class="item">
+                <span>@Constants.i18n("assigneeMode")</span>
+                <select name="AssigneeMode">
+                </select>
+            </div>
+            <div class="item">
+                <span>@Constants.i18n("setAssignee")</span>
+                <select name="DefaultAssignee">
+                </select>
+            </div>
+            <div class="item">
+                <span>@Constants.i18n("branchMode")</span>
+                <select name="BranchMode">
+                    @foreach (int mode in Enum.GetValues(typeof(WFBranchMode)))
+                    {
+                        <option value="@mode" title="@Constants.i18n(String.Format("wfbm_d_{0}", ((WFBranchMode)mode)))">
+                            @Constants.i18n(String.Format("wfbm_{0}", ((WFBranchMode)mode)))
+                        </option>
+                    }
+                </select>
+            </div>
+            <div id="wf_tab">
+                <ul>
+                    <li><a href="#wf_tab_actions">@Constants.i18n("stepActions")</a></li>
+                    <li><a href="#wf_tab_branches">@Constants.i18n("stepBranches")</a></li>
+                </ul>
+                <div id="wf_tab_actions" class="item">
+                    <div class="library item">
+                        <div class="bold">@Constants.i18n("actionLibrary")</div>
+                        <ul id="actions_lib">
+                        </ul>
+                    </div>
+                    <div id="step_actions_list">
+                        <div class="bold">@Constants.i18n("stepActions")</div>
+                        <ul id="step_actions">
+                        </ul>
+                        <div class="action_buttons">
+                            <a id="add_action" class="custom_button short_btn no_text_select shadow">@Constants.i18n("add")</a>
+                            <a id="edit_action" class="custom_button short_btn no_text_select shadow">@Constants.i18n("edit")</a>
+                            <a id="del_action" class="custom_button short_btn no_text_select shadow">@Constants.i18n("delete")</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="wf_tab_branches" class="item">
+                    <div class="library item">
+                        <div class="bold">@Constants.i18n("branchConditionLibrary")</div>
+                        <ul id="conditions_lib">
+                        </ul>
+                    </div>
+                    <div id="step_branches_list">
+                        <div class="bold">@Constants.i18n("branches")</div>
+                        <ul id="step_branches">
+                        </ul>
+                        <div class="action_buttons">
+                            <a id="add_branch" class="custom_button short_btn no_text_select shadow">@Constants.i18n("add")</a>
+                            <a id="del_branch" class="custom_button short_btn no_text_select shadow">@Constants.i18n("delete")</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--
+    *******************************************************************
+    *************************ACTION EDITOR***************************
+    *******************************************************************
+    -->
+    <div id="action_editor" style="display: none;">
+        <div class="library item">
+            <span>@Constants.i18n("taskLibrary")</span>
+            <ul id="tasks_lib">
+            </ul>
+        </div>
+        <div id="action_tasks_list" class="editor">
+            <div class="item">
+                <span>@Constants.i18n("actionName")</span>
+                <input name="Name" />
+                <input type="hidden" class="ignore" name="ActionId" />
+                <a id="addTo_action_lib" class="custom_button short_btn no_text_select shadow">@Constants.i18n("addToActionLib")</a>
+                <span id="addActionSuccess">@Constants.i18n("addActionSuccess")</span>
+            </div>
+            <div class="item">
+                <span>@Constants.i18n("stickyFields"):</span>
+                <input class="ignore" name="StickyFields" type="checkbox" />
+            </div>
+            <div class="item sap">
+                <div class="fleft">
+                    <label>
+                        <input class="ignore" type="radio" name="SyncActionPreference" value="@((int)WFActionType.LibraryItem)" />
+                        <span>@Constants.i18n("wfat_LibraryItem")</span>
+                    </label>
+                </div>
+                <div class="fleft">
+                    <label>
+                        <input class="ignore" type="radio" name="SyncActionPreference" value="@((int)WFActionType.SyncAction)"/>
+                        <span>@Constants.i18n("wfat_SyncAction")</span>
+                    </label>
+                </div>
+                <div class="fleft">
+                    <label>
+                        <input class="ignore" type="radio" name="SyncActionPreference" value="@((int)WFActionType.SyncVerifyAction)"/>
+                        <span>@Constants.i18n("wfat_SyncVerifyAction")</span>
+                    </label>
+                </div>
+                <div class="fleft">
+                    <label>
+                        <input class="ignore" type="radio" name="SyncActionPreference" value="@((int)WFActionType.SyncAutoRunAction)"/>
+                        <span>@Constants.i18n("wfat_SyncAutoRunAction")</span>
+                    </label>
+                </div>
+            </div>
+            <div id="actions_list" class="item">
+                <span>@Constants.i18n("actionTasks")</span>
+                <ul id="action_tasks">
+                </ul>
+                <div class="action_buttons">
+                    <a id="add_task" class="custom_button short_btn no_text_select shadow">@Constants.i18n("add")</a>
+                    <a id="edit_task" class="custom_button short_btn no_text_select shadow">@Constants.i18n("edit")</a>
+                    <a id="del_task" class="custom_button short_btn no_text_select shadow">@Constants.i18n("delete")</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--
+    *******************************************************************
+    ***********************TASK ARGUMENT TEMPLATE**********************
+    *******************************************************************
+    -->
+    <div style="display: none" id="taskArgumentTemplate">
+        <fieldset>
+            <legend></legend>
+            <div class="taskArguments">
+            </div>
+            <div class="addTaskArgument">
+            </div>
+        </fieldset>
+    </div>
+    <!--
+    *******************************************************************
+    *************************TASK EDITOR*******************************
+    *******************************************************************
+    -->
+    <div id="task_editor" style="display: none;">
+        <div class="library item">
+            <span>@Constants.i18n("argsLibrary")</span>
+            <ul id="args_lib">
+            </ul>
+        </div>
+        <div id="task_settings" class="editor">
+            <div class="item">
+                <span>@Constants.i18n("task")</span>
+                <span id="taskType"></span>
+                <select id="tasks">
+                </select>
+            </div>
+            <div class="item task_template">
+            </div>
+            <div class="createOnTheFly">
+                <span>@Constants.i18n("createANew"): </span>
+                <span class="anchor createContentType">@Constants.i18n("contentType")</span>
+                <span class="anchor createCustomList">@Constants.i18n("customList")</span>
+                <span class="anchor createCustomField">@Constants.i18n("field")</span>
+                <span class="anchor createInbox">@Constants.i18n("inbox")</span>
+                <span class="anchor createSecurityClass">@Constants.i18n("securityClass")</span>
+            </div>
+        </div>
+    </div>
+    <div id="warning_box" style="display: none;">
+    </div>
+    <div id="simpleCreate" class="inputForm" style="display: none">
+        <ul>
+            <li><span>@Constants.i18n("name")</span>
+                <input type="text" name="entityName" />
+            </li>
+            <li><span>@Constants.i18n("securityClass")</span>
+                <select name="securityClass">
+                </select>
+            </li>
+        </ul>
+    </div>
+    <div id="customListCreate" class="inputForm" style="display:none" title="@Constants.i18n("customList")">
+        <div class="item">
+            <label>@Constants.i18n("name"):</label>
+            <input type="text" name="entityName" />
+        </div>
+        <div class="item">
+            <label title="@Constants.i18n("readOnlyTT")">@Constants.i18n("readOnly"):</label>
+            <input type="checkbox" name="readOnly" title="@Constants.i18n("readOnlyTT")" />
+        </div>
+        <div class="item">
+            <label>@Constants.i18n("listItems"):</label>
+            <textarea name="items" rows="8" cols="22"></textarea>
+        </div>
+    </div>
+    <div id="customFieldCreate" class="inputForm" style="display:none" title="@Constants.i18n("field")">
+        <ul>
+            <li><span>@Constants.i18n("name")</span>
+                <input type="text" name="entityName" />
+            </li>
+            <li><span>@Constants.i18n("type")</span>
+                <select name="type">
+                    @foreach (int item in Enum.GetValues(typeof(CFTypeCode)))
+                    {
+                        var ty = (CFTypeCode)item;
+                        var transKey = Constants.i18n("ty_" + ty.ToString());
+                        if (transKey.StartsWith("missing trans key:")) { continue; }
+                    
+                        <option value="@item">@transKey</option>
+                    }
+                </select>
+                <select name="listName">
+                </select>
+            </li>
+        </ul>
+    </div>
+    <!--
+    *******************************************************************
+    *************************TASK TEMPLATES***************************
+    *******************************************************************
+       Workflow Designer Task Template 
+       Each new template needs to be surrounded by a div with an id of "WFDTT_{SettingsUIKey}".
+       Just the content of these divs are copied into the WF UI.       
+       If you wish to have a value set based on a setting in the task, 
+       then the name of that control must be the same as the name of the setting.
+    -->
+    <div style="display: none">
+        <div id="WFDTT_Type">
+            <div class="item">
+                <span>@Constants.i18n("set_Type")</span>
+                <select name="Type">
+                </select>
+            </div>
+        </div>
+        <div id="WFDTT_DatalinkFieldGroupTask">
+            <div class="item">
+                <span>@Constants.i18n("set_CustomFieldGroup")</span>
+                <select name="CustomFieldGroupId"></select>
+            </div>
+            <div class="item">
+                <span>@Constants.i18n("direction")</span>
+                <input type="radio" name="FieldGroupDirection" value="from" checked="checked" />
+                <span class="radio">@Constants.i18n("from")</span>
+                <input type="radio" name="FieldGroupDirection" value="to" />
+                <span class="radio">@Constants.i18n("to")</span>
+            </div>
+        </div>
+        <div id="WFDTT_SetFieldGroupValuesTask">
+            <div class="item">
+                <span>@Constants.i18n("set_AppendRows")</span>
+                <input type="checkbox" name="Append" />
+            </div>
+        </div>
+        <div id="WFDTT_UserPrompt">
+            <div class="item">
+                <span>@Constants.i18n("set_UserPromptString")</span>
+                <input type="text" name="UserPromptString" />
+            </div>
+        </div>
+        <div id="WFDTT_IsRequired">
+            <div class="item">
+                <span>@Constants.i18n("set_IsRequired")</span>
+                <input type="checkbox" name="IsRequired" />
+            </div>
+        </div>
+        <div id="WFDTT_ImageRegionSelection">
+            <div class="item">
+                <span>@Constants.i18n("region")</span> <a class="sel_reg custom_button short_btn no_text_select shadow">@Constants.i18n("getRegion")</a>
+                <input type="hidden" name="Top" />
+                <input type="hidden" name="Left" />
+                <input type="hidden" name="Height" />
+                <input type="hidden" name="Width" />
+                <input type="hidden" name="Page" />
+            </div>
+        </div>
+        <div id="WFDTT_ImageCleanup">
+            <div class="item fleft">
+                <div>
+                    <span>@Constants.i18n("set_CleanupOptions")</span>
+                </div>
+                <div id="WFDTT_ImageCleanup_Options">
+                </div>
+                <input type="hidden" name="CleanupOptions" class="enumValue" />
+                <br />
+            </div>
+        </div>
+        <div id="WFDTT_Permissions">
+            <div class="item fleft">
+                <div>
+                    <span>@Constants.i18n("set_Permissions")</span>
+                </div>
+                <div id="WFDTT_Permissions_Options">
+                </div>
+                <input type="hidden" name="PermissionsOptions" class="enumValue" />
+                <br />
+            </div>
+        </div>
+        <div id="WFDTT_PromptForFolderTask">
+            <div class="item">
+                <span>@Constants.i18n("set_StartingFolder")</span>
+                <input type="text" name="wfFolderSelection" />
+                <input type="hidden" name="StartingFolderId" />
+            </div>
+        </div>
+        <div id="WFDTT_SimpleDropDownTask">
+            <div class="item">
+                <span>@Constants.i18n("set_ListItems")</span>
+                <textarea class="isList" rows="6" cols="30" name="ListItems"></textarea>
+            </div>
+        </div>
+        <div id="WFDTT_SimpleComboBoxTask">
+            <div class="item">
+                <span>@Constants.i18n("set_ListItems")</span>
+                <textarea class="isList" rows="6" cols="30" name="ListItems"></textarea>
+            </div>
+        </div>
+        <div id="WFDTT_DropDownTask">
+            <div class="item">
+                <input class="radiodatalink" type="radio" name="dropdownDataSource" checked="checked" />
+                <span>@Constants.i18n("dataLink")</span>
+                <select name="DataLinkDropdown"></select>
+            </div>
+            <div class="item">
+                <input class="radiolist" type="radio" name="dropdownDataSource" />
+                <span>@Constants.i18n("set_ListName")</span>
+                <input type="text" name="ListName" disabled="disabled" />
+            </div>
+        </div>
+        <div id="WFDTT_ComboBoxTask">
+            <div class="item">
+                <input class="radiodatalink" type="radio" name="comboDataSource" checked="checked" />
+                <span>@Constants.i18n("dataLink")</span>
+                <select name="DataLinkTypeAhead"></select>
+            </div>
+            <div class="item">
+                <input class="radiolist" type="radio" name="comboDataSource" />
+                <span>@Constants.i18n("set_ListName")</span>
+                <input type="text" name="ListName" disabled="disabled" />
+            </div>
+            <div class="item">
+                <span>@Constants.i18n("set_UserCanAddToList")</span>
+                <input type="checkbox" name="UserCanAddToList" disabled="disabled" />
+            </div>
+        </div>
+        <div id="WFDTT_VerifyCustomFieldGroupTask">
+            <div class="item">
+                <span>@Constants.i18n("set_CustomFieldGroup")</span>
+                <select name="CustomFieldGroupId"></select>
+            </div>
+            <div class="item">
+                <span>@Constants.i18n("set_CustomFieldGroupOptions")</span>
+                <select name="CustomFieldGroupOptions" multiple="multiple" size="6" class="bitwise"></select>
+            </div>
+        </div>
+        <div id="WFDTT_InlayColor">
+            <div class="item">
+                <div class="itemLabel">
+                    <span>@Constants.i18n("set_inlayColor")</span>
+                </div>
+                <div class="InlayColor InlayColor_ffffaa">
+                    <span></span>
+                </div>
+                <div class="InlayColor InlayColor_d4ffaa">
+                    <span></span>
+                </div>
+                <div class="InlayColor InlayColor_aaffaa">
+                    <span></span>
+                </div>
+                <div class="InlayColor InlayColor_aaffff">
+                    <span></span>
+                </div>
+                <div class="InlayColor InlayColor_aad4ff">
+                    <span></span>
+                </div>
+                <div class="InlayColor InlayColor_aaaaff">
+                    <span></span>
+                </div>
+                <div class="InlayColor InlayColor_d4aaff">
+                    <span></span>
+                </div>
+                <div class="InlayColor InlayColor_ffaaff">
+                    <span></span>
+                </div>
+                <div class="InlayColor InlayColor_ffaad4">
+                    <span></span>
+                </div>
+                <div class="InlayColor InlayColor_ffaaaa">
+                    <span></span>
+                </div>
+                <div class="InlayColor InlayColor_ffd4aa">
+                    <span></span>
+                </div>
+                <input name="InlayColor" type="hidden" />
+            </div>
+        </div>
+        <div id="WFDTT_UserVerifyTask">
+            <div class="item">
+                <span>@Constants.i18n("set_UserPromptString")</span>
+                <input type="text" name="UserPromptString" />
+            </div>
+            <div class="item">
+                <span>@Constants.i18n("set_FailMessage")</span>
+                <input type="text" name="FailMessage" />
+            </div>
+            <div class="item">
+                <span>@Constants.i18n("set_YesText")</span>
+                <input type="text" name="YesText" />
+            </div>
+            <div class="item">
+                <span>@Constants.i18n("set_NoText")</span>
+                <input type="text" name="NoText" />
+            </div>
+        </div>
+        <div id="WFDTT_VerifyTaskBase">
+            <div class="item">
+                <span>@Constants.i18n("set_FailMessage")</span>
+                <input type="text" name="FailMessage" />
+            </div>
+            <div class="item">
+                <span>@Constants.i18n("set_Invert")</span>
+                <input type="checkbox" name="Invert" />
+            </div>
+        </div>
+        <div id="WFDTT_LogFailureBase">
+            <div class="item">
+                <span>@Constants.i18n("set_LogFailure")</span>
+                <input type="checkbox" name="LogFailure" />
+            </div>
+        </div>
+        <div id="WFDTT_CompareVerifyTask">
+            <div class="item">
+                <span>@Constants.i18n("set_Comparison")</span>
+                <select name="Comparison">
+                </select>
+            </div>
+        </div>
+        <div id="WFDTT_RegexVerifyTask">
+            <div class="item">
+                <span>@Constants.i18n("set_RegexPattern")</span>
+                <input type="text" name="RegexPattern" />
+            </div>
+        </div>
+        <div id="WFDTT_AddToFolderTask">
+            <div class="item">
+                <span>@Constants.i18n("set_StartingFolder")</span>
+                <input type="text" name="Path" />
+            </div>
+            <div class="item">
+                <span>@Constants.i18n("set_MustExist")</span>
+                <input type="checkbox" name="MustExist" />
+            </div>
+            <div class="item">
+                <span>@Constants.i18n("set_SecurityClassId")</span>
+                <select name="SecurityClassId">
+                    <option value="00000000-0000-0000-0000-000000000000">@Constants.i18n("inheritOption")</option>
+                    <option></option>
+                </select>
+            </div>
+        </div>
+
+        <div id="WFDTT_FormatTask">
+            <div class="item">
+                <span>@Constants.i18n("set_Format")</span>
+                <input type="text" name="Format" />
+            </div>
+            <div class="item">
+                <span>@Constants.i18n("set_NoErr")</span>
+                <input type="checkbox" name="NoErr" />
+            </div>
+        </div>
+
+        <div id="WFDTT_FindTextRegexTask">
+            <div class="item">
+                <span>@Constants.i18n("set_RegexPattern")</span>
+                <input type="text" name="RegexPattern" />
+            </div>
+        </div>
+        <div id="WFDTT_FindTextTask">
+            <div class="item">
+                <span>@Constants.i18n("set_Find")</span>
+                <input type="text" name="Find" />
+            </div>
+            <div class="item">
+                <span>@Constants.i18n("set_Take")</span>
+                <input type="text" name="Take" />
+            </div>
+            <div class="item">
+                <span>@Constants.i18n("set_Multiline")</span>
+                <input type="checkbox" name="Multiline" />
+            </div>
+        </div>
+        <div id="WFDTT_JoinTask">
+            <div class="item">
+                <span>@Constants.i18n("set_Delimiter")</span>
+                <input class="noTrim" type="text" name="Delimiter" />
+            </div>
+        </div>
+        <div id="WFDTT_MathTask">
+            <div class="item">
+                <span>@Constants.i18n("set_OpCode")</span>
+                <select name="OpCode">
+                </select>
+            </div>
+            <div class="item">
+                <span>@Constants.i18n("set_CustomFieldGroup")</span>
+                <select name="CustomFieldGroupId"></select>
+            </div>
+        </div>
+        <div id="WFDTT_AggregateMathTask">
+            <div class="item">
+                <span>@Constants.i18n("set_OpCode")</span>
+                <select name="OpCode">
+                </select>
+            </div>
+        </div>
+        <div id="WFDTT_StringFormatTask">
+            <div class="item">
+                <span>@Constants.i18n("set_OpCode")</span>
+                <select name="OpCode" multiple="multiple" size="6" class="bitwise">
+                </select>
+            </div>
+        </div>
+        <div id="WFDTT_ReplaceTextTask">
+            <div class="item">
+                <span>@Constants.i18n("set_Find")</span>
+                <input type="text" name="Find" />
+            </div>
+            <div class="item">
+                <span>@Constants.i18n("set_Replace")</span>
+                <input type="text" name="Replace" />
+            </div>
+            <div class="item">
+                <span>@Constants.i18n("set_Regex")</span>
+                <input type="checkbox" name="Regex" />
+            </div>
+        </div>
+        <div id="WFDTT_RequestApprovalTask">
+            <div class="item">
+                <span style="font-size: 11px; width: 225px;">@Constants.i18n("set_overrideUserNotify")</span>
+                <input type="checkbox" name="IsOverride" />
+            </div>
+            <div class="item">
+                <span>@Constants.i18n("set_Notify"):</span>
+                <input type="checkbox" name="Notify" />
+            </div>
+            <div class="item">
+                <span>@Constants.i18n("set_ApprovalsRequired++"):</span>
+                <input type="checkbox" name="ApprovalsRequired++" />
+            </div>
+        </div>
+        <div id="WFDTT_SplitTask">
+            <div class="item">
+                <span>@Constants.i18n("set_Delimiter")</span>
+                <input class="noTrim" type="text" name="Delimiter" />
+            </div>
+        </div>
+        <div id="WFDTT_SubstringTask">
+            <div class="item">
+                <span>@Constants.i18n("set_Skip")</span>
+                <input type="text" name="Skip" />
+            </div>
+            <div class="item">
+                <span>@Constants.i18n("set_Take")</span>
+                <input type="text" name="Take" />
+            </div>
+            <div class="item">
+                <span>@Constants.i18n("set_Reverse")</span>
+                <input type="checkbox" name="Reverse" />
+            </div>
+        </div>
+        <div id="WFDTT_ChangeWorkflowTask">
+            <div class="item">
+                <span>@Constants.i18n("set_MustExist")</span>
+                <input type="checkbox" name="MustExist" />
+            </div>
+        </div>
+        <div id="WFDTT_SendNotificationTask">
+            <fieldset>
+                <legend>@Constants.i18n("recipientSettings")</legend>
+                <div class="item">
+                    <span style="font-size: 11px; font-weight: normal; width: 225px;">@Constants.i18n("set_splitRecipients")</span>
+                    <input type="checkbox" name="splitRecipient" />
+                </div>
+                <div class="item">
+                    <span>@Constants.i18n("eclipseUsers")</span>
+                </div>
+                <div class="item">
+                    <span style="font-size: 11px; font-weight: normal; width: 225px;">@Constants.i18n("set_overrideUserNotify")</span>
+                    <input type="checkbox" name="IsOverride" />
+                </div>
+                <div class="item">
+                    <span style="font-size: 11px; font-weight: normal; width: 225px;">@Constants.i18n("set_attachDocument")</span>
+                    <input type="checkbox" name="attachDocument" />
+                </div>
+                <div class="item">
+                    <span>@Constants.i18n("otherRecipient")</span>
+                </div>
+                <div class="item">
+                    <span style="font-size: 11px; font-weight: normal; width: 225px;">@Constants.i18n("set_allow")</span>
+                    <input type="checkbox" name="allow" />
+                </div>
+            </fieldset>
+            <fieldset id="fieldsetattachmentSettings">
+                <legend>@Constants.i18n("attachmentSettings")</legend>
+                <div class="item">
+                    <span style="font-size: 11px; font-weight: normal;">@Constants.i18n("sendAs")</span>
+                    <input class="notificationnative" type="radio" name="SendAs" value="@((int)ExportDocumentType.Native)"  />
+                    <span style="text-align:left;width:auto;font-size:11px;font-weight:normal;">@Constants.i18n("docFormatNative")</span>             
+                    <input class="notificationpdf" type="radio" name="SendAs" checked="checked" value="@((int)ExportDocumentType.PDF)" />  
+                    <span style="text-align:left;width:auto;font-size:11px;font-weight:normal;">@Constants.i18n("docFormatPDF")</span>                                 
+                </div>
+                <div class="item">
+                    <span style="font-size: 11px; font-weight: normal;">@Constants.i18n("withAnnotations")</span>
+                    <input type="checkbox" name="IncludeRedactions" />
+                </div>
+                <div class="item">
+                    <span style="font-size: 11px; font-weight: normal;">@Constants.i18n("withRedactions")</span>
+                    <input type="checkbox" name="IncludeAnnotations" />
+                </div>
+            </fieldset>
+            <div class="item">
+                <span>@Constants.i18n("set_Subject")</span>
+                <input type="text" name="Subject" />
+            </div>
+            <div class="item">
+                <span>@Constants.i18n("set_Body")</span>
+                <textarea name="Body" rows="3" cols="30"></textarea>
+            </div>
+        </div>
+        <div id="WFDTT_ContentType">
+            <div class="item">
+                <span>@Constants.i18n("set_ContentType")</span>
+                <select name="ContentType">
+                </select>
+            </div>
+        </div>
+        <div id="WFDTT_ContentTypeWithCurrent">
+            <div class="item">
+                <span>@Constants.i18n("set_ContentType")</span>
+                <select name="ContentType">
+                </select>
+            </div>
+        </div>
+        <div id="WFDTT_SplitOnBlanksTask">
+            <div class="item">
+                <span>@Constants.i18n("set_Title")</span>
+                <input type="text" name="Title" />
+            </div>
+            <div class="item">
+                <span>@Constants.i18n("set_BlankMargin")</span>
+                <input type="text" name="Margin" />
+            </div>
+            <div class="item">
+                <span>@Constants.i18n("set_BlankThreshold")</span>
+                <input type="text" name="Threshold" />
+            </div>
+        </div>
+        <div id="WFDTT_BarcodeOptions">
+            <div class="item">
+                <span>@Constants.i18n("barcodeType"):</span>
+                <select name="BarcodeType">
+                </select>
+            </div>
+            <div class="item">
+                <span>@Constants.i18n("enhancementOption"):</span>
+                <select name="EnhancementOption">
+                </select>
+            </div>
+        </div>
+        <div id="WFDTT_SplitOnBarcodesTask">
+            <div class="item">
+                <span>@Constants.i18n("set_Title")</span>
+                <input type="text" name="Title" />
+            </div>
+            <div class="item">
+                <span>@Constants.i18n("set_SplitMethod")</span>
+                <select name="SplitMethod">
+                    <option value="SpecificBarcodeSeparator">@Constants.i18n("set_SpecificBarcodeSeparator")</option>
+                    <option value="AnyBarcodeSeparator">@Constants.i18n("set_AnyBarcodeSeparator")</option>
+                    <option value="AnyBarcodeSeparatorAssignContentType">@Constants.i18n("set_AnyBarcodeSeparatorAssignContentType")</option>
+                    <option value="BarcodeChange">@Constants.i18n("set_BarcodeChange")</option>
+                </select>
+            </div>
+            <div class="item">
+                <span>@Constants.i18n("set_Text")</span>
+                <input type="text" name="Text" />
+            </div>
+            <div class="item">
+                <span>@Constants.i18n("set_Remove")</span>
+                <input type="checkbox" name="Remove" />
+            </div>
+        </div>
+        <div id="WFDTT_AddSpace">
+            <div class="item">
+                <span>@Constants.i18n("addSpace")</span>
+                <input type="checkbox" name="AddSpace" />
+            </div>
+        </div>
+        <div id="WFDTT_DontInferTypes">
+            <div class="item">
+                <span>@Constants.i18n("dontInferTypes")</span>
+                <input type="checkbox" name="DontInferTypes" />
+            </div>
+        </div>
+        <div id="WFDTT_Unify">
+            <div class="item">
+                <span title="@Constants.i18n("unifyDupes_d")">@Constants.i18n("set_unifyDupes")</span>
+                <input type="checkbox" name="Unify" />
+            </div>
+        </div>
+    </div>
+    <div class="item" id="testdiv" style="display: none">
+        <fieldset id="testfieldset">
+            <legend>@Constants.i18n("testTask")</legend>
+            <div class="item">
+                <span style="text-align: left; padding-left: 2px; width: 73px;">@Constants.i18n("input")</span>
+                <input type="input" name="testString" style="width: 150px;" />
+                <input type="button" value="Test" onclick="TaskEditor.testTask()" />
+                <span style="text-align: left; padding-left: 2px; width: 73px;">@Constants.i18n("result")</span>
+                <span name="txttestResult" style="text-align: left; width: 150px;"></span>
+            </div>
+        </fieldset>
+    </div>
+    <!-- 
+    *******************************************************************
+    *********************SELECTOR ABOVE ARGUMENTS TEMPLATE ************
+    *******************************************************************
+    -->
+    <div id="SelectorAboveArgumentsTemplate" style="display: none">
+        <div class="SelectorAboveArgumentsHeader">
+            <span></span>
+            <select></select>
+            <span class="ui-icon ui-icon-refresh"></span>
+            <img style="display: none;" alt="" src="@System.Web.Mvc.UrlHelper.GenerateContentUrl("~/Content/themes/default/throbber.gif", new HttpContextWrapper(HttpContext.Current))" />
+        </div>
+        <!-- Inputs and Outputs must be added here, too -->
+    </div>
+
+    <!--
+    *******************************************************************
+    *************************DIALOG PROMPTS***************************
+    *******************************************************************
+    -->
+    <div style="display: none" id="advancedWFDetected">
+        <p>@Constants.i18n("advancedWorkflowDetected")</p>
+        <ul>
+        </ul>
+        <p>@Constants.i18n("advancedWorkflowDetectedTwo")</p>
+    </div>
+    <div style="display: none;" id="save_changes" title="Save Changes?">
+        <p>
+            You currently have unsaved changes. Would you like to save or discard the changes?
+        </p>
+    </div>
+    <div style="display: none;" id="logout" title="Error">
+        <p id="logout_error">
+            You are currently logged out. Click ok to go to the login page.
+        </p>
+    </div>
+    <div style="display: none;" id="isauto" title="Auto Errors Found">
+        <p>
+            The following features are not compatible with an Automatic Step.
+        </p>
+        <ul id="auto_errors">
+        </ul>
+    </div>
+    <div style="display: none;" id="unittype_warning" title="Unit Type Warning">
+        <p>
+            Changing Unit Type may cause unexpected conditions to occur. To prevent any issues
+            please check all Branches and Steps to ensure correct setup.
+        </p>
+    </div>
+    <div style="display: none;" id="get_region">
+        <div class="header">
+            <input type="text" />
+            <a class="custom_button short_btn no_text_select shadow">
+                @Constants.i18n("search")
+            </a>
+        </div>
+        <div class="selection inlineblock">
+            <div class="fleft">
+                <span>@Constants.i18n("currentPage")</span>
+                <input class="currentPage" type="radio" name="pageSelection" />
+            </div>
+            <div class="fleft spacingMajorLeft">
+                <span>@Constants.i18n("allPages")</span>
+                <input class="allPages" type="radio" name="pageSelection" checked="checked" />
+            </div>
+        </div>
+        <div id="regResults" class="results">
+        </div>
+        <div class="document_preview light_shadow_left">
+            <div class="document_preview_viewer">
+            </div>
+            <img style="display: none;" src="@UrlHelper.GenerateContentUrl("~/Content/images/s.png", new HttpContextWrapper(HttpContext.Current))" class="document_preview_image shadow" alt="" />
+        </div>
+    </div>
+    <div id="replace_action" style="display: none;">
+    </div>
+    <div id="selectFolder" class="wfDesignerSelector" title="@Constants.i18n("selectFolder")" style="display: none;">
+        <ul>
+            <li id="cf_folder_list"><a href="#">@Constants.i18n("folders")</a> </li>
+        </ul>
+    </div>
+    <div id="generalPromptDialog">
+        <pre></pre>
+        <div class="extraMarkup almostFullHeight posRel" style="display: none;"></div>
+        <input type="hidden" />
+    </div>
+</body>
+</html>

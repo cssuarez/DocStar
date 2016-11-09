@@ -1,0 +1,49 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>PrintServerDocument</title>
+</head>
+<body>
+    <div>
+        <div id="print_button_container"></div>
+        @*@{
+            var header = "data:image/jpeg;base64,";
+            int max = (1024 * 32) - header.Length; //IE8 Source Limit
+            var bytes = File.ReadAllBytes(@"c:\temp\test.jpg");
+            var str = Convert.ToBase64String(bytes);
+          }
+        @for (int i = 0; i < 10; i++)
+        {
+            //This does not work
+            var chunks = Astria.Framework.Utility.StringExtensions.SplitInParts(str, max);
+            foreach (var item in chunks)
+            {
+                <img src="@String.Format("{0}{1}", header, item)" />                
+            }
+            
+            //This does but not on IE 8
+            <img src="@String.Format("{0}{1}", header, str)" />  
+            <br />
+        }*@
+    </div>
+    <script src="http://www.google.com/cloudprint/client/cpgadget.js">
+    </script>
+    <script>
+        @{
+            var pdf = Convert.ToBase64String(File.ReadAllBytes(@"c:\temp\test.pdf"));
+        }
+        window.onload = function () {
+            var gadget = new cloudprint.Gadget();
+            gadget.setPrintButton(
+                    cloudprint.Gadget.createDefaultPrintButton("print_button_container")); //div id to contain the button
+            //gadget.setPrintDocument("url", "Test Page", "http://www.google.com/landing/cloudprint/testpage.pdf");
+            gadget.setPrintDocument("application/pdf", "JPG Image", "@pdf", "base64");
+        }
+    </script>
+</body>
+</html>

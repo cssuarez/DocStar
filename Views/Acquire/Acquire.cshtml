@@ -1,0 +1,11 @@
+﻿@model Astria.UI.Web.Models.AcquireModel
+@{
+    Layout = null;
+}
+@{
+    if (Request.IsAuthenticated == true)
+    { 
+        <iframe style="display: none; height: 99%; width: 99%" id="uploadiframe" frameborder="0"></iframe>
+    }
+}
+

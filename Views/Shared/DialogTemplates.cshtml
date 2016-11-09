@@ -1,0 +1,1105 @@
+﻿@using Astria.Framework.Utility;
+@using Astria.Framework.DataContracts;
+
+<div id="inbox_delete" title="@Constants.i18n("deleteInbox")">
+    <p>
+        @Constants.i18n("warningDeleteInbox")
+    </p>
+    <p>
+        @Constants.i18n("promptDeleteInbox")
+    </p>
+</div>
+<div id="inbox_remove" title="@Constants.i18n("removeInbox")">
+    <p>
+        @Constants.i18n("removeInboxPrompt")
+    </p>
+</div>
+<div id="folder_delete" title="@Constants.i18n("deleteFolder")">
+    <p>
+        @Constants.i18n("deleteFolderPrompt")
+    </p>
+    <p>
+        @Constants.i18n("deleteFolderChoose")
+    </p>
+</div>
+<div id="folder_remove" title="@Constants.i18n("removeFolder")">
+    <p>
+        @Constants.i18n("promptDeleteFolder")
+    </p>
+</div>
+<div id="container_security" title="@Constants.i18n("changeSecurity")">
+    <div class='container_sec_class_container'>
+        <div class="cont_sec_sec">
+            <p class="container_title">
+                @Constants.i18n("name")
+            </p>
+            <input id="container_name" disabled="disabled" type="text" />
+            <p class="container_secclass_title">@Constants.i18n("securityClass")</p>
+            <dl class="container_security_class dropdown shadow">
+                <dt><span class="parent"><span class='container_secclass_dropdown'></span><span class="dropdown_arrow ui-icon ui-icon-triangle-1-s"></span></span></dt>
+                <dd>
+                    <ul class="children clearfix"></ul>
+                </dd>
+            </dl>
+        </div>
+        <div class="cont_sec_user">
+            <span>@String.Format(Constants.i18n("addhoc"), Constants.i18n("users"))</span>
+            <select name="userSelection" size="6" class="ctlist" multiple="multiple"></select>
+            <input type="button" name="add_user_one_off" value="@Constants.i18n("addUser")" />
+            <input type="button" name="remove_user_one_off" value="@Constants.i18n("removeUser")" />
+        </div>
+        <div class="cont_sec_group">
+            <span>@String.Format(Constants.i18n("addhoc"), Constants.i18n("groups"))</span>
+            <select name="groupSelection" size="6" class="ctlist" multiple="multiple"></select>
+            <input type="button" name="add_role_one_off" value="@Constants.i18n("addRole")" />
+            <input type="button" name="remove_role_one_off" value="@Constants.i18n("removeRole")" />
+        </div>
+        <div class="cont_sec_perm">
+            <span>@Constants.i18n("permissions")</span>
+            <div id="perms">
+            </div>
+        </div>
+    </div>
+    <div class='success_message'>
+        <a>@Constants.i18n("changeSecuritySuccess")</a>
+    </div>
+    <input type='hidden' name='inbox_folder_contextmenu_error' />
+</div>
+<div id="cont_sec_selectUser" title="@Constants.i18n("selectUser")">
+    <select id="cont_sec_potentialUsers" size="4" class="ctlist" multiple="multiple"></select>
+</div>
+<div id="cont_sec_selectRole" title="@Constants.i18n("selectGroup")">
+    <select id="cont_sec_potentialRoles" size="4" class="ctlist" multiple="multiple"></select>
+</div>
+<div id="ui_message_exception">
+    <span>&nbsp;</span>
+</div>
+<div id="action-confirm" style="display: none">
+    <span id="action-message">
+        <pre></pre>
+    </span>
+    <div>
+        <img id="actionConfirmThrobber" alt="" src="@System.Web.Mvc.UrlHelper.GenerateContentUrl("~/Content/themes/default/throbber.gif", new HttpContextWrapper(HttpContext.Current))" />
+        <span class="success_message">@Constants.i18n("mergeSuccess")</span>
+        <input name="merge_err_msg" type="hidden" />
+    </div>
+</div>
+<div id="merge-invalid" style="display: none" title="@Constants.i18n("merge")">
+    <span>@Constants.i18n("mergeCount")</span>
+</div>
+<div id="scan_dialog" style="display: none" title="@Constants.i18n("scan")">
+    <ul class="unstyledList">
+        <li>
+            <label>@Constants.i18n("device"):</label>
+            <select name="deviceId"></select>
+        </li>
+        <li>
+            <label>@Constants.i18n("resolution"):</label>
+            <input type="text" name="Resolution" value="300" />
+        </li>
+        <li>
+            <label>@Constants.i18n("pageSize"):</label>
+            <select name="PageSize">
+                @{
+                    var pageSizes = Enum.GetValues(typeof(PageSize)).Cast<PageSize>().OrderBy(r => r).ToList();
+                    pageSizes.Remove(PageSize.Letter);
+                    pageSizes.Remove(PageSize.Legal);
+                    pageSizes.Insert(0, PageSize.Legal);
+                    pageSizes.Insert(0, PageSize.Letter);
+                    foreach (var pageSize in pageSizes)
+                    {
+                        <option value="@((int)pageSize)">@pageSize.ToString()</option>
+                    }
+                }
+            </select>
+        </li>
+        <li>
+            <label>@Constants.i18n("removeBlanks"):</label>
+            <input type="checkbox" name="RemoveBlankPages" />
+        </li>
+        <li>
+            <label>@Constants.i18n("autoSizeDetection"):</label>
+            <input type="checkbox" name="AutoSizeDetection" />
+        </li>
+        <li>
+            <label>@Constants.i18n("deskew"):</label>
+            <input type="checkbox" name="Deskew" />
+        </li>
+        <li>
+            <label>@Constants.i18n("despeckle"):</label>
+            <input type="checkbox" name="Despeckle" />
+        </li>
+        <li>
+            <label>@Constants.i18n("duplex"):</label>
+            <input type="checkbox" name="Duplex" />
+        </li>
+        <li>
+            <label>@Constants.i18n("color"):</label>
+            <input type="radio" name="Color" value="@ColorSetting.BlackAndWhite.ToString()" checked="checked" />
+            <span>@Constants.i18n("bw")</span>
+            <input type="radio" name="Color" value="@ColorSetting.GreyScale.ToString()" />
+            <span>@Constants.i18n("greyscale")</span>
+            <input type="radio" name="Color" value="@ColorSetting.Color.ToString()" />
+            <span>@Constants.i18n("color")</span>
+        </li>
+        <li>
+            <label>@Constants.i18n("onePagePerFile"):</label>
+            <input type="checkbox" name="OnePagePerFile" />
+        </li>
+    </ul>
+    <img class="throbber posAbs posBottom dialogThrobberPosCenter" style="display: none;" alt="" src="@System.Web.Mvc.UrlHelper.GenerateContentUrl("~/Content/themes/default/throbber.gif", new HttpContextWrapper(HttpContext.Current))" />
+</div>
+<div id="sendDialog" style="display: none" title="@Constants.i18n("send")">
+    <div class="fleft inlineblock half emailChoiceContainer">
+        <div class="fleft inlineblock fullWidth">
+            <input type="radio" name="emailChoice" data-emailchoice="IsLink" checked="checked" />
+            <span>@Constants.i18n("emailLink")*</span>
+        </div>
+        <div class="fleft inlineblock fullWidth">
+            <input type="radio" name="emailChoice" data-emailchoice="IsAttachment" />
+            <span>@Constants.i18n("emailAttachment")</span>
+        </div>
+        <div class="fleft inlineblock fullWidth">
+            <input type="radio" name="emailChoice" data-emailchoice="IsLinkAttachment" />
+            <span>@Constants.i18n("emailBoth")*</span>
+        </div>
+        <div class="fleft inlineblock fullWidth">
+            <input type="radio" name="emailChoice" data-emailchoice="IsDirectLink" />
+            <span>@Constants.i18n("emailDirectLink")*</span>
+        </div>
+    </div>
+    <div class="fleft inlineblock half sendOptions">
+        <div class="fleft inlineblock fullWidth">
+            <span>@Constants.i18n("withPassword")</span>
+            <input type="password" />
+        </div>
+        <div class="fleft inlineblock fullWidth pageSelectionContainer">
+            <span>@Constants.i18n("selectPages")</span>
+            <input type="text" class="pageSelection" />
+            <div class="fleft inlineblock fullWidth indented">
+                @Constants.i18n("pageSelectionExample")
+            </div>
+        </div>
+        <div class="fleft inlineblock spacingRight">
+            <input type="checkbox" name="Annotations" />
+            <span>@Constants.i18n("withAnnotations")</span>
+        </div>
+        <div class="fleft inlineblock spacingRight">
+            <input type="checkbox" name="Redactions" />
+            <span>@Constants.i18n("withRedactions")</span>
+        </div>
+    </div>
+    <div class="fleft inlineblock fullWidth exportType">
+        <fieldset>
+            <legend>@Constants.i18n("sendAs")</legend>
+            @{
+                var values = Enum.GetNames(typeof(ExportDocumentType));
+                var isChecked = "checked=\"checked\"";
+                foreach (var value in values)
+                {
+                    if (value == ExportDocumentType.Renderings.ToString() || value == ExportDocumentType.WebPrint.ToString())
+                    {
+                        continue;
+                    }
+                    <div class="inlineblock fleft">
+                        <input type="radio" value="@value" name="ExportType" @isChecked />
+                        <span>@value</span>
+                    </div>
+                    isChecked = "";
+                }
+            }
+        </fieldset>
+    </div>
+    <div id="created-link" class="fleft fullWidth inlineblock">
+        <div id="email_link" class="item link displayNone">
+            <span class="created_link_label">@Constants.i18n("createdLink"):</span>
+            <input id="copyLink" type="text" readonly="readonly" />
+            <span class="generateLink sPng" title="@Constants.i18n("generateLink")"></span>
+        </div>
+        <div class="item emailProps">
+            <span class="email_link_label">@Constants.i18n("address"):</span>
+            <input id="email_address" type="text" />
+        </div>
+        <div class="item emailProps">
+            <span id="subject_link_label">@Constants.i18n("subject"):</span>
+            <input id="subject_link" type="text" />
+        </div>
+        <div class="item emailProps">
+            <span class="email_body_label">@Constants.i18n("body"):</span>
+            <textarea class="textareaResizeNone" id="email_body"></textarea>
+        </div>
+    </div>
+    <div class="fleft" id="linkVersioningWarning" style="display: none">
+        <span class="email_warning_label">*@Constants.i18n("emailLinksAreToCurrentOnly")</span>
+    </div>
+    <div class="fright">
+        <input class="email_warning_label" type="checkbox" name="rememberSettings" checked="checked" />
+        <span class="email_warning_label">@Constants.i18n("rememberSettings")</span>
+    </div>
+    <div id="downloadRedirectMessage" class="fullWidth inlineblock fleft spacingTopBottom">
+        &nbsp;
+    </div>
+    <div class="fleft fullWidth inlineblock">
+        <img id="sendThrobber" alt="@Constants.i18n("loadText")" src="@System.Web.Mvc.UrlHelper.GenerateContentUrl("~/Content/images/transparent.png", new HttpContextWrapper(HttpContext.Current))" />
+        <input type="hidden" name="sendDialogError" />
+        <span class="success_message" style="display: none;">@Constants.i18n("emailSuccess")</span>
+    </div>
+</div>
+<div id="pageOptionsDialog" class="pageOptionsDialog" style="display: none;">
+    <div class="inlineblock fullWidth fleft spacingTopBottom">
+        <input type="hidden" name="pageOptionsError" />
+    </div>
+    <div class="inlineblock fullWidth fleft spacingTopBottom">
+        <input type="hidden" class="pagesToMove" />
+        <span class="movingPagesMsg"></span>
+    </div>
+    <div class="inlineblock fullWidth fleft spacingTopBottom">
+        <span class="burstPages">&nbsp;</span>
+    </div>
+    <div class="reorderOptions">
+        <div class="inlineblock fleft spacingTopBottom">
+            <input type="radio" class="insertLocation" name="insertLocation" value="@Constants.i18n("before")" />
+            <span class="radioLabelSpacing">@Constants.i18n("before")</span>
+        </div>
+        <div class="inlineblock fleft spacingTopBottom">
+            <input type="radio" class="insertLocation" name="insertLocation" checked="checked" value="@Constants.i18n("after")" />
+            <span class="radioLabelSpacing">@Constants.i18n("after")</span>
+        </div>
+        <div class="fullWidth inlineblock fleft spacingTopBottom">
+            <span>@Constants.i18n("pageLocation"):</span>
+            <input type="text" name="pageOptionsPageNumber" class="pageNumber" value="1" />
+        </div>
+    </div>
+    <div class="splitOptions fullWidth inlineblock fleft">
+        <div class="inlineblock fleft spacingTopBottom">
+            <span class="metalabel inlineblock radioLabelSpacing">@Constants.i18n("deletePage")</span>
+            <input type="checkbox" class="deletePage" name="deletePage" />
+        </div>
+        <div class="fullWidth inlineblock fleft spacingTopBottom">
+            <span class="metalabel inlineblock">@Constants.i18n("title")</span>
+            <input type="text" name="Title" value="@Constants.i18n("newTitle")" />
+        </div>
+        <div class="fullWidth inlineblock fleft spacingTopBottom">
+            <span class="metalabel fleft inlineblock">@Constants.i18n("contentType")</span>
+            <select name="ContentTypeId" class="contentType spacingLeftSmall"></select>
+        </div>
+    </div>
+</div>
+<div id="BurstAndDeleteDialog" style="display: none;">
+    <div class="inlineblock fullWidth fleft spacingTopBottom">
+        <span class="BurstAndDeleteMsg"></span>
+    </div>
+</div>
+<div id="BurstAndReorderDialog" style="display: none;">
+    <div class="inlineblock fullWidth fleft spacingTopBottom">
+        <span class="BurstAndReorderMsg"></span>
+    </div>
+</div>
+<div id="single-selection" style="display: none" title="@Constants.i18n("select")">
+    <span>@Constants.i18n("singleSelection")</span>
+</div>
+<div id="viewer_print-error" style="display: none" title="@Constants.i18n("printError")">
+    <span>@Constants.i18n("printDocument")</span>
+</div>
+<div id="printingDialog" style="display:none" title="@Constants.i18n("print")">
+    <div>
+        <span>@Constants.i18n("printing")</span>
+    </div>
+    <div>
+        <img id="printingThrobber" src="@System.Web.Mvc.UrlHelper.GenerateContentUrl("~/Content/themes/default/throbber.gif", new HttpContextWrapper(HttpContext.Current))" alt="" />
+    </div>
+    <div>
+        <span id="printingError"></span>
+    </div>
+</div>
+<div id="workflow_removal" title="@Constants.i18n("removeFromWf")">
+    <span class="wf_msg"></span>
+    <span class="wf_suc_msg">@Constants.i18n("wfRemoveSuccess")</span>
+    <input name="wf_err_msg" type="hidden" />
+</div>
+<div id="selectFolder" title="@Constants.i18n("selectFolder")">
+    <ul>
+        <li id="cf_folder_list"><a href="#">@Constants.i18n("folders")</a> </li>
+    </ul>
+    <div>
+        <input type="hidden" name="cont_err" />
+    </div>
+</div>
+<div id="retrieve_layout_selectContainer" title="@Constants.i18n("selectInboxFolder")">
+    <div>
+        <ul>
+            <li id="retrieve_layout_inbox_list"><a href="javascript:void(0)"></a></li>
+            <li id="retrieve_layout_folder_list"><a href="javascript:void(0)"></a></li>
+        </ul>
+    </div>
+    <div>
+        <input type="hidden" name="cont_err" />
+    </div>
+</div>
+<div id="browseLDAPContainer" style="display: none;">
+    <ul class="browseLDAP">
+        <li class="ldapList"><a href="#">@Constants.i18n("ldap")</a> </li>
+    </ul>
+</div>
+<div id="addDocFreeze">
+    <span></span>
+    <div style="margin: 10px 0;">
+        <input type="radio" name="freezeType" value="existing" checked="checked" />
+        <select name="freezes"></select>
+    </div>
+    <div>
+        <input type="radio" name="freezeType" value="new" style="float: left;" />
+        <fieldset name="createNew">
+            <legend>@Constants.i18n("createNewFreeze")</legend>
+            <ol class="docFreeze">
+                <li>
+                    <label>@Constants.i18n("name"):</label>
+                    <input type="text" name="Name" />
+                </li>
+                <li>
+                    <label>@Constants.i18n("reason"):</label>
+                    <input type="text" name="Reason" />
+                </li>
+            </ol>
+        </fieldset>
+    </div>
+</div>
+<div id="removeDocFreeze">
+    <span></span>
+    <div>
+        <select name="freezes"></select>
+    </div>
+</div>
+<div id="cutoffDocuments">
+    <span></span>
+    <input type="text" name="freezeDate" />
+</div>
+<div id="app_dialog">
+</div>
+<div id="approveDenyDialog">
+    <div class="approveDenyDialogContents">
+        <span class="explanation"></span><span>@Constants.i18n("optionalExplanation")</span>
+        <textarea rows="6" cols="50"></textarea>
+    </div>
+</div>
+<div id="helpDialog" style="display: none">
+    <span>@Constants.i18n("helpMessage")</span>
+    <textarea id="helpDialogMessage" rows="6" cols="50"></textarea>
+    <iframe id="helpDialogIFrame" frameborder="0"></iframe>
+    <img class="helpthrobber" alt="@Constants.i18n("loading")" src="@System.Web.Mvc.UrlHelper.GenerateContentUrl("~/Content/themes/default/throbber.gif", new HttpContextWrapper(HttpContext.Current))" />
+</div>
+<div id="ideaDialog" style="display: none">
+    <span>@Constants.i18n("ideaMessage")</span>
+    <textarea id="ideaDialogMessage" rows="6" cols="50"></textarea>
+    <iframe id="ideaDialogIFrame" frameborder="0"></iframe>
+    <img class="helpthrobber" alt="@Constants.i18n("loading")" src="@System.Web.Mvc.UrlHelper.GenerateContentUrl("~/Content/themes/default/throbber.gif", new HttpContextWrapper(HttpContext.Current))" />
+</div>
+<div id="userPrefsDialog" style="display: none">
+    <div>
+        <fieldset id="assignWFActionsFS">
+            <legend><span style="float: left;" class="ui-icon ui-icon-plus"></span>@Constants.i18n("assignWorkflowActions")</legend>
+            <div style="display: none;">
+                <div class="additionalAction">
+                    <input class="addActViewItems" type="radio" name="wf_add_action" />
+                    <span>@Constants.i18n("viewItems")</span>
+                </div>
+                <div class="additionalAction">
+                    <input class="addActViewQueue" type="radio" name="wf_add_action" />
+                    <span>@Constants.i18n("viewWfQueue")</span>
+                </div>
+                <div class="additionalAction">
+                    <input class="addActNone" type="radio" name="wf_add_action" checked="checked" />
+                    <span>@Constants.i18n("noAction")</span>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div>
+        <fieldset id="submitWFActionFS">
+            <legend><span style="float: left;" class="ui-icon ui-icon-plus"></span>@Constants.i18n("workflowSubmitOptions")</legend>
+            <div style="display: none;">
+                <div>
+                    <input class="submitNone" type="radio" name="subOpt" checked="checked" />
+                    <span>@Constants.i18n("submitNone")</span>
+                </div>
+                <div>
+                    <input class="submitNext" type="radio" name="subOpt" />
+                    <span>@Constants.i18n("submitNext")</span>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div>
+        <fieldset id="useClientForOutputFS">
+            <legend><span style="float: left;" class="ui-icon ui-icon-plus"></span>@Constants.i18n("useClientForOutput")</legend>
+            <div style="display: none;">
+                <div>
+                    <input class="clientWhenAvailable" type="radio" name="useClientForOutput" checked="checked" />
+                    <span>@Constants.i18n("clientWhenAvailable")</span>
+                </div>
+                <div>
+                    <input class="neverUseClient" type="radio" name="useClientForOutput" />
+                    <span>@Constants.i18n("neverUseClient")</span>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div>
+        <fieldset id="gridInlineEditFS">
+            <legend><span style="float: left;" class="ui-icon ui-icon-plus"></span>@Constants.i18n("gridInlineEditOptions")</legend>
+            <div style="display: none;">
+                <span>@Constants.i18n("gridInlineEditOptionsDesc")</span>
+                <div>
+                    <input class="restoreRow" type="radio" name="rowEditChange" checked="checked" />
+                    <span>@Constants.i18n("restoreRow")</span>
+                </div>
+                <div>
+                    <input class="saveRow" type="radio" name="rowEditChange" />
+                    <span>@Constants.i18n("saveRow")</span>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div>
+        <fieldset id="includeInQuickSearchFS">
+            <legend><span style="float: left;" class="ui-icon ui-icon-plus"></span>@Constants.i18n("qsIncludeOptions")</legend>
+            <div style="display: none;">
+                <span>@Constants.i18n("qsIncludeOptionsDesc")</span>
+                <div>
+                    <input class="foldersInQS" type="checkbox" checked="checked" />
+                    <span>@Constants.i18n("includeFolders")</span>
+                </div>
+                <div>
+                    <input class="inboxesInQS" type="checkbox" checked="checked" />
+                    <span>@Constants.i18n("includeInboxes")</span>
+                </div>
+                <div>
+                    <input class="documentsInQS" type="checkbox" checked="checked" />
+                    <span>@Constants.i18n("includeDocuments")</span>
+                </div>
+                <div>
+                    <input class="enableAutoWildcardQuickSearch" type="checkbox" checked="checked" />
+                    <span>@Constants.i18n("autoWildcardQuickSearch")</span>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div>
+        <fieldset id="searchSortingFS">
+            <legend><span style="float: left;" class="ui-icon ui-icon-plus"></span>@Constants.i18n("searchSorting")</legend>
+            <div style="display: none;">
+                <span class="spacingTopBottom">@Constants.i18n("searchSortOrderBy")</span>
+                <div class="spacingTopBottom">
+                    <select class="fullWidth">
+                        <option value="title" selected="selected">@Constants.i18n("title")</option>
+                        <option value="keywords">@Constants.i18n("keywords")</option>
+                        <option value="created">@Constants.i18n("createdOn")</option>
+                        <option value="modified">@Constants.i18n("modifiedOn")</option>
+                    </select>
+                </div>
+                <div class="spacingTopBottom">
+                    <input class="asc" name="searchSortOrder" type="radio" checked="checked" />
+                    <span>@Constants.i18n("ascending")</span>
+                    <input class="desc" name="searchSortOrder" type="radio" />
+                    <span>@Constants.i18n("descending")</span>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div>
+        <fieldset id="captureScannersFS">
+            <legend><span style="float: left;" class="ui-icon ui-icon-plus"></span>@Constants.i18n("devicesListMode")</legend>
+            <div style="display: none;">
+                <span class="spacingTopBottom">@Constants.i18n("devicesListModeDesc")</span>
+                <div class="spacingTopBottom">
+                    <input class="showConnectedOnly" type="checkbox" checked="checked" />
+                    <span>@Constants.i18n("showConnectedOnly")</span>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div>
+        <fieldset id="capturePreviewModeFS">
+            <legend><span style="float: left;" class="ui-icon ui-icon-plus"></span>@Constants.i18n("capturePreviewMode")</legend>
+            <div style="display: none;">
+                <span class="spacingTopBottom">@Constants.i18n("capturePreviewModeDesc")</span>
+                <div class="spacingTopBottom">
+                    <input class="fullSizePreview" name="capturePreviewMode" type="radio" checked="checked" />
+                    <span>@Constants.i18n("fullSizePreview")</span>
+                    <input class="thumbnailPreview" name="capturePreviewMode" type="radio" />
+                    <span>@Constants.i18n("thumbnailPreview")</span>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div>
+        <fieldset id="previewResizeFS">
+            <legend><span style="float: left;" class="ui-icon ui-icon-plus"></span>@Constants.i18n("previewResize")</legend>
+            <div style="display: none;">
+                <span class="spacingTopBottom">@Constants.i18n("previewResizeDesc")</span>
+                <div class="spacingTopBottom">
+                    <span>@Constants.i18n("previewResizeWidth") </span>
+                    <input class="previewResizeWidth" name="previewResize" />
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div>
+        <fieldset id="autoSelectFirstDocFS">
+            <legend><span style="float: left;" class="ui-icon ui-icon-plus"></span>@Constants.i18n("autoSelectFirstDoc")</legend>
+            <div style="display: none;">
+                <div>
+                    <input class="autoSelectFirstDocRetrive" type="checkbox" checked="checked" />
+                    <span>@Constants.i18n("autoSelectFirstDocRetrive")</span>
+                </div>
+                <div>
+                    <input class="autoSelectFirstDocWorkFlow" type="checkbox" checked="checked" />
+                    <span>@Constants.i18n("autoSelectFirstDocWorkflow")</span>
+                </div>
+
+            </div>
+        </fieldset>
+    </div>
+    <div>
+        <fieldset id="annotationEditModeFS">
+            <legend><span style="float: left;" class="ui-icon ui-icon-plus"></span>@Constants.i18n("annotationEditMode")</legend>
+            <div style="display: none;">
+                <span class="spacingTopBottom">@Constants.i18n("annotationEditModeDesc")</span>
+                <div class="spacingTopBottom">
+                    <input class="exitEditMode" name="alwaysInAnnotationEditMode" type="radio" checked="checked" />
+                    <span>@Constants.i18n("exitEditMode")</span>
+                    <input class="remainInEditMode" name="alwaysInAnnotationEditMode" type="radio" />
+                    <span>@Constants.i18n("remainInEditMode")</span>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div>
+        <fieldset id="thumbnailFS">
+            <legend><span style="float: left;" class="ui-icon ui-icon-plus"></span>@Constants.i18n("thumbnails")</legend>
+            <div style="display: none;">
+                <div class="additionalAction">
+                    <input class="thumbnailleft" type="radio" name="thumbnail_action" />
+                    <span>@Constants.i18n("left")</span>
+                </div>
+                <div class="additionalAction">
+                    <input class="thumbnailright" type="radio" name="thumbnail_action" />
+                    <span>@Constants.i18n("right")</span>
+                </div>
+                <div class="additionalAction">
+                    <input class="thumbnailoff" type="radio" name="thumbnail_action" checked="checked" />
+                    <span>@Constants.i18n("off")</span>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div>
+        <fieldset id="workflowTabRefresh">
+            <legend><span style="float: left;" class="ui-icon ui-icon-plus"></span>@Constants.i18n("workflowRefresh")</legend>
+            <div style="display: none;">
+                <div class="additionalAction">
+                    <input class="None" type="radio" name="workflow_tab_action" checked="checked" />
+                    <span>@Constants.i18n("workflowTabRefreshOptionNone")</span>
+                </div>
+                <div class="additionalAction">
+                    <input class="Refresh" type="radio" name="workflow_tab_action" />
+                    <span>@Constants.i18n("workflowTabRefreshOptionRefresh")</span>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+
+    <div>
+        <fieldset id="zoomlevelFS">
+            <legend><span style="float: left;" class="ui-icon ui-icon-plus"></span>@Constants.i18n("documentzoomlevel")</legend>
+            <div style="display: none;">
+                <div class="additionalAction">
+                    <span>@Constants.i18n("zoom")</span>
+                    <select class="zoomlevel">
+                        <option value="width">@Constants.i18n("fitWidth")</option>
+                        <option value="height">@Constants.i18n("fitHeight")</option>
+                        <option value="0.05">5%</option>
+                        <option value="0.10">10%</option>
+                        <option value="0.25">25%</option>
+                        <option value="0.50">50%</option>
+                        <option value="0.75">75%</option>
+                        <option value="1.0">100%</option>
+                        <option value="1.5">150%</option>
+                        <option value="2.0">200%</option>
+                        <option value="4.0">400%</option>
+                        <option value="8.0">800%</option>
+                    </select>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div>
+        <fieldset id="workflowNotificationFS">
+            <legend><span style="float: left;" class="ui-icon ui-icon-plus"></span>@Constants.i18n("workflownotification")</legend>
+            <div style="display: none;">
+                <div class="additionalAction">
+                    <input class="MailNormally" type="radio" name="workflow_action" checked="checked" />
+                    <span>@Constants.i18n("mailNormally")</span>
+                </div>
+                <div class="additionalAction">
+                    <input class="MailSuppressed" type="radio" name="workflow_action" />
+                    <span>@Constants.i18n("mailSuppressed")</span>
+                </div>
+                <div class="additionalAction">
+                    <input class="MailDigest" type="radio" name="workflow_action" />
+                    <span>@Constants.i18n("mailFull")</span>
+                </div>
+                <br />
+                <div id="WEDSFS">
+                    <div id="wedsSchedule">
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div>
+        <fieldset id="systrayConnectionFS">
+            <legend><span style="float: left;" class="ui-icon ui-icon-plus"></span>@Constants.i18n("systrayConnection")</legend>
+            <div style="display: none;" class="posRel">
+                <span class="spacingTopBottom">@Constants.i18n("systrayConnectionDesc")</span>
+                <div id="systrayConnectionCont" class="spacingTopBottom">
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div>
+        <fieldset id="recognitionPreferencesFS">
+            <legend><span style="float: left;" class="ui-icon ui-icon-plus"></span>@Constants.i18n("recognitionPreferences")</legend>
+            <div style="display: none;">
+                <div class="spacingTopBottom">
+                    <span>@Constants.i18n("barcodeType")</span>
+                    <select name="BarcodeType"></select>
+                </div>
+                <div class="spacingTopBottom">
+                    <span>@Constants.i18n("enhancementOption")</span>
+                    <select name="EnhancementOption"></select>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div>
+        <fieldset id="mouseWheelBehaviorFS">
+            <legend><span style="float: left;" class="ui-icon ui-icon-plus"></span>@Constants.i18n("mouseWheelBehavior")</legend>
+            <div style="display: none;">
+                <div class="additionalAction">
+                    <input class="zoom" type="radio" name="mouse_action" checked="checked" />
+                    <span>@Constants.i18n("zoom")</span>
+                </div>
+                <div class="additionalAction">
+                    <input class="scroll" type="radio" name="mouse_action" />
+                    <span>@Constants.i18n("scroll")</span>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div>
+        <fieldset id="formEditModeFS">
+            <legend><span style="float: left;" class="ui-icon ui-icon-plus"></span>@Constants.i18n("formEditMode")</legend>
+            <div style="display: none;">
+                <div>
+                    <input class="remainInEditMode" name="alwaysInFormEditMode" type="checkbox" checked="checked" />
+                    <span>@Constants.i18n("remainInEditMode")</span>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div>
+        <fieldset id="relatedDocumentAlignment">
+            <legend><span style="float: left;" class="ui-icon ui-icon-plus"></span>@Constants.i18n("relatedDocumentsAlign")</legend>
+            <div style="display: none;">
+                <label>
+                    <input type="radio" name="relatedDocumentsAlign" value="left">
+                    <span class="radioLabelSpacing">@Constants.i18n("left")</span>
+                </label>
+                <label>
+                    <input type="radio" name="relatedDocumentsAlign" value="center">
+                    <span class="radioLabelSpacing">@Constants.i18n("center")</span>
+                </label>
+                <label>
+                    @* Default to being right justified, as per Bug 12603 - http://pedro.docstar.com/b/show_bug.cgi?id=12603 *@
+                    <input type="radio" name="relatedDocumentsAlign" value="right" checked="checked">
+                    <span class="radioLabelSpacing">@Constants.i18n("right")</span>
+                </label>
+            </div>
+        </fieldset>
+    </div>
+
+    @if (Model.Instances != null && Model.Instances.Length > 1)
+    {
+        <div>
+            <fieldset id="defaultSite">
+                <legend><span style="float: left;" class="ui-icon ui-icon-plus"></span>@Constants.i18n("defaultInstance")</legend>
+                <div style="display: none;">
+                    <span>@Constants.i18n("defaultInstanceDesc")</span>
+                    <div>
+                        <select class="fullWidth">
+                            @foreach (var item in Model.Instances)
+                            {
+                                if (item.Name == Model.DefaultDBName)
+                                {
+                                    <option value="@item.Id" selected="selected">@item.CompanyName</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Id">@item.CompanyName</option>
+                                }
+                            }
+
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    }
+
+</div>
+<div id="priorityDialog" style="display: none">
+    <span>@Constants.i18n("setPriority")</span>
+    <select>
+        @foreach (int pl in Enum.GetValues(typeof(PriorityLevel)))
+        {
+            <option value="@pl">@Constants.i18n(String.Format("pl_{0}", (PriorityLevel)pl))</option>
+        }
+    </select>
+</div>
+<div id="annotationText" style="display: none">
+    <span>@Constants.i18n("textAnnotation")</span>
+    <textarea></textarea>
+</div>
+
+<div id="redactionBorderSetting" style="display: none">
+    <span>@Constants.i18n("redactionBorderSettingWarning")</span>
+</div>
+
+<div id="dueDateDialog" style="display: none">
+    <span>@Constants.i18n("setDueDate")</span>
+    <input name="dueDate" type="text" />
+</div>
+<div id="setRequiredDialog" style="display: none" title="@Constants.i18n("setRequired")">
+    <span>@Constants.i18n("setRequiredText")</span>
+    <input name="setRequired" type="text" />
+</div>
+<div id="setStartPageDialog" style="display: none" title="@Constants.i18n("setStartPage")">
+    <p>@Constants.i18n("startPage_D")</p>
+    <span>@Constants.i18n("startPage")</span>
+    <input name="startPage" type="text" />
+    <span class="inlineblock fullWidth">
+        <input type="hidden" name="errorLocator" />
+    </span>
+</div>
+<div id="workflow_selection" style="display: none" title="@Constants.i18n("assignWorkflow")">
+    <div>
+        <span>@Constants.i18n("name")</span>
+        <dl class="workflow_dd dropdown shadow">
+            <dt>
+                <span class="parent">
+                    <span class="wf_dropdown_text"></span>
+                    <span class="dropdown_arrow ui-icon ui-icon-triangle-1-s"></span>
+                </span>
+            </dt>
+            <dd>
+                <ul class="children clearfix">
+                    {{ it.listwf.each(function (item) { }}
+                    <li>
+                        <span class="anchor" name="{{= item.get('Id')}}">{{= item.get('Name')}}</span>
+                    </li>
+                    {{ }); }}
+                </ul>
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <fieldset>
+            <legend><span style="float: left;" class="ui-icon ui-icon-plus"></span>@Constants.i18n("additionalActions")</legend>
+            <div class="additionalAction">
+                <input class="addActViewItems" type="radio" name="wf_add_action" />
+                <span>@Constants.i18n("viewItems")</span>
+            </div>
+            <div class="additionalAction">
+                <input class="addActViewQueue" type="radio" name="wf_add_action" />
+                <span>@Constants.i18n("viewWfQueue")</span>
+            </div>
+            <div class="additionalAction">
+                <input class="addActNone" type="radio" name="wf_add_action" checked="checked" />
+                <span>@Constants.i18n("noAction")</span>
+            </div>
+        </fieldset>
+    </div>
+    <img id="assign_throbber" alt="" src="@System.Web.Mvc.UrlHelper.GenerateContentUrl("~/Content/themes/default/throbber.gif", new HttpContextWrapper(HttpContext.Current))" />
+    <span class="wf_suc_msg">@Constants.i18n("wfAssignSuccess")</span>
+    <input name="wf_err_msg" type="hidden" />
+</div>
+<div id="reassignWfDoc" style="display: none;">
+    <div>
+        <span>@Constants.i18n("userOrRole"):</span>
+        <dl class="reassign dropdown shadow">
+            <dt>
+                <span class="parent">
+                    <span class="reassign_dropdown_text"></span>
+                    <span class="reassign_dropdown_arrow ui-icon ui-icon-triangle-1-s"></span>
+                </span>
+            </dt>
+            <dd>
+                <ul class="children">
+                    {{  for (user in it.listu) {
+                                if(it.listu.hasOwnProperty(user)) {
+                    }}
+                    <li><span class="anchor" name="{{= user}}" title="{{= it.listu[user]}}">{{= it.listu[user]}}</span></li>
+                    {{
+                                }
+                            }
+                            it.listr.each(function (item) {
+                    }}
+                    <li><span class="anchor" name="{{= item.get('Id')}}" title="{{= item.get('Name')}}">{{= item.get('Name')}}</span></li>
+                    {{
+                            });
+                    }}
+                </ul>
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <span class="success_message">@Constants.i18n("reassignSuccess")</span>
+        <span class="updation_message"></span>
+        <img id="reassign_throbber" style="display: none;" alt="" src="@System.Web.Mvc.UrlHelper.GenerateContentUrl("~/Content/themes/default/throbber.gif", new HttpContextWrapper(HttpContext.Current))" />
+        <input name="reassign_err_msg" type="hidden" />
+    </div>
+</div>
+<div id="connectionWizard" style="display: none;">
+    <ul class="unstyledList">
+        <li>
+            <span class="label">@Constants.i18n("sqlServer"):</span>
+            <select class="isCombo" name="ServerName" id="serverList"></select>
+        </li>
+        <li>
+            <span class="label">@Constants.i18n("userName"):</span>
+            <input class="isCombo" name="UserName" type="text" />
+        </li>
+        <li>
+            <span class="label">@Constants.i18n("password"):</span>
+            <input name="Password" type="password" />
+            @*<span>@Constants.i18n("confirmPassword")</span>
+                <input type="password" />*@
+        </li>
+        <li>
+            <span class="label">@Constants.i18n("sqlDatabase"):</span>
+            <select name="DBName" id="dbList"></select>
+        </li>
+        <li>
+            <input name="connectionWizardError" type="hidden" />
+        </li>
+    </ul>
+</div>
+<div id="saveAsDataLinkDialog" style="display: none">
+    <div class="errors">
+    </div>
+    <div class="item">
+        <span>@Constants.i18n("name"):</span>
+        <input class="new_name" type="text" name="new_name" />
+    </div>
+    <img class="throbber" style="display: none;" alt="" src="@UrlHelper.GenerateContentUrl("~/Content/themes/default/throbber.gif", new HttpContextWrapper(HttpContext.Current))" />
+</div>
+<div id="saveAsDialog" style="display: none;" title="@Constants.i18n("saveAs")">
+    <div class="displayTable fullHeight">
+        <div class="displayTableCell verticalAlignMiddle">
+            <span class="spacingRight">@Constants.i18n("name"):</span>
+        </div>
+        <div class="displayTableCell verticalAlignMiddle fullWidth">
+            <input class="new_name" type="text" name="new_name" />
+        </div>
+    </div>
+    <div class="errors">
+    </div>
+    <img class="throbber" style="display: none;" alt="" src="@UrlHelper.GenerateContentUrl("~/Content/themes/default/throbber.gif", new HttpContextWrapper(HttpContext.Current))" />
+</div>
+<div id="appIntegration_error" style="display: none" title="@Constants.i18n("at_InsufficientRights")">
+    <span>@Constants.i18n("appIntegrationNotAllowedForReadOnlyUser")</span>
+</div>
+<div id="dataLinkDialog" style="display: none;">
+    <div id="dataLinkTestResults"></div>
+</div>
+<div id="confirm_save" style="display: none;" title="@Constants.i18n("confirmSaveTitle")">
+    <span>@Constants.i18n("confirmSave")</span>
+    <input type="checkbox" />
+    <span>@Constants.i18n("rememberSelection")</span>
+</div>
+
+<div id="exportImportProgress" style="display:none" title="@Constants.i18n("export")">
+    <div class="exportInProgress">
+        <span>@Constants.i18n("exportingPleaseWait")</span>
+    </div>
+    <div class="exportInProgress">
+        <img alt="Export In Progress" src="@UrlHelper.GenerateContentUrl("~/Content/themes/default/throbber.gif", new HttpContextWrapper(HttpContext.Current))" />
+    </div>
+    <div class="exportComplete">
+        <span>@Constants.i18n("exportComplete")</span>
+    </div>
+    <div class="exportComplete">
+        <a href="">@Constants.i18n("clickToDownload")</a>
+    </div>
+</div>
+<div id="systrayConnectionPrompt" style="display: none;" title="@Constants.i18n("systrayConnection")">
+    <span class="connectionMessage fullWidth inlineblock spacingTopBottom"></span>
+    <span class="fullWidth inlineblock spacingTopBottom">@Constants.i18n("systrayConnectionPrompt"):</span>
+    <div>
+    </div>
+</div>
+<div id="viewer_columnedit" style="display: none" title="">
+    <span></span>
+    <input name="columnEditError" type="hidden" />
+</div>
+<div id="generalPromptDialog" style="display: none;">
+    <pre></pre>
+    <div class="extraMarkup almostFullHeight posRel" style="display: none;"></div>
+    <input type="hidden" />
+</div>
+<div id="generalSaveDirtyPromptDialog" style="display: none;">
+    <div class="displayTable fullWidth">
+        <span class="displayTableCell fleft warningIcon sPngIB"></span>
+        <pre class="displayTableCell fullWidth"></pre>
+    </div>
+    <div class="extraMarkup almostFullHeight posRel" style="display: none;"></div>
+    <input type="hidden" />
+</div>
+<div id="generalCloseDialog" style="display: none;">
+    <pre></pre>
+    <div class="extraMarkup almostFullHeight posRel"></div>
+</div>
+@*
+    Inline workflow Designer
+    Used to display any part of the Workflow designer in E3.
+    eg. Editing a Action Library Item in the Content Type Builder page
+*@
+<div id="inlineWorkflowDesigner" style="display: none;">
+    <div class="modalThrobberCont">
+        <img alt="@Constants.i18n("loadText")" src="@System.Web.Mvc.UrlHelper.GenerateContentUrl("~/Content/themes/default/throbber.gif", new HttpContextWrapper(HttpContext.Current))" />
+    </div>
+    <div class="dialogOverlay ui-widget-overlay"></div>
+</div>
+<div id="mainsystemNotifications" style="display: none;">
+    <div id="systemNotifications">
+    </div>
+    <div>
+        <input id="systemNotificationsneverAgain" type="checkbox">
+        <span>@Constants.i18n("neverAgain")</span>
+    </div>
+</div>
+@*
+    Display a modal guided help for brief instructions to a user
+*@
+<div id="guidedHelp" style="display: none;">
+    <div class="guidedHelpContents fullWidth fullHeight inlineblock">
+        @* Add / Remove any help contents here *@
+    </div>
+    <div class="neverAgainCont">
+        <input class="fleft inlineblock" name="neverAgain" type="checkbox" />
+        <span class="fleft inlineblock">@Constants.i18n("neverAgain")</span>
+    </div>
+</div>
+@*
+    Dialog displayed when creating a new document from a Form.
+*@
+<div id="createFormDocument" style="display:none">
+    <div class="message fullWidth fullHeight inlineblock">
+        @* Add a message about creating the form here *@
+    </div>
+    <div class="spacingTopBottom">
+        <span>@Constants.i18n("options")</span>
+    </div>
+    <div class="spacingLeft">
+        <input class="fleft inlineblock" type="checkbox" name="asDraft" />
+        <span class="fleft inlineblock spacingLeftSmall">@Constants.i18n("asDraft")</span>
+    </div>
+</div>
+@*
+    Dialog displayed when creating a public link for a form.
+*@
+<div id="createFormPublicLink" style="display:none">
+    <div class="message fullWidth fullHeight inlineblock">
+        @Constants.i18n("publicFormLinkDescription")
+    </div>
+    <div class="spacingTopBottom">
+        <span>@Constants.i18n("options")</span>
+    </div>
+    <div class="spacingLeft">
+        <input class="spacingLeftSmall" type="checkbox" name="recaptcha" />
+        <span class="fullWidth">@Constants.i18n("useRecaptcha")</span>
+    </div>
+    <div class="spacingLeft">
+        <input class="spacingLeftSmall" type="checkbox" name="displayMeta" checked="checked" />
+        <span class="fullWidth">@Constants.i18n("displayMetaPanel")</span>
+    </div>
+    <div class="spacingLeft">
+        <input class="spacingLeftSmall" type="checkbox" name="eclipseLayout" checked="checked" />
+        <span class="fullWidth">@Constants.i18n("useEclipseLayout")</span>
+    </div>
+    <div class="spacingLeft">
+        <span>@Constants.i18n("expirationMode"):</span>
+    </div>
+    <div class="spacingLeft">
+        <input class="spacingLeftSmall" type="radio" name="expirationMode" value="none" checked="checked" />
+        <span class="fullWidth">@Constants.i18n("doesNotExpire")</span>
+    </div>
+    <div class="spacingLeft">
+        <input class="spacingLeftSmall" type="radio" name="expirationMode" value="createLimit" />
+        <span>@Constants.i18n("after")</span>
+        <input class="spacingLeftSmall" type="text" name="createLimit" disabled="disabled" value="10" />
+        <span class="fullWidth">@Constants.i18n("forms")</span>
+    </div>
+    <div class="spacingLeft">
+        <input class="spacingLeftSmall" type="radio" name="expirationMode" value="date" />
+        <span>@Constants.i18n("onNP")</span>
+        <input type="text" name="expireDate" style="margin-left: 16px;" disabled="disabled" />
+    </div>
+    <div id="created-link" class="fleft fullWidth inlineblock">
+        <div id="email_link" class="item link displayNone">
+            <span class="created_link_label">@Constants.i18n("createdLink"):</span>
+            <input name="linkUrl" type="text" readonly="readonly" />
+            <span class="generateLink sPng createPublicLink" title="@Constants.i18n("generateLink")"></span>
+        </div>
+        <div class="item emailProps">
+            <span class="email_link_label">@Constants.i18n("address"):</span>
+            <input name="email_address" type="text" />
+        </div>
+        <div class="item emailProps">
+            <span class="subject_link_label">@Constants.i18n("subject"):</span>
+            <input name="subject_link" type="text" />
+        </div>
+        <div class="item emailProps">
+            <span class="email_body_label">@Constants.i18n("body"):</span>
+            <textarea name="emailBody" class="textareaResizeNone"></textarea>
+        </div>
+    </div>
+</div>
+@*
+    Auto save in progress dialog
+*@
+<div id="autoSaveInProgress" style="display:none">
+    <span>@Constants.i18n("autoSave")</span>
+</div>
+
+@*
+    User/group replacement dialog
+*@
+
+<div id="replace_u" style="display: none;">
+    <span class="replaceDescription">@Constants.i18n("replaceUserOrRole")</span>
+    <p>
+        <select id="userType">
+            <option selected="selected" value="group">@Constants.i18n("roleReplacement")</option>
+            <option value="user">@Constants.i18n("userReplacement")</option>
+        </select>
+        <select id="userToGroupSelect"></select>
+        <select id="userToUserSelect" style="display: none;"></select>
+    </p>
+</div>
+<div id="invalidRegionPage" style="display: none">
+    <span id="invalidRegion-message">
+        <pre></pre>
+    </span>    
+</div>

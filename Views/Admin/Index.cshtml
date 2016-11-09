@@ -1,0 +1,195 @@
+﻿@using Astria.Framework.Utility;
+@using Astria.UI.Web.Utility;
+@using Astria.Framework.DataContracts;
+@using Astria.UI.Web.Models;
+@model Astria.UI.Web.Models.AdminModel
+@{
+    Layout = null;
+    var gp = @Model.Permissions;
+}
+<div id="admin_menu">
+    <div class="admin_ribbon_box">
+        <b>@Constants.i18n("manage")</b>
+
+        @{if (@Model.HasPassword)
+          {
+            <a href="#AdminChangePassword" hidefocus="hideFocus">@Constants.i18n("changePassword")</a>
+          }
+        }
+         @{ if (@Model.IsInstanceAdmin || @Model.IsSuperAdmin)
+          {
+            <a href="#AdminPasswordManagement" hidefocus="hideFocus">@Constants.i18n("passwordManagement")</a>
+          }
+        }
+        @{if (gp.CanManage() && !@Model.IsReadOnlyUser)
+          {
+
+              if (gp.HasFlag(GatewayPermissions.Create_Edit_Users) || gp.HasFlag(GatewayPermissions.Delete_Users))
+              { 
+            <a href="#AdminUserManager" hidefocus="hideFocus">@Constants.i18n("users")</a>
+              }
+              if (gp.HasFlag(GatewayPermissions.Create_Edit_Users) || gp.HasFlag(GatewayPermissions.Delete_Users) )
+              { 
+            <a href="#AdminViewLicenses" hidefocus="hideFocus">@Constants.i18n("viewLicenses")</a>
+              }
+              if (gp.HasFlag(GatewayPermissions.Create_Edit_Groups) || gp.HasFlag(GatewayPermissions.Delete_Groups))
+              { 
+            <a href="#AdminGroupManager" hidefocus="hideFocus">@Constants.i18n("groups")</a>
+              }
+              if (gp.HasFlag(GatewayPermissions.Create_Security_Classes))
+              { 
+            <a href="#AdminSecurityClassManager" hidefocus="hideFocus">@Constants.i18n("securityClasses")</a>
+              }
+              if (gp.HasFlag(GatewayPermissions.BuzzSpace))
+              { 
+            <a href="#AdminBuzzSpacesManager" hidefocus="hideFocus">@Constants.i18n("buzzSpace")</a>
+              }
+              if (gp.HasFlag(GatewayPermissions.Admin_Stamps))
+              { 
+            <a href="#AdminStampManager" hidefocus="hideFocus">@Constants.i18n("stamps")</a>
+              }
+              if (@Model.IsSuperAdmin)
+              { 
+            <a href="#AdminIndexManager" hidefocus="hideFocus">@Constants.i18n("index")</a>
+              }
+
+          }
+        }
+    </div>
+
+    @{ if (gp.CanProcess() && !@Model.IsReadOnlyUser)
+       {
+        <div class="admin_ribbon_box">
+            @{
+           {         
+                <b>@Constants.i18n("process")</b>
+               if (gp.HasFlag(GatewayPermissions.ContentType_Edit_Advanced) || gp.HasFlag(GatewayPermissions.ContentType_Edit_Basic))
+               {
+
+                @*<a href="#AdminContentTypeManager" hidefocus="hideFocus">@Constants.i18n("contentTypeBuilder")</a>*@
+                <div class="contentTypeBuilder fullWidth inlineblock">
+                    <span class="fleft">@Constants.i18n("contentTypeBuilder")</span>
+                    <span class="fleft sPngIB gearIconSmall spacingLeftSmall"></span>
+                </div>
+               }
+               if (gp.HasFlag(GatewayPermissions.Custom_Fields))
+               {
+                <a href="#AdminCustomFieldMetaManager" hidefocus="hideFocus">@Constants.i18n("fields")</a>
+               }
+               if (gp.HasFlag(GatewayPermissions.ManageCustomLists))
+               { 
+                <a href="#AdminCustomListManager" hidefocus="hideFocus">@Constants.i18n("lists")</a>
+               }
+               if (gp.HasFlag(GatewayPermissions.Admin_DataLink) && @Model.IsDataLinkLicensed)
+               {
+                <a href="#AdminDataLinkManager" hidefocus="hideFocus">@Constants.i18n("dataLink")</a>
+               }
+               if (gp.HasFlag(GatewayPermissions.Admin_DataLink))
+               {
+                <a href="#AdminThirdPartyIntegrationManager" hidefocus="hideFocus">@Constants.i18n("c3pi")</a>
+               }
+           }
+            }
+        </div>
+       }
+    }
+    @{ if ((gp.CanSettings() || @Model.IsSuperAdmin) && !@Model.IsReadOnlyUser)
+       {   
+        <div class="admin_ribbon_box">
+        @{
+            <b>@Constants.i18n("settings")</b>
+            <a href="#AdminIpRestrictionsManager" hidefocus="hideFocus">@Constants.i18n("iprestrictions")</a>   
+            <a href="#AdminSystemPreferencesManager" hidefocus="hideFocus">@Constants.i18n("systemSettings")</a>
+           if (@Model.IsInstanceAdmin || @Model.IsSuperAdmin)
+           { 
+                <a href="#AdminExportImportManager" hidefocus="hideFocus">@Constants.i18n("exportImport")</a>
+           }
+           else
+           {
+                <a href="#AdminExportImportManager" hidefocus="hideFocus">@Constants.i18n("export")</a>
+           }
+           if (@Model.IsSuperAdmin)
+           {
+                <a href="#AdminDBSyncManager" hidefocus="hideFocus">@Constants.i18n("databaseSyncSettings")</a>
+           }
+           if (@Model.IsSuperAdmin)
+           {
+                <a href="#AdminSystemNotifications" hidefocus="hideFocus">@Constants.i18n("systemNotifications")</a>
+           }
+        }
+        </div>
+       }
+    }
+    @{ if ((gp.CanWorkflow() || @Model.IsSuperAdmin) && !@Model.IsReadOnlyUser)
+       {
+        <div class="admin_ribbon_box">
+            @{ 
+                <b>@Constants.i18n("workflow")</b>
+           if (gp.HasFlag(GatewayPermissions.WFAdmin))
+           {
+                <div id="wfDesignerLink">
+                    <a href="#AdminWorkflowDesignerManager" hidefocus="hideFocus">@Constants.i18n("workflowDesigner")</a>
+                    <a class="popoutWfDesigner ui-icon ui-icon-extlink" hidefocus="hideFocus" title="@Constants.i18n("popoutWfDesigner")"></a>
+                </div>
+           }
+           if (gp.HasFlag(GatewayPermissions.Create_RecordCategories))
+           {
+                <a href="#AdminRecordsRetention" hidefocus="hideFocus">@Constants.i18n("recordsRetention")</a>
+           }
+           if (gp.HasFlag(GatewayPermissions.View_Freezes) || gp.HasFlag(GatewayPermissions.Admin_Freezes))
+           { 
+                <a href="#AdminRecordsRetentionFreezes" hidefocus="hideFocus">@Constants.i18n("recordsRetentionFreezes")</a>
+           }
+            }
+        </div>
+       }
+    }
+    @{  if (gp.CanCompany() && !@Model.IsReadOnlyUser)
+        {    
+        <div class="admin_ribbon_box" id="company_box">
+            <b>@Constants.i18n("company")</b>
+            @{  if (@Model.IsSuperAdmin)
+                { 
+                <a href="#AdminCompanyManager" hidefocus="hideFocus">@Constants.i18n("companyInformation")</a>
+                }
+                if (gp.HasFlag(GatewayPermissions.ViewAudit))
+                {
+                <a href="#AdminAudit" hidefocus="hideFocus">@Constants.i18n("viewAudit")</a>
+                }
+                if (gp.HasFlag(GatewayPermissions.RecycleBin))
+                {
+                <a href="#AdminRecycleBin" hidefocus="hideFocus">@Constants.i18n("recycleBin")</a>
+                }
+                if (@Model.IsSuperAdmin || gp.HasFlag(GatewayPermissions.LicenseView))
+                {                
+                <a href="#AdminLicensing" hidefocus="hideFocus">@Constants.i18n("licensing")</a>
+                }
+                if (gp.HasFlag(GatewayPermissions.View_DistributedQueues) || gp.HasFlag(GatewayPermissions.Admin_DistributedQueues))
+                {   
+                <a href="#AdminDistributedQueueManager" hidefocus="hideFocus">@Constants.i18n("distributedQueueManagement")</a> 
+                }
+                if (@Model.IsSuperAdmin)
+                {
+                <a href="#AdminLDAPManager" hidefocus="hideFocus">@Constants.i18n("ldapConnections")</a>
+                }
+                if (gp.HasFlag(GatewayPermissions.ImportJobs))
+                {
+                <a href="#AdminImportJobs" hidefocus="hideFocus">@Constants.i18n("importjob")</a>  
+                }
+                if (@Model.IsInstanceAdmin || @Model.IsSuperAdmin)
+                { 
+                <a href="#AdminDataUsageReport" hidefocus="hideFocus">@Constants.i18n("dataUsageReport")</a>
+                }
+            }
+        </div>
+        }
+    }
+    <div id="adminToggleBtnCont">
+        <span id="adminToggleBtn" class="ui-icon ui-icon-triangle-1-n"></span>
+    </div>
+</div>
+<div id="admin_screen" style="position: relative">
+    <div id="admin_action" class="vert_scroll">
+    </div>
+    <div>@ModelBase.Message</div>
+</div>

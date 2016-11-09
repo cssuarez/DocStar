@@ -1,0 +1,102 @@
+﻿@using Astria.Framework.Utility
+@{
+    Layout = null;
+}
+@model Astria.Framework.DataContracts.ExceptionsML
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <style>
+        body
+        {
+            margin: 0;
+        }
+        #ufrm
+        {
+            width: 100%;
+            font-size: 11px;
+            font-family: Verdana, Tahoma;
+            color: #222;
+        }
+        .metalabel
+        {
+            display: inline-block;
+            float: left;
+            padding: 0 5px 0 0;
+            text-align: right;
+            width: 150px;
+            margin: 5px 0 0;
+        }
+        div.input
+        {
+            margin: 0 0 10px;
+        }        
+        #ubtn 
+        {
+            display: none;
+        }
+        .warningErrorClass
+        {
+            color: #a60000;
+            padding-left: 3px;
+        }
+        .inputErrorClass {
+            border-color: Red;
+            color: Red;
+        }
+    </style>    
+</head>
+<body>
+    <input type="hidden" id="useSSL" value="@Request.IsSecureConnection.ToString()" />
+    <input type="hidden" id="BaseURI" value="@Url.Content("~")" />
+    <input type="hidden" id="LoginURI" value="@Functions.GetAuthenticationProxyUrl()" />
+    <input type="hidden" id="ServerVD" value="@Functions.GetSetting(Constants.SERVER_VD, "/FusionServer")" />
+    @Scripts.Render("~/constantjqueryjs")
+    <form id="ufrm" method="post" enctype="multipart/form-data" action="UploadImageStamp">
+        <input type="hidden" name="Id" value="" /> <!-- leave blank for new stamp; set to replace one -->
+        <input type="hidden" name="Admin" value="true" /> <!-- set to false for personal (user) stamps; true for public (admin) stamps -->
+        <input type="hidden" name="Sequence" value="" /> <!-- set to specify sequence; leave blank to add to end -->        
+        <div class="metaarea">
+            <div class="input">
+                <span class="metalabel">@Constants.i18n("name"):</span>
+                <input name="Name" type="text" maxlength="12" class="metainput" />
+            </div>
+            <div class="input">
+                <span class="fileType metalabel">@Constants.i18n("selectFile") @Constants.i18n("pngOrJpg")</span>
+                <input id="fid" name="fid" type="file" class="metainput" />                
+                <input value="@Constants.i18n("upload")" type="submit" id="ubtn" class="metainput" disabled="disabled"/>
+            </div>            
+            <div id="result" class="input">
+                @if (Model != null) { 
+                    <span>@Model.Message</span>
+                }        
+            </div>
+        </div>        
+    </form>
+    <script type="text/javascript">
+        $ = jQuery;
+        var i = 0;
+        $(document).ready(function () {
+            i += 1;
+            $('#fid').change(function () {
+                var val = $('#fid').val();
+                if (val.match(/jpg/ig) || val.match(/png/ig)) {
+                    $('#ubtn').removeAttr('disabled');
+                    $('.fileType').css('color', 'black');
+                }
+                else {
+                    $('.fileType').css('color', 'red');
+                    $('#ubtn').attr('disabled', 'disabled');
+                }
+            });
+            $('#ubtn').mousedown(function () {
+                $('input[name="Name"]').val($.trim($('input[name="Name"]').val()));
+            });
+        });        
+    </script>
+</body>
+</html>

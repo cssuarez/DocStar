@@ -1,0 +1,14 @@
+﻿@model Astria.UI.Web.Models.RetrieveModel
+
+@{
+    Layout = null;
+}
+
+<li id="inbox_root"><a href="#">Inboxes</a>
+    <ul>
+        @foreach (Astria.Framework.DataContracts.InboxDTO inbox in Model.Inboxes)
+        {
+            <li><a href="#" onclick="Retrieve.GetDocumentsByInbox('@inbox.Id.ToString()')">@inbox.Name</a></li>
+        }
+    </ul>
+</li>

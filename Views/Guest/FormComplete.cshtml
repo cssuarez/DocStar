@@ -1,0 +1,72 @@
+﻿@using Astria.Framework.Utility
+@model bool
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@Constants.i18n("formComplete")</title>
+    @Styles.Render("~/Content/css/formCompletecss")
+</head>
+<body>
+    @Scripts.Render("~/formCompletejs")
+    <div id="masterOfAll" style="display: none; width: 100%; height: 100%;">
+        <div id="layout">
+            <div id="header">
+                <div id="tabs_list_container">
+                    <ul id="tabs_list">
+                        <li id="home_tab" class="tab tab_unselected disabled">
+                            <a id="home_link" hidefocus="hideFocus">@Constants.i18n("home")</a>
+                        </li>
+                        <li id="retrieve_tab" class="tab tab_selected disabled">
+                            <a id="retrieve_link" hidefocus="hideFocus">@Constants.i18n("retrieve")</a>
+                        </li>
+                        <li id="capture_tab" class="tab tab_unselected disabled">
+                            <a id="capture_link" hidefocus="hideFocus">@Constants.i18n("capture")</a>
+                        </li>
+                        <li id="workflow_tab" class="tab tab_unselected disabled">
+                            <a id="workflow_link" hidefocus="hideFocus">@Constants.i18n("workflow")</a>
+                        </li>
+                        <li id="reports_tab" class="tab tab_unselected disabled">
+                            <a id="reports_link" hidefocus="hideFocus">@Constants.i18n("reports")</a>
+                        </li>
+                        <li id="forms_tab" class="tab tab_unselected disabled">
+                            <a id="forms_link" hidefocus="hideFocus">@Constants.i18n("forms")</a>
+                        </li>
+                        <li id="admin_tab" class="tab tab_unselected disabled">
+                            <a id="admin_link" hidefocus="hideFocus">@Constants.i18n("admin")</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="small_docstar_logo">
+                </div>
+            </div>
+            <div id="two_col">
+                <div id="col_border_top">
+                </div>
+                <div id="formSubmitted">
+                    <h1>@Constants.i18n("formSubmittedSuccessfully")</h1>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Hiding and showing body when it is finished loading to prevent html showing before css is applied
+            $('#masterOfAll').show();
+            var embedded = @Model.ToString().ToLower();
+            if (embedded) {                
+                $('#header').hide();
+                $('#col_border_top').hide();
+            }
+        });
+    </script>
+</body>
+</html>

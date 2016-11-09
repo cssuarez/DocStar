@@ -1,0 +1,112 @@
+﻿@using Astria.Framework.Utility
+@model Astria.UI.Web.Models.GuestChallengeModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@Constants.i18n("productTitle")</title>
+    @Styles.Render("~/Content/css/guestChallangecss")
+    @if (Model.ShowRecaptcha)
+    {
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+    }
+</head>
+<body>
+    <input type="hidden" id="requestOptions" value="@Model.ProxyRequest.Arguments" />
+    @Scripts.Render("~/guestChallengejs")
+    <div id="masterOfAll" style="display: none; width: 100%; height: 100%;">
+        <div id="layout">
+            <div id="header">
+                <div id="tabs_list_container">
+                    <ul id="tabs_list">
+                        <li id="home_tab" class="tab tab_unselected disabled">
+                            <a id="home_link" hidefocus="hideFocus">@Constants.i18n("home")</a>
+                        </li>
+                        <li id="retrieve_tab" class="tab tab_unselected disabled">
+                            <a id="retrieve_link" hidefocus="hideFocus">@Constants.i18n("retrieve")</a>
+                        </li>
+                        <li id="capture_tab" class="tab tab_unselected disabled">
+                            <a id="capture_link" hidefocus="hideFocus">@Constants.i18n("capture")</a>
+                        </li>
+                        <li id="workflow_tab" class="tab tab_unselected disabled">
+                            <a id="workflow_link" hidefocus="hideFocus">@Constants.i18n("workflow")</a>
+                        </li>
+                        <li id="reports_tab" class="tab tab_unselected disabled">
+                            <a id="reports_link" hidefocus="hideFocus">@Constants.i18n("reports")</a>
+                        </li>
+                        <li id="forms_tab" class="tab tab_unselected disabled">
+                            <a id="forms_link" hidefocus="hideFocus">@Constants.i18n("forms")</a>
+                        </li>
+                        <li id="admin_tab" class="tab tab_unselected disabled">
+                            <a id="admin_link" hidefocus="hideFocus">@Constants.i18n("admin")</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="small_docstar_logo">
+                </div>
+            </div>
+            <div id="two_col">
+                <div id="col_border_top">
+                </div>
+                <div id="challengeData">
+                    <form action="@UrlHelper.GenerateContentUrl(String.Format("~/Guest?RequestId={0}&InstanceId={1}", Model.ProxyRequest.Id, Model.ProxyRequest.InstanceId), new HttpContextWrapper(HttpContext.Current))" method="post">
+                        @if(Model.ShowPassword)
+                        {
+                            <div id="passwordContainer">
+                                <span>
+                                    @Constants.i18n("enterPass")
+                                </span>
+                                <input name="password" type="text" />
+                            </div>
+                        }
+                        @if (Model.ShowRecaptcha)
+                        {
+                            <div class="g-recaptcha" data-sitekey="6LcBGg8TAAAAAOXMaOShwDwa_pSZTTeqJ8L1pA1_"></div>
+                        }
+                        @if (Model.ErrorMessages.SafeAny())
+                        {
+                            foreach (var err in Model.ErrorMessages)
+                            {
+                                <span class="error" >
+                                    @err
+                                </span>
+                            }
+                        }
+                        <input type="submit" class="fright" />
+                        <div class="displayNone submitMessage">
+                            <img alt="" src="@UrlHelper.GenerateContentUrl("~/Content/themes/default/throbber.gif", new HttpContextWrapper(HttpContext.Current))" />
+                            <span>@Model.SubmitMessage</span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Hiding and showing body when it is finished loading to prevent html showing before css is applied
+            $('#masterOfAll').show();
+            var $submit = $('input[type="submit"]');
+            $submit.on('click', function () {
+                setTimeout(function () {
+                    $submit.prop('disabled', true);
+                    $('.submitMessage').show();
+                }, 3);
+            });
+            var options = JSON.parse($('#requestOptions').val());
+            if (options.EmbeddedViewer) {
+                $('#header').hide();
+                $('#col_border_top').hide();
+                $('#browse').hide();
+                $('#show_hide_panel').hide();
+            }
+        });
+    </script>
+</body>
+</html>

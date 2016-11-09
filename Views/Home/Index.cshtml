@@ -1,0 +1,327 @@
+﻿@using Astria.Framework.Utility;
+@using Astria.Framework.DataContracts;
+@using System.Web.Script.Serialization;
+@using Astria.UI.Web.Models;
+@model Astria.UI.Web.Models.HomeModel
+@{
+    //Layout = null;
+    ViewBag.Title = Constants.i18n("productTitle");
+    var userName = AstriaCookie.GetUsername();
+}
+@if (Model.IsLoggedIn)
+{
+    var controller = this.ViewContext.Controller as Astria.UI.Web.Controllers.ControllerBase;
+    Astria.Framework.DataContracts.ExceptionsML bizEx;
+
+    <input type="hidden" id="bulkData" value="@Model.BulkData" />
+    <input type="hidden" id="hostBulkData" value="@Model.HostBulkData" />
+    <input type="hidden" id="currentUser" value="@Model.CurrentUser" />
+    <input type="hidden" id="inboxData" value="@Model.InboxData" />
+    <input type="hidden" id="importData" value="@Model.ImportData" />
+    <input type="hidden" id="acquireData" value="" />
+    <input type="hidden" id="folderData" value="@Model.FolderData" />
+    <input type="hidden" id="commontemplates" value="@Model.CommonTemplates" />
+    <input type="hidden" id="systemPreferences" value="@Model.SystemPreferences" />
+    <input type="hidden" id="systrayConnections" value="@Model.SystrayConnections" />
+    <input type="hidden" id="systemMessages" value="@Model.UserMessages" />
+    <input type="hidden" id="systemExpired" value="@Model.Unlicensed.ToString()" />
+    <input type="hidden" id="isSuperAdmin" value="@Model.IsSuperAdmin.ToString()" />
+    <input type="hidden" id="isInstanceAdmin" value="@Model.IsInstanceAdmin.ToString()" />
+    <input type="hidden" id="maxRequestLength" value="@Model.MaxRequestLength" />
+    <input type="hidden" id="defaultCompanyInstance" value="@Model.DefaultInstanceId" />
+    <input type="hidden" id="isReadOnlyUser" value="@Model.IsReadOnlyUser.ToString()" />
+    <input type="hidden" id="eclipseVersion" value="@Model.Version"/>
+    <div id="layout">
+        <div id="header">
+            <div class="f_height">
+                <div id="dropdown">
+                    <div class="parent clearfix">
+                        <span class="ptitle">@Constants.i18n("productTitle")</span><span class="ui-icon ui-icon-triangle-1-s"></span>
+                    </div>
+                    <ul id="instanceList" class="children vert_scroll">
+                        <li id="companyList" class="anchor">
+                            <select id="companySelect" class="isCombo metaselect anchor">
+                                @{
+    if (Model.Instances != null)
+    {
+        var currentContext = Model.Instances.FirstOrDefault(r => r.Name == Model.CurrentDBName);
+        <option value="@currentContext.Id" data-companyid="@currentContext.CompanyId" class="anchor" selected="selected">*@currentContext.CompanyName</option>
+    }
+                                }
+                                @{
+    foreach (var result in Model.Instances)
+    {
+        var link = result.CompanyName;
+        if (result.Name != Model.CurrentDBName)
+        {
+            <option value="@result.Id">@link</option>
+        }
+    }
+                                }
+                            </select>
+                        </li>
+                        <li id="logout">@Html.ActionLink("Logout - " + userName, "Logout", "Account")</li>
+                        <li><span id="requestHelp" class="anchor">@Constants.i18n("requestHelp")</span></li>
+                        <li><span id="emailWorkflowDesigner" class="anchor displayNone">@Constants.i18n("emailWorkflowDesigner")</span></li>
+                        <li><span id="helpDialogLiveChat" class="anchor">@Constants.i18n("liveChat")</span></li>
+                        <li><span id="submitIdea" class="anchor">@Constants.i18n("submitIdea")</span></li>
+                        <li><span id="userPrefs" class="anchor">@Constants.i18n("userPreferences")</span></li>
+                        <li><span id="helpDocs" class="anchor">@Constants.i18n("helpDocumentation")</span></li>
+                        @if (!String.IsNullOrWhiteSpace(Functions.GetSetting("WalkMeHttp", "")) && !String.IsNullOrWhiteSpace(Functions.GetSetting("WalkMeHttps", "")))
+                        {
+                            <li><span id="walkMe" class="anchor" style="display: none;">@Constants.i18n("stepByStep")</span></li>
+                        }
+                        <li><span id="version" class="anchor" style="cursor: default">@Constants.i18n("versionEclipse")@Model.Version</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="tabs_list_container">
+                <ul id="tabs_list">
+                    <li id="home_tab" class="tab tab_selected">
+                        <a id="home_link" href="#Home" hidefocus="hideFocus">@Astria.Framework.Utility.Constants.i18n("home")</a>
+                    </li>
+                    <li id="retrieve_tab" class="tab tab_unselected">
+                        <a id="retrieve_link" href="#Retrieve" hidefocus="hideFocus">@Astria.Framework.Utility.Constants.i18n("retrieve")</a>
+                    </li>
+                    <li id="capture_tab" class="tab tab_unselected">
+                        <a id="capture_link" href="#Capture" hidefocus="hideFocus">@Astria.Framework.Utility.Constants.i18n("capture")</a>
+                    </li>
+                    <li id="workflow_tab" class="tab tab_unselected">
+                        <a id="workflow_link" href="#Workflow" hidefocus="hideFocus">@Astria.Framework.Utility.Constants.i18n("workflow")</a>
+                    </li>
+                    @if ((Model.Permissions.HasFlag(GatewayPermissions.ReportAdmin) || Model.Permissions.HasFlag(GatewayPermissions.ReportViewer)) &&
+                        (Model.Licenses.Contains(TokenKey.Reports) || Model.Licenses.Contains(TokenKey.AdvancedReports)))
+                    {
+                        <li id="reports_tab" class="tab tab_unselected">
+                            <a id="reports_link" href="#Reports" hidefocus="hideFocus">@Astria.Framework.Utility.Constants.i18n("reports")</a>
+                        </li>
+                    }
+                    @if ((Model.Permissions.HasFlag(GatewayPermissions.FormsDesigner) || Model.Permissions.HasFlag(GatewayPermissions.FormsLibrary)) &&
+                         Model.Licenses.Contains(TokenKey.Forms))
+                    {
+                        <li id="forms_tab" class="tab tab_unselected">
+                            <a id="forms_link" href="#Forms" hidefocus="hideFocus">@Astria.Framework.Utility.Constants.i18n("forms")</a>
+                        </li>
+                    }
+                    <li id="admin_tab" class="tab tab_unselected">
+                        <a id="admin_link" href="#Admin" hidefocus="hideFocus">@Astria.Framework.Utility.Constants.i18n("admin")</a>
+                    </li>
+                </ul>
+                <div id="qs">
+                    <input id="qtext" type="text" name="qtext" />
+                    <span id="qsbutton" class="shadow">
+                        <span id="qsbuttonText">@Constants.i18n("search")</span>
+                        <span class="button_icon ui-icon ui-icon-search"></span>
+                    </span>
+                    <ul id="qs_suggested"></ul>
+                    <span style="display: none;" class="savedSearchSelection fleft custom_button no_text_select shadow splitBtn">
+                        <a class="whiteIcon ui-icon ui-icon-triangle-1-s"></a>
+                    </span>
+                    <div class="buttonOptions" style="display: none;">
+                        <select class="savedSearchList fullWidth inlineblock"></select>
+                    </div>
+
+                </div>
+            </div>
+            <div class="small_docstar_logo">
+            </div>
+        </div>
+        <div id="two_col">
+            <div id="col_border_top">
+            </div>
+            <div id="browse" class="light_shadow_right show_panel">
+                <ul class="root_list">
+                    <li id="inbox_list_scroll" style="position: relative">
+                        <div id="inbox_list">
+                            <a href="#">@Constants.i18n("inboxes")</a>
+                        </div>
+                    </li>
+                </ul>
+                <hr />
+                <ul class="root_list">
+                    <li id="folder_list_scroll" style="position: relative">
+                        <div id="folder_list">
+                            <a href="#">@Constants.i18n("folders")</a>
+                        </div>
+                    </li>
+                </ul>
+                <input type="hidden" name="inbox_folder_error" />
+                <hr />
+                <div>
+                    <div id="myAlerts_scroll">
+                        <ul class="root_list hor_scroll">
+                            <li id="alerts_tree">
+                                <ul>
+                                    <li>
+                                        <a href="#" id="@Constants.i18n("myAlerts")">@Constants.i18n("myAlerts")</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li id="workflow_tree">
+                                <ul>
+                                    @if (Model.NewWorkflows > 0)
+                                    {
+                                        <li style="font-weight: bolder"><a href="#" id="@Constants.i18n("myWorkflows")">@String.Format("{0} ({1})", Constants.i18n("myWorkflows"), Model.NewWorkflows)</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a href="#" id="@Constants.i18n("myWorkflows")">@String.Format("{0}", Constants.i18n("myWorkflows"))</a></li>
+                                    }
+                                </ul>
+                            </li>
+                            <li id="approval_tree">
+                                <ul>
+                                    @if (Model.NewApprovals > 0)
+                                    {
+                                        <li style="font-weight: bolder"><a href="#" id="@Constants.i18n("myApprovals")">@String.Format("{0} ({1})", Constants.i18n("myApprovals"), Model.NewApprovals)</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a href="#" id="@Constants.i18n("myApprovals")">@String.Format("{0}", Constants.i18n("myApprovals"))</a></li>
+                                    }
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                @if (Model.ValidationMessages != null && Model.ValidationMessages.Count > 0)
+                {
+                    <ul class="error">
+                        @foreach (var item in Model.ValidationMessages)
+                        {
+                            <li>@item.Value.Message</li>
+                        }
+                    </ul>
+                }
+            </div>
+            <div id="show_hide_panel">
+                <div id="hide_arrow">
+                    <span id="collapse_bg"></span><span class="collapse_arrow"></span>
+                </div>
+            </div>
+            <div id="main">
+                <div id="tabs">
+                    <div id="tab_panel_container">
+                        <div id="home_tab_panel" class="show_tabs">
+                        </div>
+                        <div id="retrieve_tab_panel" class="hide_tabs">
+                            @Html.Action("Index", "Retrieve")
+                        </div>
+                        <div id="capture_tab_panel" class="hide_tabs">
+                            @Html.Action("Index", "Acquire")
+                        </div>
+                        <div id="workflow_tab_panel" class="hide_tabs">
+                            @Html.Action("Index", "Workflow")
+                        </div>
+                        <div id="reports_tab_panel" class="hide_tabs displayTable">
+                            @Html.Action("Index", "Reports")
+                        </div>
+                        <div id="forms_tab_panel" class="hide_tabs displayTable">
+                            @Html.Action("Index", "Forms")
+                        </div>
+                        <div id="admin_tab_panel" class="hide_tabs">
+                            @Html.Action("Index", "Admin")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="inbox_contextmenu" title="@Astria.Framework.Utility.Constants.i18n("createInbox")">
+        <div>
+            <span class="new_inbox_name_title">@Astria.Framework.Utility.Constants.i18n("inboxName")</span>
+            <input id="new_inbox_name" type="text" />
+        </div>
+        <div class='inbox_sec_class_container'>
+            <span class='inbox_create_secclass_title'>@Constants.i18n("securityClass")</span>
+            <dl class='inbox_security_class dropdown'>
+                <dt>
+                    <span class="parent">
+                        <span class='inbox_create_secclass_dropdown'></span>
+                        <span class='dropdown_arrow ui-icon ui-icon-triangle-1-s'></span>
+                    </span>
+                </dt>
+                <dd>
+                    <ul class='children clearfix'></ul>
+                </dd>
+            </dl>
+        </div>
+        <div class='success_message'>
+            <a>@Constants.i18n("createInboxSuccess")</a>
+        </div>
+        <input type='hidden' name='inbox_folder_contextmenu_error' />
+    </div>
+    <div id="folder_contextmenu" title="@Astria.Framework.Utility.Constants.i18n("createFolder")">
+        <div>
+            <span class="new_folder_name_title">@Astria.Framework.Utility.Constants.i18n("folderName")</span>
+            <input id="new_folder_name" type="text" />
+        </div>
+        <div class='folder_sec_class_container'>
+            <span class='folder_create_secclass_title'>@Constants.i18n("securityClass")</span>
+            <dl class='fold_security_class dropdown'>
+                <dt><span class="parent"><span class='folder_create_secclass_dropdown'></span><span class='dropdown_arrow ui-icon ui-icon-triangle-1-s'></span></span></dt>
+                <dd>
+                    <ul class='children clearfix'></ul>
+                </dd>
+            </dl>
+        </div>
+        <div class='success_message'>
+            <a>@Constants.i18n("createFolderSuccess")</a>
+        </div>
+        <input type='hidden' name='inbox_folder_contextmenu_error' />
+    </div>
+    <iframe id="download"></iframe>
+    <iframe id="iprint" name="printing_frame" style="height: 0px; width: 0px; border: none;"></iframe>
+    @RenderPage("~/Views/Shared/WorkflowTaskTemplates.cshtml");
+    @RenderPage("~/Views/Shared/DialogTemplates.cshtml");
+    @*
+        Used to preload images, always hidden
+    *@
+    <img id="imgLoader" src="@System.Web.Mvc.UrlHelper.GenerateContentUrl("~/Content/images/transparent.png", new HttpContextWrapper(HttpContext.Current))" alt="imageloader" style="display:none" />
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        var logged_in = @Model.IsLoggedIn.ToString().ToLower();
+        var loggedOutReason = '@Model.SignOutReason';
+        if (!logged_in) {
+            $.cookie('destHref', window.location.href, { expires: 1, path: '/', domain: Constants.ProxyCookieDomain });
+            if (loggedOutReason) {
+                window.location.href = Constants.Login_Url + "?message=" + loggedOutReason;
+            }
+            else {
+                window.location.href = Constants.Login_Url;
+            }
+        }
+        else {
+            window.appIntegration = @Model.Licenses.Contains(TokenKey.ApplicationIntegration).ToString().ToLower();
+            window.versioningLicensed = @Model.Licenses.Contains(TokenKey.Versioning).ToString().ToLower();
+            window.formsLicensed = @Model.Licenses.Contains(TokenKey.Forms).ToString().ToLower();
+            window.publishFormsLicensed = @Model.Licenses.Contains(TokenKey.PublishForms).ToString().ToLower();
+            Templates.init();
+            window.gatewayPermissions = @((int)Model.Permissions);  // Obtain and store Gateway Permissions to be used until page is refreshed
+            window.systemPreferences = new SystemPreferences();
+            window.systemPreferences.add($.parseJSON($('#systemPreferences').val()));
+            Page.authToken = '@AstriaCookie.GetToken()';
+            Page.init();
+            new InitRouter();
+            Acquire.init();
+            Voice.init();
+            ErrorHandler.bindOnCompleteOnSuccess();
+            ErrorHandler.bindOnCompleteOnError();
+            // Hiding and showing body when it is finished loading to prevent html showing before css is applied
+            $('#masterOfAll').show();
+            if ($('#systemMessages').val().length > 0) {
+                Page.showMsgs(Page.getSystemMessages());
+            }
+            Page.showTimeMsg();
+        }
+        var workflow_action=$('input[name=workflow_action]');
+        if(workflow_action){
+            workflow_action.bind('click',function(){
+                Page.enableDisableWEDSFS(this.className);
+            });
+        }
+
+    });
+</script>
+<div id="system_messages"></div>

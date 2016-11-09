@@ -1,0 +1,84 @@
+﻿@using Astria.Framework.Utility
+@{
+    Layout = null;
+}
+@model Astria.Framework.DataContracts.V2.SR<Astria.Framework.DataContracts.V2.ImportJob>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="@Url.Content("~/Content/css/ImportExport.css")" rel="Stylesheet" type="text/css" />
+    <title>ImportFrame</title>
+</head>
+<body>
+    <input type="hidden" id="useSSL" value="@Request.IsSecureConnection.ToString()" />
+    <input type="hidden" id="BaseURI" value="@Url.Content("~")" />
+    <input type="hidden" id="LoginURI" value="@Functions.GetAuthenticationProxyUrl()" />
+    <input type="hidden" id="ServerVD" value="@Functions.GetSetting(Constants.SERVER_VD, "/FusionServer")" />
+    @Scripts.Render("~/constantjqueryjs")
+    <form id="ufrm" method="post" enctype="multipart/form-data" action="UploadFiles">
+        <div>
+            <span>@Astria.Framework.Utility.Constants.i18n("importAnExport")</span>
+        </div>
+        <div>
+            <div>
+                <input id="fid" name="fid" type="file" class="metainput" />
+                <input value="@Astria.Framework.Utility.Constants.i18n("upload")" type="submit" id="ubtn" disabled="disabled" class="metainput"/>
+                <span id="uploadError" class="errorClass">@Astria.Framework.Utility.Constants.i18n("onlyZip")</span>
+            </div>
+            <div>
+                <input id="overwrite_existing" name="overwrite" type="checkbox" /><span>@Constants.i18n("overwriteExisting")</span>
+            </div>
+        </div>
+        <div>
+            <span id="importFileNameSpan"></span>
+            @if (Model != null)
+            {
+                if (Model.Result != null)
+                {
+                <input id="importJobId" type="hidden" value="@Model.Result.Id" />
+                }
+                if (Model.Error != null)
+                {
+                <span id="errorMessage">@Model.Error.Message</span>
+                }
+            }
+        </div>
+    </form>
+    <iframe id="importStatus" style="display: none;" src="@System.Web.Mvc.UrlHelper.GenerateContentUrl("~/Content/images/transparent.png", new HttpContextWrapper(HttpContext.Current))" frameborder="0" height="85"></iframe>
+    <script type="text/javascript">
+        $ = jQuery;
+        var fillSpan = function () { $('#importFileNameSpan').text(parent.window.savedfile); };
+        var getStatus = function (importJobId) {
+            $('#importStatus').attr('src', 'CheckImportStatus?importJobId=' + importJobId);
+            $('#importStatus').show();
+        };
+        $(document).ready(function () {
+            $('#fid').change(function () {
+                if ($('#fid').val().match(/.zip/ig)) {
+                    $('#uploadError').hide();
+                    $('#ubtn').removeAttr('disabled');
+                }
+                else {
+                    $('#uploadError').show();
+                    $('#ubtn').attr('disabled', 'disabled');
+                }
+            });
+            $('#ubtn').click(function () {
+                parent.window.savedfile = $('#fid').val();
+                $('#errorMessage').html('');
+
+            });
+            if ($('#importJobId').val()) {   // Make sure when the interval is cleared so is the import job id
+                // Start polling here, upon submission of import
+                setTimeout(function () {
+                    var importJobId = $('#importJobId').val();
+                    fillSpan();
+                    getStatus(importJobId);
+                }, 100);
+            }
+        });
+    </script>
+</body>
+</html>

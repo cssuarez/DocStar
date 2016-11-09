@@ -1,0 +1,35 @@
+﻿@using Astria.Framework.Utility
+@using Astria.UI.Web.Utility
+@{
+    Layout = null;
+
+}
+@model Astria.Framework.DataContracts.V2.ChatData
+           
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+
+<html>
+<head>
+    <title>@Constants.i18n("liveChat")</title>
+    <script type="text/javascript" src="https://secure.logmeinrescue.com/InstantChat/InstantChat.aspx"></script>
+    <script type="text/javascript">
+        function loadInstantChat() {
+            var ICLoader = new RescueInstantChatLoader();
+            ICLoader.ICContainer = "ICContainer";
+            ICLoader.HostedCSS = "https://secure.logmeinrescue.com/InstantChat/Standard/InstantChat.css";
+            ICLoader.HostedLanguagesForChatOnlyMode = "https://secure.logmeinrescue.com/InstantChat/LanguagesForChatOnlyMode.js";
+            ICLoader.HostedLanguagesForAppletMode = "https://secure.logmeinrescue.com/InstantChat/LanguagesForAppletMode.js";
+            ICLoader.EntryID = "@Model.Channel";
+            ICLoader.Name = "@Model.UserName";
+            ICLoader.Comment1 = "@Model.CompanyName";
+            ICLoader.Comment2 = "@Model.Prefix";
+            ICLoader.Comment3 = "Eclipse 3";
+            ICLoader.Start();
+        }
+    </script>
+</head>
+<body onload="loadInstantChat();">    
+    <div id="ICContainer" style="position: absolute; left:0px; top: 0px; width: 400px; height: 500px;">
+    </div>
+</body>
+</html>

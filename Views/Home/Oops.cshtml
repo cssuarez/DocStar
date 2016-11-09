@@ -1,0 +1,46 @@
+﻿@{
+    Layout = null;
+}
+@model System.Object
+@using Astria.Framework.DataContracts;
+@using Astria.Framework.Utility;
+
+@{
+    var exML = Model as Astria.Framework.DataContracts.ExceptionsML;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="@Url.Content(String.Format("~/Content/css/oops.css?v={0}", Functions.GetVersion()))" rel="stylesheet" type="text/css" />
+    <title>@Constants.i18n("oopsTitle")</title>
+</head>
+<body>
+    <div>
+        <h1>@Constants.i18n("oopsHeader")</h1>
+        <h2>
+            @{
+                if (exML == null && Model == null)
+                {
+                @Constants.i18n("nullEx");
+                }
+                else if (exML != null)
+                {
+                @exML.Message;
+                }
+                else
+                {
+                @Model.ToString();
+                }
+            }
+        </h2>
+        <input id="exMessage" type="hidden" value="@(exML == null ? string.Empty : exML.Message)" />
+        <input id="exType" type="hidden" value="@(exML == null ? string.Empty : exML.Type)" />
+        <div id="stacktrace" style="display:none">
+            @(exML == null ? string.Empty : exML.Stack)
+        </div>
+    </div>
+</body>
+</html>

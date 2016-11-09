@@ -1,0 +1,36 @@
+﻿@using Astria.Framework.Utility
+@{
+    Layout = null;
+}
+@model List<Astria.Framework.DataContracts.BuzzSpace>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    @Styles.Render("~/Content/css/buzzspacecss")
+    <title>Buzz Space</title>
+</head>
+<body>
+    <input type="hidden" id="useSSL" value="@Request.IsSecureConnection.ToString()" />
+    <input type="hidden" id="BaseURI" value="@Url.Content("~")" />
+    <input type="hidden" id="LoginURI" value="@Functions.GetAuthenticationProxyUrl()" />
+    <input type="hidden" id="ServerVD" value="@Functions.GetSetting(Constants.SERVER_VD, "/FusionServer")" />
+    @Scripts.Render("~/buzzspacejs")
+    <div id="buzzspace_layout">
+        <div id="sys_buzz">
+            @Html.Raw(Model.First(r => r.System).Content)
+        </div>
+        <div id="cust_buzz" class="light_shadow_left">
+            <div id="cust_content" align="center">
+                @Html.Raw(Model.First(r => !r.System).Content)
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            BuzzUtil.init();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+﻿@using Astria.Framework.Utility
+@using System.Linq
+@model Astria.UI.Web.Models.PrintModel
+@{
+    Layout = null;
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    @Styles.Render("~/Content/css/printcss")
+    <title>PrintDocument</title>
+</head>
+<body>
+    <input type="hidden" id="useSSL" value="@Request.IsSecureConnection.ToString()" />
+    <input type="hidden" id="BaseURI" value="@Url.Content("~")" />
+    <input type="hidden" id="LoginURI" value="@Functions.GetAuthenticationProxyUrl()" />
+    <input type="hidden" id="ServerVD" value="@Functions.GetSetting(Constants.SERVER_VD, "/FusionServer")" />
+    @Scripts.Render("~/printjs")
+    <div id="images" class="ImagesDiv">
+        @{
+            var i = 0;
+            foreach (var p in @Model.Paths)
+            {
+                i++;
+                var cssClass = "pageContainer";
+                if (i == Model.Paths.Count)
+                {
+                    cssClass = "";
+                }
+                <div class="@cssClass">
+                    <img class="page" src="@Model.ServerURI/GetFile.ashx?functionName=DownloadTempRendering&p=@p" alt="@Path.GetFileNameWithoutExtension(p)" />
+                </div>
+            }
+        }
+    </div>
+    <script type="text/javascript">
+        $(window).load(function () {
+            setTimeout(function () {
+                var target = parent.document.getElementById('iprint');
+                try {
+                    // IE 11 Web print fix
+                    var result = target.contentWindow.document.execCommand('print', false, null);
+                    // FF Web print if execCommand fails
+                    if (!result) {
+                        target.contentWindow.print();
+                    }
+                } catch (e) {
+                    target.contentWindow.print();
+                }
+                parent.Send.closeSendDialog();
+            }, 3);
+
+        });
+    </script>
+</body>
+</html>

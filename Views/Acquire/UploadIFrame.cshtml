@@ -1,0 +1,205 @@
+﻿@using Astria.Framework.Utility
+@model Astria.UI.Web.Models.AcquireModel
+@{
+    Layout = null;
+}
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title> 
+    @Styles.Render("~/Content/css/uploadcss")
+</head>
+<body>
+    <input type="hidden" id="useSSL" value="@Request.IsSecureConnection.ToString()" />
+    <input type="hidden" id="BaseURI" value="@Url.Content("~")" />
+    <input type="hidden" id="LoginURI" value="@Functions.GetAuthenticationProxyUrl()" />
+    <input type="hidden" id="ServerVD" value="@Functions.GetSetting(Constants.SERVER_VD, "/FusionServer")" />
+    @Scripts.Render("~/uploadjs")
+    <input id="ctdefibx" type="hidden" value="@Model.ContentTypeDefInboxes" />
+    <input id="ctdefwf" type="hidden" value="@Model.ContentTypeDefWorkflows" />
+    <form id="ufrm" method="post" enctype="multipart/form-data" action="UploadFiles">
+        <fieldset>
+            <legend></legend>
+            <div class="metaarea">
+                <div class="input">
+                    <span class="metalabel">@Astria.Framework.Utility.Constants.i18n("title")</span>
+                    <span>
+                        @if (!String.IsNullOrWhiteSpace(Model.Title))
+                        {
+                            <input name="Title" type="text" value="@Model.Title"/>
+                        }
+                        else
+                        {
+                            <input name="Title" type="text" />
+                        }
+                    </span>
+                </div>
+                <div class="input">
+                    <span class="metalabel">@Astria.Framework.Utility.Constants.i18n("contentType")</span>
+                    <span>
+                        @if (Model.ContentTypes != null && Model.ContentTypes.Length > 0)
+                        { 
+                            <select name="ContentType" class="metaselect">
+                                <option></option>
+                                @foreach (var ct in Model.ContentTypes)
+                                {
+                                    if (ct.Name == Model.ContentType)
+                                    { 
+                                    <option id="@ct.Id.ToString()" selected="selected">@ct.Id.ToString()</option>
+                                    }
+                                    else if (ct.Id == Guid.Empty)
+                                    {
+                                    <option id="@ct.Id.ToString()"></option>
+                                    }
+                                    else
+                                    { 
+                                    <option id="@ct.Id.ToString()">@ct.Id.ToString()</option>
+                                    }
+                                }
+                            </select>
+                        }
+                    </span>
+                </div>
+                <div class="input">
+                    <span class="metalabel">@Astria.Framework.Utility.Constants.i18n("inbox")</span>
+                    <span>
+                        @if (Model.Inboxes != null && Model.Inboxes.Length > 0)
+                        { 
+                            <select name="Inbox" class="metaselect">
+                                @foreach (var ib in Model.Inboxes)
+                                {
+                                    if (ib.Id.ToString() == Model.Inbox)
+                                    { 
+                                    <option id="@ib.Id.ToString()" selected="selected">@ib.Id.ToString()</option>
+                                    }
+                                    else if (ib.Id == Guid.Empty)
+                                    {
+                                    <option id="@ib.Id.ToString()"></option>
+                                    }
+                                    else
+                                    { 
+                                    <option id="@ib.Id.ToString()">@ib.Id.ToString()</option>
+                                    }
+                                }
+                            </select>                        
+                        }
+                    </span>
+                </div>
+                <div class="input">
+                    <span class="metalabel">@Astria.Framework.Utility.Constants.i18n("workflow")</span>
+                    <span>
+                        @if (Model.Workflows != null && Model.Workflows.Length > 0)
+                        { 
+                            <select name="Workflow" class="metaselect">
+                                @foreach (var wf in Model.Workflows)
+                                {
+                                    if (wf.Id.ToString() == Model.Workflow)
+                                    { 
+                                    <option id="@wf.Id.ToString()" selected="selected">@wf.Id.ToString()</option>
+                                    }
+                                    else if (wf.Id == Guid.Empty)
+                                    {
+                                    <option id="@wf.Id.ToString()"></option>
+                                    }
+                                    else
+                                    { 
+                                    <option id="@wf.Id.ToString()">@wf.Id.ToString()</option>
+                                    }
+                                }
+                            </select>
+                        }
+                    </span>
+                </div>
+                <div class="input">
+                    <span class="metalabel">@Astria.Framework.Utility.Constants.i18n("securityClass")</span>
+                    <span>
+                        @if (Model.SecurityClasses != null && Model.SecurityClasses.Length > 0)
+                        { 
+                            <select name="SecurityClass" class="metaselect">
+                                <option></option>
+                                @foreach (var sc in Model.SecurityClasses)
+                                {
+                                    if (sc.Id.ToString() == Model.SecurityClass)
+                                    { 
+                                    <option id="@sc.Id.ToString()" selected="selected">@sc.Id.ToString()</option>
+                                    }
+                                    else
+                                    { 
+                                    <option id="@sc.Id.ToString()">@sc.Id.ToString()</option>
+                                    }
+                                }
+                            </select>
+                        }
+                    </span>
+                </div>
+                <div class="input">
+                    <span class="metalabel">@Astria.Framework.Utility.Constants.i18n("folders")</span>
+                    <span>
+                        @if (@Model.Folders != null)
+                        { 
+                            <input name="Folders" type="text" value="@Model.Folders"/>
+                        }
+                        else
+                        {
+                            <input name="Folders" type="text" value="" />
+                        }
+                    </span>
+                </div>
+                <div class="input">
+                    <span class="metalabel">@Astria.Framework.Utility.Constants.i18n("keywords")</span>
+                    <span>
+                        <input type="text" name="Keywords" />
+                    </span>
+                </div>
+                <div class="input displayNone">
+                    <span>
+                        <input type="text" name="IframeId" />
+                    </span>
+                </div>
+                <div class="input displayNone">
+                    <span>
+                        @if (@Model.IsDraft != null)
+                        {
+                            <input type="text" name="IsDraft" value="@Model.IsDraft" />
+                        }
+                        else
+                        {
+                            <input type="text" name="IsDraft" />
+                        }
+                    </span>
+                </div>
+                <div class="input">
+                    <span class="metalabel">@Astria.Framework.Utility.Constants.i18n("selectFile")</span>
+                    <span>
+                        <input id="fid" name="fid" type="file" class="metainput" />
+                        <input value="@Astria.Framework.Utility.Constants.i18n("upload")" type="submit" id="ubtn" class="metainput"/>
+                    </span>
+                </div>
+                <div id="result">
+                </div>
+            </div>
+        </fieldset>
+    </form>
+    @if (Model.ValidationMessages != null && Model.ValidationMessages.Count > 0)
+    { 
+        <ul class="error">
+            @foreach (var item in Model.ValidationMessages)
+            {
+                <li>@item.Value.Message</li>   
+            }
+        </ul>
+    }
+    <input name="Message" value="@Model.Message" /> 
+    <span id="restartBrowser" style="display: none;">@Constants.i18n("restartBrowserMessage")</span>
+    <script type="text/javascript">
+        $ = jQuery;
+        $(document).ready(function () {
+            var iframeId = "@Model.IframeId";
+            if (iframeId) {
+                $(iframeId).remove();
+            }
+            Acquire.initIframe("@HttpUtility.UrlEncode(Model.Message)");
+        });
+    </script>
+</body>
+</html>

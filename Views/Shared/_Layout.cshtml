@@ -1,0 +1,77 @@
+﻿@model Astria.UI.Web.Models.HomeModel
+@using Astria.UI.Web.Utility;
+@using Astria.Framework.Utility;
+@using Astria.UI.Web.Models;
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>@ViewBag.Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    @{
+        if (!Model.IsLoggedIn)
+        {
+            @Styles.Render("~/Content/css/logincss")
+        }
+        else
+        {
+            @Styles.Render("~/Content/css/defaultcss")
+            @Styles.Render("~/Content/css/Views/defaultcss")
+        }
+    }
+</head>
+<body>
+    <input type="hidden" id="useSSL" value="@Request.IsSecureConnection.ToString()" />
+    <input type="hidden" id="BaseURI" value="@Url.Content("~")" />
+    <input type="hidden" id="HelpURI" value="@Model.HelpURI" />
+    <input type="hidden" id="LoginURI" value="@Functions.GetAuthenticationProxyUrl()" />
+    <input type="hidden" id="ServerVD" value="@Functions.GetSetting(Constants.SERVER_VD, "/FusionServer")" />
+    <div class="resizePageCover">
+    </div>
+    <noscript style="font-size: 28px; color: red; text-align: center;">
+        @Constants.i18n("jsRequired1")<br />@Constants.i18n("jsRequired2")
+    </noscript>
+    <div id="masterOfAll" style="display: none;" class="fullWidth fullHeight">
+        @{
+            if (!Model.IsLoggedIn)
+            {
+                @Scripts.Render("~/loginjs")
+            }
+            else
+            {
+                @Scripts.Render("~/defaultjs")
+                @Scripts.Render("~/acejs")
+            }
+            if (!Model.Debug)
+            {
+                <text>
+                    <script type="text/javascript">
+                        document.oncontextmenu = function () {
+                            return false;
+                        }
+                    </script>
+                </text>
+            }
+        }
+        <script type="text/javascript">
+            (function () {
+                var src = '@Functions.GetSetting("WalkMeHttp", "")';
+                var protocol = window.location.protocol;
+                if (protocol === 'https:') {
+                    src = '@Functions.GetSetting("WalkMeHttps", "")';
+                }
+                // Don't attempt to fetch WalkMe js files if there is no src
+                if (src) {
+                    src += '?v=' + '@Model.Version';
+                    var walkme = document.createElement('script');
+                    walkme.type = 'text/javascript';
+                    walkme.async = true;
+                    walkme.src = src;
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(walkme, s);
+                }
+            })();
+        </script>
+        @RenderBody()
+    </div>
+</body>
+</html>

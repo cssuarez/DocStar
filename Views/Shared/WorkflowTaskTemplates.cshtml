@@ -1,0 +1,161 @@
+﻿@*Workflow Task Templates
+Each new template needs to be surrounded by a div with an id of "WFTT_{UI Key}".
+Just the content of these divs are copied into the WF UI.
+The value that you wish to be returned must have an name of "output", as well as a class of uiOutput
+If you wish to have a value set based on a setting in the task, then the class of that control must be the same as the name as the setting.
+If you need to associate JavaScript with a task then in WorkflowUtil.js add a function that has the same name as the task name.*@
+@using Astria.Framework.Utility;
+<div style="display: none">
+    <div id="WFTT_StickyField">
+        <input type="hidden" class="StickyField" />
+    </div>
+    <div id="WFTT_IsRequired">
+        <span class="isRequired">*</span>
+    </div>
+    <div id="WFTT_DisplayMessageTask">
+        <div style="text-align: left;" class="workflowTaskTemplate">
+            <textarea readonly class="UserPromptString uiOutput" name="output"></textarea>
+        </div>
+    </div>
+    <div id="WFTT_UserPromptTask">
+        <div class="workflowTaskTemplate">
+            <span class="UserPromptString"></span>
+            <input type="text" name="output" class="uiOutput" />
+            <input type="hidden" class="Type" />
+        </div>
+    </div>
+    <div id="WFTT_UserVerifyCustomFieldGroupTask">
+        <div class="workflowTaskTemplate">
+            <span class="UserPromptString UserPromptStringRadios"></span>
+            <div class="radios">
+                <div>
+                    <label for="wftt_radio1" class="YesText radioLabelSpacing">@Constants.i18n("yes")</label>
+                    <input type="radio" name="output" class="uiOutput" value="true" id="wftt_radio1" />
+                </div>
+                <div>
+                    <label for="wftt_radio2" class="NoText radioLabelSpacing">@Constants.i18n("no")</label>
+                    <input type="radio" name="output" class="uiOutput" value="false" id="wftt_radio2"
+                           checked="checked" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="WFTT_UserApprovalTask">
+        <div class="workflowTaskTemplate">
+            <span class="UserPromptString"></span>
+            <div class="userApprovalTaskButtons">
+                <a class="wfDeny shadow short_btn no_text_select isNotDenied">@Constants.i18n("deny")</a>
+                <a class="wfApprove shadow short_btn no_text_select isNotApproved">@Constants.i18n("approve")</a>
+                <input type="hidden" class="approvalOutput uiOutput" name="output" />
+            </div>
+        </div>
+    </div>
+    <div id="WFTT_UserVerifyTask">
+        <div class="workflowTaskTemplate">
+            <span class="UserPromptString UserPromptStringRadios"></span>
+            <div class="radios">
+                <div>
+                    <label for="wftt_radio1" class="YesText radioLabelSpacing">@Constants.i18n("yes")</label>
+                    <input type="radio" name="output" class="uiOutput" value="true" id="wftt_radio1" />
+                </div>
+                <div>
+                    <label for="wftt_radio2" class="NoText radioLabelSpacing">@Constants.i18n("no")</label>
+                    <input type="radio" name="output" class="uiOutput" value="false" id="wftt_radio2"
+                           checked="checked" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="WFTT_PromptForInboxTask">
+        <div class="workflowTaskTemplate">
+            <span class="UserPromptString"></span>
+            <select name="output" class="uiOutput">
+                <option value="">@Constants.i18n("noInboxesAvailable")</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="WFTT_PromptForWorkflowTask">
+        <div class="workflowTaskTemplate">
+            <span class="UserPromptString"></span>
+            <select name="output" class="uiOutput">
+                <option value="default">Sample</option>
+            </select>
+        </div>
+    </div>
+    <div id="WFTT_PromptForContentTypeTask">
+        <div class="workflowTaskTemplate">
+            <span class="UserPromptString"></span>
+            <select name="output" class="uiOutput">
+                <option value="default">Sample</option>
+            </select>
+        </div>
+    </div>
+    <div id="WFTT_PromptForRecordCategoryTask">
+        <div class="workflowTaskTemplate">
+            <span class="UserPromptString"></span>
+            <select name="output" class="uiOutput">
+                <option value="default">Sample</option>
+            </select>
+        </div>
+    </div>
+    <div id="WFTT_PromptForSecurityClassTask">
+        <div class="workflowTaskTemplate">
+            <span class="UserPromptString"></span>
+            <select name="output" class="uiOutput">
+                <option value="default">Sample</option>
+            </select>
+        </div>
+    </div>
+    <div id="WFTT_PromptForUserTask">
+        <div class="workflowTaskTemplate">
+            <span class="UserPromptString"></span>
+            <select name="output" class="uiOutput">
+                <option value="default">Sample</option>
+            </select>
+        </div>
+    </div>
+    <div id="WFTT_SimpleDropDownTask">
+        <div class="workflowTaskTemplate">
+            <span class="UserPromptString"></span>
+            <select class="isCombo uiOutput" name="output">
+                <option value="default">Sample</option>
+            </select>
+        </div>
+    </div>
+    <div id="WFTT_SimpleComboBoxTask">
+        <div class="workflowTaskTemplate">
+            <span class="UserPromptString"></span>
+            <select name="output" class="uiOutput">
+                <option value="default">Sample</option>
+            </select>
+        </div>
+    </div>
+    <div id="WFTT_DropDownTask">
+        <div class="workflowTaskTemplate">
+            <span class="UserPromptString"></span>
+            <select class="isCombo uiOutput" name="output">
+                <option value="default">@Constants.i18n("loadText")</option>
+            </select>
+        </div>
+    </div>
+    <div id="WFTT_ComboBoxTask">
+        <div class="workflowTaskTemplate">
+            <span class="UserPromptString"></span>
+            <select class="isCombo uiOutput" name="output">
+                <option value="default">@Constants.i18n("loadText")</option>
+            </select>
+        </div>
+    </div>
+    <div id="WFTT_PromptForFolderTask">
+        <div class="workflowTaskTemplate">
+            <span class="UserPromptString"></span>
+            <input type="text" name="wfFolderSelection" class="ignore" value="@Constants.i18n("clickFolderSelect")" title="@Constants.i18n("selectFolder")" />
+            <input name="output" class="uiOutput" type="hidden" />
+        </div>
+    </div>
+    <div id="WFTT_Exception">
+        <span class="exception"></span>
+    </div>
+</div>

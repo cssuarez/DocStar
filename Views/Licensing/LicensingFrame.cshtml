@@ -1,0 +1,50 @@
+﻿@using Astria.Framework.Utility
+@{
+    Layout = null;
+}
+@model Astria.UI.Web.Models.LicenseModel
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="@Url.Content("~/Content/css/Licensing.css")" rel="Stylesheet" type="text/css" />
+    <title>Licensing</title>
+</head>
+<body>
+    <input type="hidden" id="useSSL" value="@Request.IsSecureConnection.ToString()" />
+    <input type="hidden" id="BaseURI" value="@Url.Content("~")" />
+    <input type="hidden" id="LoginURI" value="@Functions.GetAuthenticationProxyUrl()" />
+    <input type="hidden" id="ServerVD" value="@Functions.GetSetting(Constants.SERVER_VD, "/FusionServer")" />
+    @Scripts.Render("~/constantjqueryjs")
+    <form id="ufrm" method="post" enctype="multipart/form-data" action="SetLicenseFromFile">
+        <div class="item licenseFile">
+            <div>
+                <input id="fid" name="fid" type="file" class="metainput" />
+                <input value="@Astria.Framework.Utility.Constants.i18n("upload")" type="submit" id="ubtn" disabled="disabled" class="metainput"/>
+                
+                @if (Model.Error != null) { 
+                <span style="color:red;">@Model.Error.Message</span>
+                }
+                @if (!String.IsNullOrWhiteSpace(Model.Message))
+                { 
+                <span>@Model.Message</span>
+                }
+            </div>
+        </div>
+    </form>
+    <script type="text/javascript">
+               $ = jQuery;
+               $(document).ready(function () {
+                   $('#fid').change(function () {
+                       if ($('#fid').val().indexOf('.txt') !== -1) {
+                           $('#ubtn').removeAttr('disabled');
+                       }
+                       else {
+                           $('#ubtn').attr('disabled', 'disabled');
+                       }
+                   });
+               });
+    </script>
+</body>
+</html>
