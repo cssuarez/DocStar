@@ -1,0 +1,12 @@
+﻿@using Astria.Framework.Utility;
+<div class="metaNavigationContainer" style="{{=it.display}}">
+    <div class="meta_navigation">
+        <span class="metadata_navigation_start ui-icon ui-icon-seek-start"></span>
+        <span class="metadata_navigation_prev ui-icon ui-icon-seek-prev"></span>
+        <span class="metadata_results_type">@Constants.i18n("viewing") @Constants.i18n("item")</span>
+        <input class="metadata_results_counter" type="text" value="{{=it.entityViewed }}" maxlength="4" />
+        <span class="metadata_results_max">@Constants.i18n("of") {{=it.numSeries }}</span>
+        <span class="metadata_navigation_next ui-icon ui-icon-seek-next"></span>
+        <span class="metadata_navigation_end ui-icon ui-icon-seek-end"></span>
+    </div>
+</div>  

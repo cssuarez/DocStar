@@ -1,0 +1,36 @@
+﻿@using Astria.Framework.Utility;
+<td class="customGridDataCell">
+    {{if (it.lockToolTip) { }}
+    <span class="ui-icon ui-icon-locked fleft inlineblock radioLabelSpacing" {{=it.lockToolTip}}></span>
+    {{ } }}
+    <span {{=it.versionNumberTitle}}>{{=it.versionNumber}}</span>    
+</td>
+<td class="customGridDataCell">
+    <span {{=it.versionStateTitle}}>{{=it.versionState}}</span>
+</td>
+<td class="customGridDataCell">
+    <span {{=it.usernameTitle}}>{{=it.username}}</span>
+</td>
+<td class="customGridDataCell">    
+    <span {{=it.publisherNameTitle}}>{{=it.publisherName}}</span>
+</td>
+{{if (it.comments) { }}
+<td class="customGridDataCell">
+    {{
+        var i = 0; var length = it.comments.length;
+        for (i; i < length; i++) {
+            var c = it.comments[i];
+    }}
+    {{=c}}
+    {{ } }}
+</td>
+{{ } }}
+<td class="customGridDataCell">
+    <span {{=it.dateTitle}}>{{=it.date}}</span>
+    {{if (it.canUnpublish) { }}
+    <span class="unpublishVersion ui-icon ui-icon-circle-minus posAbs displayNone" title="@Constants.i18n("unpublish")"></span>
+    {{ } }}
+    {{if (it.canDelete) { }}
+    <span class="deleteVersion ui-icon ui-icon-circle-close posAbs displayNone" title="@Constants.i18n("deleteVersion")"></span>
+    {{ } }}
+</td>

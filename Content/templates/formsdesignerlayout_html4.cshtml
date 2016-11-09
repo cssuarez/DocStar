@@ -1,0 +1,58 @@
+﻿@using Astria.Framework.Utility;
+@* Forms Designer Control Tabs *@
+<style>
+    {{=it.cssLayout}}
+</style>
+<div class="settingsPanel">
+    <div class="inlineblock fullWidth spacingTopBottom">
+        <div class="defaultContentTypeContainer">
+            <span class="fleft">@Constants.i18n("contentType")</span>
+            <select class="fright" name="DefaultContentTypeId">
+                {{
+                var idx = 0;
+                var length = it.contentTypes.length;
+                for(idx = 0; idx < length; idx++) {
+                    var attrs = { selected: it.contentTypes[idx].Id === it.Template.DefaultContentTypeId ? 'selected' : undefined };
+                }}
+                {{=Utility.safeHtmlValue(it.contentTypes[idx].Id, { attrs: attrs, tag: 'option', text: it.contentTypes[idx].Name }) }}
+                {{ } }}
+            </select>
+        </div>
+    </div>
+    <ul class="tabs">
+        <li class="leftMostTabBorder">
+            <a href="#formsDesignerAddField">@Constants.i18n("addFields")</a>
+        </li>
+        <li class="centerTabBorder">
+            <a href="#formsDesignerFieldSettings">@Constants.i18n("fieldSettings")</a>
+        </li>
+        <li class="centerTabBorder">
+            <a href="#formsDesignerFormSettings">@Constants.i18n("formSettings")</a>
+        </li>
+    </ul>
+    @* Add Field Panel *@
+    <div id="formsDesignerAddField">
+        @* Render Controls here *@
+    </div>
+    <div id="formsDesignerFieldSettings">
+        @* Render Field Settings Here *@
+    </div>
+    <div id="formsDesignerFormSettings">
+        @* Render Form Template Settings Here *@
+    </div>
+</div>
+@* Forms Designer Button Controls *@
+<div class="formTemplateButtonPanel">
+    <span title="{{=it.canCreateForm ? '' : it.canNotCreateFormTooltip}}" class="custom_button short_btn createFormFromTemplate {{=it.isNew || !it.canCreateForm? 'disabled' : ''}}">@Constants.i18n("createForm")</span>
+    <span class="custom_button short_btn deleteFormTemplate {{=it.isNew ? 'disabled' : '' }}">@Constants.i18n("delete")</span>
+    <span class="custom_button short_btn saveAsFormTemplate">@Constants.i18n("saveAs")</span>
+    <span class="custom_button short_btn saveFormTemplate disabled">@Constants.i18n("save")</span>
+</div>
+@* Forms Designer Canvas *@
+<div class="designerCanvasContainer fullHeight">
+    <div class="templateDataContainer">
+        @* Render Template Data View Here *@
+    </div>
+    @* Render Form Part Pager Here *@
+</div>
+<div class="editingFormulasOverlay ui-widget-overlay" style="display: none;"></div>

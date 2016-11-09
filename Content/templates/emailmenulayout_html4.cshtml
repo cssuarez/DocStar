@@ -1,0 +1,9 @@
+﻿@using Astria.Framework.Utility
+<li>
+    <div class="menu_item emailSelectOptions">
+        {{ if(it.emailIsIndented) { }}
+            <span class="spacer">&nbsp;</span>
+        {{ } }}
+        <span class="anchor" title="@Constants.i18n("email")">@Constants.i18n("email")</span>
+    </div>
+</li>

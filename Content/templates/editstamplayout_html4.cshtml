@@ -1,0 +1,98 @@
+﻿@using Astria.Framework.Utility;
+<h2>@Constants.i18n("editStamps")</h2>
+<div>
+    <fieldset id="stampCont">
+        <legend>@Constants.i18n("stamps")</legend>
+        <div id="stampDTO">
+            <div class="listarea">
+                <div class="gridContainer">
+                </div>
+            </div>
+            <div class="metaarea">
+                <div class="input stampType">
+                    <span class="metalabel">@Constants.i18n("stampType"):</span>
+                    <span>@Constants.i18n("text")</span>
+                    <input class="textStamp" name="Type" type="radio" checked="checked" />
+                    <span>@Constants.i18n("image")</span>
+                    <input class="imageStamp" name="Type" type="radio" />
+                </div>                
+                <div id="imageStampDTO">
+                    <iframe id="imageStampDTOForm" src="Annotations/ImageStampFrame"></iframe>
+                    <div class="input imageStampPreview">
+                        <span class="metalabel">@Constants.i18n("preview")</span>
+                        <div class="imageStampCont">
+                        </div>
+                    </div>
+                </div>
+                <div id="textStampDTO">
+                    <div class="input">
+                        <span class="metalabel">@Constants.i18n("name"):</span>
+                        <input name="Name" type="text" maxlength="12"/>
+                    </div>
+                    <div class="input">
+                        <span class="metalabel">@Constants.i18n("stampText"):</span>
+                        <textarea name="Description" cols="22" rows="8"></textarea><br /><br />
+                        <input style="margin-left:156px" type="button" name="seeFormat" value="@Constants.i18n("replacementText")" />
+                    </div>
+                    <div class="input">
+                        <span class="metalabel">@Constants.i18n("fontType"):</span>
+                        <select name="FontType">
+                        </select>
+                    </div>
+                    <div class="input">
+                        <span class="metalabel">@Constants.i18n("fontSize"):</span>
+                        <select name="FontSize">
+                        </select>
+                    </div>
+                    <div class="input">
+                        <span class="metalabel">@Constants.i18n("fontStyle"):</span>
+                        <div class="toggle_btn custom_button">
+                            <span id="FontStyleBold" title="@Constants.i18n("bold")" value="{{= Constants.fs.Bold}}">
+                            </span>
+                        </div>
+                        <div class="toggle_btn custom_button">
+                            <span id="FontStyleItalic" title="@Constants.i18n("italic")" value="{{= Constants.fs.Italic}}">
+                            </span>
+                        </div>
+                        <div class="toggle_btn custom_button">
+                            <span id="FontStyleUnderLine" title="@Constants.i18n("underline")" value="{{= Constants.fs.Underline}}">
+                            </span>
+                        </div>
+                        <div class="toggle_btn custom_button">
+                            <span id="FontStyleStrike" title="@Constants.i18n("strikethrough")" value="{{= Constants.fs.Strikethrough}}">
+                            </span>
+                        </div>
+                    </div>
+                    <div class="input">
+                        <span class="metalabel">@Constants.i18n("fontColor"):</span>
+                        <a class="fontColor"></a>
+                    </div>
+                    <div class="input textStampPreview">                    
+                        <span class="metalabel">@Constants.i18n("preview"):</span>
+                        <div class="textStampCont">                            
+                        </div>
+                    </div>
+                </div>                
+                
+            </div>
+        </div>
+    </fieldset>
+</div>
+<div id="formatPreview" style="display:none">
+    <table>
+        <tr><td>%%</td><td>%</td></tr>
+        @foreach (var s in new[] { "%user%", "%shortDate%", "%mediumDate%", "%longDate%", "%shortTime%", "%mediumTime%", "%longTime%", "%isoDate%", "%default%", "%y%" })
+        {
+            string id = "es_" + s.Replace("%","");
+            <tr><td>@s</td><td>@Constants.i18n(id)</td><td></td></tr>        
+        }
+        <tr><td>%mmm dS%</td><td colspan="2" ></td></tr>
+        <tr><td>%h:MM:ss TT%</td><td colspan="2" ></td></tr>
+        <tr><td>%dddd, mmmm dd, yyyy HH:MM:ss%</td><td colspan="2" ></td></tr>
+    </table>  
+ </div>
+<div class="buttons">
+    <input type="submit" name="save_stamp" value="@Constants.i18n("save")" />
+    <input type="button" name="delete_stamp" value="@Constants.i18n("delete")" />
+    <input type="hidden" name="stamp_Error" />
+</div>

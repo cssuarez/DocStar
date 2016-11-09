@@ -1,0 +1,33 @@
+﻿@using Astria.Framework.Utility;
+<div class="viewer_menubar">
+    <div class="arrow">
+        <span class="{{=it.isCollapsed ? 'collapse_arrow' : 'expand_arrow'}}"></span>
+    </div>
+    {{if(it.showPreviewControls) { }}
+    <div class="view_menu">
+        @*Place Menu Here from DocumentViewerMenuView*@
+    </div>
+    <div class="viewer_navigation">
+        <span class="ui-icon ui-icon-seek-start navigation_start navControl"></span>
+        <span class="ui-icon ui-icon-seek-prev navigation_prev navControl"></span>
+        <span class="viewer_results_type no_text_select">@Constants.i18n("page")</span>
+        <input name="currentPage" type="text" value="{{=it.currentPage }}" />
+        <span class="viewer_results_max no_text_select navControl">@Constants.i18n("of") {{=it.maxPages}}</span>
+        <span class="ui-icon ui-icon-seek-next navigation_next navControl"></span>
+        <span class="ui-icon ui-icon-seek-end navigation_end navControl"></span>
+    </div>
+    <div class="dqRenderingInProgressContainer">
+        <span {{=it.renderingTitle}}>{{=it.renderingMessage}}</span>
+    </div>
+    {{ } }}
+</div>
+{{if(it.showPreviewControls) { }}
+<div class="viewer_image">
+    <div class="img_container shadow_glow">
+        <div class="transformCont">
+            <img name="image_full" alt="" class="element_transition" src="{{= it.imageSource}}" />
+        </div>
+        <input class="rot" type="hidden" value="0" />
+    </div>
+</div>
+{{ } }}

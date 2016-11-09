@@ -1,0 +1,34 @@
+﻿@using Astria.Framework.Utility;
+@* Forms Designer Forms Part Pager Layout *@
+<div class="menubar">
+    @* First Part *@
+    <span class="ui-icon ui-icon-seek-start"></span>
+    @* Prev Part *@
+    <span class="ui-icon ui-icon-seek-prev"></span>
+    <span>@Constants.i18n("part")</span>
+    @* Input to change form part and to show which form part is currently being viewed *@
+    <input type="text" name="Sequence" value="{{=it.index + 1}}" />
+    <span>@Constants.i18n("of")</span>
+    @* Label displaying total number of form parts *@
+    <span>{{=it.totalFormParts}}</span>
+    @* Next Part *@
+    <span class="ui-icon ui-icon-seek-next"></span>
+    @* Last Part *@
+    <span class="ui-icon ui-icon-seek-end"></span>
+    @* Add Form Part to the end *@
+    <span class="ui-icon ui-icon-plus" title="@Constants.i18n("addFormPart")"></span>
+    @* Insert Form Part after currently viewed page *@
+    <span class="insertPart custom_button short_btn" title="@Constants.i18n("insertFormPart")">@Constants.i18n("insert")</span>
+    @* Delete Currently Viewed Form Part *@
+    <span class="ui-icon ui-icon-close {{=it.collection.length === 1 ? ' disabled ' : ' '}}" title="@Constants.i18n("deleteFormPart")"></span>
+    @* Book Mark Label *@
+    <span>@Constants.i18n("bookmarkLabel")</span>
+    <input type="text" name="BookmarkLabel" value="{{=it.BookmarkLabel}}">
+    @* Reset Approvals *@
+    @* Commented out for Bug 11478 - http://pedro.docstar.com/b/show_bug.cgi?id=11478 *@
+    @*<label>
+        <input type="checkbox" name="ResetsApprovals" {{=it.resetsApprovalsChecked}} />
+        <span class="no_text_select">@Constants.i18n("resetApprovals")</span>
+    </label>*@
+</div>
+@* Forms Designer Canvas Layout *@

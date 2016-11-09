@@ -1,0 +1,113 @@
+﻿@using Astria.Framework.Utility;
+{{
+    if (!it.proxies) {
+        it.proxies = [];
+    }
+    if(!it.list.isEmpty()) {
+}}
+<h2>@Constants.i18n("editLDAPConnections")</h2>
+<div id="ldapConnections_layout">
+    <fieldset>
+        <legend>@Constants.i18n("ldapConnections")</legend>
+        <ol id="ldapDTO">
+            <li>
+                <span>@Constants.i18n("domain"):</span>
+                <div>
+                    <input type="hidden" name="Id" />
+                    <input type="text" name="Domain" />
+                </div>
+            </li>
+            <li>
+                <span>@Constants.i18n("host"):</span>
+                <div>
+                    <input type="text" name="Host" />
+                </div>
+            </li>
+            <li>
+                <span>@Constants.i18n("rootDN"):</span>
+                <div>
+                    <input type="text" name="RootDN" />
+                </div>
+            </li>
+            <li>
+                <span>@Constants.i18n("port"):</span>
+                <ul class="portOpts">
+                    <li>
+                        <input class="standardPort ignore" type="radio" name="ldapPort" checked="checked" />
+                        <span>@Constants.i18n("standardLDAPPort")</span>
+                    </li>
+                    <li>
+                        <input class="sslPort ignore" type="radio" name="ldapPort" />
+                        <span>@Constants.i18n("sslLDAPPort")</span>
+                    </li>
+                    <li>
+                        <span>@Constants.i18n("customLDAPPort")</span>
+                        <input type="text" name="Port" />
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <span>@Constants.i18n("username"):</span>
+                <div>
+                    <input type="text" name="Username" />
+                </div>
+            </li>
+            <li>
+                <span>@Constants.i18n("password"):</span>
+                <div>
+                    <input type="password" name="Password" value="@Constants.i18n("hiddenPass")" />
+                </div>
+            </li>
+            <li>
+                <span>@Constants.i18n("ldapProxy"):</span>
+                <div>
+                    <select name="ProxyMachineId">
+                        <option></option>
+                        {{ it.proxies.each(function(item) { }}
+                        <option value="{{= item.get('Id') }}">{{= item.get('Name') }}</option>
+                        {{ }); }}
+                    </select>
+                </div>
+            </li>
+            @* TODO: make this work to be able to test ldap connection
+            <li>
+                <span>@Constants.i18n("testConnection")</span>
+                <div>
+                    <input type="checkbox" name="DontTest" />
+                </div>
+            </li>*@
+            <li>
+                <span>@Constants.i18n("instances"):</span>
+                <div id="ldapSlapBox" class="inlineblock fleft">
+                </div>
+                <ul class="slapBoxProps inlineblock fleft" style="display:none">
+                    <li>
+                        <p class="fullWidth inlineblock spacingLeftBottomSmall bold block selectedSite"></p>
+                    </li>
+                    <li>
+                        <span>@Constants.i18n("filter"):</span>
+                        <input type="text" name="Filter" />
+                    </li>
+                    <li>
+                        <span>@Constants.i18n("priority"):</span>
+                        <input type="text" name="Priority" />
+                    </li>
+                </ul>
+            </li>
+        </ol>        
+    </fieldset>
+</div>
+<div class="buttons">
+    <input type="button" id="saveLDAPConn" value="@Constants.i18n("save")" />
+    <input type="button" id="deleteLDAPConn" value="@Constants.i18n("delete")" />
+    <input type="hidden" name="errors_LDAP" />
+</div>
+{{  } else { }}
+<div class="error">
+    {{ if(it.list.errorMsg === null) { }}
+{{= Constants.c.noDataReturnedFromServer }}
+{{ } else { }}
+{{= it.list.errorMsg }}
+{{ } }}
+</div>
+{{ } }}

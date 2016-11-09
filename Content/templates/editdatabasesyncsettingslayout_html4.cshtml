@@ -1,0 +1,71 @@
+﻿@using Astria.Framework.Utility;
+{{
+    if(!$.isEmptyObject(it)) {
+}}
+<h2>@Constants.i18n("editDatbaseSyncSettings")</h2>
+<div id="dbSync_layout">
+    <fieldset>
+        <legend>@Constants.i18n("databaseSyncSettings")</legend>
+        <ol id="dbSyncDTO" class="unstyledList">
+            <li>
+                @* Global/Instance *@
+                <label>@Constants.i18n("company"):</label>
+                <select name="InstanceId">
+                    {{
+                        var i = 0;
+                        var length = it.settings.length;
+                        for(i; i < length; i++) {
+                            var instanceId = it.settings[i].InstanceId;
+                            var name = it.settings[i].Name;
+                    }}
+                        {{= Utility.safeHtmlValue(instanceId, {attrs:{ selected: it.selectedSetting.InstanceId === instanceId ? 'selected' : undefined, name: 'InstanceId' }, tag:'option', text: name })}}
+                    {{
+                        }
+                    }}
+                </select>
+            </li>
+            <li>
+                @* Enabled *@
+                <label>@Constants.i18n("enabled"):</label>
+                {{= Utility.safeHtmlValue(it.selectedSetting.Enabled, {attrs:{type:'checkbox', checked: it.selectedSetting.Enabled ? 'checked' : undefined, name: 'Enabled' }, tag:'input'})}}
+            </li>
+            <li>
+                @* Run On Client *@
+                <label>@Constants.i18n("runOnClient"):</label>
+                {{= Utility.safeHtmlValue(it.selectedSetting.RunOnClient, {attrs:{type:'checkbox', checked: it.selectedSetting.RunOnClient ? 'checked' : undefined, name: 'RunOnClient' }, tag:'input'})}}
+            </li>
+            <li>
+                @* Frequency *@
+                <label>@Constants.i18n("frequencyToSync"):</label>
+                {{= Utility.safeHtmlValue(it.selectedSetting.Frequency, {attrs:{type:'number', min: 5, name: 'Frequency' }, tag:'input'})}}
+                <span>@Constants.i18n("inMinutes")</span>
+            </li>
+            <li>
+                @* Throttling *@
+                <label>@Constants.i18n("chunkSize"):</label>
+                @* // Convert from Bytes to KiloBytes *@
+                {{= Utility.safeHtmlValue(it.selectedSetting.Throttling.ChunkSize / 1024, {attrs:{type:'number', min: 1, name: 'ChunkSize' }, tag:'input'})}}   
+                <span>@Constants.i18n("inKiloBytes")</span>
+            </li>
+            <li>
+                <label>@Constants.i18n("chunkDelay"):</label>
+                {{= Utility.safeHtmlValue(it.selectedSetting.Throttling.ChunkDelay, {attrs:{type:'number', min: 0, name: 'ChunkDelay' }, tag:'input'})}}
+                <span>@Constants.i18n("inMilliseconds")</span>
+            </li>
+        </ol>
+    </fieldset>
+</div>
+<div class="buttons">
+    <input type="button" id="saveDBSync" value="@Constants.i18n("save")" />
+    <input type="button" id="deleteDBSync" value="@Constants.i18n("delete")" />
+    <input type="hidden" name="errors_LDAP" />
+</div>
+{{  } else { }}
+<div class="error">
+    {{ if(it.list.errorMsg === null) { }}
+    {{= Constants.c.noDataReturnedFromServer }}
+    {{ } else { }}
+    {{= it.list.errorMsg }}
+    {{ } }}
+</div>
+{{ } }}

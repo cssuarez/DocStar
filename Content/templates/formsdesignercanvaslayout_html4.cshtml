@@ -1,0 +1,15 @@
+﻿@using Astria.Framework.Utility;
+@* Field Placement - Allow One, Two, Three Column layout or freeform layout *@
+<div class="templateFieldContainer fullWidth fullHeight">
+    <div class="canvas no_text_select">
+        <div id="masterForm">
+            @* Render Form Elements and Form Element Groups Here *@
+        </div>
+    </div>
+    <div class="fieldErrorMessageContainer">
+        <div class="fieldErrorMessage addAFieldMessage" style="{{=(!it.numberOfFormElements === 0) ? '': 'display: none;' }}">
+            <h1 class="greenLight">@Constants.i18n("addAFieldMessage")</h1>
+            <h2 class="explanation fullWidth block">@Constants.i18n("addAFieldExplanation")</h2>
+        </div>
+    </div>
+</div>

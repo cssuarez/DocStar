@@ -1,0 +1,5 @@
+﻿@using Astria.Framework.Utility;
+<div class="formSettings">
+    {{=Utility.safeHtmlValue(it.DisplayName, { tag: 'h1', attrs: { title: it.DisplayName} })}}
+    {{=Utility.safeHtmlValue(it.Template.Description, { tag: 'pre', attrs: { title: it.Template.Description || ''} })}}
+</div>

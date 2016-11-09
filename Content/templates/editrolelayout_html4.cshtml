@@ -1,0 +1,155 @@
+﻿@using Astria.Framework.Utility;
+<h2>@Constants.i18n("editGroup")</h2>
+{{ if (!it.list.isEmpty()) { 
+    var roleMemberships = it.selected.get('RoleMemberships');
+    var selectedUsers = [];
+    var selected_object = {};
+    if (roleMemberships && roleMemberships.length > 0 ) {
+        $.each(roleMemberships, function(index, value) {
+            selected_object[value] = true;
+        });
+    }
+    var unselectedUsers = [];
+    it.listu.each(function(user) {
+        if(user.get('Id') !== Constants.c.emptyGuid) {
+            if (selected_object[user.get('Id')] !== true) {
+                @*Filter out super admins from the available pool if you are not a super admin.*@
+                if($('#isSuperAdmin').val() === 'True' || user.get('Flags') !== 3) {
+                    unselectedUsers.push(user);
+                }
+            } else {
+                @*If the user is selected in the group, then display regardless of user flags.*@
+                selectedUsers.push(user); 
+            }
+        }
+    });
+    var hasCreateEdit = Utility.checkGP(it.gp, Constants.gp.Create_Edit_Groups);
+    var hasDelete = Utility.checkGP(it.gp, Constants.gp.Delete_Groups);
+    var hasLDAPImport = Utility.checkGP(it.gp, Constants.gp.Admin_LDAP);
+    var connId = it.selected.get('ConnectionId');
+    var description = it.selected.get('Description');
+    if (!description) { description = ""; }
+}}
+<div id="role_layout">
+    <div class="left">
+        <fieldset>
+            <legend>@Constants.i18n("groupTitle")</legend>
+            <ol class="unstyledList">
+                <li>
+                    <label>@Constants.i18n("selectedGroup"):</label>
+                    <select name="Id">
+                    {{ it.list.each(function(item) { }}
+                        {{ if (hasCreateEdit || item.get('Id') !== Constants.c.emptyGuid && !hasCreateEdit) { }}
+                            {{ if (it.selected.get("Name") === item.get("Name")) { }}
+                                <option value="{{= it.selected.get('Id') }}" selected="selected">{{= item.get('Name') }}</option>
+                            {{ } else { }}
+                                <option value="{{= item.get('Id') }}">{{= item.get('Name') }}</option>
+                            {{ } }}    
+                        {{ } }}
+                    {{ }); }}
+                    </select>
+                </li>
+                <li>
+                    <label>@Constants.i18n("groupName"):</label>
+                    {{= $("<div></div>").append($('<input type="text" name="Name" />').attr("value", it.selected.get('Name'))).html()}}
+                </li>
+                <li>
+                    <label>@Constants.i18n("description"):</label>
+                    {{= $("<div></div>").append($('<input type="text" name="Description" />').attr("value", description)).html()}}
+                </li>
+                <li>
+                    <label>@Constants.i18n("enableIntegrated"):</label>
+                    {{
+                        var dn = it.selected.get('DistinguishedName');
+                        dn = dn || '';
+                        var isIntegrated = "";
+                        var hide = "hidden";
+                        if(it.selected.get('ConnectionId') && dn) {
+                            isIntegrated = "checked=checked";
+                            hide="";
+                        }
+                    }}
+                    <input {{= isIntegrated}} type="checkbox" name="EnableIntegrated" />
+                </li>
+                <li class="enabledIntegrated {{= hide }}">
+                    <label>@Constants.i18n("domain"):</label>
+                    <select name="LDAPConnection">
+                        <option id=""></option>
+                        {{ it.listldap.each(function(item) { 
+                            if(item.get('Id') === connId) { }}
+                                <option id="{{= item.get('Id')}}" selected="selected">{{= item.get('Name')}}</option>
+                        {{  } else { }}
+                                <option id="{{= item.get('Id')}}">{{= item.get('Name')}}</option>
+                        {{  } }); }}
+                    </select>
+                </li>
+                <li class="enabledIntegrated {{= hide }}">
+                    <label>@Constants.i18n("distinguishedName"):</label>
+                    <input type="text" name="DistinguishedName" value="{{= dn }}" />
+                </li>
+                <li>
+                    <label>@Constants.i18n("gatewayPermissions"):</label>
+                    <div class="permissions"></div>
+                    <input name="GatewayPermissions" type="hidden" value="{{= it.selected.get('GatewayPermissions') }}" />
+                </li>
+            </ol>
+        </fieldset>
+    </div>
+    <div class="right">
+        <fieldset>
+            <legend>@Constants.i18n("usersInGroup")</legend>
+            <select name="RoleMemberships" multiple="multiple" size="14">
+                {{ 
+                    if (selectedUsers && selectedUsers.length > 0) {
+                        $.each(selectedUsers, function(index, value) { 
+                }}
+                        <option selected="selected" value="{{= value.get('Id') }}">{{= value.get('Username') }}</option>
+                {{  
+                        });
+                    }
+                    if (unselectedUsers.length > 0) {
+                        $.each(unselectedUsers, function(index, value) {
+                }}
+                                <option value="{{= value.get('Id') }}">{{= value.get('Username') }}</option>
+                {{      
+                        });
+                    }   
+                }}
+            </select>  
+        </fieldset>
+    </div>
+    <div class="buttons">
+        {{ if (hasCreateEdit) { }}
+        <input type="button" name="save_role" value="@Constants.i18n("save")" />
+        {{ } }}
+        {{ if(hasDelete) { }}
+        <input type="button" name="delete_role" value="@Constants.i18n("delete")" />
+        {{ } }}
+        {{ if(hasLDAPImport) { }}
+        <input type="button" name="import_role" value="@Constants.i18n("ldapImport")" />
+        {{ } }}
+        <input type="hidden" name="role_Error" />
+    </div>
+</div>
+<div id="replace_r" style="display: none;">
+    <span class="replaceDescription">@Constants.i18n("replaceUserOrRole")</span>
+    <p>
+        <select id="roleType">
+            <option selected="selected" value="group">@Constants.i18n("roleReplacement")</option>   
+            <option value="user">@Constants.i18n("userReplacement")</option>    
+        </select>
+        <select id="groupToGroupSelect">    
+        </select>
+        <select id="groupToUserSelect" style="display: none;">    
+        </select>
+    </p>
+</div>
+{{  } else { }}
+<span class="error">
+{{ if(!it.list.errorMsg) { }}
+{{= Constants.c.noDataReturnedFromServer }}
+{{ } else { }}
+{{= it.list.errorMsg }}
+{{ } }}
+</span>
+{{ } }}

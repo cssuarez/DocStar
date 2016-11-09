@@ -1,0 +1,37 @@
+﻿@using Astria.Framework.Utility;
+{{ if(it.isLabelValuePair) { }}
+<div class="labelValuePairContainer">
+    <fieldset>
+        <legend>@Constants.i18n("choices")</legend>
+        @* Render Label Value Pair Items Here *@
+    </fieldset>
+</div>
+{{ } else { }}
+
+@* Value Text Settings *@
+<div class="valueTextSettingsContainer">
+    @* Value *@
+    <div>
+        <label>
+            {{ if(!it.isDocProp) { }}
+            <span>@Constants.i18n("predefinedValue")</span>
+            {{ if(it.isCheckbox) { }}
+            <input type="checkbox" name="Value" {{=it.Value ? "checked='checked'" : ""}} />
+            {{ } else { }}
+            <input type="text" name="Value" value="{{=it.Value}}" />
+            {{ } }}
+            {{ } }}
+        </label>
+    </div>
+    <div class="fontSettingsContainer">
+        @* Render a text setting here *@
+    </div>
+    @* Instructions for user / Help Text *@
+    <div>
+        <label>
+            <span>@Constants.i18n("helpText")</span>
+            <textarea rows="4" class="textareaResizeNone" name="HelpText">{{=it.HelpText}}</textarea>
+        </label>
+    </div>
+</div>
+{{ } }}

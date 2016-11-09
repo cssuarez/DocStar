@@ -1,0 +1,233 @@
+﻿@using Astria.Framework.Utility;
+@using Astria.Framework.DataContracts;
+@* Render Content Type Field Controls Here *@
+@* Basic Input Controls *@
+<div data-accid="basicInputControlsForms" class="inlineblock fullWidth">
+    <div class="accordion_title accordion_title_{{=it.basicInputControlsAccState}}">
+        <div class="accordion_title_contents">
+            <div class="title_arrow">
+            </div>
+            <span class="anchor">@Constants.i18n("basic")</span>
+            <span class="swoosh"></span>
+        </div>
+    </div>
+    <div class="accordion {{=it.basicInputControlsAccState}}">
+        <ul class="fleft">
+            <li class="grayGradientBackground shadow basicControl">
+                <span class="formElementControlIcon"></span>
+                <span class="no_text_select">@Constants.i18n("singleLineText")</span>
+                <input name="Tag" type="hidden" value="@FormTag.TextInput" />
+                <input type="hidden" name="BackingStoreId" value="" />
+            </li>
+            <li class="grayGradientBackground shadow basicControl">
+                <span class="formElementControlIcon"></span>
+                <span class="no_text_select">@Constants.i18n("multiLineText")</span>
+                <input name="Tag" type="hidden" value="@FormTag.TextArea" />
+                <input type="hidden" name="BackingStoreId" value="" />
+            </li>
+            @* Formatted Text - may have a backing store or static text? *@
+            <li class="grayGradientBackground shadow basicControl">
+                <span class="formElementControlIcon"></span>
+                <span class="no_text_select">@Constants.i18n("fieldLabel")</span>
+                <input name="Tag" type="hidden" value="@FormTag.Label" />
+            </li>
+            <li class="grayGradientBackground shadow basicControl">
+                <span class="formElementControlIcon"></span>
+                <span class="no_text_select">@Constants.i18n("multipleChoice")</span>
+                <input name="Tag" type="hidden" value="@FormTag.RadioButtonGroup" />
+                <input type="hidden" name="BackingStoreId" value="" />
+            </li>
+            <li class="grayGradientBackground shadow basicControl">
+                <span class="formElementControlIcon"></span>
+                <span class="no_text_select">@Constants.i18n("ty_Boolean")</span>
+                <input name="Tag" type="hidden" value="@FormTag.CheckBox" />
+                <input type="hidden" name="BackingStoreId" value="" />
+            </li>
+            <li class="grayGradientBackground shadow basicControl">
+                <span class="formElementControlIcon"></span>
+                <span class="no_text_select">@Constants.i18n("checkboxes")</span>
+                <input name="Tag" type="hidden" value="@FormTag.CheckBoxGroup" />
+                <input type="hidden" name="BackingStoreId" value="" />
+            </li>
+            <li class="grayGradientBackground shadow basicControl">
+                <span class="formElementControlIcon"></span>
+                <span class="no_text_select">@Constants.i18n("dropdown")</span>
+                <input name="Tag" type="hidden" value="@FormTag.Select" />
+                <input type="hidden" name="BackingStoreId" value="" />
+            </li>
+            @* Section Break (hr tag) DOES NOT have a backing store *@
+            <li class="grayGradientBackground shadow basicControl">
+                <span class="formElementControlIcon"></span>
+                <span class="no_text_select">@Constants.i18n("sectionBreak")</span>
+                <input name="Tag" type="hidden" value="@FormTag.HorizontalRule" />
+            </li>
+            <li class="grayGradientBackground shadow enhancedControl" title="@Constants.i18n("name")">
+                <span class="formElementControlIcon"></span>
+                <span class="no_text_select">@Constants.i18n("name")</span>
+                <input name="CustomFieldGroupName" type="hidden" value="@Constants.i18n("name")" />
+            </li>
+            <li class="grayGradientBackground shadow enhancedControl" title="@Constants.i18n("address")">
+                <span class="formElementControlIcon"></span>
+                <span class="no_text_select">@Constants.i18n("address")</span>
+                <input name="CustomFieldGroupName" type="hidden" value="@Constants.i18n("address")" />
+            </li>
+            <li class="grayGradientBackground shadow docPropsControl">
+                <span class="formElementControlIcon"></span>
+                <span class="no_text_select">@Constants.i18n("keywords")</span>
+                <input name="Tag" type="hidden" value="@FormTag.TextArea" />
+                <input name="BackingStoreId" type="hidden" value="@Constants.FIELD_ID_KEYWORDS" />
+            </li>
+        </ul>
+        <ul class="fright">
+            <li class="grayGradientBackground shadow basicControl">
+                <span class="formElementControlIcon"></span>
+                <span class="no_text_select">@Constants.i18n("number")</span>
+                <input name="Tag" type="hidden" value="@FormTag.NumberInput" />
+                <input type="hidden" name="BackingStoreId" value="" />
+            </li>
+            <li class="grayGradientBackground shadow basicControl">
+                <span class="formElementControlIcon"></span>
+                <span class="no_text_select">@Constants.i18n("email")</span>
+                <input name="Tag" type="hidden" value="@FormTag.TextInput" />
+                <input type="hidden" name="BackingStoreId" value="" />
+            </li>
+            <li class="grayGradientBackground shadow basicControl">
+                <span class="formElementControlIcon"></span>
+                <span class="no_text_select">@Constants.i18n("website")</span>
+                <input name="Tag" type="hidden" value="@FormTag.TextInput" />
+                <input type="hidden" name="BackingStoreId" value="" />
+            </li>
+            <li class="grayGradientBackground shadow basicControl">
+                <span class="formElementControlIcon"></span>
+                <span class="no_text_select">@Constants.i18n("phone")</span>
+                <input name="Tag" type="hidden" value="@FormTag.TextInput" />
+                <input type="hidden" name="BackingStoreId" value="" />
+            </li>
+            <li class="grayGradientBackground shadow basicControl">
+                <span class="formElementControlIcon"></span>
+                <span class="no_text_select">@Constants.i18n("ty_Date")</span>
+                <input name="Tag" type="hidden" value="@FormTag.Date" />
+                <input type="hidden" name="BackingStoreId" value="" />
+            </li>
+            <li class="grayGradientBackground shadow basicControl">
+                <span class="formElementControlIcon"></span>
+                <span class="no_text_select">@Constants.i18n("ty_DateTime")</span>
+                <input name="Tag" type="hidden" value="@FormTag.DateTime" />
+                <input type="hidden" name="BackingStoreId" value="" />
+            </li>
+            <li class="grayGradientBackground shadow basicControl">
+                <span class="formElementControlIcon"></span>
+                <span class="no_text_select">@Constants.i18n("combobox")</span>
+                <input name="Tag" type="hidden" value="@FormTag.ComboBox" />
+                <input type="hidden" name="BackingStoreId" value="" />
+            </li>
+            <li class="grayGradientBackground shadow basicControl">
+                <span class="formElementControlIcon"></span>
+                <span class="no_text_select">@Constants.i18n("image")</span>
+                <input name="Tag" type="hidden" value="@FormTag.Image" />
+                <input type="hidden" name="BackingStoreId" value="" />
+            </li>
+            @* File Upload DOES NOT have a Backing Store *@
+            <li class="grayGradientBackground shadow basicControl">
+                <span class="formElementControlIcon"></span>
+                <span class="no_text_select">@Constants.i18n("fileUpload")</span>
+                <input name="Tag" type="hidden" value="@FormTag.FileUpload" />
+            </li>
+            <li class="grayGradientBackground shadow docPropsControl">
+                <span class="formElementControlIcon"></span>
+                <span class="no_text_select">@Constants.i18n("createdOn")</span>
+                <input name="Tag" type="hidden" value="@FormTag.Label" />
+                <input name="BackingStoreId" type="hidden" value="@Constants.FIELD_ID_CREATED" />
+            </li>
+            <li class="grayGradientBackground shadow docPropsControl">
+                <span class="formElementControlIcon"></span>
+                <span class="no_text_select">@Constants.i18n("title")</span>
+                <input name="Tag" type="hidden" value="@FormTag.TextInput" />
+                <input name="BackingStoreId" type="hidden" value="@Constants.FIELD_ID_TITLE" />
+            </li>
+            @* TODO: add Likert chart for V2
+                    <li class="grayGradientBackground shadow">
+                    <span class="formElementControlIcon"></span>
+                    <span class="no_text_select">@Constants.i18n("likert")</span>
+                    <input name="Tag" type="hidden" value="likert" />
+                </li>*@
+
+        </ul>
+    </div>
+</div>
+@* Removed for Bug 11478 Enhanced Input Controls *@
+@*<div data-accid="enhancedInputControlsForms" class="inlineblock fullWidth enhancedControlsContainer">
+    <div class="accordion_title accordion_title_{{=it.enhancedInputControlsAccState}}">
+        <div class="accordion_title_contents">
+            <div class="title_arrow">
+            </div>
+            <span class="anchor">@Constants.i18n("enhanced")</span>
+            <span class="swoosh"></span>
+        </div>
+    </div>
+    <div class="accordion {{=it.enhancedInputControlsAccState}}">
+        <ul class="fleft">
+            <li class="grayGradientBackground shadow">
+                <span class="formElementControlIcon"></span>
+                <span class="no_text_select">@Constants.i18n("name")</span>
+                <input name="CustomFieldGroupName" type="hidden" value="@Constants.i18n("name")" />
+            </li>
+            <li class="grayGradientBackground shadow">
+                <span class="formElementControlIcon"></span>
+                <span class="no_text_select">@Constants.i18n("address")</span>
+                <input name="CustomFieldGroupName" type="hidden" value="@Constants.i18n("address")" />
+            </li>
+        </ul>
+        <ul class="fright">*@
+            @* File Upload DOES NOT have a Backing Store *@
+            @*<li class="grayGradientBackground shadow">
+                <span class="formElementControlIcon"></span>
+                <span class="no_text_select">@Constants.i18n("fileUpload")</span>
+                <input name="Tag" type="hidden" value="@FormTag.FileUpload" />
+            </li>*@
+            @* TODO: add Likert chart for V2
+                    <li class="grayGradientBackground shadow">
+                    <span class="formElementControlIcon"></span>
+                    <span class="no_text_select">@Constants.i18n("likert")</span>
+                    <input name="Tag" type="hidden" value="likert" />
+                </li>*@
+        @*</ul>
+    </div>
+</div>*@
+@* Removed for Bug 11478 Document Properties *@
+@*<div data-accid="documentPropertiesForms" class="inlineblock fullWidth docPropsControlsContainer">
+    <div class="accordion_title accordion_title_{{=it.documentPropertiesAccState}}">
+        <div class="accordion_title_contents">
+            <div class="title_arrow">
+            </div>
+            <span class="anchor">@Constants.i18n("documentProperties")</span>
+            <span class="swoosh"></span>
+        </div>
+    </div>
+    <div class="accordion {{=it.documentPropertiesAccState}}">
+        <ul class="fleft">
+            <li class="grayGradientBackground shadow">
+                <span class="formElementControlIcon"></span>
+                <span class="no_text_select">@Constants.i18n("created")</span>
+                <input name="Tag" type="hidden" value="@FormTag.TextInput" />
+                <input name="BackingStoreId" type="hidden" value="@Constants.FIELD_ID_CREATED" />
+            </li>
+            <li class="grayGradientBackground shadow">
+                <span class="formElementControlIcon"></span>
+                <span class="no_text_select">@Constants.i18n("title")</span>
+                <input name="Tag" type="hidden" value="@FormTag.TextInput" />
+                <input name="BackingStoreId" type="hidden" value="@Constants.FIELD_ID_TITLE" />
+            </li>
+        </ul>
+        <ul class="fright">
+            <li class="grayGradientBackground shadow">
+                <span class="formElementControlIcon"></span>
+                <span class="no_text_select">@Constants.i18n("keywords")</span>
+                <input name="Tag" type="hidden" value="@FormTag.TextArea" />
+                <input name="BackingStoreId" type="hidden" value="@Constants.FIELD_ID_KEYWORDS" />
+            </li>
+        </ul>
+    </div>
+</div>*@
+@* Render Custom Field Group Controls Here *@
+

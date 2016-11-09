@@ -1,0 +1,273 @@
+﻿@using Astria.Framework.Utility;
+{{
+    var isSuper = Utility.isSuperAdmin() || Utility.isInstanceAdmin();
+    var users = Utility.getUsers(null, window.users, false, false);
+}}
+{{ if(isSuper) { }}
+    <h2>@Constants.i18n("exportImport")</h2>
+{{ } else { }}
+    <h2>@Constants.i18n("export")</h2>
+{{ } 
+    var dummy = 'dummy';
+}}
+<div id="exportImport_layout">
+    {{ if(isSuper) { }}
+        <fieldset>
+            <legend>@Constants.i18n("generalImport")</legend>
+            <iframe id="importEntitiesIFrame" src="ExportImport/ImportFrame" frameborder="0" height="85" />
+            <div id="importResults" style="display:none">
+                <div>@Constants.i18n("importResults")</div>
+                <table>
+
+                </table>
+            </div>
+        </fieldset>
+    {{ } }}
+    <fieldset>    
+        <legend>@Constants.i18n("export")</legend>
+        <div>@Constants.i18n("selectEntitesToExport")</div>
+            <ol id="exportSelection" class="exportSelection">
+            <li>
+                <ul>
+                    <li><input type="checkbox" value="selectAll" title="@Constants.i18n("selectAll")" /><span title="@Constants.i18n("selectAll")"> @Constants.i18n("selectAll")</span></li>
+                    <li><input type="checkbox" value="{{= Constants.et.Action}}" title="@Constants.i18n("actionLibrary")" /><span title="@Constants.i18n("actionLibrary")"> @Constants.i18n("actionLibrary")</span></li>
+                    <li><input type="checkbox" value="{{= Constants.et.ContentType}}" title="@Constants.i18n("contentTypes")" /><span title="@Constants.i18n("contentTypes")"> @Constants.i18n("contentTypes")</span></li>
+                    <li><input type="checkbox" value="{{= Constants.et.DataLinkQuery}}" title=" @Constants.i18n("dataLinks") " /><span title=" @Constants.i18n("dataLinks") "> @Constants.i18n("dataLinks")</span></li>
+                    <li><input type="checkbox" value="{{= Constants.et.CustomFieldMeta}}" title="@Constants.i18n("CustomFieldMetas")" /><span title="@Constants.i18n("CustomFieldMetas")"> @Constants.i18n("CustomFieldMetas")</span></li>
+                    <li><input type="checkbox" value="{{= Constants.et.CustomFieldGroup}}" title="@Constants.i18n("customFieldGroups")" /><span title="@Constants.i18n("customFieldGroups")"> @Constants.i18n("customFieldGroups")</span></li>
+                    <li><input type="checkbox" id="chkFolder" value="{{= Constants.et.Folder}}" title="@Constants.i18n("Folders")" /><span title="@Constants.i18n("Folders")"> @Constants.i18n("Folders")</span></li>
+                    <li><input type="checkbox" value="{{= Constants.et.Form}}" title="@Constants.i18n("forms")" /><span title="@Constants.i18n("forms")"> @Constants.i18n("forms")</span></li>
+                    <li><input type="checkbox" value="{{= Constants.et.Role}}" title="@Constants.i18n("Roles")" /><span title="@Constants.i18n("Roles")"> @Constants.i18n("Roles")</span></li>
+                    <li><input type="checkbox" value="{{= Constants.et.Inbox}}" title="@Constants.i18n("Inboxes")" /><span title="@Constants.i18n("Inboxes")"> @Constants.i18n("Inboxes")</span></li>
+                    <li><input type="checkbox" value="{{= Constants.et.CustomList}}" title="@Constants.i18n("CustomLists")" /><span title="@Constants.i18n("CustomLists")"> @Constants.i18n("CustomLists")</span></li>
+                    <li><input type="checkbox" value="{{= Constants.et.PublicImage}}" title="@Constants.i18n("publicImages")" /><span title="@Constants.i18n("publicImages")"> @Constants.i18n("publicImages")</span></li>
+                    <li><input type="checkbox" value="{{= Constants.et.RecordCategory}}" title="@Constants.i18n("RecordCategories")" /><span title="@Constants.i18n("RecordCategories")"> @Constants.i18n("RecordCategories")</span></li>
+                    <li><input type="checkbox" value="{{= Constants.et.Report}}" title="@Constants.i18n("reports")" /><span title="@Constants.i18n("reports")"> @Constants.i18n("reports")</span></li>
+                    <li><input type="checkbox" value="{{= Constants.et.SecurityClass}}" title=" @Constants.i18n("SecurityClasses") " /><span title=" @Constants.i18n("SecurityClasses") "> @Constants.i18n("SecurityClasses")</span></li>
+                    <li><input type="checkbox" value="{{= Constants.et.User}}" title="@Constants.i18n("Users")" /><span title="@Constants.i18n("Users")"> @Constants.i18n("Users")</span></li>
+                    <li><input type="checkbox" value="{{= Constants.et.Workflow}}" title=" @Constants.i18n("Workflows") " /><span title=" @Constants.i18n("Workflows") "> @Constants.i18n("Workflows")</span></li>
+                </ul>
+            </li>
+        </ol>
+        <ol class="exportTabs">
+            <li>
+                <div id="exportTabs">
+	                <ul>
+		                <li id="tab-{{= Constants.et.Action}}"><a href="#export{{= Constants.et.Action}}">@Constants.i18n("actionLibrary")</a></li>
+		                <li id="tab-{{= Constants.et.ContentType}}"><a href="#export{{= Constants.et.ContentType}}">@Constants.i18n("contentTypes")</a></li>
+                        <li id="tab-{{= Constants.et.DataLinkQuery}}"><a href="#export{{= Constants.et.DataLinkQuery}}">@Constants.i18n("dataLinks")</a></li>
+		                <li id="tab-{{= Constants.et.CustomFieldMeta}}"><a href="#export{{= Constants.et.CustomFieldMeta}}">@Constants.i18n("CustomFieldMetas")</a></li>
+                        <li id="tab-{{= Constants.et.CustomFieldGroup}}"><a href="#export{{= Constants.et.CustomFieldGroup}}">@Constants.i18n("customFieldGroups")</a></li>
+		                <li id="tab-{{= Constants.et.Folder}}"><a href="#export{{= Constants.et.Folder}}">@Constants.i18n("Folders")</a></li>
+                        <li id="tab-{{= Constants.et.Form}}"><a href="#export{{= Constants.et.Form}}">@Constants.i18n("forms")</a></li>
+                        <li id="tab-{{= Constants.et.Role}}"><a href="#export{{= Constants.et.Role}}">@Constants.i18n("Roles")</a></li>
+		                <li id="tab-{{= Constants.et.Inbox}}"><a href="#export{{= Constants.et.Inbox}}">@Constants.i18n("Inboxes")</a></li>
+                        <li id="tab-{{= Constants.et.CustomList}}"><a href="#export{{= Constants.et.CustomList}}">@Constants.i18n("CustomLists")</a></li>
+                        <li id="tab-{{= Constants.et.PublicImage}}"><a href="#export{{= Constants.et.PublicImage}}">@Constants.i18n("publicImages")</a></li>
+		                <li id="tab-{{= Constants.et.RecordCategory}}"><a href="#export{{= Constants.et.RecordCategory}}">@Constants.i18n("RecordCategories")</a></li>
+                        <li id="tab-{{= Constants.et.Report}}"><a href="#export{{= Constants.et.Report}}">@Constants.i18n("reports")</a></li>
+		                <li id="tab-{{= Constants.et.SecurityClass}}"><a href="#export{{= Constants.et.SecurityClass}}">@Constants.i18n("SecurityClasses")</a></li>
+		                <li id="tab-{{= Constants.et.User}}"><a href="#export{{= Constants.et.User}}">@Constants.i18n("Users")</a></li>
+		                <li id="tab-{{= Constants.et.Workflow}}"><a href="#export{{= Constants.et.Workflow}}">@Constants.i18n("Workflows")</a></li>
+	                </ul>
+	                <div id="export{{= Constants.et.Action}}">
+                        <div>
+                            <input name="Type" type="hidden" value="{{= Constants.et.Action}}" />
+		                    <select name="ItemIds" multiple="multiple" size="10">
+                            {{ window.slimActionLibrary.each(function(item) { }}
+                                <option value="{{= item.get('Id')}}">{{= Utility.safeHtmlString(item.get('Name'))}}</option>
+                            {{ }); }}
+                            </select>	                
+                        </div>
+	                </div>
+	                <div id="export{{= Constants.et.ContentType}}">
+                        <div>
+                            <input name="Type" type="hidden" value="{{= Constants.et.ContentType}}" />
+		                    <select name="ItemIds" multiple="multiple" size="10">
+		                        {{ window.contentTypes.each(function(item) { 
+                                var ct = item;
+		                        if (ct.get('Id') !== Constants.c.emptyGuid)
+                                {
+		                        
+                            }}
+                                <option value="{{= ct.get('Id')}}">{{= Utility.safeHtmlString(ct.get('Name')) }}</option>
+		                        {{ } 
+                                }); }}
+                            </select>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="IncludeSubItems" /><span> @Constants.i18n("includeDefaults")</span>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="IncludePermissions" /><span> @Constants.i18n("includePermissions")</span>
+                        </div>
+	                </div>
+	                <div id="export{{= Constants.et.CustomFieldMeta}}">
+                        <div>
+                            <input name="Type" type="hidden" value="{{= Constants.et.CustomFieldMeta}}" />
+		                    <select name="ItemIds" multiple="multiple" size="10">
+                            {{ window.slimCustomFields.each(function(item) { }}
+                                <option value="{{= item.get('Id')}}">{{= Utility.safeHtmlString(item.get('Name'))}}</option>
+                            {{ }); }}
+                            </select>	                
+                        </div>
+	                </div>
+                    <div id="export{{= Constants.et.CustomFieldGroup}}">
+                        <div>
+                            <input name="Type" type="hidden" value="{{= Constants.et.CustomFieldGroup}}" />
+                            <select name="ItemIds" multiple="multiple" size="10">
+                                {{ window.slimCustomFieldGroups.each(function(item) { }}
+                                <option value="{{= item.get('Id')}}">{{= Utility.safeHtmlString(item.get('Name'))}}</option>
+                                {{ }); }}
+                            </select>
+                        </div>
+                    </div>
+	                <div id="export{{= Constants.et.DataLinkQuery}}">
+                        <div>
+                            <input name="Type" type="hidden" value="{{= Constants.et.DataLinkQuery}}" />
+		                    <select name="ItemIds" multiple="multiple" size="10">
+                            {{ window.slimDataLinks.each(function(item) { }}
+                                <option value="{{= item.get('Id')}}">{{= Utility.safeHtmlString(item.get('Name'))}}</option>
+                            {{ }); }}
+                            </select>	                
+                        </div>
+	                </div>
+	                <div id="export{{= Constants.et.Folder}}">
+                        <div>
+                            <input name="Type" type="hidden" value="{{= Constants.et.Folder}}" />
+                            <span id="allfolders" style="display:none;">@Constants.i18n("allFoldersExported")<br/>@Constants.i18n("allFoldersExported2") </span>
+		                    <select id="exportFolderList" name="ItemIds" multiple="multiple" size="10"> 
+                            </select>                       
+                        </div>
+                        <div>
+                            <input type="button" id="exportSelectFolder" value="@Constants.i18n("add")" />
+                            <input type="button" id="exportRemoveFolder" value="@Constants.i18n("remove")" />
+                        </div>
+                        <div>
+                            <input type="checkbox" name="IncludeSubItems" id="chkSubFolders" /><span> @Constants.i18n("includeChildFolders")</span>                        
+                        </div>
+                        <div>
+                            <input type="checkbox" name="IncludePermissions" /><span> @Constants.i18n("includePermissions")</span>
+                        </div>
+	                </div>
+                    <div id="export{{= Constants.et.Form}}">
+                        <div>
+                            <input name="Type" type="hidden" value="{{= Constants.et.Form}}" />
+                            <select name="ItemIds" multiple="multiple" size="10">
+                                {{ window.slimForms.each(function(item) { }}
+                                <option value="{{= item.get('Id')}}">{{= Utility.safeHtmlString(item.get('Name'))}}</option>
+                                {{ }); }}
+                            </select>
+                        </div>
+                    </div>
+                    <div id="export{{= Constants.et.Role}}">
+                        <div>
+                            <input name="Type" type="hidden" value="{{= Constants.et.Role}}" />
+                            <select name="ItemIds" multiple="multiple" size="10">
+                                {{ window.slimRoles.each(function(item) { }}
+                                <option value="{{= item.get('Id')}}">{{= Utility.safeHtmlString(item.get('Name'))}}</option>
+                                {{ }); }}
+                            </select>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="IncludeSubItems" /><span> @Constants.i18n("includeUsers")</span>
+                        </div>
+                    </div>
+	                <div id="export{{= Constants.et.Inbox}}">
+                        <div>
+                            <input name="Type" type="hidden" value="{{= Constants.et.Inbox}}" />
+		                    <select name="ItemIds" multiple="multiple" size="10">
+                            {{ window.slimInboxes.each(function(item) { }}
+                                <option value="{{= item.get('Id')}}">{{= Utility.safeHtmlString(item.get('Name'))}}</option>
+                            {{ }); }}
+                            </select>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="IncludePermissions" /><span> @Constants.i18n("includePermissions")</span>
+                        </div>
+	                </div>
+                    <div id="export{{= Constants.et.CustomList}}">
+                        <div>
+                            <input name="Type" type="hidden" value="{{= Constants.et.CustomList}}" />
+                            <select name="ItemIds" multiple="multiple" size="10">
+                                {{ window.slimCustomLists.each(function(item) { }}
+                                <option value="{{= item.get('Id')}}">{{= Utility.safeHtmlString(item.get('Name'))}}</option>
+                                {{ }); }}
+                            </select>
+                        </div>
+                    </div>
+                    <div id="export{{= Constants.et.PublicImage}}">
+                        <div>
+                            <input name="Type" type="hidden" value="{{= Constants.et.PublicImage}}" />
+                            <select name="ItemIds" multiple="multiple" size="10">
+                                {{ window.slimPublicImages.each(function(item) { }}
+                                <option value="{{= item.get('Id')}}">{{= Utility.safeHtmlString(item.get('Name'))}}</option>
+                                {{ }); }}
+                            </select>
+                        </div>
+                    </div>
+                    <div id="export{{= Constants.et.RecordCategory}}">
+                        <div>
+                            <input name="Type" type="hidden" value="{{= Constants.et.RecordCategory}}" />
+                            <select name="ItemIds" multiple="multiple" size="10">
+                                {{ window.slimRecordCategories.each(function(item) { }}
+                                <option value="{{= item.get('Id')}}">{{= Utility.safeHtmlString(item.get('Name'))}}</option>
+                                {{ }); }}
+                            </select>
+                        </div>
+                    </div>
+	                <div id="export{{= Constants.et.Report}}">
+                        <div>
+                            <input name="Type" type="hidden" value="{{= Constants.et.Report}}" />
+		                    <select name="ItemIds" multiple="multiple" size="10">
+                            {{ window.slimReports.each(function(item) { }}
+                                <option value="{{= item.get('Id')}}">{{= Utility.safeHtmlString(item.get('Name'))}}</option>
+                            {{ }); }}
+                            </select>
+                        </div>
+	                </div>
+	                <div id="export{{= Constants.et.SecurityClass}}">
+                        <div>
+                            <input name="Type" type="hidden" value="{{= Constants.et.SecurityClass}}" />
+		                    <select name="ItemIds" multiple="multiple" size="10">
+                            {{ window.slimSecurityClasses.each(function(item) { }}
+                                <option value="{{= item.get('Id')}}">{{= Utility.safeHtmlString(item.get('Name'))}}</option>
+                            {{ }); }}
+                            </select>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="IncludePermissions" /><span> @Constants.i18n("includePermissions")</span>
+                        </div>
+	                </div>
+	                <div id="export{{= Constants.et.User}}">
+                        <div>
+                            <input name="Type" type="hidden" value="{{= Constants.et.User}}" />
+		                    <select name="ItemIds" multiple="multiple" size="10">
+                            {{ _.each(users, function(item) { }}
+                                <option value="{{= item.id}}">{{= item.name}}</option>
+                            {{ }); }}
+                            </select>                        
+                        </div>
+	                </div>
+	                <div id="export{{= Constants.et.Workflow}}">
+                        <div>
+                            <input name="Type" type="hidden" value="{{= Constants.et.Workflow}}" />
+		                    <select name="ItemIds" multiple="multiple" size="10">
+                            {{ window.slimWorkflows.each(function(item) { }}
+                                <option value="{{= item.get('Id')}}">{{= Utility.safeHtmlString(item.get('Name'))}}</option>
+                            {{ }); }}
+                            </select>
+                        </div>
+                        @*<div>
+                            <input type="checkbox" name="IncludePermissions" /><span> @Constants.i18n("includePermissions")</span>
+                        </div>*@
+	                </div>
+                </div>
+                <div class="buttons">
+                    <input type="button" id="beginExport" name="save_cl" value="@Constants.i18n("export")" />
+                    <input type="hidden" name="errors_cl" />
+                </div>
+            </li>            
+        </ol>
+    </fieldset>
+</div>

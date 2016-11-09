@@ -1,0 +1,59 @@
+﻿@using Astria.Framework.Utility;
+{{ 
+    var i = 0;
+    var length = 0;
+}}
+<div class="field_search_field search_field_border">
+    <a class="del_field_btn ui-icon ui-icon-circle-close {{=it.hideDelete}}"></a>
+    <div class="database_field dropdown">
+        <select name="field" class="clearfix database_field_dropdown_text">
+            <option></option>
+            {{
+            length = it.dbFields.length;
+            for (i; i < length; i++) {
+                var dbf = it.dbFields[i];
+            }}
+            <option value="{{=dbf.ActualName}}" data-fieldtype="{{=dbf.Type}}" {{=dbf.state}}>
+                {{= Utility.safeHtmlValue(dbf.DisplayName)}}
+            </option>
+            {{ } }}
+        </select>
+    </div>
+    <div class="database_field_criteria dropdown {{=it.hideOperation}}">
+        <select name="operation" class="clearfix database_field_dropdown_text">
+            {{
+            length = it.operations.length;
+            i = 0;
+            for (i; i < length; i++) {
+                var op = it.operations[i];
+            }}
+            <option value="{{=op.ActualName}}" {{=op.state}}>
+                {{= Utility.safeHtmlValue(op.DisplayName)}}
+            </option>
+            {{ } }}
+        </select>
+    </div>
+    <div class="database_field_input">
+        {{if (it.inputType === 'singleInput') { }}
+        <input name="searchValue" class="database_field_text" type="text" value="{{=it.value}}" />
+        <div class="date_search {{=it.hideDateIcon}}"></div>
+        {{ } else if (it.inputType === 'select') { }}
+        <select name="searchValue" class="database_field_text">
+            <option></option>
+            {{
+            length = it.valueList.length;
+            i = 0;
+            for (i; i < length; i++) {
+                var vli = it.valueList[i];
+            }}
+            <option value="{{=vli.Id}}" {{=vli.state}}>{{= Utility.safeHtmlValue(vli.Name)}}</option>
+            {{ } }}
+        </select>
+        {{ } else { }}
+        <input name="rangeStart" class="rangeStart" type="text" value="{{=it.rangeStart}}" />
+        <input name="rangeEnd" class="rangeEnd" type="text" value="{{=it.rangeEnd}}" />
+        <div class="date_search {{=it.hideDateIcon}}"></div>
+        {{ } }}
+    </div>
+    <a class="add_field_btn shadow  {{=it.hideAdd}}">@Constants.i18n("add")</a>
+</div>

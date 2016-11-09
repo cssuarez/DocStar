@@ -1,0 +1,45 @@
+﻿@using Astria.Framework.Utility;
+{{ if(it.showContentTypeFields) { }}
+<div data-accid="contentTypeFieldsForms" class="inlineblock fullWidth">
+    <div class="accordion_title accordion_title_{{=it.contentTypeFieldsAccState}}">
+        <div class="accordion_title_contents">
+            <div class="title_arrow">
+            </div>
+            <span class="anchor">@Constants.i18n("contentTypeFields")</span>
+            <span class="swoosh"></span>
+        </div>
+    </div>
+    <div class="accordion {{=it.contentTypeFieldsAccState}}">
+        <ul class="fleft">
+            {{
+            var idx = 0;
+            var length = it.defaultFieldsLeft.length;
+            for(idx; idx < length; idx++) {
+                var df = it.defaultFieldsLeft[idx];
+            }}
+            <li class="grayGradientBackground shadow">
+                <span class="formElementControlIcon"></span>
+                <span class="no_text_select">{{=df.name}}</span>
+                <input name="Tag" type="hidden" value="{{=df.formTag}}" />
+                <input name="BackingStoreId" type="hidden" value="{{=df.id}}" />
+            </li>
+            {{ } }}
+        </ul>
+        <ul class="fright">
+            {{
+            var idx = 0;
+            var length = it.defaultFieldsRight.length;
+            for(idx; idx < length; idx++) {
+                var df = it.defaultFieldsRight[idx];
+            }}
+            <li class="grayGradientBackground shadow">
+                <span class="formElementControlIcon"></span>
+                <span class="no_text_select">{{=df.name}}</span>
+                <input name="Tag" type="hidden" value="{{=df.formTag}}" />
+                <input name="BackingStoreId" type="hidden" value="{{=df.id}}" />
+            </li>
+            {{ } }}
+        </ul>
+    </div>
+</div>
+{{ } }}

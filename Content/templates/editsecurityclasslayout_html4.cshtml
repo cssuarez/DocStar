@@ -1,0 +1,129 @@
+﻿@using Astria.Framework.Utility;
+{{ if (!it.list.isEmpty()) { 
+    var description = it.selected.get('Description');
+    if (!description) { description = ""; }
+    var dummy = "cannot have 3 braces in a row :(";
+}}
+
+<h2>@Constants.i18n("securityClasses")</h2>
+<div id="securityClassDTO" class="left">
+    <fieldset>
+        <legend>@Constants.i18n("securityClasses")</legend>
+        <ol class="unstyledList">
+            <li>
+                <label>@Constants.i18n("selectSecurityClass"):</label>
+                <select name="Id">
+                {{ it.list.each(function(item) { }}
+                    {{ if (it.selected.get("Id") === item.get("Id")) { }}
+                        <option value="{{= it.selected.get('Id') }}" selected="selected">{{= item.get('Name') }}</option>
+                    {{ } else { }}
+                        <option value="{{= item.get('Id') }}">{{= item.get('Name') }}</option>
+                    {{ } }}    
+                {{ }); }}
+                </select>
+            </li>
+            <li>
+                <label>@Constants.i18n("name"):</label>
+                {{= $("<div></div>").append($('<input type="text" name="Name" />').attr("value", it.selected.get('Name'))).html()}}
+            </li>
+            <li>
+                <label>@Constants.i18n("description"):</label>
+                {{= $("<div></div>").append($('<input type="text" name="Description" />').attr("value", description)).html()}}
+            </li>
+        </ol>
+    </fieldset>
+</div>
+<div class="right">
+    <fieldset>
+        <legend>@Constants.i18n("usersTitle")</legend>
+        {{ var users = it.selected.get("UserPermissions"); }}
+        <select name="userSelection" size="6" class="ctlist" multiple="multiple">
+            {{ it.listu.each(function(item) { 
+                if(item.get('Id') !== Constants.c.emptyGuid) {
+                    var du =  _.detect(users, function(u){ 
+                        return u.RoleOrUserId === item.get("Id"); 
+                    }); 
+            }}
+            {{      if (!$.isEmptyObject(du)) { }}
+                        <option value="{{= item.get('Id') }}">{{= item.get('Username') }} </option> 
+                    {{ } }}
+                {{ } }}
+            {{ }); }}
+        </select>
+        <span class="inlineblock fullWidth">@Constants.i18n("saveSecClassUserWarning")</span>          
+        <input type="button" name="add_user" value="@Constants.i18n("addUser")" />
+        <input type="button" name="remove_user" value="@Constants.i18n("removeUser")" />        
+    </fieldset>
+    <fieldset>
+        <legend>@Constants.i18n("groupsTitle")</legend>
+        {{ var roles = it.selected.get("RolePermissions"); }}            
+        <select name="groupSelection" size="6" class="ctlist" multiple="multiple">
+            {{ it.listr.each(function(item) { }}
+                {{ var dr =  _.detect(roles, function(r){ 
+                        return r.RoleOrUserId === item.get("Id"); 
+                    }); 
+                }}
+                {{ if (!$.isEmptyObject(dr)) { 
+                }}
+                    <option value="{{= item.get('Id') }}">{{= item.get('Name') }} </option> 
+                {{ } }}
+            {{ }); }}
+        </select>  
+        <span class="inlineblock fullWidth">@Constants.i18n("saveSecClassGroupWarning")</span>
+        <input type="button" name="add_role" value="@Constants.i18n("addRole")" />
+        <input type="button" name="remove_role" value="@Constants.i18n("removeRole")" />        
+    </fieldset>
+    <fieldset>
+        <legend id="permissionsLegend">@Constants.i18n("selectuserorrole")</legend>
+        <div class="permissions"></div>
+    </fieldset>
+</div>
+<div class="buttons">
+    <input type="button" name="save_sc" value="@Constants.i18n("save")" />
+    <input type="button" name="delete_sc" value="@Constants.i18n("delete")" />
+    <input type="hidden" name="errors_sc" />
+</div>
+<div id="selectUser">
+    <select id="potentialUsers" size="4" class="ctlist" multiple="multiple">
+    {{ it.listu.each(function(item) { 
+        if(item.get('Id') !== Constants.c.emptyGuid) {
+            var du =  _.detect(users, function(u){ 
+                return u.RoleOrUserId === item.get("Id"); 
+            }); 
+            if ($.isEmptyObject(du)) { 
+     }}
+                <option value="{{= item.get('Id') }}">{{= item.get('Username') }}</option> 
+            {{ } }}
+        {{ } }}
+    {{ }); }}
+    </select>
+</div>
+<div id="selectRole">
+    <select id="potentialRoles" size="4" class="ctlist" multiple="multiple">
+    {{ it.listr.each(function(item) { }}
+        {{ var dr =  _.detect(roles, function(r){ 
+                return r.RoleOrUserId === item.get("Id"); 
+            }); 
+        }}
+        {{ if ($.isEmptyObject(dr)) { 
+        }}
+            <option value="{{= item.get('Id') }}">{{= item.get('Name') }}</option>
+        {{ } }}
+    {{ }); }}
+    </select>
+</div>
+<div id="replace_sc" style="display: none;">
+    <span>@Constants.i18n("replaceSecurityClass")</span>
+    <span class="replace_text"></span>
+    <select name="replacementId" class="fullWidth">
+    </select>
+</div>
+{{  } else { }}
+<div class="error">
+{{ if(it.list.errorMsg === null) { }}
+{{= Constants.c.noDataReturnedFromServer }}
+{{ } else { }}
+{{= it.list.errorMsg }}
+{{ } }}
+</div>
+{{ } }}

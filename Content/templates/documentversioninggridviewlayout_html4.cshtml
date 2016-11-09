@@ -1,0 +1,30 @@
+﻿@using Astria.Framework.Utility;
+<table class="customGridTable">
+    <thead>
+        <tr>
+            <th class="customGridHeader customGridSortable" data-columnid="@Constants.i18n("versionNumber")">
+                @Constants.i18n("versionNumber")
+            </th>
+            <th class="customGridHeader customGridSortable" data-columnid="@Constants.i18n("versionStateShort")">
+                @Constants.i18n("versionStateShort")
+            </th>
+            <th class="customGridHeader customGridSortable" data-columnid="@Constants.i18n("user")">
+                @Constants.i18n("user")
+            </th>
+            <th class="customGridHeader customGridSortable" data-columnid="@Constants.i18n("publisher")">
+                @Constants.i18n("publisher")
+            </th>
+            {{if (it.showComments) { }}
+            <th class="customGridHeader" data-columnid="@Constants.i18n("comment")">
+                @Constants.i18n("comment")
+            </th>
+            {{ } }}
+            <th class="customGridHeader customGridSortable" data-columnid="@Constants.i18n("date")">
+                @Constants.i18n("date")
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @*Set Views Rendered Here*@
+    </tbody>
+</table>

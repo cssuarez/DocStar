@@ -1,0 +1,26 @@
+﻿@using Astria.Framework.Utility;
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style type="text/css">        
+    </style>
+</head>
+<body>
+    <div id="email_body">
+        <span>{{= it.Body}}</span>
+    </div>
+    <br />    
+    <div id="download">
+        <a id="link" href="{{= it.Urls[0]}}">@Constants.i18n("clickToDownload")</a> 
+        <br />
+        <br />
+        <span id="or">@Constants.i18n("or")</span>
+        <br />
+        <br />
+        <span id="copy_link_label">@Constants.i18n("copyToDownload"):</span>
+        <br />
+        <span id="copyLink">{{= it.Urls[0]}}</span>
+    </div>
+</body>
+</html>

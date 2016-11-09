@@ -1,0 +1,404 @@
+﻿@using Astria.Framework.Utility;
+{{ if(!it.list.isEmpty()) { 
+    var dataLinkClosed = Utility.GetUserPreference('dataLinkConnections') || 'closed';
+    var queries = it.dlq;
+    if(it.filteredQueries && it.filteredQueries.length > 0) {
+        queries = it.filteredQueries;
+    }    
+    @* 
+        Get Query Definition from selected Data Link Query
+        Currently either a QueryDefinition OR an UpdateDefinition (not both)
+    *@
+    var selectedQuery = it.selectedQuery;
+    var qdJson = selectedQuery.get('QueryDefinition');
+    var queryDef = !qdJson ? {} : JSON.parse(qdJson);
+    var isUpdate = false;
+    @* Check to see if there is a QueryDefinition, if not check for an UpdateDefinition*@
+    if(!queryDef || $.isEmptyObject(queryDef)) {
+        isUpdate = true;
+        var qdJson = selectedQuery.get('UpdateDefinition');
+        queryDef = !qdJson ? {} : JSON.parse(qdJson);
+    }
+    if(!queryDef || $.isEmptyObject(queryDef)) {
+        @* Final check for if there is a query definition. If not, default to QueryDefinition being checked*@
+        isUpdate = false;
+        queryDef = {};
+    }
+    @* Identify legacy vs. new (advanced) query parameters*@
+    var isAdvanced = queryDef.Params !== undefined;
+    @* Determine whether Read Data (QueryDefinition) or Populate Data (UpdateDefinition) should be checked*@
+    var queryChecked = 'checked="checked"';
+    var updateChecked = '';
+    if(isUpdate) {
+        queryChecked = '';
+        updateChecked = 'checked="checked"';
+    }
+    @* Obtain Query CommandText from query definition, otherwise set it to ''*@
+    var cmdTxt = '';
+    if(queryDef.CommandText) {
+        cmdTxt = queryDef.CommandText;
+    }
+    var taChecked = '';
+    var ddChecked = '';
+    if(queryDef.TypeAhead) {
+        taChecked = 'checked="checked"';
+    }
+    if(queryDef.DropDown) {
+        ddChecked = 'checked="checked"';
+    }    
+    var exportPath = queryDef.ExportPath || '';
+    var includeDocs = '';
+    if(exportPath) {
+        includeDocs = 'checked="checked"';
+    }
+    var isThirdParty = false;
+    var testSavedQueryDisabled = 'disabled';
+    var queryControlsDisabled = '';
+    if(selectedQuery.get('Id') !== Constants.c.emptyGuid) {
+        testSavedQueryDisabled = '';
+        var dlt = it.selected && it.selected.get('DataLinkType');
+        isThirdParty = dlt === Constants.dlt.ThirdParty;    
+        if (isThirdParty) {
+            queryControlsDisabled = 'disabled="disabled"';
+        }
+    }    
+
+    var parametersClosed = Utility.GetUserPreference('parameterDef') || 'closed';
+    var oldSQLClosed = Utility.GetUserPreference('dataLinkOldCommandText') || 'closed';
+    var oldSQLShow = (it.selectedQuery.get('Id') === Constants.c.emptyGuid) ? 'displayNone' : '';
+    var sqlClosed = Utility.GetUserPreference('dataLinkQueryDef') || 'closed';
+    @*TODO: scain disable live test when there is no ConnectionString, DSNName, etc. set for the current connection*@
+    @* Obtain translations for sql db types  *@
+    var revSQLDBT = Utility.reverseMapObject(Constants.sqldbt);
+}}
+    <div id="dataLinkLayout" class="inlineblock">
+        <div class="left">
+            <div id="dataLinkQueries">
+                <ol class="unstyledList">
+                    <li>
+                        <div class="dataLinkQuerySettings inlineblock fleft">
+                            <span class="label">@Constants.i18n("dataLink")</span>
+                            <select id="dataLinkQueryList" name="Name">
+                                {{  queries.each(function (item) {
+                                        if(item.get('Id') === it.selectedQuery.get('Id')) {  }}
+                                            <option selected="selected" value="{{= item.get('Id') }}">{{= item.get('Name') }}</option>
+                                        {{ } else { }}
+                                            <option value="{{= item.get('Id') }}">{{= item.get('Name') }}</option>
+                                        {{ }
+                                    }); 
+                                }}
+                            </select>
+                            {{  
+                                if (!isThirdParty) {
+                            }}
+                            <span id="deleteDataLinkQuery" class="fleft deleteIcon sPngIB" title="@Constants.i18n("delete")">&nbsp;</span>
+                            <span id="saveDataLinkQuery" class="fleft saveIcon sPngIB" title="@Constants.i18n("saveQuery")">&nbsp;</span>
+                            <span id="saveDataLinkQueryAs" class="fleft saveAsIcon sPngIB" title="@Constants.i18n("saveQueryAs")">&nbsp;</span>
+                            {{ } }}
+                            <input type="hidden" class="ignore" name="DLQName" />   @* Data Link Query name error*@
+                        </div>
+                        <ol class="dataLinkQueryType unstyledList">
+                            <li>
+                                <div>
+                                    <input class="readData" {{=queryControlsDisabled}} type="radio" name="dataLinkAction" {{= queryChecked  }} /> @* Default Read Data to checked*@
+                                    <span class="metalabel">@Constants.i18n("readData")</span>
+                                </div>
+                                <div>
+                                    <input type="checkbox" name="TypeAhead" {{=taChecked}} {{=queryControlsDisabled}} />
+                                    <span class="metalabel">@Constants.i18n("typeAhead")</span>
+                                </div>
+                                <div>
+                                    <input type="checkbox" name="Dropdown" {{=ddChecked}} {{=queryControlsDisabled}} />
+                                    <span class="metalabel">@Constants.i18n("dropdown")</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <input class="populateData" {{=queryControlsDisabled}} type="radio" name="dataLinkAction" {{= updateChecked }} />
+                                    <span class="metalabel">@Constants.i18n("populateData")</span>
+                                </div>
+                                <div>
+                                    <input {{=queryControlsDisabled}} type="checkbox" name="IncludeDocs"  {{=includeDocs}} />
+                                    <span class="metalabel">@Constants.i18n("includeDocs")</span>
+                                </div>
+                                <div class="docFormat hideData">
+                                    @*
+                                    TODO: scain show once implemented properly and give the right name property to match DTO
+                                    <input type="radio" name="docFormat" checked="checked" />
+                                    <span class="metalabel">@Constants.i18n("docFormatNative")</span>
+                                    <input type="radio" name="docFormat" />
+                                    <span class="metalabel">@Constants.i18n("docFormatPDF")</span>*@
+                                    <span class="metalabel">@Constants.i18n("docPath")</span>
+                                    <input {{=queryControlsDisabled}} name="ExportPath" type="text" value="{{=exportPath}}" />
+                                </div>
+                            </li>
+                        </ol>
+                    </li>                    
+                    <li id="dataLinkConnectionsContainer">
+                    </li>
+                    <li id="dataLinkQueryContainer">
+                        <ol class="unstyledList">
+
+                        </ol>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="right">
+            <fieldset>
+                <legend>@Constants.i18n("allDataLinkQueries")</legend>
+                <select id="allQueries" size="15">
+                    {{  it.dlq.each(function (item) {
+                            if (item.get('Id') === it.selectedQuery.get('Id')) {  }}
+                                <option selected="selected" value="{{= item.get('Id') }}">{{= item.get('Name') }}</option>
+                    {{      } else  { 
+                                var conn = it.list.findWhere( { Id: item.get('ConnectionId') } );
+                                if (conn && conn.get('DataLinkType') === Constants.dlt.ThirdParty) { }}
+                                    <option value="{{= item.get('Id') }}" disabled="disabled">{{= item.get('Name') }}</option>
+                    {{          } else { }}
+                                    <option value="{{= item.get('Id') }}">{{= item.get('Name') }}</option>
+                    {{          }
+                            }
+                        }); 
+                    }}
+                </select>
+                <span id="testAll" class="short_btn custom_button no_text_select">@Constants.i18n("testAll")</span>
+            </fieldset>
+            <fieldset>
+                <legend>@Constants.i18n("allDataLinkConnections")</legend>
+                {{ var allConnectionsDisable = isThirdParty ? 'disabled="disabled"' : ''; }}
+                <select id="allConnections" {{= allConnectionsDisable}} size="15">
+                    {{ it.list.each(function (item) {
+                        if (item.get('Id') === it.selected.get('Id')) { }}
+                            <option selected="selected" value="{{= item.get('Id') }}">{{= item.get('Name') }}</option>
+                        {{ } else if(item.get('DataLinkType') === Constants.dlt.ThirdParty) {  }}
+                            <option value="{{= item.get('Id') }}" disabled="disabled">{{= item.get('Name') }}</option>
+                        {{ } else { }}
+                            <option value="{{= item.get('Id') }}">{{= item.get('Name') }}</option>
+                        {{ }
+                    }); }}
+                </select>
+            </fieldset>
+        </div>
+    </div>
+    @*
+        Data link type templates (DLTT):
+        Each new template must be added here to be displayed on the Data Link administration page.
+        The template corresponds to a div with an id of "DLT_{Data Link Type}". 
+        Just the content of the div will be copied into the Data Link UI.
+        NOTE: *** Defined within DataLinkConnectionDTO.Definition ***
+    *@
+    <div style="display: none;">
+        <div id="DLTT_MSSQL">
+            <div class="dltMain">
+                <label>@Constants.i18n("connectionString"):</label>
+                <input type="text" name="ConnectionString"/>
+            </div>
+            @* For any password fields include the hidden originalPassword, to be passed up for password comparison*@
+            <div>
+                <div class="dltSub">
+                    <label>@Constants.i18n("encryptedPassword"):</label>
+                    <input type="password" class="ep1" name="EncryptedPassword" />
+                </div>
+                <div class="dltSub">
+                    <label>@Constants.i18n("confirmEncryptedPassword"):</label>
+                    <input type="password" class="confirmPass ep2" name="ConfirmEncryptedPassword"/>
+                </div>
+                <input type="hidden" class="ignore" name="OriginalPassword" />
+                <span id="buildConnection" class="fleft custom_button short_btn" title="@Constants.i18n("buildConnection")">@Constants.i18n("buildConnection")</span>
+            </div>
+            @**@
+        </div>
+        <div id="DLTT_ODBC">
+            <div class="dltMain">
+                <label>@Constants.i18n("connectionString"):</label>
+                <select name="ConnectionString" />
+            </div>
+            <div>
+                <div class="odbcReplaceParam">
+                    <label>@Constants.i18n("parameters"):</label>
+                    <input type="checkbox" class="ep1" name="UseStringReplacementParameters" title="@Constants.i18n("useStringReplacementParameters_d")" />
+                    <span>@Constants.i18n("useStringReplacementParameters")</span>                   
+                    <input type="checkbox" class="ep1" name="SplitQueries" title="@Constants.i18n("useSplitQueries_d")" />
+                    <span>@Constants.i18n("useSplitQueries")</span>        
+                </div>
+            </div>
+            @* For any password fields include the hidden originalPassword, to be passed up for password comparison*@
+            <div>
+                <div class="dltSub">
+                    <label>@Constants.i18n("encryptedPassword"):</label>
+                    <input type="password" class="ep1" name="EncryptedPassword" />
+                </div>
+                <div class="dltSub">
+                    <label>@Constants.i18n("confirmEncryptedPassword"):</label>
+                    <input type="password" class="confirmPass ep2" name="ConfirmEncryptedPassword"/>
+                </div>
+                <input type="hidden" class="ignore" name="OriginalPassword" />
+                <span class="pwdComment">@Constants.i18n("replacePwdInConnectionString_T", Constants.PASSWORD_TOKEN)</span>
+            </div>
+            @**@
+        </div>
+        <div id="DLTT_Executable">
+            <div class="exeMain">
+                <label>@Constants.i18n("fileName"):</label>
+                <select name="ExecutableName" />
+            </div>
+            <div>                
+            <div>
+                <div class="dltSubExe1">
+                    <label>@Constants.i18n("additionalArguments"):</label>
+                    <input type="text" class="exe1" name="AdditionalArguments" />
+                </div>
+                <div class="dltSubExe2">
+                    <label>@Constants.i18n("argumentPrefix"):</label>
+                    <input type="text" class="exe2" name="ArgumentPrefix"/>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>    
+    @*
+        DataLink query templates (DLQT):
+        Each new template must be added here to be displayed on the Data Link administration page.
+        The template corresponds to a div with a class of "DLQT_{Data Link Type}". 
+        Just the content of the div will be copied into the Data Link UI.
+        This templates can be shared by adding 2 or more classes with the DLQT_... values.
+        Each template will be added inside a list item.
+    *@
+    <div style="display: none;" id="DatalinkQueryTemplates">
+        <div class="DLQT_MSSQL DLQT_ODBC">
+            <fieldset id="dataLinkQueryDef" class="fsAccordion {{=sqlClosed}}">
+                <legend>
+                    {{ if(sqlClosed === 'closed') { }}
+                        <span class="fleft ui-icon ui-icon-plus"></span>
+                    {{ } else { }}
+                        <span class="fleft ui-icon ui-icon-minus"></span>
+                    {{ } }}
+                    <span class="fsAccordionTitle">@Constants.i18n("sqlStatement")</span>
+                </legend>
+                    <div class="fsAccordionBody {{=sqlClosed}}">
+                    <textarea name="CommandText" rows="4">{{= cmdTxt }}</textarea>
+                    <span id="testLive" class="short_btn custom_button no_text_select">@Constants.i18n("testLive")</span>
+                </div>
+            </fieldset>
+        </div>
+        <div class="DLQT_MSSQL DLQT_ODBC">            
+            <fieldset id="dataLinkOldCommandText" class="fsAccordion {{=oldSQLClosed}} {{=oldSQLShow}}">
+                <legend>
+                    {{ if(oldSQLClosed === 'closed') { }}
+                        <span class="fleft ui-icon ui-icon-plus"></span>
+                    {{ } else { }}
+                        <span class="fleft ui-icon ui-icon-minus"></span>
+                    {{ } }}
+                    <span class="fsAccordionTitle">@Constants.i18n("oldSQLStatement")</span>
+                </legend>
+                <div class="fsAccordionBody {{=oldSQLClosed}}">
+                    <textarea name="OldCommandText" class="disabledText" rows="4" readonly="readonly">{{= cmdTxt }}</textarea>
+                    <span id="testSaved" class="{{= testSavedQueryDisabled}} short_btn custom_button no_text_select">@Constants.i18n("test")</span>
+                </div>
+            </fieldset>
+        </div>
+        <div class="DLQT_Executable">
+            <fieldset class="fsAccordion">
+                <legend>
+                    <span class="fsAccordionTitle">@Constants.i18n("testExecutable")</span>
+                </legend>
+                <div class="fsAccordionBody">
+                    <span id="testLive" class="short_btn custom_button no_text_select">@Constants.i18n("testLive")</span>
+                </div>
+            </fieldset>
+        </div>
+        <div class="DLQT_MSSQL DLQT_ODBC DLQT_Executable">            
+            <fieldset id="parameterDef" class="fsAccordion {{=parametersClosed}}">
+                <legend>
+                    {{ if(parametersClosed === 'closed') { }}
+                        <span class="fleft ui-icon ui-icon-plus"></span>
+                    {{ } else { }}
+                        <span class="fleft ui-icon ui-icon-minus"></span>
+                    {{ } }}
+                    <span class="fsAccordionTitle">@Constants.i18n("parameters")</span>
+                </legend>
+                <div class="fsAccordionBody {{=parametersClosed}}">
+                    <div class="accordionContents">
+                        <div class="fleft">
+                            <select name="Parameters" size="6">
+                                {{ if (!isThirdParty) { }}
+                                <option selected="selected">@Constants.i18n("newTitle")</option>                                            
+                                {{ }
+                                    if (isAdvanced) {
+                                        var params = queryDef.Params;
+                                        for (param in params) {
+                                            if (params.hasOwnProperty(param)) {
+                                                var pInfo = params[param];
+                                }}
+                                                <option data-parameter_name="{{=param}}" data-parameter_type="{{=pInfo.Type}}" data-parameter_value="{{=pInfo.Value}}" data-parameter_required="{{=pInfo.Required}}" >{{= param }}</option>
+                                {{      
+                                            }
+                                        }
+                                    } else {
+                                        var params = queryDef.Parameters;
+                                        var paramVals = queryDef.ParameterValues;
+                                        for (param in params) {
+                                            if (params.hasOwnProperty(param) && paramVals.hasOwnProperty(param)) {
+                                }}
+                                                <option data-parameter_name="{{=param}}" data-parameter_type="{{=params[param]}}" data-parameter_value="{{=paramVals[param]}}" data-parameter_required="false">{{= param }}</option>
+                                {{      
+                                            }
+                                        }
+                                    }
+                                }}
+                            </select>
+                        </div>
+                        <ol class="unstyledList">
+                            <li>
+                                <label>@Constants.i18n("name"):</label>
+                                <input name="ParameterName" type="text"  {{=queryControlsDisabled}} />
+                            </li>
+                            <li>
+                                <label>@Constants.i18n("type"):</label>
+                                {{ if (isThirdParty) { }}
+                                <input name="ParameterType" type="text"  {{=queryControlsDisabled}} />
+                                {{ } else { }}
+                                <select name="ParameterType">
+                                {{  var trans;
+                                    for(trans in revSQLDBT) { 
+                                        if(revSQLDBT.hasOwnProperty(trans)) { }}
+                                        <option>{{= revSQLDBT[trans]}}</option>
+                                {{      }
+                                    } }}
+                                </select>
+                                {{ } }}
+                            </li>
+                            <li>
+                                <label>@Constants.i18n("value"):</label>
+                                <input name="ParameterValue" type="text" />
+                            </li>
+                            <li>
+                                <label>@Constants.i18n("required"):</label>
+                                <input name="ParameterRequired" type="checkbox" />
+                            </li>
+                        </ol>
+                        <div class="fleft short_btns">
+                            {{ if (!isThirdParty) { }}
+                            <span id="delDLQParam" class="custom_button short_btn no_text_select disabled">@Constants.i18n("remove")</span>
+                            @* it would be nice to make this Save-able for 3rd party, just for the default/test value *@
+                            <span id="saveDLQParam" class="custom_button short_btn no_text_select disabled">@Constants.i18n("add")</span>
+                            {{ } }}
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="DLQT_ThirdParty">
+            <span class="spacingLeft">@Constants.i18n("seeC3pi")</span>
+        </div>
+    </div>
+{{  } else { }}
+    <div class="error">
+    {{ if(it.errorMsg === null) { }}
+        {{= Constants.c.noDataReturnedFromServer }}
+    {{ } else { }}
+        {{= it.errorMsg }}
+    {{ } }}
+    </div>
+{{ } }}

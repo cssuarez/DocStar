@@ -1,0 +1,109 @@
+﻿@using Astria.Framework.Utility;
+
+{{
+    var isDefault = '';    
+    var selected = '';
+    var currMOY = it.selected.get("MonthsOfYear");
+    var currDOM = it.selected.get("DaysOfMonth");
+    var currDOW = it.selected.get("DaysOfWeek");
+    if (it.selected.get("DefaultAd")) {
+        isDefault = 'selected="selected"';
+    }
+    var dummy = 'asdf';
+}}
+
+<h2>@Constants.i18n("addEditBuzzSpaces")</h2>
+{{ if (!it.list.isEmpty()) { }}
+<fieldset id="buzzSchedule">
+    <div class="clearfix">
+    <div class="buzz_left_block">
+    <ol class="unstyledList">
+        <li>
+            <span>@Constants.i18n("selectBuzzSpace"):</span>
+            <select name="Id">
+                {{ it.list.each(function(item) { }} {{ if (it.selected.get("Title") === item.get("Title"))
+                { }}
+                <option value="{{= item.get('Id') }}" selected="selected">{{= item.get('Title') }}</option>
+                {{ } else { }}
+                <option value="{{= item.get('Id') }}">{{= item.get('Title') }}</option>
+                {{ } }} {{ }); }}
+            </select>
+        </li>
+        <li>
+            <span>@Constants.i18n("title"):</span>
+            <input type="text" name="Title" value="{{= it.selected.get('Title') }}" />
+        </li>        
+        <li>                    
+            <span>@Constants.i18n("isBuzzDefaultAd")</span> 
+            <input title="@Constants.i18n("isBuzzDefaultAdTT")" type="checkbox" name="DefaultAd" {{=isDefault }} />   
+        </li>
+                <li>
+            <span>@Constants.i18n("buzzStartDate"):</span>  
+            <input class="buzzScheduleElement" type="text" name="StartDate" value="{{= DateUtil.convertToJSDatetime(it.selected.get("StartDate"))}}" />
+        </li>
+        <li>
+            <span>@Constants.i18n("buzzEndDate"):</span>  
+            <input class="buzzScheduleElement" type="text" name="EndDate" value="{{= DateUtil.convertToJSDatetime(it.selected.get("EndDate"))}}" />
+        </li>
+        <li>
+            <span>@Constants.i18n("buzzRunOnMonths"):</span>  
+            <select class="buzzScheduleElement" name="RunOnMonths" multiple="multiple">
+            {{ _.each(Constants.moy,  function(num, key){ 
+                    if (num !== 0 && (currMOY & num) === num) { selected = 'selected="selected"'; }
+                    else if (currMOY === 0 && num === 0) { selected = 'selected="selected"'; }
+                    else { selected = ''; }    
+            }}
+                <option value="{{= num}}" {{= selected}}> {{= Constants.c['moy_' + key]}}</option>
+            {{ }); }}
+            </select>
+        </li>
+
+        </ol>
+        </div>
+        <div class="buzz_left_block">
+        <ol class="unstyledList">
+        <li>
+            <span>@Constants.i18n("buzzRunOnDays"):</span>  
+            <select class="buzzScheduleElement" name="RunOnDays" multiple="multiple">
+            {{if (!currDOM || currDOM.length === 0 || _.any(currDOM, function(num){ return num === 0; })) { selected = 'selected="selected"'; }
+                else { selected = ''; }  
+            }}
+            <option value="0" {{= selected}}> @Constants.i18n("buzzAnyDay") </option>
+            {{ for(var i = 1; i < 32; i++) { 
+                    if (_.any(currDOM, function(num){ return num === i; })) { selected = 'selected="selected"'; }
+                    else { selected = ''; }                        
+            }}
+                <option value="{{= i}}" {{= selected}}>{{= i}}</option>
+            {{ } }}
+            </select>
+        </li>
+        <li>
+            <span>@Constants.i18n("buzzRunOnDaysOfWeek"):</span> 
+            <select class="buzzScheduleElement" name="RunOnDaysOfWeek" multiple="multiple"> 
+            {{ _.each(Constants.dow,  function(num, key){ 
+                    if (num !== 0 && (currDOW & num) === num) { selected = 'selected="selected"'; }
+                    else if (currDOW === 0 && num === 0) { selected = 'selected="selected"'; }
+                    else { selected = ''; }                        
+            }}
+                <option value="{{= num}}" {{= selected}}> {{= Constants.c['dow_' + key]}} </option>
+            {{ }); }}
+            </select>
+        </li>
+    </ol>
+    </div>
+    </div>
+    <textarea name="Content">{{= it.selected.get("Content") }}</textarea>
+</fieldset>
+<div class="buttons">
+    <input id="save_buzz" type="button" value="@Constants.i18n("save")" />
+    <input id="del_buzz"type="button" value="@Constants.i18n("delete")" />
+</div>
+{{ } else { }} 
+    <span class="error">
+        {{ if(it.list.errorMsg === null) { }} 
+            {{= Constants.c.noDataReturnedFromServer }} 
+        {{ } else { }} 
+            {{= it.list.errorMsg }} 
+        {{ } }} 
+    </span>
+{{ } }} 

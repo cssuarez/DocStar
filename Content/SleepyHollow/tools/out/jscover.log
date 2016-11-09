@@ -1,0 +1,20 @@
+20150517 18:36:59.359,74,SEVERE,"Error saving coverage data",jscover.server.InstrumentingRequestHandler,
+java.lang.NullPointerException
+	at jscover.report.FileData.addCoverage(FileData.java:379)
+	at jscover.report.JSONDataMerger.mergeJSONCoverageMaps(JSONDataMerger.java:375)
+	at jscover.report.JSONDataMerger.mergeJSONCoverageStrings(JSONDataMerger.java:364)
+	at jscover.report.JSONDataSaver.saveJSONData(JSONDataSaver.java:373)
+	at jscover.server.InstrumentingRequestHandler.storeReport(InstrumentingRequestHandler.java:420)
+	at jscover.server.InstrumentingRequestHandler.handlePostOrPut(InstrumentingRequestHandler.java:391)
+	at jscover.server.HttpServer.run(HttpServer.java:418)
+
+20150517 18:47:34.025,90,SEVERE,"Error saving coverage data",jscover.server.InstrumentingRequestHandler,
+java.lang.NullPointerException
+	at jscover.report.FileData.addCoverage(FileData.java:379)
+	at jscover.report.JSONDataMerger.mergeJSONCoverageMaps(JSONDataMerger.java:375)
+	at jscover.report.JSONDataMerger.mergeJSONCoverageStrings(JSONDataMerger.java:364)
+	at jscover.report.JSONDataSaver.saveJSONData(JSONDataSaver.java:373)
+	at jscover.server.InstrumentingRequestHandler.storeReport(InstrumentingRequestHandler.java:420)
+	at jscover.server.InstrumentingRequestHandler.handlePostOrPut(InstrumentingRequestHandler.java:391)
+	at jscover.server.HttpServer.run(HttpServer.java:418)
+

@@ -1,0 +1,42 @@
+﻿@* 
+    ddList: a SlimEntities collection
+    ddLabelClass: a class to depict the span that will contain the selected name and selected id
+    selectedId: the id of the selected element in ddList
+    selectedItemName: the name of the selected element in ddList
+    firstItemInList: {
+        include: bool, whether or not to include a starting item in the dropdown
+        text: string, what text to include for the starting item (eg. -- New --)
+        value: string, what value the starting item should have (eg. If it's a -- New -- entry, it would have a value of Constants.c.emptyGuid)
+    }, 
+    emptyItemDisplayValue: string, what to display if there is an empty item
+*@
+{{
+    var includeFirstItemInList = false;
+    var firstItemInListText = '';
+    var firstItemInListValue = '';
+    if(it.firstItemInList) {
+        includeFirstItemInList = it.firstItemInList.include;
+        firstItemInListText = it.firstItemInList.text || '';
+        firstItemInListValue = it.firstItemInList.value || '';
+    }
+}}
+<dt>
+    <span class="parent">
+        <span class="{{= it.ddLabelClass }}" value="{{= it.selectedId }}">{{= it.selectedItemName }}</span>
+        <span class='dropdown_arrow ui-icon ui-icon-triangle-1-s'></span>
+    </span>
+</dt>
+<dd>
+    <ul class="children clearfix">
+        {{ if(includeFirstItemInList) { }}
+            <li><span class="anchor" value="{{= firstItemInListValue }}">{{= firstItemInListText }}</span></li>
+        {{ } }}
+        {{ 
+            it.ddList.each(function (item) { 
+                var id = item.get('Id') || item.get('ID') || '';
+                var name = item.get('Name');
+        }}
+            <li><span class="anchor" name="{{= id}}">{{= name}} </span></li>
+        {{ }); }}
+    </ul>
+</dd>

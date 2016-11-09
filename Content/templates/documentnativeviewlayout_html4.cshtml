@@ -1,0 +1,31 @@
+﻿@using Astria.Framework.Utility;
+<div class="viewer_menubar">
+    <div class="accordion_title_contents">
+        <div class="view_menu">
+            @*Place Menu Here from DocumentViewerMenuView*@
+        </div>
+        <div id="nativeViewerNav" class="viewer_navigation">
+            <span class="ui-icon ui-icon-seek-start navigation_start navControl"></span>
+            <span class="ui-icon ui-icon-seek-prev navigation_prev navControl"></span>
+            <span class="viewer_results_type no_text_select">@Constants.i18n("file")</span>
+            <input name="currentPage" type="text" value="{{=it.currentItem }}" />
+            <span class="viewer_results_max no_text_select navControl">@Constants.i18n("of") {{=it.totalItems}}</span>
+            <span class="ui-icon ui-icon-seek-next navigation_next navControl"></span>
+            <span class="ui-icon ui-icon-seek-end navigation_end navControl"></span>
+        </div>
+        <div class="dqRenderingInProgressContainer">
+            <span {{=it.renderingTitle}}>{{=it.renderingMessage}}</span>
+        </div>
+    </div>
+</div>
+<div class="nativeViewerContainer">
+    {{if(it.canDownload) { }}
+        <iframe class="{{=it.iframeClass}}" src="{{=it.source}}" frameborder="0" />
+        {{if(it.typeNotSupported) { }}
+            <a class="downloadNativeDocument shadow long_btn no_text_select custom_button">@Constants.i18n("clickToDownload")</a>
+            <iframe class="download"></iframe>
+        {{ } }}
+    {{ } else { }}
+        <span>@Constants.i18n("nativeDownloadPermissions")</span>
+    {{ } }}
+</div>

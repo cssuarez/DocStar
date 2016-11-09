@@ -1,0 +1,118 @@
+﻿@using Astria.Framework.Utility;
+{{
+    var currentIP = '';
+    var currentSubnet = '';
+    var currentAllowed = false;
+    if (it.selected.get('IPAddress')) {
+        currentIP = it.selected.get('IPAddress');
+        currentSubnet = it.selected.get('SubnetAddress');
+        currentAllowed = it.selected.get('Allowed');
+    };
+}}
+<div id="mask_layout">
+    <h2>@Constants.i18n("iprestrictions")</h2>
+    <div class="clearfix" id="companyIPMaskDTO">
+        <fieldset>
+            <legend>@Constants.i18n("addedRestrictions")</legend>
+            <div class="listarea">
+                <select name="Id" size="27" class="ctlist">
+                {{ it.list.each(function(item) { 
+                       var display = item.get("IPAddress") + " : " + item.get("SubnetAddress");
+                       var color = item.get("Allowed") ? "Green" : "Red";
+                       if (it.selected.get("Id") === item.get("Id")) { }}
+                        <option value="{{= item.get('Id') }}" selected="selected" style="color:{{= color }}">{{= display }}</option>
+                    {{ } else { }}
+                        <option value="{{= item.get('Id') }}" style="color:{{= color }}">{{= display }}</option>
+                    {{ } }}    
+                {{ }); }}
+                </select>
+            </div>
+            <div class="metaarea">
+                <div class="input">
+                    <span class="metalabel">@Constants.i18n("ipaddress"):</span>
+                    <input type="text" name="IPAddress" class="metainput" value="{{= currentIP }}" />
+                </div>
+                <div class="input">
+                    <span class="metalabel">@Constants.i18n("subnet"):</span>
+                    <input type="text" name="SubnetAddress" class="metainput" value="{{= currentSubnet }}" />
+                </div>
+                <div class="input">
+                    <span class="metalabel">@Constants.i18n("allowsaccess"):</span>
+                        {{ if (currentAllowed) { }}
+                        <input type="checkbox" name="Allowed" checked="checked" />
+                        {{ } else { }}
+                        <input type="checkbox" name="Allowed" />
+                        {{ } }}
+                </div>
+            
+                <div class="input">
+                    <span class="metalabel">
+                        <input type="button" name="testIP" value="@Constants.i18n("testIP")" />
+                    </span>
+                    <input class="metainput" type="text" id="testIPAddress" />
+                </div>
+            </div>
+        </fieldset>
+        <div class="buttons">
+            <input type="button" name="save_ipmask" value="@Constants.i18n("save")" />
+            <input type="button" name="delete_ipmask" value="@Constants.i18n("delete")" />
+            <input type="hidden" name="ip_Error" />
+        </div>
+    </div>
+    <div id="addNew">
+        <fieldset>
+            <legend>@Constants.i18n("addNewRestriction")</legend>
+            <div class="inline">        
+                <fieldset>
+                    <legend>@Constants.i18n("addsingleIP")</legend>
+                    <div class="input">
+                        <span class="metalabel">@Constants.i18n("ipaddress"):</span>
+                        <input type="text" name="Single_IP" class="metainput" />
+                    </div>
+                </fieldset>
+            </div>
+            <div class="inline">        
+                <fieldset>
+                    <legend>@Constants.i18n("addCidr")</legend>
+                    <div class="input">
+                        <span class="metalabel">@Constants.i18n("ipcidr"):</span>
+                        <input type="text" name="Cidr_IP" class="metainput" />
+                    </div>
+                </fieldset>
+            </div>
+            <div class="inline">        
+                <fieldset>
+                    <legend>@Constants.i18n("addsubnet")</legend>
+                    <div class="input">
+                        <span class="metalabel">@Constants.i18n("ipaddress"):</span>                
+                        <input type="text" name="Sub_IP" class="metainput" />
+                    </div>
+                    <div class="input">
+                        <span class="metalabel">@Constants.i18n("subnet"):</span>                
+                        <input type="text" name="Sub_Subnet" class="metainput" />
+                    </div>
+                </fieldset>
+            </div>
+            <div class="inline">        
+                <fieldset>
+                    <legend>@Constants.i18n("addiprange")</legend>
+                    <div class="input">
+                        <span class="metalabel">@Constants.i18n("sipaddress"):</span>                
+                        <input type="text" name="Start_IP" class="metainput" />
+                    </div>
+                    <div class="ipTo">@Constants.i18n("to")</div>
+                    <div class="input">
+                        <span class="metalabel">@Constants.i18n("eipaddress"):</span>                
+                        <input type="text" name="End_IP" class="metainput" />
+                    </div>
+                </fieldset>
+            </div>
+        </fieldset>
+        <div class="buttons">            
+            <input type="button" name="add_ipMask" value="@Constants.i18n("add")" />            
+            <input type="checkbox" name="IP_Allowed" />
+            <span>@Constants.i18n("allowsaccess")</span>
+        </div>
+    
+    </div>
+</div>

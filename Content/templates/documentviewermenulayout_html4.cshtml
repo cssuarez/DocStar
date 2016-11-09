@@ -1,0 +1,572 @@
+﻿@using Astria.Framework.Utility;
+<dt>
+    <span class="parent">
+        @Constants.i18n("viewActions")
+        <span class='dropdown_arrow ui-icon ui-icon-triangle-1-s'></span>
+    </span>
+</dt>
+<ul class="children">
+    {{ if (it.showEditForm) { }}                @*Edit Form - Intentionally not alphabetized, we always want this at the top*@
+    <li>
+        <div class="menu_item editForm">
+            {{if(it.isInEditForm) { }}
+            <span class="view_native_check ui-icon ui-icon-check">&nbsp;</span>
+            {{ } else { }}
+            <span>&nbsp;</span>
+            {{ } }}
+            <span class="anchor" title="@Constants.i18n("editForm")">@Constants.i18n("editForm")</span>
+        </div>
+    </li>
+    {{ } }}
+    {{ if (it.showCompleteForm) { }}
+    <li>                                        @* Complete Form *@
+        <span>&nbsp;</span>
+        <div class="menu_item completeForm">
+            <span class="anchor" title="@Constants.i18n("completeForm")">@Constants.i18n("completeForm")</span>
+        </div>
+    </li>
+    {{ } }}
+    {{ if (it.showUncompleteForm) { }}
+    <li>                                        @* Uncomplete Form *@
+        <span>&nbsp;</span>
+        <div class="menu_item uncompleteForm">
+            <span class="anchor" title="@Constants.i18n("uncompleteForm")">@Constants.i18n("uncompleteForm")</span>
+        </div>
+    </li>
+    {{ } }}
+    {{ if (it.showEditForm || it.showCompleteform || it.showUncompleteForm) { }}
+        <li>
+            <hr />
+        </li>
+    {{ } }}
+    {{ if(it.showAllApprovalOptions) { }}       @*Approvals*@
+    <li>
+        <div class="menu_item">
+            <span>&nbsp;</span>
+            <span class="anchor" title="@Constants.i18n("approvals")">@Constants.i18n("approvals")</span>
+            <span class="ui-icon ui-icon-triangle-1-e right_icon">&nbsp;</span>
+        </div>
+        <ul class="submenu">
+            {{if(it.isApproved) { }}
+            <li>
+                <div class="menu_item approval">
+                    <span class="ui-icon ui-icon-check"></span>
+                    <span class="anchor approve isNotApproved" title="@Constants.i18n("recallApproval")">@Constants.i18n("recallApproval")</span>
+                </div>
+            </li>
+            {{ } else { }}
+            <li>
+                <div class="menu_item approval">
+                    <span>&nbsp;</span>
+                    <span class="anchor approve isNotApproved" title="@Constants.i18n("approve")">@Constants.i18n("approve")</span>
+                </div>
+            </li>
+            {{ } }}
+            {{ if(it.isDenied) { }}
+            <li>
+                <div class="menu_item denial">
+                    <span class="ui-icon ui-icon-check"></span>
+                    <span class="anchor deny isNotDenied" title="@Constants.i18n("recallDenial")">@Constants.i18n("recallDenial")</span>
+                </div>
+            </li>
+            {{ } else { }}
+            <li>
+                <div class="menu_item denial">
+                    <span>&nbsp;</span>
+                    <span class="anchor deny isNotDenied" title="@Constants.i18n("deny")">@Constants.i18n("deny")</span>
+                </div>
+            </li>
+            {{ } }}
+            <li>
+                <div class="menu_item request_approval">
+                    <span>&nbsp;</span>
+                    <span class="anchor" title="@Constants.i18n("requestApproval")">@Constants.i18n("requestApproval")</span>
+                </div>
+            </li>
+            <li>
+                <div class="menu_item set_required">
+                    <span>&nbsp;</span>
+                    <span class="anchor" title="@Constants.i18n("setRequired")">@Constants.i18n("setRequired")</span>
+                </div>
+            </li>
+        </ul>
+    </li>
+    {{ } }}    
+  
+        {{ if(it.showViewAuditOption) { }}          @*Audit Info*@
+        <li>
+            <div class="menu_item view_audit">
+                {{ if(it.viewAudit) { }}
+                <span class="view_audit_check ui-icon ui-icon-check"></span>
+                {{ } else { }}
+                <span class="view_audit_check">&nbsp;</span>
+                {{ } }}
+                <span class="anchor" title="@Constants.i18n("auditInfo_tt")">@Constants.i18n("auditInfo")</span>
+            </div>
+        </li>
+        {{ } }}
+        {{ if(it.showAuditTrailOption) { }}         @*Audit Trail*@
+        <li>
+            <div class="menu_item view_auditTrail">
+                <span>&nbsp;</span>
+                <span class="anchor" title="@Constants.i18n("auditTrail_tt")">@Constants.i18n("auditTrail")</span>
+            </div>
+        </li>
+        {{ } }}
+        {{ if(it.showChangeAssigneeOption) { }}     @*Change Assignee*@
+        <li>
+            <div class="menu_item changeAssignee">
+                <span>&nbsp;</span>
+                <span class="anchor" title="@Constants.i18n("changeAssignee")">@Constants.i18n("changeAssignee")</span>
+            </div>
+        </li>
+        {{ } }}
+        {{ if(it.showZoomLevelOption) { }}          @*Document Zoom Level*@
+        <li class="documentZoomLevelContainer">
+            <div class="menu_item">
+                <span>&nbsp;</span>
+                <span class="anchor" title="@Constants.i18n("documentzoomlevel")">@Constants.i18n("documentzoomlevel")</span>
+                <span class="ui-icon ui-icon-triangle-1-e right_icon">&nbsp;</span>
+            </div>
+            <ul class="submenu">
+                <li>
+                    <div class="menu_item fit_width">
+                        <input type="hidden" value="width" />
+                        {{ if(it.fitWidth) { }}
+                        <span class="view_width_check ui-icon ui-icon-check"></span>
+                        {{ } else { }}
+                        <span class="view_width_check">&nbsp;</span>
+                        {{ } }}
+                        <span class="anchor" title="@Constants.i18n("fitWidth")">@Constants.i18n("fitWidth")</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="menu_item fit_height">
+                        <input type="hidden" value="height" />
+                        {{ if(it.fitHeight) { }}
+                        <span class="view_fit_check ui-icon ui-icon-check"></span>
+                        {{ } else { }}
+                        <span class="view_fit_check">&nbsp;</span>
+                        {{ } }}
+                        <span class="anchor" title="@Constants.i18n("fitHeight")">@Constants.i18n("fitHeight")</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="menu_item zoom_5">
+                        <input type="hidden" value="0.05" />
+                        {{ if(it.fitValue === "0.05") { }}
+                        <span class="view_zoom5_check ui-icon ui-icon-check"></span>
+                        {{ } else { }}
+                        <span class="view_zoom5_check">&nbsp;</span>
+                        {{ } }}
+                        <span class="anchor" title="zoom_5">5%</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="menu_item zoom_10">
+                        <input type="hidden" value="0.10" />
+                        {{ if(it.fitValue === "0.10") { }}
+                        <span class="view_zoom10_check ui-icon ui-icon-check"></span>
+                        {{ } else { }}
+                        <span class="view_zoom10_check">&nbsp;</span>
+                        {{ } }}
+                        <span class="anchor" title="zoom_10">10%</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="menu_item zoom_25">
+                        <input type="hidden" value="0.25" />
+                        {{ if(it.fitValue === "0.25") { }}
+                        <span class="view_zoom25_check ui-icon ui-icon-check"></span>
+                        {{ } else { }}
+                        <span class="view_zoom25_check">&nbsp;</span>
+                        {{ } }}
+                        <span class="anchor" title="zoom_25">25%</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="menu_item zoom_50">
+                        <input type="hidden" value="0.50" />
+                        {{ if(it.fitValue === "0.50") { }}
+                        <span class="view_zoom50_check ui-icon ui-icon-check"></span>
+                        {{ } else { }}
+                        <span class="view_zoom50_check">&nbsp;</span>
+                        {{ } }}
+                        <span class="anchor" title="zoom_50">50%</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="menu_item zoom_75">
+                        <input type="hidden" value="0.75" />
+                        {{ if(it.fitValue === "0.75") { }}
+                        <span class="view_zoom75_check ui-icon ui-icon-check"></span>
+                        {{ } else { }}
+                        <span class="view_zoom75_check">&nbsp;</span>
+                        {{ } }}
+                        <span class="anchor" title="zoom_75">75%</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="menu_item zoom_100">
+                        <input type="hidden" value="1.0" />
+                        {{ if(it.fitValue === "1.0") { }}
+                        <span class="view_zoom100_check ui-icon ui-icon-check"></span>
+                        {{ } else { }}
+                        <span class="view_zoom100_check">&nbsp;</span>
+                        {{ } }}
+                        <span class="anchor" title="zoom_100">100%</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="menu_item zoom_150">
+                        <input type="hidden" value="1.5" />
+                        {{ if(it.fitValue === "1.5") { }}
+                        <span class="view_zoom150_check ui-icon ui-icon-check"></span>
+                        {{ } else { }}
+                        <span class="view_zoom150_check">&nbsp;</span>
+                        {{ } }}
+                        <span class="anchor" title="zoom_150">150%</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="menu_item zoom_200">
+                        <input type="hidden" value="2.0" />
+                        {{ if(it.fitValue === "2.0") { }}
+                        <span class="view_zoom200_check ui-icon ui-icon-check"></span>
+                        {{ } else { }}
+                        <span class="view_zoom200_check">&nbsp;</span>
+                        {{ } }}
+                        <span class="anchor" title="zoom_200">200%</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="menu_item zoom_400">
+                        <input type="hidden" value="4.0" />
+                        {{ if(it.fitValue === "4.0") { }}
+                        <span class="view_zoom400_check ui-icon ui-icon-check"></span>
+                        {{ } else { }}
+                        <span class="view_zoom400_check">&nbsp;</span>
+                        {{ } }}
+                        <span class="anchor" title="zoom_400">400%</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="menu_item zoom_800">
+                        <input type="hidden" value="8.0" />
+                        {{ if(it.fitValue === "8.0") { }}
+                        <span class="view_zoom800_check ui-icon ui-icon-check"></span>
+                        {{ } else { }}
+                        <span class="view_zoom800_check">&nbsp;</span>
+                        {{ } }}
+                        <span class="anchor" title="zoom_800">800%</span>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        {{ } }}
+        {{= it.emailHtml}}                          @*Email*@
+        {{ if(it.showSecurityOption) { }}           @*Modify Security*@
+        <li>
+            <div class="menu_item change_sec">
+                <span>&nbsp;</span>
+                <span class="anchor" title="@Constants.i18n("changeSecurity")">@Constants.i18n("changeSecurity")</span>
+            </div>
+        </li>
+        {{ } }}
+        {{ if(it.showMoveToOption) { }}             @*Move To*@
+        <li>
+            <div class="menu_item move_To">
+                <span>&nbsp;</span>
+                <span class="anchor" title="@Constants.i18n("moveTo")">@Constants.i18n("moveTo")</span>
+            </div>
+        </li>
+        {{ } }}
+        {{= it.pageOptionsHtmlData}}                @*Page Options*@
+        {{ if(it.showPrintOption) { }}              @*Print*@
+        <li>
+            <div class="menu_item print_view">
+                <span>&nbsp;</span>
+                <span class="anchor" title="@Constants.i18n("print")">@Constants.i18n("print")</span>
+            </div>
+        </li>
+        {{ } }}
+        {{ if(it.showRecognitionOption) { }}        @*Recognition*@
+        <li>
+            <div class="menu_item">
+                <span>&nbsp;</span>
+                <span class="anchor" title="@Constants.i18n("recognition")">@Constants.i18n("recognition")</span>
+                <span class="ui-icon ui-icon-triangle-1-e right_icon">&nbsp;</span>
+            </div>
+            <ul class="submenu">
+                <li>
+                    <div class="menu_item barcodeShortcut_view">
+                        {{ if(it.barcodeShortCut) { }}
+                        <span class="view_barcodeShortcut_check ui-icon ui-icon-check"></span>
+                        {{ } else { }}
+                        <span class="view_barcodeShortcut_check">&nbsp;</span>
+                        {{ } }}
+                        <span class="anchor" title="@Constants.i18n("barcodeShortcut")">@Constants.i18n("barcodeShortcut")</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="menu_item ocrShortcut_view">
+                        {{ if(it.ocrShortCut) { }}
+                        <span class="view_ocrShortcut_check ui-icon ui-icon-check"></span>
+                        {{ } else { }}
+                        <span class="view_ocrShortcut_check">&nbsp;</span>
+                        {{ } }}
+                        <span class="anchor" title="@Constants.i18n("ocrShortcut")">@Constants.i18n("ocrShortcut")</span>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        {{ } }}
+        {{ if(it.showRecordsManagementOption) { }}  @*Records Management*@
+        <li>
+            <div class="menu_item">
+                <span>&nbsp;</span>
+                <span class="anchor" title="@Constants.i18n("tk_RecordsManagement")">@Constants.i18n("tk_RecordsManagement")</span>
+                <span class="ui-icon ui-icon-triangle-1-e right_icon">&nbsp;</span>
+            </div>
+            <ul class="submenu">
+                <li>
+                    <div class="menu_item freeze_view">
+                        <span>&nbsp;</span>
+                        <span class="anchor" title="@Constants.i18n("freeze")">@Constants.i18n("freeze")</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="menu_item unfreeze_view">
+                        <span>&nbsp;</span>
+                        <span class="anchor" title="@Constants.i18n("unfreeze")">@Constants.i18n("unfreeze")</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="menu_item cutoff_view">
+                        <span>&nbsp;</span>
+                        <span class="anchor" title="@Constants.i18n("cutoff")">@Constants.i18n("cutoff")</span>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        {{ } }}
+        {{  if(it.showRequestApprovalOption) { }}   @*Request Approval*@
+        <li>
+            <div class="menu_item request_approval">
+                <span>&nbsp;</span>
+                <span class="anchor" title="@Constants.i18n("requestApproval")">@Constants.i18n("requestApproval")</span>
+            </div>
+        </li>
+        {{ } }}
+        {{ if(it.showReQueueImagingOption) { }}     @*Requeue Imaging*@
+        <li>
+            <div class="menu_item requeueImaging_view">
+                <span>&nbsp;</span>
+                <span class="anchor" title="@Constants.i18n("requeueImaging_d")">@Constants.i18n("requeueImaging")</span>
+            </div>
+        </li>
+        {{ } }}
+        {{ if(it.showDownloadOption) { }}           @*Save a Copy*@
+        <li>
+            <div class="menu_item save_view">
+                <span>&nbsp</span>
+                <span class="anchor" title="@Constants.i18n("resultActionsDownload")">@Constants.i18n("resultActionsDownload")</span>
+            </div>
+        </li>
+        {{ } }}
+        {{ if(it.showScanOption) { }}               @*Scan*@
+        <li>
+            <div class="menu_item scan_view">
+                <span>&nbsp</span>
+                <span class="anchor" title="@Constants.i18n("scan")">@Constants.i18n("scan")</span>
+            </div>
+        </li>
+        {{ } }}
+        {{ if(it.showDueDateOption) { }}            @*Set Due Date*@
+        <li>
+            <div class="menu_item DueDate_view">
+                <span>&nbsp;</span> <span class="anchor">@Constants.i18n("setDueDate")</span>
+            </div>
+        </li>
+        {{ } }}
+        {{ if(it.showStartPageOption) { }}          @*Set Start Page*@
+        <li>
+            <div class="menu_item set_start_page">
+                <span>&nbsp;</span>
+                <span class="anchor" title="@Constants.i18n("setStartPage")">@Constants.i18n("setStartPage")</span>
+            </div>
+        </li>
+        {{ } }}
+        {{ if(it.showDocumentTextOption) { }}               @*Document Text*@
+        <li>
+            <div class="menu_item showDocText">
+                {{ if(it.showDocumentText) { }}
+                <span class="showDocText_check ui-icon ui-icon-check"></span>
+                {{ } else { }}
+                <span class="showDocText_check">&nbsp;</span>
+                {{ } }}
+                <span class="anchor" title="@Constants.i18n("showDocumentText")">@Constants.i18n("showDocumentText")</span>
+            </div>
+        </li>
+        {{ } }}
+        {{ if(it.showMetaPanelOption) { }}          @*Show Fields*@
+        <li>
+            <div class="menu_item view_meta">
+                {{ if(it.showMetaPanel) { }}
+                <span class="view_meta_check ui-icon ui-icon-check"></span>
+                {{ } else { }}
+                <span class="view_meta_check">&nbsp;</span>
+                {{ } }}
+                <span class="anchor" title="@Constants.i18n("showFields")">@Constants.i18n("showFields")</span>
+            </div>
+        </li>
+        {{ } }}
+        {{ if(it.showHitsOption) { }}               @*Document Hits*@
+        <li class="showHitsMenuCont">
+            <div class="menu_item showHits">
+                {{ if(it.showDocumentHits) { }}
+                <span class="showHits_check ui-icon ui-icon-check"></span>
+                {{ } else { }}
+                <span class="showHits_check">&nbsp;</span>
+                {{ } }}
+                <span class="anchor" title="@Constants.i18n("showHits")">@Constants.i18n("showHits")</span>
+            </div>
+        </li>
+        {{ } }}
+        {{ if(it.showThumbnailOption) { }}          @*Thumbnails*@
+        <li class="thumbs_menu_item">
+            <div class="menu_item">
+                <span>&nbsp;</span>
+                <span class="anchor" title="@Constants.i18n("thumbnails")">@Constants.i18n("thumbnails")</span>
+                <span class="ui-icon ui-icon-triangle-1-e right_icon">&nbsp;</span>
+            </div>
+            <ul class="submenu">
+                <li>
+                    <div class="menu_item show_thumbs_left">
+                        {{ if(it.thumbnailsLeft) { }}
+                        <span class="thumb_left_check ui-icon ui-icon-check"></span>
+                        {{ } else { }}
+                        <span class="thumb_left_check">&nbsp;</span>
+                        {{ } }}
+                        <span class="anchor" title="@Constants.i18n("left")">@Constants.i18n("left")</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="menu_item show_thumbs_right">
+                        {{ if(it.thumbnailsRight) { }}
+                        <span class="thumb_right_check ui-icon ui-icon-check"></span>
+                        {{ } else { }}
+                        <span class="thumb_right_check">&nbsp;</span>
+                        {{ } }}
+                        <span class="anchor" title="@Constants.i18n("right")">@Constants.i18n("right")</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="menu_item show_hide_thumbnails">
+                        {{ if(it.thumbnailsHide) { }}
+                        <span class="thumb_off_check ui-icon ui-icon-check"></span>
+                        {{ } else { }}
+                        <span class="thumb_off_check">&nbsp;</span>
+                        {{ } }}
+                        <span class="anchor" title="@Constants.i18n("off")">@Constants.i18n("off")</span>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        {{ } }}
+        {{ if(it.showVersioningOption) { }}         @*Versioning*@
+        <li class="versioningMenuItem">
+            <div class="menu_item">
+                <span>&nbsp;</span>
+                <span class="anchor" title="@Constants.i18n("versioning")">@Constants.i18n("versioning")</span>
+                <span class="ui-icon ui-icon-triangle-1-e right_icon">&nbsp;</span>
+            </div>
+            <ul class="submenu">
+                <li>
+                    <div class="menu_item checkOut">
+                        <span>&nbsp;</span>
+                        <span class="anchor" title="@Constants.i18n("checkOut")">@Constants.i18n("checkOut")</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="menu_item checkIn">
+                        <span>&nbsp;</span>
+                        <span class="anchor" title="@Constants.i18n("checkIn")">@Constants.i18n("checkIn")</span>
+                    </div>
+                </li>
+                {{ if(it.isDraft) { }}
+                <li>
+                    <div class="menu_item changeDraftOwner">
+                        <span>&nbsp;</span>
+                        <span class="anchor" title="@Constants.i18n("changeDraftOwner")">@Constants.i18n("changeDraftOwner")</span>
+                    </div>
+                </li>
+                {{ } }}
+                <li>
+                    <div class="menu_item downloadDraft">
+                        <span>&nbsp;</span>
+                        <span class="anchor" title="@Constants.i18n("downloadDraft")">@Constants.i18n("downloadDraft")</span>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        {{ } }}
+        {{ if(it.showViewNativeOption) { }}         @*View Native*@
+        <li>
+            <div class="menu_item view_native">
+                {{ if($.cookie('useNative')) { }}
+                <span class="view_native_check ui-icon ui-icon-check">&nbsp;</span>
+                {{ } else { }}
+                <span class="view_native_check">&nbsp;</span>
+                {{ } }}
+                <span class="anchor" title="@Constants.i18n("viewNative")">@Constants.i18n("viewNative")</span>
+            </div>
+        </li>
+        {{ } }}
+    {{ if(it.showAssignWorkflowOption) { }}     @*Assign Workflow*@
+    <li>
+        <div class="menu_item">
+            <span class="spacer">&nbsp;</span>
+            <span class="anchor" title="@Constants.i18n("workflow")">@Constants.i18n("workflow")</span>
+            <span class="ui-icon ui-icon-triangle-1-e right_icon">&nbsp</span>
+        </div>
+        <ul class="submenu">
+            <li>
+                <div class="menu_item assign_workflow">
+                    <span>&nbsp;</span>
+                    <span class="anchor" title="@Constants.i18n("assignWorkflow")">@Constants.i18n("assignWorkflow")</span>
+                </div>
+            </li>
+            {{ if(it.showRemoveFromWorkflow) { }}     @*remove from Workflow*@
+            <li>
+                <div class="menu_item removeFromWorkflow">
+                    <span>&nbsp;</span>
+                    <span class="anchor" title="@Constants.i18n("removeFromWf")">@Constants.i18n("removeFromWf")</span>
+                </div>
+            </li>
+            {{ } }}
+            {{ if(it.showResetWorkflow) { }}     @*reset Workflow*@
+            <li>
+                <div class="menu_item">
+                    <span class="spacer">&nbsp;</span>
+                    <span class="anchor reset_Workflow" title="@Constants.i18n("resetWorkflow")">@Constants.i18n("resetWorkflow")</span>
+                </div>
+            </li>
+            {{ } }}
+        </ul>
+    </li>
+    {{ } }}
+        @*Delete is intentionally not alphabetized. We always want this at the bottom.*@
+        {{ if(it.showDeleteOption) { }}
+        <li>
+            <hr />
+        </li>
+        <li>
+            <div class="menu_item delete">
+                <span>&nbsp;</span>
+                <span class="anchor" title="@Constants.i18n("delete")">@Constants.i18n("delete")</span>
+            </div>
+        </li>
+        {{ } }}
+
+    </ul>

@@ -1,0 +1,20 @@
+﻿@using Astria.Framework.Utility;
+{{if(it.labelValueType !== 'checkbox') { }}
+<input name="IsSelected" class="fleft" type="{{=it.labelValueType}}" {{=it.IsSelected ? 'checked="checked"' : '' }} />
+{{ } }}
+<div class="labelValuePairContainer">
+    <div class="inlineblock">
+        <span class="fleft">@Constants.i18n("label")</span>
+        <input name="Label" class="fleft" type="text" value="{{=it.Label}}" />
+    </div>
+    <div class="inlineblock">
+        <span class="fleft">@Constants.i18n("value"):</span>
+        <input name="Value" class="fleft" type="text" value="{{=it.Value}}" />
+    </div>
+</div>
+<span class="ui-icon ui-icon-plus fleft"></span>
+{{ if(it.displayDelete) { }}
+<span class="ui-icon ui-icon-close fleft"></span>
+{{ } else { }}
+<span class="fleft">&nbsp;</span>
+{{ } }}

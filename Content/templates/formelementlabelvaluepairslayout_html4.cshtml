@@ -1,0 +1,11 @@
+﻿@using Astria.Framework.Utility;
+<li>
+    <label>
+        <span>@Constants.i18n("fieldLayout")</span>
+        <select name="Vertical">
+            <option value="true" {{=it.Vertical ? 'selected="selected"' : ''}}>@Constants.i18n("oneColumn")</option>
+            <option value="false" {{=it.Vertical ? '' : 'selected="selected"'}}>@Constants.i18n("sideBySide")</option>
+        </select>
+    </label>
+</li>
+@* Render Label Value Pair items here *@

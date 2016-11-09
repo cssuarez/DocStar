@@ -1,0 +1,49 @@
+﻿@using Astria.Framework.Utility;
+{{ if (it.listct.length !== 0) { }}
+<script>
+
+</script>
+<h2>@Constants.i18n("headingContentTypeEditor")</h2>
+<div>
+    <fieldset>
+        <legend>@Constants.i18n("contentType")</legend>
+        <div class="contentTypeDTO">
+            <div class="adminMetaWidth fleft">
+                <div class="input">
+                    <span class="metalabel">@Constants.i18n("contentType"):</span>
+                    <select name="Name" class="metaselect">
+                        {{ it.listct.each(function(item) {
+                        var name = Utility.safeHtmlValue(item.get('Name'));
+                        }}
+                        {{ if (it.selected.get("Id") === item.get('Id')) { }}
+                        <option value="{{= item.get('Id') }}" selected="selected">{{= name }}</option>
+                        {{ } else { }}
+                        <option value="{{= item.get('Id') }}">{{= name }}</option>
+                        {{ } }}
+                        {{ }); }}
+                    </select>
+                </div>
+                @* Render contentypedefault view *@
+            </div>
+            @* Render contenttypefield view *@
+        </div>
+    </fieldset>
+</div>
+<div id="ct_perm">
+    @* Render contenttypesecurity view *@
+</div>
+<div class="buttons">
+    <input type="button" name="save_ct" value="@Constants.i18n("save")" />
+    <input type="button" name="delete_ct" value="@Constants.i18n("delete")" />
+    <input type="hidden" name="ct_Error" />
+</div>
+
+{{  } else { }}
+<div class="error">
+{{ if(it.list.errorMsg === null) { }}
+{{= Constants.c.noDataReturnedFromServer }}
+{{ } else { }}
+{{= it.list.errorMsg }}
+{{ } }}
+</div>
+{{ } }}

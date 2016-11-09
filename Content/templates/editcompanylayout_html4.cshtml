@@ -1,0 +1,55 @@
+﻿@using Astria.Framework.Utility;
+{{
+if(it.list != null && !it.list.isEmpty())
+{
+    var dto = it.selected;
+    var instances = it.selected.get('CompanyInstances');
+    
+}}
+<h2>@Constants.i18n("headingCompanyEditor")</h2>
+<div id="company_layout">
+    <div class="half inlineblock">
+        <fieldset>
+            <legend>@Constants.i18n("selectCompany")</legend>
+            <div class="listarea">
+                <select name="Id" size="27" style="width:200px;">
+                {{ it.list.each(function(item) { }}
+                    {{ if (dto.get("Id") === item.get("Id")) { }}
+                        <option value="{{= it.selected.get('Id') }}" selected="selected">{{= Utility.safeHtmlString(item.get('Name')) }}</option>
+                    {{ } else { }}
+                        <option value="{{= item.get('Id') }}">{{= Utility.safeHtmlString(item.get('Name')) }}</option>
+                    {{ } }}    
+                {{ }); }}
+                </select>
+            </div>
+        </fieldset>
+    </div>
+    <div class="half inlineblock">
+        <fieldset>
+            <legend>@Constants.i18n("companyProperties")</legend>
+            <div class="metaarea" style="width:250px; text-align:left;">                
+                <div class="input">
+                    <span class="metalabel">@Constants.i18n("name"):</span>
+                    <input type="text" name="Name" class="metainput" value="{{= it.selected.get('Name') }}" />
+                </div>
+                <div class="input">
+                    <span class="metalabel">@Constants.i18n("prefix"):</span>
+                    <input type="text" name="Prefix" class="metainput" value="{{= it.selected.get('Prefix') }}" maxlength="4" />
+                </div>
+            </div>
+        </fieldset>
+    </div> 
+</div>
+<div class="buttons">
+        <input type="button" name="save_company" id="save_company" value="@Constants.i18n("save")" />
+        <input type="hidden" name="errors_cf" />
+</div>
+{{  } else { }}
+<div class="error">
+{{ if(it.list == null || it.list.errorMsg === null) { }}
+{{= Constants.c.noDataReturnedFromServer }}
+{{ } else { }}
+{{= it.list.errorMsg }}
+{{ } }}
+</div>
+{{ } }}

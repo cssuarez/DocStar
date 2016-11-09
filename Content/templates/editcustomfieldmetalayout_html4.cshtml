@@ -1,0 +1,106 @@
+﻿@using Astria.Framework.Utility;
+{{
+    if (!it.list.isEmpty() && (it.hasFieldPerm || it.formElementView)) { 
+        var dummy = '';
+}}
+<fieldset>
+    <legend>@Constants.i18n("fields")</legend>
+<ol class="unstyledList customFieldSelection" style="{{= it.singleField ? 'display: none' : ''}}">
+    <li>
+    {{ if(it.singleField) { }}
+        <input name="Id" type="hidden" value="{{= it.selected.get('Id') }}" />
+    {{ } else { }}
+        <label class="metalabel fleft">@Constants.i18n("selectfield"):</label>
+        <select name="Id" size="8">
+            {{ it.list.each(function(item) { }}
+                {{ var name = item.get('Name'); }}
+                {{ if (it.selected.get("Id") === item.get("Id")) { }}
+                    <option value="{{= it.selected.get('Id') }}" selected="selected">{{=Utility.safeHtmlValue(name, {attrs:{title: name}, tag:'span'})}}</option>
+                {{ } else { }}
+                    <option value="{{= item.get('Id') }}">{{=Utility.safeHtmlValue(name, {attrs:{title: name}, tag:'span'})}}</option>
+                {{ } }}
+            {{ }); }}
+        </select>
+    {{ } }}
+    </li>
+</ol>
+<ol class="unstyledList customFieldValues">
+    <li>
+        <label>@Constants.i18n("name"):</label>
+        <div>
+            <input type="text" name="Name" value="{{=Utility.safeHtmlString(it.selected.get('Name'))}}" {{=!it.hasFieldPerm ? "disabled='disabled'" : ''}} />
+        </div>
+        <span class="alphaNumeric" style="display: none;"></span>
+    </li>
+    <li>
+        <label>@Constants.i18n("type"):</label>
+        <select name="Type" {{=(!it.hasFieldPerm) ? 'disabled="disabled"' : '' }}>
+            {{ var idx = 0;
+               var length = it.availTypes.length;
+               for(idx = 0; idx < length; idx++) { 
+                    var obj = it.availTypes[idx];
+            }}
+                    <option value="{{= obj.num}}" {{=(obj.selected) ? 'selected="selected"' : '' }}>{{= obj.text}}</option>
+            {{ } }}
+        </select>
+    </li>
+    <li title="@Constants.i18n("nonIndexed_d")">
+        <label>@Constants.i18n("nonIndexed"):</label>
+        <input type="checkbox" name="NonIndexed" {{= it.selected.get('NonIndexed') ? 'checked="checked"' : ''}} {{=(!it.hasFieldPerm) ? 'disabled="disabled"' : '' }} />
+    </li>
+    <li class="cfs_DisplayFormat" >
+        <label>@Constants.i18n("displayFormat"):</label>
+        <select class="combobox" name="DisplayFormat"></select>
+    </li>
+    <li  style="{{=it.displayRegEx }}">
+        <label>@Constants.i18n("regExRequirement"):</label>
+        <input type="text" name="RegExRequirement" value="{{= it.selected.get('RegExRequirement') || ''}}" {{=(!it.hasFieldPerm) ? 'disabled="disabled"' : '' }} />
+    </li>
+    <li  style="{{=it.displayRegEx }}">
+        <label>@Constants.i18n("regExFailureMessage"):</label>
+        <input type="text" name="RegExFailureMessage" value="{{= it.selected.get('RegExFailureMessage') || ''}}" {{=(!it.hasFieldPerm) ? 'disabled="disabled"' : '' }} />
+    </li>
+    <li class="cfs_lists" style="display:none;">
+        <label>@Constants.i18n("listName")</label>
+        <select name="ListName" {{=(!it.hasFieldPerm) ? 'disabled="disabled"' : '' }}>
+            {{ it.custLists.each(function(item) { }}
+                {{ if(it.selected.get("ListName") === item.get("Name")) { }}
+                    <option value="{{= encodeURI(item.get('Name'))}}" selected="selected">{{= Utility.safeHtmlValue(item.get('Name'), {attrs:{title: item.get('Name')}, tag:'span'})}}</option>
+                {{ } else { }}
+                    <option value="{{= encodeURI(item.get('Name')) }}">{{= Utility.safeHtmlValue(item.get('Name'), {attrs:{title: item.get('Name')}, tag:'span'}) }}</option>
+                {{ } }}
+            {{ }); }}
+        </select>
+    </li>
+</ol>
+</fieldset>
+{{ if(it.displayButtons) { }}
+    <div class="buttons">
+        <input type="button" name="save_cf" value="@Constants.i18n("save")" disabled="disabled" />
+        <input type="button" name="delete_cf" value="@Constants.i18n("delete")" />
+        <input type="button" name="test_cf" value="@Constants.i18n("test")" />
+        <input type="hidden" name="errors_cf" />
+    </div>
+{{ } }}
+<div class="testDialog" style="display:none;">
+    <div class="spacingTopBottom">
+        <span>@Constants.i18n("testValue")</span>
+        <input type="text" name="testValue" />
+    </div>
+    <div class="spacingTopBottom">
+        <span>@Constants.i18n("result")</span>
+        <textarea name="testResult" readonly="readonly" class="textareaResizeNone" rows="3"></textarea>
+    </div>
+    <div class="spacingTopBottom">
+        <input type="button" name="test_dlg" class="fright spacingTopBottom" value="@Constants.i18n("test")" />
+    </div>
+</div>
+{{  } else { }}
+<div class="error">
+{{ if(!it.list.errorMsg) { }}
+{{= Constants.c.noDataReturnedFromServer }}
+{{ } else { }}
+{{= it.list.errorMsg }}
+{{ } }}
+</div>
+{{ } }}

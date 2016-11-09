@@ -1,0 +1,75 @@
+﻿@using Astria.Framework.Utility;
+{{
+    if (!it.list.isEmpty() && it.hasFieldPerm) { 
+        var dummy = '';
+}}
+<fieldset>
+    <legend>@Constants.i18n("fieldGroups")</legend>
+    <ol class="customFieldGroupDTO unstyledList autoWidth">
+        <li>
+            <span class="metalabel fleft">@Constants.i18n("selectFieldGroup"):</span>
+            <select name="Name">
+                {{ it.list.each(function(cfgp) {
+                var cfg = cfgp.get('CustomFieldGroup');
+                if(cfg) {
+                if (it.selected && it.selected.get("CustomFieldGroup").Id === cfg.Id) { }}
+                <option value="{{= cfg.Id }}" selected="selected">{{= Utility.safeHtmlValue(cfg.Name, {attrs:{title: cfg.Name}, tag:'span'})}}</option>
+                {{ } else { }}
+                <option value="{{= cfg.Id }}">{{= Utility.safeHtmlValue(cfg.Name, {attrs:{title: cfg.Name}, tag:'span'})}}</option>
+                {{ } }}
+                {{ } }}
+                {{ }); }}
+            </select>
+        </li>
+        <li>
+            <span class="metalabel fleft">@Constants.i18n("fieldsInGroup"):</span>
+            @* Drag and drop 'Slap Box' for selecting custom fields to be in the group *@
+            <select class="multiselect" multiple="multiple">
+                {{ var cfgts = it.selected.get('CustomFieldGroupTemplates'); }}
+                {{ var i = 0; }}
+                {{ var length = cfgts.length; }}
+                {{ for(i; i < length; i++) {
+                var cf = it.listcf.get(cfgts[i].CustomFieldMetaId);
+                var cfgtId = cfgts[i].Id;
+                }}
+                {{ if(cf) { }}
+                {{  var name = cf.get('Name'); }}
+                <option data-customfieldgrouptemplateid="{{=cfgtId}}" value="{{= cf.get('Id') }}" selected="selected">{{= Utility.safeHtmlValue(name, {attrs:{title: name}, tag:'span'})}}</option>
+                {{ } }}
+                {{ } }}
+                {{ it.listcf.each(function(item) { }}
+                {{ var isSelected = false; }}
+                {{ for(i = 0; i < length; i++) { }}
+                {{ if(cfgts[i].CustomFieldMetaId === item.get('Id')) { }}
+                {{ isSelected = true; }}
+                {{ } }}
+                {{ } }}
+                {{ if(!isSelected && item.get('Id') !== Constants.c.emptyGuid)  { }}
+                <option value="{{= item.get('Id') }}">{{= Utility.safeHtmlValue(item.get('Name'), {attrs:{title: item.get('Name')}, tag:'span'})}}</option>
+                {{ } }}
+                {{ }); }}
+            </select>
+        </li>
+    </ol>
+    <ol class="unstyledList fullWidth">
+        @* Preview of customfield group *@
+        <li class="cfgGridsPreview">
+            <span class="metalabel fleft">@Constants.i18n("preview"):</span>
+            <div class="spacingLeftRight posAbs inlineblock">
+                <div class="cfgGridsContainer">
+                    @* custom field group layout rendered here *@
+                </div>
+            </div>
+        </li>
+    </ol>
+</fieldset>
+<div class="buttons">
+    <input type="button" name="save" value="@Constants.i18n("save")" />
+    <input type="button" name="delete" value="@Constants.i18n("delete")" />
+    <input type="hidden" name="errors" />
+</div>
+{{  } else { }}
+<div class="error">
+    {{= Constants.c.noDataReturnedFromServer }}
+</div>
+{{ } }}

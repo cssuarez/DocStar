@@ -1,0 +1,127 @@
+﻿@using Astria.Framework.Utility;
+{{    
+    var viewerPage = 1;  
+    var hashValues = ViewerUtil.getHashValues();
+    if(hashValues.page) {
+        viewerPage = hashValues.page;
+    }   
+    var thumbPref = Utility.GetUserPreference('thumbnails');
+}}
+<div class="view_viewer">
+    <div class="viewer_menubar">
+        <div class="accordion_title_contents">
+            <div id="retrieve_view_menu">
+                <dl class="view_actions dropdown nested shadow">
+                    <dt><span class="parent">@Constants.i18n("viewActions")
+                        <span class='dropdown_arrow ui-icon ui-icon-triangle-1-s'></span></span></dt>
+                </dl>
+            </div>
+            <div class="viewer_navigation">
+                <span name="viewer_navigation_start" class="ui-icon ui-icon-seek-start"></span>
+                <span name="viewer_navigation_prev" class="ui-icon ui-icon-seek-prev"></span>
+                <span class="viewer_results_type no_text_select">@Constants.i18n("page")</span>
+                <input name="viewer_results_counter" type="text" value="{{=viewerPage }}" maxlength="4" />
+                <span class="viewer_results_max no_text_select">@Constants.i18n("of")</span>
+                <span name="viewer_navigation_next" class="ui-icon ui-icon-seek-next"></span>
+                <span name="viewer_navigation_end" class="ui-icon ui-icon-seek-end"></span>
+            </div>
+            <span class="sPng vert_seperator_hidable" style="display: block; float: left; margin: 0 2px 0 10px;"></span>
+            <div id="rotate_menu">
+                <span class="sPng rotateAllLeft_icon" title="@Constants.i18n("rotateAllLeft")"></span>
+                <span class="sPng rotateLeft_icon" title="@Constants.i18n("rotateLeft")"></span>
+                <span class="sPng rotateRight_icon" title="@Constants.i18n("rotateRight")"></span>
+                <span class="sPng rotateAllRight_icon" title="@Constants.i18n("rotateAllRight")"></span>
+            </div>
+            <div class="bookmarks_container">
+            </div>
+            <div class="anno_menu_cont sPng">
+                <span></span>
+                <div class="annotations_menu">
+                </div>
+            </div>
+            <div class="documentNavigator">
+                <span class="closeDocNav ui-icon ui-icon-close"></span>
+                <span class="hitText">@Constants.i18n("showingHit") &nbsp;</span>
+                <div class="hitCounters">
+                    <span class="hitStart"></span>
+                    <span>&nbsp;@Constants.i18n("of")</span>
+                    <span class="hitEnd"></span>
+                </div>
+                <span class="nextHit ui-icon ui-icon-arrowthick-1-s"></span>
+                <span>@Constants.i18n("next")</span>
+                <span class="prevHit ui-icon ui-icon-arrowthick-1-n"></span>
+                <span>@Constants.i18n("previous")</span>
+                <span class="highlightAll ui-icon ui-icon-pencil"></span>
+                <span>@Constants.i18n("highlightAll")</span>
+            </div>
+            <div class="dqRenderingInProgressContainer">
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <div class="viewer_image">
+        <div class="img_container shadow_glow">
+            <div class="transformCont">
+                <img name="image_full" alt="" class="element_transition" src="@System.Web.Mvc.UrlHelper.GenerateContentUrl("~/Content/images/transparent.png", new HttpContextWrapper(HttpContext.Current))" />
+                <div class="markContainer">
+                </div>
+                <div class="regionContainer">
+                </div>
+            </div>
+            <div class="editMarkContainer">
+            </div>
+            <input class="rot" type="hidden" value="0" />
+            <div class="modalThrobberCont" style="display: none;">
+                <img src="@System.Web.Mvc.UrlHelper.GenerateContentUrl("~/Content/images/large_throbber.gif", new HttpContextWrapper(HttpContext.Current))" alt="Alternate Text" />
+            </div>
+        </div>
+        <div class="burningInAnnotationsCont" style="display: none;">
+            <div class="burningInOverlay fullWidth fullHeight inlineblock"></div>
+            <div class="burningInMessageCont">
+                <img src="@System.Web.Mvc.UrlHelper.GenerateContentUrl("~/Content/images/large_throbber.gif", new HttpContextWrapper(HttpContext.Current))" alt="Alternate Text" />
+                <div>
+                    <span>@Constants.i18n("burningInMarks")</span>
+                    <span>@Constants.i18n("workingNormally")</span>
+                </div>
+            </div>
+        </div>
+        <a name="downloadNativeDocument" class="custom_button" style="display: none;">@Constants.i18n("clickToDownload")</a>
+        <span name="cantDownloadNative" style="display: none;">@Constants.i18n("nativeDownloadPermissions")</span>
+    </div>
+    {{  if(thumbPref) {
+            if(thumbPref === 'thumbnailright') { }} 
+                <div class="thumbs_cont">
+                    <div name="image_thumbnails_container" style="position: relative">
+                        <div name="image_thumbnails" class="vert_scroll">
+                        </div>
+                    </div>
+                </div>
+    {{      }
+            else if(thumbPref === 'thumbnailleft') { }}
+                <div class="thumbs_cont">
+                    <div name="image_thumbnails_container" style="position: relative">
+                        <div name="image_thumbnails" class="vert_scroll">
+                        </div>
+                    </div>
+                </div>
+    {{      } 
+        }
+        if(!thumbPref || thumbPref === 'thumbnailoff') { }} 
+            <div class="thumbs_cont" style="display: none;">
+                <div style="display: none;" name="image_thumbnails_container">
+                    <div name="image_thumbnails" class="vert_scroll">
+                    </div>
+                </div>
+            </div>
+    {{  } }}
+    <div class="documentText">
+        <div class="documentTextHeader">
+            <span class="closeDocText ui-icon ui-icon-close"></span>
+            <span>@Constants.i18n("documentText")</span>
+        </div>
+        <div class="documentTextContent">
+            <pre>
+            </pre>
+        </div>
+    </div>
+</div>

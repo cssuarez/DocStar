@@ -1,0 +1,43 @@
+﻿@using Astria.Framework.Utility;
+{{ if(it.showCustomFieldGroups) { }}
+<div data-accid="customFieldGroupsForms" class="inlineblock fullWidth">
+    <div class="accordion_title accordion_title_{{=it.customFieldGroupsAccState}}">
+        <div class="accordion_title_contents">
+            <div class="title_arrow">
+            </div>
+            <span class="anchor">@Constants.i18n("customFieldGroups")</span>
+            <span class="swoosh"></span>
+        </div>
+    </div>
+    <div class="accordion {{=it.customFieldGroupsAccState}}">
+        <ul class="fleft">
+            {{
+            var idx = 0;
+            var length = it.cfgsLeft.length;
+            for(idx; idx < length; idx++) {
+                var cfg = it.cfgsLeft[idx];
+            }}
+            <li class="grayGradientBackground shadow" title="{{=cfg.name}}">
+                <span class="formElementControlIcon"></span>
+                <span class="no_text_select">{{=cfg.name}}</span>
+                <input type="hidden" name="CustomFieldGroupId" value="{{=cfg.id}}" />
+            </li>
+            {{ } }}
+        </ul>
+        <ul class="fright">
+            {{
+            var idx = 0;
+            var length = it.cfgsRight.length;
+            for(idx; idx < length; idx++) {
+                var cfg = it.cfgsRight[idx];
+            }}
+            <li class="grayGradientBackground shadow" title="{{=cfg.name}}">
+                <span class="formElementControlIcon"></span>
+                <span class="no_text_select">{{=cfg.name}}</span>
+                <input type="hidden" name="CustomFieldGroupId" value="{{=cfg.id}}" />
+            </li>
+            {{ } }}
+        </ul>
+    </div>
+</div>
+{{ } }}

@@ -1,0 +1,49 @@
+﻿{{
+    var prefix = 'gp_';
+    if (it.standardPermissions) {
+        prefix = 'sp_';
+    }
+    var odd = false;
+    var oddList = [];
+    var evenList = [];
+
+    _.each(it.dictionary, function(num, key){
+        var isNone = num === 0;
+        var isFull = (!it.standardPermissions && num === Constants.gp.Full) || (it.standardPermissions && num === Constants.sp.Full);
+        var isLegacyFull = it.standardPermissions && num === Constants.sp.LegacyFull;
+        var isApprovalAdmin = it.standardPermissions && num === Constants.sp.Approval_Admin;
+        if(!isNone && !isFull && !isLegacyFull && !isApprovalAdmin) {
+            if(!odd){
+                evenList.push({num: num, key: key});
+            }
+            else {
+                oddList.push({num: num, key: key});
+            }
+            odd = !odd;
+        }
+
+    });
+    @* Add in Full as the very last permission, in either odd or even, depending on number of other permissions *@
+    if(!odd) {
+        evenList.push({num: it.standardPermissions ? Constants.sp.Full : Constants.gp.Full, key: 'Full'});
+    }
+    else {
+        oddList.push({num: it.standardPermissions ? Constants.sp.Full : Constants.gp.Full, key: 'Full'});
+    }
+    var dummy = 'dummy var';
+}}
+
+<div id="evenPerms">
+    {{ _.each(evenList, function(item) { }}
+    <div title="{{= Constants.c[(prefix + 'd_' + item.key)] }}">
+        <input type="checkbox" name="{{= item.key }}" value="{{= item.num }}" /><span> {{= Constants.c[(prefix + item.key)] }}</span>
+    </div>
+    {{ }); }}
+</div>
+<div id="oddPerms">
+    {{_.each(oddList, function(item) { }}
+    <div title="{{= Constants.c[(prefix + 'd_' + item.key)] }}">
+        <input type="checkbox" name="{{= item.key }}" value="{{= item.num }}" /><span> {{= Constants.c[(prefix + item.key)] }}</span>
+    </div>
+    {{ }); }}
+</div>

@@ -1,0 +1,72 @@
+﻿@using Astria.Framework.Utility;
+{{ if (!it.list.isEmpty()) { }}
+<h2>@Constants.i18n("recordRetentionFreezes")</h2>
+{{
+    var name = it.selected.get('Name');
+    var reason = it.selected.get('Reason');
+    reason === null ? reason = '' : reason;
+    var active = it.selected.get('Active') ? ' checked="checked"' : '';
+    var hasAdminFreezes = Utility.checkGP(it.gp, Constants.gp.Admin_Freezes);
+    var hasViewFreezes = Utility.checkGP(it.gp, Constants.gp.View_Freezes);
+    
+}}
+<div id="retention_freezes_layout">
+    <div>
+        <fieldset>
+            <legend>@Constants.i18n("freeze")</legend>
+            <ol class="unstyledList">
+                <li>
+                    <label>@Constants.i18n("selectedFreeze"):</label>
+                    <select name="Id">
+                    {{ it.list.each(function(item) { }}                        
+                        @* Disallow the addition of -- New -- if the user doesn't have AdminFreezes permission, the ability to modify freezes *@
+                        {{ if (hasAdminFreezes || (item.get("Id") !== Constants.c.emptyGuid && !hasAdminFreezes)) { }}
+                            {{ if (it.selected.get("Name") === item.get("Name")) { }}                            
+                                <option value="{{= it.selected.get('Id') }}" selected="selected">{{= item.get('Name') }}</option>
+                            {{ } else { }}
+                                <option value="{{= item.get('Id') }}">{{= item.get('Name') }}</option>
+                            {{ } }}    
+                        {{ } }}
+                    {{ }); }}
+                    </select>
+                </li>
+                {{ if(hasAdminFreezes) { }}
+                    <li>
+                        <label>@Constants.i18n("name"):</label>
+                    {{= $("<div></div>").append($('<input type="text" name="Name" />').attr("value", name)).html()}}
+                    </li>                
+                {{ } }}
+                <li>
+                    <label>@Constants.i18n("reason"):</label>
+                    {{= $("<div></div>").append($('<input type="text" name="Reason" />').attr("value", reason)).html()}}
+                </li>
+                <li style="display: none;">
+                    <label>@Constants.i18n("active")</label>
+                    <input type="checkbox" name="Active"{{= active }} />
+                </li>
+                
+            </ol>
+        </fieldset>
+    </div>
+ <div class="right">
+</div>
+    {{ if(hasAdminFreezes) { }}
+        <div class="buttons">    
+            <input type="button" name="save_rc" value="@Constants.i18n("save")" />
+            <input type="button" name="release_rc" value="@Constants.i18n("release")" />        
+        </div>
+    {{ } }}
+    <div id="retention_errors" class="retErrors">
+    </div>
+</div>
+{{  } else { }}
+<span class="error">
+{{ if(it.listcc.errorMsg === null) { }}
+{{= Constants.c.noDataReturnedFromServer }}
+{{ } else { }}
+{{= it.listcc.errorMsg }}
+{{ } }}
+</span>
+{{ } }}
+
+

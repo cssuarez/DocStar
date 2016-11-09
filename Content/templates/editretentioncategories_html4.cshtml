@@ -1,0 +1,121 @@
+﻿@using Astria.Framework.Utility;
+{{ if (!it.listrcs.isEmpty()) { }}
+<h2>@Constants.i18n("recordsRetention")</h2>
+{{
+    var selected = '';
+    var selected_foldername = '';
+    if (it.selected.get('DispositionFolderName')) {
+        selected_foldername = it.selected.get('DispositionFolderName');
+    }
+    var dt_delete = '';
+    var dt_dfolder = '';
+    it.selected.get("DispositionFolderId") === null ? dt_delete = ' checked="checked"' : dt_dfolder = ' checked="checked"';
+    var numMonths = it.selected.get("RetentionMonths");
+    numMonths === null ? numMonths = 1 : '';
+    var showDispositionFolder = dt_dfolder === '' ? 'style="display:none;"':'';
+    var displayDateField = it.selected.get("DispositionType") === 0 ? '' : 'style="display:none;"';
+    var checkedRoundCutoff = it.selected.get("RoundCutoff") ? 'checked="checked"': '';
+}}
+<div id="retention_categories_layout">
+    <div>
+        <fieldset>
+            <legend>@Constants.i18n("category")</legend>
+            <ol class="unstyledList">
+                <li>
+                    <label>@Constants.i18n("selectedCategory"):</label>
+                    <select name="Id">
+                    {{ it.listrcs.each(function(item) { }}
+                        {{ if (it.selected.get("Name") === item.get("Name")) { }}
+                            <option value="{{= it.selected.get('Id') }}" selected="selected">{{= item.get('Name') }}</option>
+                        {{ } else { }}
+                            <option value="{{= item.get('Id') }}">{{= item.get('Name') }}</option>
+                        {{ } }}    
+                    {{ }); }}
+                    </select>
+                </li>
+                <li>
+                    <label>@Constants.i18n("name"):</label>
+                    {{= $("<div></div>").append($('<input type="text" name="Name" />').attr("value", it.selected.get('Name'))).html()}}
+                </li>
+                <li>
+                    <label>@Constants.i18n("securityClass")</label>
+                    <select name="ClassId">
+                        <option value=""></option>
+                    {{
+                        it.listsc.each(function(item) { 
+                            selected = it.selected.get("ClassId") === item.get("Id") ? ' selected="selected"': ''; 
+                            }}
+                            <option value="{{= item.get('Id') }}"{{= selected}}>{{= item.get('Name') }}</option> 
+                    {{ }); }}
+                    </select>
+                </li>
+                <li>
+                    <label>@Constants.i18n("numberOfMonths"):</label>
+                    <input type="text" name="RetentionMonths" value="{{= numMonths }}" />
+                </li>
+                <li>
+                    <label>@Constants.i18n("roundDates"):</label>
+                    <input type="checkbox" name="RoundCutoff"{{=checkedRoundCutoff}}/>
+                </li>
+                <li>
+                    <label>@Constants.i18n("dispositionType"):</label>
+                    <select name="DispositionType">
+                    {{
+                        $.map(Constants.rmd, function( value, key) {
+                            }}
+                                <option value="{{=value}}"{{= it.selected.get("DispositionType") === value ? 'selected="selected"' : '' }}>{{= Constants.t(key)}}</option>
+                            {{
+                        });
+                    }}
+                    </select>
+                </li>
+                <li id="time_datefield"{{= displayDateField}}>
+                    <label>@Constants.i18n("dateField"):</label>
+                    <select name="DateField">
+                    {{
+                        $.map(window.datefields, function( value, key) {
+                            }}
+                                <option value="{{=value.Id}}"{{= it.selected.get("DateField") === value.Id ? 'selected="selected"' : '' }}>{{= value.Name}}</option>                                
+                            {{
+                        });
+                    }}
+                    </select>
+                </li>
+                <li>
+                    <div>
+                        <label>@Constants.i18n("delete")</label>
+                        <input type="radio" name="dt"{{= dt_delete}} value="delete"/>
+                    </div>
+                    <div>
+                        <label>@Constants.i18n("dispositionFolder")</label>
+                        <input type="radio" name="dt"{{= dt_dfolder }} value="folder"/>
+                    </div>
+                </li>
+                <li id="disposition_folder" {{= showDispositionFolder}}>
+                    <label>@Constants.i18n("dispositionFolderMove"):</label>
+                    <input type="text" readonly="readonly" name="d_folder" value="{{= selected_foldername }}" title="{{= selected_foldername }}" />
+                    <input type="hidden" name="DispositionFolderId" value="{{= it.selected.get("DispositionFolderId")}}" />
+                </li>
+                
+            </ol>
+        </fieldset>
+    </div>
+ <div class="right">
+</div>
+    <div class="buttons">
+        <input type="button" name="save_rc" value="@Constants.i18n("save")" />
+        <input type="button" name="delete_rc" value="@Constants.i18n("delete")" />
+    </div>
+    <div id="retention_errors" class="retErrors">
+    </div>
+</div>
+{{  } else { }}
+<span class="error">
+{{ if(it.listcc.errorMsg === null) { }}
+{{= Constants.c.noDataReturnedFromServer }}
+{{ } else { }}
+{{= it.listcc.errorMsg }}
+{{ } }}
+</span>
+{{ } }}
+

@@ -1,0 +1,39 @@
+﻿@using Astria.Framework.Utility;
+<div class="versChatLogListContainer fullWidth"> 
+    <span class="fleft inlineblock">@Constants.i18n("comments"):</span> 
+    <span class="fright inlineblock showCurrentAndPreviousComments underline">{{=it.showLabel}}</span> 
+    <hr /> 
+    <div class="versChatLogListContainerScroll"> 
+        <ul>
+            {{
+            var i = 0; var length = it.comments.length;
+            for(i; i < length; i++) {
+                var c = it.comments[i];
+            }}
+                {{ if (c.versionLabel) { }}
+                <li>
+                    {{ if (i > 0) { }}
+                    <hr>
+                    {{ } }}
+                    <span class="spacingTopBottom inlineblock fullWidth underline">{{=c.versionLabel}}</span>
+                </li>
+                {{ } else { }}
+                <li data-commentid="{{=c.id}}" class="inlineblock fullWidth spacingTopBottom posRel versionComment">
+                    <div class="inlineblock fullWidth">
+                        <span class="bold">{{=c.username}}</span>
+                        <span class="bold">{{=c.date}}</span>
+                    </div>
+                    <div class="inlineblock fullWidth">
+                        <pre class="inlineblock fullWidth removeMargin">{{=c.message}}</pre>
+                    </div>
+                    <span class="deleteVersionComment ui-icon ui-icon-circle-close posAbs displayNone" title="@Constants.i18n("deleteVersionComment")"></span>
+                </li>
+                {{ } }}
+            {{ } }}
+        </ul> 
+    </div>
+</div>
+<div class="versChatLogEntry displayTable fullWidth">
+    <span class="chatIcon displayTableCell"></span> 
+    <input type="text" class="displayTableCell fullWidth versChatInput" maxlength="256"> 
+</div>

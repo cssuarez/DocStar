@@ -1,0 +1,249 @@
+﻿@using Astria.Framework.Utility;
+<h2>@Constants.i18n("editUser")</h2>
+{{ if (!it.list.isEmpty()) {
+        var enabled = 'selected="selected"';
+        var disabled = '';
+        var gatewayPermissions = 0;
+        if (it.selected.get('DirectGatewayPermissions') !== null) {
+            gatewayPermissions = it.selected.get('DirectGatewayPermissions');
+        }
+        if (it.selected.get('Active') === "false" || it.selected.get('Active') === false ) {
+            disabled = enabled;
+            enabled = '';
+        }
+        var showPasswords = true;
+        var showChangePasswordsCheckBox = false;
+        var showChangePasswordOption = ' style="display:none;"';        
+        var isNew = it.selected.get('Id') === Constants.c.emptyGuid;        
+        var hasCreateEdit = Utility.checkGP(it.gp, Constants.gp.Create_Edit_Users);
+        var hasDelete = Utility.checkGP(it.gp, Constants.gp.Delete_Users);
+        var hasLDAPImport = Utility.checkGP(it.gp, Constants.gp.Admin_LDAP);        
+        var isInstanceAdmin = it.selected.get('InstanceAdmin');
+        var isSuper = $('#isInstanceAdmin').val().toLowerCase() === 'true' || $('#isSuperAdmin').val().toLowerCase() === 'true';
+        var connId = it.selected.get('ConnectionId');
+        var isIndependent = '';
+        var hideIndependent = "hidden";
+        if (it.selected.get('HasPassword') || isNew) {
+            isIndependent = "checked=checked";
+            hideIndependent="";
+        }
+        var dn = it.selected.get('DistinguishedName');
+        if (dn  === "null" || dn === null) {
+            dn = '';
+        }
+        var upn = it.selected.get('UserPrincipalName');
+        if (upn === "null" || upn === null) {
+            upn = '';
+        }
+        var isMulti = ""; 
+        if (it.selected.get('IsMultiuser') === true && 
+            $('#isSuperAdmin').val().toLowerCase() !== 'true' && 
+            JSON.parse($('#currentUser').val()).Id !== it.selected.get('Id'))
+        isMulti = "disabled='disabled'";
+        var isIntegrated = "";
+        var hide = "hidden";
+        if(it.selected.get('ConnectionId') && dn) {
+            isIntegrated = "checked=checked";
+            hide="";
+        }
+        var namedAvailable = it.namedAvailable;
+        var namedTotal = it.namedTotal;
+        var concurrentAvailable = it.concurrentAvailable;
+        var concurrentTotal = it.concurrentTotal;
+        var namedStyle = '';
+        var namedStyleParent= '';
+        var newUser = false;
+        
+        if(it.selected.get('Id') === Constants.c.emptyGuid) {
+            newUser = true;
+        }
+        if(newUser) {
+            if(namedTotal === 0) {
+                namedStyleParent = "style='display: none;'";
+            }
+            else if(concurrentTotal !== 0 && namedAvailable === 0) {
+                namedStyle = "disabled='disabled'";
+            }
+            else if(concurrentTotal === 0) {
+                namedStyleParent = "style='display: none;'";
+                namedStyle = "checked='checked'";
+            }
+            else {
+                namedStyle = '';
+            }
+        }
+        else {
+            var userIsNamed = it.selected.get('Named');
+            if(namedTotal === 0) {
+                namedStyleParent = "style='display: none;'";                
+            }
+            else if(concurrentTotal !== 0 && userIsNamed === false && namedAvailable === 0) {
+                namedStyle = "disabled='disabled'";
+            }
+            else if(concurrentTotal === 0) {
+                namedStyleParent = "style='display: none;'";
+                namedStyle = "checked='checked'";
+            }
+            else {
+                userIsNamed ? namedStyle = "checked='checked'" : namedStyle = '';
+            }
+        }
+        var siteAdminPermissionsDisplay = isInstanceAdmin ? '' : 'display: none;';
+    }}
+<div id="user_layout" class="left">
+    <fieldset>
+        <legend>@Constants.i18n("userTitle")</legend>
+        <ol class="unstyledList">
+            <li>
+                <label>@Constants.i18n("userType"):</label>
+                <select name="userType">
+                    <option>@Constants.i18n("all")</option>
+                    <option>@Constants.i18n("active")</option>
+                    <option>@Constants.i18n("disabled")</option>
+                </select>
+            </li>
+            <li>
+                <label>@Constants.i18n("selectUser"):</label>
+                <select name="Id">
+                {{ it.list.each(function(item) { }}
+                    {{ if (hasCreateEdit || item.get("Id") !== Constants.c.emptyGuid && !hasCreateEdit) { }}
+                        {{ if (it.selected.get("Username") === item.get("Username")) { }}
+                            <option value="{{= it.selected.get('Id') }}" selected="selected">{{= item.get('Username') }}</option>
+                        {{ } else { }}
+                            <option value="{{= item.get('Id') }}">{{= item.get('Username') }}</option>
+                        {{ } }}
+                    {{ } }}
+                {{ }); }}
+                </select>
+            </li>
+            <li>
+                <label>@Constants.i18n("username"):</label>
+                <input type="text" name="Username" value="{{= it.selected.get('Username') }}" />
+            </li>
+            <li>
+                <label>@Constants.i18n("enableIndependent"):</label>
+                <input {{= isIndependent }} class="IndependentEnabled" type="checkbox" name="UpdatePassword" />
+            </li>            
+            <li class="passwordListItem enabledIndependent {{= hideIndependent}}">
+                {{  if(isIndependent && it.selected.get('Id') !== Constants.c.emptyGuid) { }}
+                    <label>@Constants.i18n("changePassword"):</label>
+                {{  } else { }}                    
+                    <label>@Constants.i18n("password"):</label>
+                {{  } }}
+                <input {{= isMulti}} type="password" name="Password" />
+
+            </li>
+            <li class="passwordListItem enabledIndependent {{= hideIndependent}}">
+                <label>@Constants.i18n("password_reenter"):</label>
+                <input {{= isMulti}} type="password" name="password_reenter" value="" />
+            </li>
+            <li>
+                <label>@Constants.i18n("enableIntegrated"):</label>                
+                <input {{= isIntegrated}} type="checkbox" name="EnableIntegrated" />
+            </li>            
+            <li class="enabledIntegrated {{= hide }}">
+                <label>@Constants.i18n("domain"):</label>
+                <select name="LDAPConnection">
+                    <option id="" selected="selected"></option>
+                    {{ it.listldap.each(function(item) { 
+                        if(item.get('Id') === connId) { }}
+                            <option id="{{= item.get('Id')}}" selected="selected">{{= item.get('Name')}}</option>
+                    {{  } else { }}
+                            <option id="{{= item.get('Id')}}">{{= item.get('Name')}}</option>
+                    {{  } }); }}
+                </select>
+            </li>
+            <li class="enabledIntegrated {{= hide }}">
+                <label>@Constants.i18n("distinguishedName"):</label>                
+                <input type="text" name="DistinguishedName" value="{{= dn }}" />
+            </li>
+            <li>
+                <label>@Constants.i18n("userPrincipalName"):</label>
+                <input type="text" name="UserPrincipalName" value="{{= upn }}" />
+                <span>@Constants.i18n("alternateLogin")</span>
+            </li>
+           @* Commented out as directed by http://thedude.docstar.com/b/show_bug.cgi?id=5002
+            <li>
+                <label>@Constants.i18n("firstName"):</label>
+                <input type="text" name="FirstName" value="{{= it.selected.get('FirstName') }}" />
+
+            </li>
+            <li>
+                <label>@Constants.i18n("lastName"):</label>
+                <input type="text" name="LastName" value="{{= it.selected.get('LastName') }}" />
+
+            </li>*@
+            {{ if (isSuper) { }}
+            <li>
+                <label>@Constants.i18n("instanceAdmin"):</label>
+                {{ if (isInstanceAdmin) { }}
+                <input type="checkbox" name="InstanceAdmin" checked="checked" />
+                {{ } else { }}
+                <input type="checkbox" name="InstanceAdmin" />
+                {{ } }}
+            </li>
+            {{ } }}
+            <li {{= namedStyleParent}}>
+                <label>@Constants.i18n("named"):</label>
+                <input type="checkbox" name="Named" {{= namedStyle}} />
+            </li>
+            <li>
+                <label>@Constants.i18n("accountStatus"):</label>
+                <select type="text" name="Active">
+                    <option {{= enabled  + ' ' }}value="true">@Constants.i18n("active")</option>
+                    <option {{= disabled + ' ' }}value="false">@Constants.i18n("disabled")</option>
+                </select> 
+            </li>
+            <li>
+                <label>@Constants.i18n("gatewayPermissions"):</label>
+                <div class="permissions"></div>
+                <div id="siteAdminPermissions" style="{{= siteAdminPermissionsDisplay }}">@Constants.i18n("siteAdminPermissions")</div>
+                <input name="DirectGatewayPermissions" type="hidden" value="{{= gatewayPermissions}}" />
+            </li>
+            
+        </ol>
+    </fieldset>
+    
+</div>
+<div id="group_layout" class="right">
+    <fieldset id="groupFieldset">
+        <legend>@Constants.i18n("groupsTitle")</legend>
+        {{ var roles = it.selected.get("RoleMembership"); }}            
+        <select name="RoleMembership" multiple="multiple">
+            {{ it.listr.each(function(item) { }}
+                {{ var dr =  _.detect(roles, function(r){ 
+                        return r === item.get("Id"); 
+                    }); 
+                }}
+                {{ if ($.isEmptyObject(dr)) { 
+                }}
+                    <option value="{{= item.get('Id') }}">{{= item.get('Name') }}</option>  
+                {{ } else { }}
+                    <option selected="selected" value="{{= item.get('Id') }}">{{= item.get('Name') }} </option> 
+                {{ } }}
+            {{ }); }}
+        </select>  
+    </fieldset>
+</div>
+<div class="buttons" style="width:100%">
+    {{ if(hasCreateEdit) { }}
+    <input type="button" name="save_user" value="@Constants.i18n("save")" />
+    {{ } }}
+    {{ if(hasDelete) { }}
+    <input type="button" name="delete_user" value="@Constants.i18n("delete")" />
+    {{ } }}
+    {{ if(hasLDAPImport) { }}
+    <input type="button" name="import_user" value="@Constants.i18n("ldapImport")" />
+    {{ } }}
+    <input type="button" name="down_gradeUser" value="@Constants.i18n("downGradeUser")" />
+    <input type="hidden" name="user_Error" />
+</div>
+{{  } else { }}
+<span class="error">
+{{ if(it.list.errorMsg === null) { }}
+{{= Constants.c.noDataReturnedFromServer }}
+{{ } else { }}
+{{= it.list.errorMsg }}
+{{ } }}
+</span>
+{{ } }}

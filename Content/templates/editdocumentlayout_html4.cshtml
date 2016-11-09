@@ -1,0 +1,49 @@
+﻿@using Astria.Framework.Utility;
+<div class="view_document_data" style="position: relative; {{=it.viewMeta }}">
+    <div id="view_document_data_scroll" class="view_document_data">
+        <div class="fullWidth">
+            <div class="metadata_navigation" style="display: none">
+                <span id="metadata_navigation_start" class="ui-icon ui-icon-seek-start"></span>
+                <span id="metadata_navigation_prev" class="ui-icon ui-icon-seek-prev"></span>
+                <span class="metadata_results_type">@Constants.i18n("viewing") @Constants.i18n("item")</span>
+                <input id="metadata_results_counter" type="text" value="{{=it.entityViewed }}" maxlength="4" />
+                <span class="metadata_results_max">@Constants.i18n("of") {{=it.numSeries }}</span>
+                <span id="metadata_navigation_next" class="ui-icon ui-icon-seek-next"></span>
+                <span id="metadata_navigation_end" class="ui-icon ui-icon-seek-end"></span>
+            </div>
+            <ul class="view_metadata vert_scroll">
+                {{
+                var length = it.accordionPrefs.length;
+                for (var i = 0; i < length; i++) {
+                    it.accordionPref = it.accordionPrefs[i];
+                    if(it.accordionPrefs[i].accId === 'field_acc_title') {
+                }}
+                    <li class="contentFields"></li>
+                    {{ } else { 
+                        var accTemplate = doT.template(Templates.get(it.accordionPrefs[i].accId));
+                        var htmlData = accTemplate(it);
+                    }}
+                        {{= htmlData}}
+                    {{ } }}
+                {{ } }}
+            </ul>
+            <div style="position: relative; top: 20px;">
+                <input type="hidden" name="metadata_error" />
+            </div>
+        </div>
+    </div>
+    <div id="meta_save_cont">
+        <hr />
+        <div class="fright">
+            <a id="metadata_save" class="shadow short_btn disabled no_text_select saveDocumentButton">@Constants.i18n("save")</a>
+        </div>
+    </div>
+    <div id="ctbAddFieldContainer" style="display: none;">
+        <hr />
+        <div class="fright">
+            <span id="ctbAddField" class="shadow short_btn no_text_select custom_button">@Constants.i18n("addField")</span>
+        </div>
+    </div>
+</div>
+<div id="entityViewer">
+</div>

@@ -1,0 +1,130 @@
+﻿@using Astria.Framework.Utility;
+<div class="view_document_data_scroll">
+    <ul class="meta_accordions">
+    {{
+    var i = 0;
+    var length = 7;
+    for (i; i < length; i++) {
+    }}
+    {{ if (it.app_acc.pos === i) { }}
+    <li class="approvalAccordion {{=it.appAccClass}}">
+        <div class="meta_accordion_title meta_accordion_title_{{=it.app_acc.val}}">
+            <div class="meta_accordion_title_contents">
+                <div class="title_arrow">
+                </div>
+                <span class="anchor">@Constants.i18n("approvals")</span>
+            </div>
+        </div>
+        <div data-accid="app_acc" class="accordion meta_accordion approvalsContainer {{=it.app_acc.val}}">
+        </div>
+    </li>
+    {{ } }}
+    {{ if (it.cfg_acc.pos === i) { }}
+    <li class="fieldGroupsAccordion {{=it.fgAccClass}}">
+        <div class="meta_accordion_title meta_accordion_title_{{=it.cfg_acc.val}}">
+            <div class="meta_accordion_title_contents">
+                <div class="title_arrow">
+                </div>
+                <span class="anchor">@Constants.i18n("lineItems")</span>
+            </div>
+        </div>
+        <div data-accid="cfg_acc" class="accordion meta_accordion fieldGroupsContainer {{=it.cfg_acc.val}}">
+        </div>
+    </li>
+    {{ } }}
+    {{ if (it.field_acc.pos === i) { }}
+    <li class="fieldsAccordion {{=it.fieldsAccClass}}">
+        <div class="meta_accordion_title meta_accordion_title_{{=it.field_acc.val}}">
+            <div class="meta_accordion_title_contents fullWidth">
+                <div class="title_arrow">
+                </div>
+                <span class="anchor">@Constants.i18n("contentFields")</span>
+                {{ if(it.hasContentTypePermissions) { }}
+                <div class="buttonContainer spacingRightSmall">
+                    @* Render InlineCTBView Here *@
+                </div>
+                {{ } }}
+            </div>
+        </div>
+        <div data-accid="field_acc" class="accordion meta_accordion fieldsContainer {{=it.field_acc.val}}">
+        </div>
+    </li>
+    {{ } }}
+    {{ if (it.hist_acc.pos === i) { }}
+    <li class="historyAccordion {{=it.histAccClass}}">
+        <div class="meta_accordion_title meta_accordion_title_{{=it.hist_acc.val}}">
+            <div class="meta_accordion_title_contents">
+                <div class="title_arrow">
+                </div>
+                <span class="anchor">@Constants.i18n("history")</span>
+            </div>
+        </div>
+        <div data-accid="hist_acc" class="accordion meta_accordion historyContainer {{=it.hist_acc.val}}">
+        </div>
+    </li>
+    {{ } }}
+    {{ if (it.rd_acc.pos === i) { }}
+    <li class="relatedDocumentsAccordion {{=it.rdAccClass}}">
+        <div class="meta_accordion_title meta_accordion_title_{{=it.rd_acc.val}}">
+            <div class="meta_accordion_title_contents">
+                <div class="title_arrow">
+                </div>
+                <span class="anchor">@Constants.i18n("relatedDocuments")</span>
+            </div>
+        </div>
+        <div data-accid="rd_acc" class="accordion meta_accordion relatedDocsContainer {{=it.rd_acc.val}}">
+        </div>
+    </li>
+    {{ } }}
+    {{ if (it.vers_acc.pos === i) { }}
+    <li class="versioningAccordion {{=it.verAccClass}}">
+        <div class="meta_accordion_title meta_accordion_title_{{=it.vers_acc.val}}">
+            <div class="meta_accordion_title_contents">
+                <div class="title_arrow">
+                </div>
+                <span class="anchor">@Constants.i18n("versions")</span>
+            </div>
+        </div>
+        <div data-accid="vers_acc" class="accordion meta_accordion versioningContainer {{=it.vers_acc.val}}">
+        </div>
+    </li>
+    {{ } }}
+    {{ if (it.wf_acc.pos === i) { }}
+    <li class="workflowAccordion {{=it.wfAccClass}}">
+        <div class="meta_accordion_title meta_accordion_title_{{=it.wf_acc.val}}">
+            <div class="meta_accordion_title_contents">
+                <div class="title_arrow">
+                </div>
+                <span class="anchor">@Constants.i18n("workflow")</span>
+            </div>
+        </div>
+        <div data-accid="wf_acc" class="accordion meta_accordion workflowContainer {{=it.wf_acc.val}}">
+        </div>
+    </li>
+    {{ } }}
+
+    {{ } }}
+    </ul>
+</div>
+<div class="meta_save_container">
+    <hr />
+    <div class="fleft">
+        <span class="noApprovalStampNotImaged" style="display: none;">@Constants.i18n("noApprovalStampNotImaged")</span>
+    </div>
+    <div class="fright"> 
+        <a class="shadow short_btn no_text_select saveDocumentButton {{=it.saveClass}}">
+            {{if (!it.saveExecuting) { }}
+                @Constants.i18n("save")
+            {{ } else { }}
+            <span class="throbber"></span>
+            {{ } }}
+        </a> 
+        <a class="shadow short_btn no_text_select saveDocumentButton submitFormButton {{=it.submitFormClass}}">
+            {{if (!it.saveExecuting) { }}
+            @Constants.i18n("submit")
+            {{ } else { }}
+            <span class="throbber"></span>
+            {{ } }}
+        </a>         
+    </div> 
+</div>

@@ -1,0 +1,45 @@
+﻿@using Astria.Framework.Utility;
+{{ if(it.showCustomFieldMetas) { }}
+<div data-accid="customFieldMetasForms" class="inlineblock fullWidth">
+    <div class="accordion_title accordion_title_{{=it.customFieldMetasAccState}}">
+        <div class="accordion_title_contents">
+            <div class="title_arrow">
+            </div>
+            <span class="anchor">@Constants.i18n("showAllOtherFields")</span>
+            <span class="swoosh"></span>
+        </div>
+    </div>
+    <div class="accordion {{=it.customFieldMetasAccState}}">
+        <ul class="fleft">
+            {{
+            var idx = 0;
+            var length = it.cfmsLeft.length;
+            for(idx; idx < length; idx++) {
+                var cfm = it.cfmsLeft[idx];
+            }}
+            <li class="grayGradientBackground shadow" title="{{=cfm.name}}">
+                <span class="formElementControlIcon"></span>
+                <span class="no_text_select">{{=cfm.name}}</span>
+                <input name="Tag" type="hidden" value="{{=cfm.tag}}" />
+                <input name="BackingStoreId" type="hidden" value="{{=cfm.id}}" />
+            </li>
+            {{ } }}
+        </ul>
+        <ul class="fright">
+            {{
+            var idx = 0;
+            var length = it.cfmsRight.length;
+            for(idx; idx < length; idx++) {
+                var cfm = it.cfmsRight[idx];
+            }}
+            <li class="grayGradientBackground shadow" title="{{=cfm.name}}">
+                <span class="formElementControlIcon"></span>
+                <span class="no_text_select">{{=cfm.name}}</span>
+                <input name="Tag" type="hidden" value="{{=cfm.tag}}" />
+                <input name="BackingStoreId" type="hidden" value="{{=cfm.id}}" />
+            </li>
+            {{ } }}
+        </ul>
+    </div>
+</div>
+{{ } }}

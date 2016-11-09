@@ -1,0 +1,119 @@
+﻿@using Astria.Framework.Utility
+<div class="wfInfo inlineblock padLikeABracket">
+    <div>
+        <span class="align-left">@Constants.i18n("workflow"): </span>
+        <span class="DFWfId align-right" title="{{=it.workflowName}}">{{=it.workflowName}}</span>
+    </div>
+    <div {{=it.currStepStyle}}>
+        <span class="align-left">@Constants.i18n("currentStep"): </span>
+        <span class="DFWfStep align-right" title="{{=it.stepName}}">{{=it.stepName}}</span>
+    </div>
+    <div {{=it.currActionStyle}}>
+        <span class="align-left">@Constants.i18n("currentAction"): </span>
+        <span class="align-right" title="{{=it.actionName}}">{{=it.actionName}}</span>
+    </div>
+    <div>
+        <span class="align-left">@Constants.i18n("assignee"): </span>
+        <span class="DFWfAssigneeId align-right" title="{{=it.assigneeName}}">{{=it.assigneeName}}</span>
+    </div>
+</div>
+<hr />
+    {{ if (it.notPermitted) { }}
+    <div class="wfLeftJustify wfStatusText"> {{=Constants.c.workflowStatus }}</div>
+        {{
+        var i = 0;
+        var length = it.stateTexts.length;
+        for (i; i < length; i++) {
+        }}
+    <div class="wfLeftJustify wfStatus">{{=it.stateTexts[i] }}</div>
+        {{ } }}
+    {{ } else if (it.suspended) { }}
+    <div class="wfLeftJustify"><h4>{{= Constants.c.workflowIsSuspended }}</h4></div>
+    {{ } else if (it.exceptionMarkup) { }}
+        {{=it.exceptionMarkup}}
+        {{ if(!it.noCurrentActionExists) { }}
+    <div class="wfLeftJustify">
+        <a class="wfFailedRetry wf_button custom_button no_text_select shadow">@Constants.i18n("retryWf")</a>
+    </div>
+    {{ } }}
+    <div class="wfLeftJustify">
+        <a class="wfFailedRestart wf_button custom_button no_text_select shadow">@Constants.i18n("restartWf")</a>
+    </div>
+    <div class="wfLeftJustify">
+        <a class="wfFailedTerminate wf_button custom_button no_text_select shadow">@Constants.i18n("terminateWf")</a>
+    </div>
+    <div class="wfLeftJustify">
+        <a class="wfFailedRemove wf_button custom_button no_text_select shadow">@Constants.i18n("removeFromWf")</a>
+    </div>
+    {{ } else if(!it.isUITask && !it.isUIBranch) { }}
+    <div class="wfLeftJustify wfStatusText"> {{=Constants.c.workflowStatus }}</div>
+        {{
+        var i = 0;
+        var length = it.stateTexts.length;
+        for (i; i < length; i++) {
+        }}
+    <div class="wfLeftJustify wfStatus">{{=it.stateTexts[i] }}</div>
+        {{ }
+        if (it.branchMessageDisplayHtml) { }}
+    <div class="wfLeftJustify branchLabels">{{=it.branchMessageDisplayHtml }}</div>
+        {{ }
+        if (it.terminated) {
+        }}
+    <div class="wfLeftJustify">    
+        <a class="wfFailedRestart wf_button custom_button no_text_select shadow">@Constants.i18n("restartWf")</a>
+    </div>
+        {{ }
+        if (!it.canProcess) { }}
+    <div class="wfLeftJustify noProcess"> {{=Constants.c.notOwnerOrAssignee }}</div>
+        {{ } }}
+    {{ } else if (it.isUITask) { }}
+    <div class="wfUIPrompts padLikeABracket"></div>
+    <div class="workflowUI">
+        <pre class="isRequiredMsg wfLeftJustify wfException" style="display: none;">@Constants.i18n("filloutRequired")</pre>
+        <div class="wfSubmit">
+            <div class="submitCont" style="{{=it.submitStyle }}">
+                <a class="wfBack short_btn custom_button no_text_select {{=it.goBackClass }}">@Constants.i18n("back")</a>
+                <a class="wfUIPromptSubmit short_btn custom_button no_text_select" tabindex="0">@Constants.i18n("submit")</a>
+                <span class="wfUISubmitOptions custom_button no_text_select">
+                    <a class="wfUISubmitOptionsArrow whiteIcon ui-icon ui-icon-triangle-1-s"></a>
+                </span>
+            </div>
+            <ul class="wfSubmitOptionsList" style="display: none">
+                <li>
+                    <span class="wfSubmitOptionsClose ui-icon ui-icon-close">&nbsp;</span>
+                </li>
+                <li>
+                    <div>
+                        @Constants.i18n("submitOptions")
+                    </div>
+                </li>
+                <li>
+                    <span>@Constants.i18n("submitNone"):</span>
+                    <input class="submitNone" type="radio" name="wfSubOpt" {{=it.submitNoneChecked}} />
+                </li>
+                <li>
+                    <span>@Constants.i18n("submitNext"):</span>
+                    <input class="submitNext" type="radio" name="wfSubOpt" {{=it.submitNextChecked}} />
+                </li>
+            </ul>
+        </div>
+    </div>
+    {{ } else if (it.isUIBranch) { }}
+    <div class="wfLeftJustify"> {{= it.branchMsg }}</div>
+        {{
+            length = it.wfBranches.length;
+            for(i = 0; i < length; i++) {
+                var b = it.wfBranches[i];
+        }}
+    <span class="anchor wfBranch wf_button custom_button short_btn no_text_select shadow{{= b.addClass }}" data-branchid="{{= b.id }}" title="{{= b.description }}">{{= b.label }} </span>
+        {{ } }}
+    {{ } }}
+
+{{ if (!it.notPermitted) { }}
+<div class="WFChatLog displayTable fullWidth">
+    <div class="wfChatLogEntry displayTable fullWidth">
+        <span class="chatIcon displayTableCell"></span>
+        <input type="text" class="wfChatInput displayTableCell fullWidth">
+    </div>
+</div>
+{{ } }}
