@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+                    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <script src="jquery.min.js"></script>
+  <link rel="stylesheet" href="qunit.css" type="text/css" media="screen" />
+<script type="text/javascript" src="qunit.js"></script>
+<script type="text/javascript" src="base.js"></script>
+<script type="text/javascript" src="logintests.js"></script>
+<script type="text/javascript" src="homepagetests.js"></script>
+<script type="text/javascript" src="retrievepagetests.js"></script>
+<script type="text/javascript" src="capturepagetests.js"></script>
+<script type="text/javascript" src="workflowpagetests.js"></script>
+<script type="text/javascript" src="adminpagetests.js"></script>
+<script type="text/javascript" src="inboxtests.js"></script>
+<script type="text/javascript" src="JavaScriptTests.js"></script>
+<script type="text/javascript" src="validatorTests.js"></script>
+<script type="text/javascript" src="buzzspacestests.js"></script>
+<script type="text/javascript" src="z_jquery.url.js"></script>
+  <script>
+	$(document).ready(function(){
+		Base.setTimestamp();
+	});    
+  </script>
+</head>
+<body>
+<p id="timestamp"></p>
+<div id="config">
+<div onclick="$('#settings').toggle('slow')">settings (show/hide)</div>
+<dl id="settings" style="display:none;">
+	<dt>Username:</dt><dd><input name="username" type="text" value="admin@docstar.com" /></dd>
+	<dt>Password:</dt><dd><input name="password" type="password" value="EclipseWelcome123!" /></dd>
+	<dt>SUT:</dt><dd><input name="url" type="text" value="https://afdaf"/></dd>
+	<dt>JSLINT:</dt><dd><input name="jslint" type="text" value="https://rdci.docstar.com/eclipseweb/Content/qunit/jslint/"/></dd>
+</dl>
+<input type="button" onclick="Base.startTesting()" value="Start Testing"/><input type="button" onclick="Base.createCompanies()" value="createCompanies"/><input type="button" onclick="Base.jslintOnly()" value="jslint"/><input type="button" onclick="Base.validator()" value="validator"/><input type="button" onclick="Base.sendEmailReport();" value="send email report"/></br>
+</div>
+  <h1 id="qunit-header">e3 test harness</h1>
+ <h2 id="qunit-banner"></h2>
+ <div id="qunit-testrunner-toolbar"></div>
+ <h2 id="qunit-userAgent"></h2>
+ <ol id="qunit-tests"></ol>
+ <div id="qunit-fixture">test markup, will be hidden</div>
+</body>
+
+<!--<script>
+ $(window).load(function()
+ {
+ Base.startTesting("Start Testing");
+  <!-- alert("Page is loaded"); 
+ });
+ </script> -->
+ 
+<script type="text/javascript">
+	$(document).ready(function(){
+		Base.setConfigOptions();
+	});
+</script>
+
+</html>

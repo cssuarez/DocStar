@@ -1,0 +1,227 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0018)http://jslint.com/ -->
+<HTML><HEAD><TITLE>JSLint,The JavaScript Code Quality Tool</TITLE>
+<META content="text/html; charset=windows-1252" http-equiv=Content-Type><LINK 
+rel=icon type=image/gif href="http://www.JSLint.com/favicon.gif">
+<script type="text/javascript" src="../jquery.min.js"></script>
+<STYLE>FIELDSET {
+	BORDER-BOTTOM: black 2px solid; TEXT-ALIGN: left; BORDER-LEFT: black 2px solid; PADDING-BOTTOM: 8px; BACKGROUND-COLOR: blanchedalmond; MARGIN: 1em; PADDING-LEFT: 8px; PADDING-RIGHT: 8px; COLOR: black; BORDER-TOP: black 2px solid; BORDER-RIGHT: black 2px solid; PADDING-TOP: 8px
+}
+LEGEND {
+	BORDER-BOTTOM: black 2px solid; BORDER-LEFT: black 2px solid; PADDING-BOTTOM: 8px; BACKGROUND-COLOR: thistle; PADDING-LEFT: 8px; PADDING-RIGHT: 8px; COLOR: black; BORDER-TOP: black 2px solid; BORDER-RIGHT: black 2px solid; PADDING-TOP: 8px
+}
+I {
+	FONT-STYLE: italic; FONT-FAMILY: serif
+}
+P {
+	PADDING-LEFT: 10pt
+}
+INPUT[type='button'] {
+	BORDER-BOTTOM: black 2px solid; BORDER-LEFT: black 2px solid; BACKGROUND-COLOR: navajowhite; COLOR: black; BORDER-TOP: black 2px solid; BORDER-RIGHT: black 2px solid
+}
+INPUT[type='button']:hover {
+	BACKGROUND-COLOR: lightsteelblue; TEXT-DECORATION: underline
+}
+INPUT[type='button']:active {
+	BACKGROUND-COLOR: indianred; TEXT-DECORATION: none
+}
+INPUT[type='text'] {
+	BORDER-BOTTOM: black 1px dotted; TEXT-ALIGN: center; BORDER-LEFT: black 1px dotted; BORDER-TOP: black 1px dotted; BORDER-RIGHT: black 1px dotted
+}
+A:link {
+	COLOR: darkblue
+}
+A:visited {
+	COLOR: purple
+}
+A:hover {
+	COLOR: blue
+}
+A:active {
+	COLOR: red
+}
+BODY {
+	TEXT-ALIGN: center; BACKGROUND-COLOR: gainsboro; PADDING-LEFT: 5%; PADDING-RIGHT: 5%
+}
+.leftcolumn {
+	MARGIN: 1em; FLOAT: left
+}
+#errors {
+	BORDER-BOTTOM: black 2px solid; BORDER-LEFT: black 2px solid; PADDING-BOTTOM: 1em; BACKGROUND-COLOR: mistyrose; MARGIN: 1em; PADDING-LEFT: 1em; PADDING-RIGHT: 1em; BORDER-TOP: black 2px solid; BORDER-RIGHT: black 2px solid; PADDING-TOP: 1em
+}
+#errors P {
+	MARGIN-LEFT: 2em
+}
+#errors P.evidence {
+	FONT-FAMILY: monospace; MARGIN-LEFT: 0px
+}
+#functions {
+	BACKGROUND-COLOR: white
+}
+#members {
+	BACKGROUND-COLOR: peachpuff
+}
+#functions {
+	BORDER-BOTTOM: black 2px solid; BORDER-LEFT: black 2px solid; PADDING-BOTTOM: 1em; MARGIN: 1em; PADDING-LEFT: 1em; PADDING-RIGHT: 1em; FONT-FAMILY: monospace; BORDER-TOP: black 2px solid; BORDER-RIGHT: black 2px solid; PADDING-TOP: 1em
+}
+#members {
+	BORDER-BOTTOM: black 2px solid; BORDER-LEFT: black 2px solid; PADDING-BOTTOM: 1em; MARGIN: 1em; PADDING-LEFT: 1em; PADDING-RIGHT: 1em; FONT-FAMILY: monospace; BORDER-TOP: black 2px solid; BORDER-RIGHT: black 2px solid; PADDING-TOP: 1em
+}
+#functions DIV {
+	TEXT-INDENT: -5em; MARGIN-LEFT: 10em
+}
+#functions DIV.function {
+	TEXT-INDENT: 0px; MARGIN-LEFT: 0px
+}
+#JSLINT_OUTPUT {
+	TEXT-ALIGN: left
+}
+#JSLINT_INPUT {
+	BORDER-BOTTOM: black 2px solid; BORDER-LEFT: black 2px solid; PADDING-BOTTOM: 0.5em; PADDING-LEFT: 0.5em; WIDTH: 100%; PADDING-RIGHT: 0.5em; FONT-FAMILY: monospace; HEIGHT: 3in; COLOR: black; OVERFLOW: auto; BORDER-TOP: black 2px solid; BORDER-RIGHT: black 2px solid; PADDING-TOP: 0.5em
+}
+#JSLINT_JSLINTSTRING {
+	BORDER-BOTTOM: black 2px solid; BORDER-LEFT: black 2px solid; PADDING-BOTTOM: 1em; BACKGROUND-COLOR: peachpuff; MARGIN: 1em; PADDING-LEFT: 1em; PADDING-RIGHT: 1em; FONT-FAMILY: monospace; BORDER-TOP: black 2px solid; BORDER-RIGHT: black 2px solid; PADDING-TOP: 1em
+}
+#JSLINT_OPTIONS {
+	BACKGROUND-COLOR: linen
+}
+#JSLINT_TREE {
+	TEXT-ALIGN: left
+}
+</STYLE>
+
+<META name=GENERATOR content="MSHTML 8.00.7600.16722"></HEAD>
+<BODY>
+<TABLE border=0>
+  <TBODY>
+  <TR>
+    <TD><IMG alt=JSLint 
+      src="JSLint,The%20JavaScript%20Code%20Quality%20Tool_files/jslint.gif" 
+      width=383 height=120></TD>
+    <TD vAlign=center align=left>
+      <P><BIG>The&nbsp;<A 
+      href="http://javascript.crockford.com/">JavaScript</A>&nbsp;Code Quality 
+      Tool</BIG></P>
+      <P id=JSLINT_EDITION></P>
+      <P><A href="http://www.jslint.com/lint.html">Read the 
+      instructions.</A>&nbsp;<A href="http://jslint.com/#JSLINT_OPTIONS">Set the 
+      options.</A>&nbsp;<A 
+      href="http://www.amazon.com/exec/obidos/ASIN/0596517742/wrrrldwideweb" 
+      target=_blank>Enjoy&nbsp;<I>The Good 
+Parts</I>.</A></P></TD></TR></TBODY></TABLE>
+<SCRIPT 
+src="JSLint,The%20JavaScript%20Code%20Quality%20Tool_files/webjslint.js"></SCRIPT>
+
+<DIV id=JSLINT_>
+<P 
+style="BACKGROUND-COLOR: transparent"><TEXTAREA id=JSLINT_INPUT></TEXTAREA></P>
+<P><INPUT value=JSLint type=button name=jslint>&nbsp;&nbsp;<INPUT value="Syntax Tree" type=button name=tree>&nbsp;&nbsp;<INPUT value=clear type=button name=clear></P><BR 
+clear=all>
+<DIV id=JSLINT_OUTPUT>
+<DIV style="TEXT-ALIGN: center">Paste your program into the text box above and 
+click a&nbsp;<INPUT value=JSLint type=button name=jslint>&nbsp;button.</DIV>
+<DIV 
+style="BORDER-BOTTOM: black 2px solid; TEXT-ALIGN: center; BORDER-LEFT: black 2px solid; PADDING-BOTTOM: 1em; BACKGROUND-COLOR: lightpink; MARGIN: 1em; PADDING-LEFT: 1em; PADDING-RIGHT: 1em; BORDER-TOP: black 2px solid; BORDER-RIGHT: black 2px solid; PADDING-TOP: 1em">WARNING:&nbsp;JSLint 
+will hurt your feelings.</DIV></DIV><PRE id=JSLINT_TREE></PRE><BR clear=all>
+<P><INPUT value=JSLint type=button name=jslint>&nbsp;&nbsp;<INPUT value="Syntax Tree" type=button name=tree>&nbsp;&nbsp;<INPUT value=clear type=button name=clear></P>
+<FIELDSET style="BACKGROUND-COLOR: linen" 
+id=JSLINT_OPTIONS><LEGEND>Options</LEGEND>
+<DIV class=leftcolumn><INPUT id=JSLINT_WHITE title=white type=checkbox 
+name=goodpart><LABEL title=white for=JSLINT_WHITE>Strict white 
+space</LABEL><BR><INPUT id=JSLINT_ONEVAR title=onevar type=checkbox 
+name=goodpart><LABEL title=onevar for=JSLINT_ONEVAR>Allow 
+one&nbsp;<TT>var</TT>&nbsp;statement per function</LABEL><BR><INPUT 
+id=JSLINT_UNDEF title=undef type=checkbox name=goodpart><LABEL title=undef 
+for=JSLINT_UNDEF>Disallow undefined variables</LABEL><BR><INPUT id=JSLINT_NEWCAP 
+title=newcap type=checkbox name=goodpart><LABEL title=newcap 
+for=JSLINT_NEWCAP>Require Initial Caps for constructors</LABEL><BR><INPUT 
+id=JSLINT_NOMEN title=nomen type=checkbox name=goodpart><LABEL title=nomen 
+for=JSLINT_NOMEN>Disallow dangling&nbsp;<TT>_</TT>&nbsp;in 
+identifiers</LABEL><BR><INPUT id=JSLINT_REGEXP title=regexp type=checkbox 
+name=goodpart><LABEL title=regexp 
+for=JSLINT_REGEXP>Disallow&nbsp;<TT>.</TT>&nbsp;and&nbsp;<TT>[^</TT>...<TT>]</TT>&nbsp;in&nbsp;/RegExp/</LABEL><BR><INPUT 
+id=JSLINT_PLUSPLUS title=plusplus type=checkbox name=goodpart><LABEL 
+title=plusplus 
+for=JSLINT_PLUSPLUS>Disallow&nbsp;<TT>++</TT>&nbsp;and&nbsp;<TT>--</TT></LABEL><BR><INPUT 
+id=JSLINT_BITWISE title=bitwise type=checkbox name=goodpart><LABEL title=bitwise 
+for=JSLINT_BITWISE>Disallow bitwise operators</LABEL><BR><INPUT id=JSLINT_STRICT 
+title=strict type=checkbox><LABEL title=strict 
+for=JSLINT_STRICT>Require&nbsp;<TT>"use strict";</TT></LABEL></DIV>
+<DIV class=leftcolumn><INPUT id=JSLINT_PASSFAIL title=passfail 
+type=checkbox><LABEL title=passfail for=JSLINT_PASSFAIL>Stop on first 
+error</LABEL><BR><INPUT id=JSLINT_BROWSER title=browser type=checkbox><LABEL 
+title=browser for=JSLINT_BROWSER>Assume a browser</LABEL><BR><INPUT 
+id=JSLINT_NODE title=node type=checkbox><LABEL title=node 
+for=JSLINT_NODE>Assume<A href="http://nodejs.org/">Node.js</A></LABEL><BR><INPUT 
+id=JSLINT_DEVEL title=devel type=checkbox><LABEL title=devel 
+for=JSLINT_DEVEL>Assume&nbsp;<CODE>console</CODE>,&nbsp;<CODE>alert</CODE>,&nbsp;...</LABEL><BR><INPUT 
+id=JSLINT_RHINO title=rhino type=checkbox><LABEL title=rhino 
+for=JSLINT_RHINO>Assume&nbsp;<A 
+href="http://www.mozilla.org/rhino/">Rhino</A></LABEL><BR><INPUT 
+id=JSLINT_WIDGET title=widget type=checkbox><LABEL title=widget 
+for=JSLINT_WIDGET>Assume a&nbsp;<A href="http://widgets.yahoo.com/tools/">Yahoo 
+Widget</A></LABEL><BR><INPUT id=JSLINT_WINDOWS title=windows 
+type=checkbox><LABEL title=windows for=JSLINT_WINDOWS>Assume 
+Windows</LABEL><BR><BR><INPUT id=JSLINT_SAFE title=safe type=checkbox><LABEL 
+title=safe for=JSLINT_SAFE>Safe Subset</LABEL><BR><INPUT id=JSLINT_ADSAFE 
+title=adsafe type=checkbox><LABEL title=adsafe for=JSLINT_ADSAFE><A 
+href="http://www.adsafe.org/">ADsafe</A></LABEL></DIV>
+<DIV class=leftcolumn><INPUT id=JSLINT_DEBUG title=debug type=checkbox><LABEL 
+title=debug 
+for=JSLINT_DEBUG>Tolerate&nbsp;<TT>debugger</TT>&nbsp;statements</LABEL><BR><INPUT 
+id=JSLINT_EVIL title=evil type=checkbox><LABEL title=evil 
+for=JSLINT_EVIL>Tolerate&nbsp;<TT>eval</TT></LABEL><BR><INPUT id=JSLINT_FORIN 
+title=forin type=checkbox><LABEL title=forin for=JSLINT_FORIN>Tolerate&nbsp;<A 
+href="http://yuiblog.com/blog/2006/09/26/for-in-intrigue/">unfiltered</A>&nbsp;<TT>for</TT><TT>in</TT></LABEL><BR><INPUT 
+id=JSLINT_SUB title=sub type=checkbox><LABEL title=sub for=JSLINT_SUB>Tolerate 
+inefficient subscripting</LABEL><BR><INPUT id=JSLINT_CONTINUE title=continue 
+type=checkbox><LABEL title=continue 
+for=JSLINT_CONTINUE>Tolerate&nbsp;<TT>continue</TT></LABEL><BR><INPUT 
+id=JSLINT_CSS title=css type=checkbox><LABEL title=css for=JSLINT_CSS>Tolerate 
+CSS workarounds</LABEL><BR><INPUT id=JSLINT_CAP title=cap type=checkbox><LABEL 
+title=cap for=JSLINT_CAP>Tolerate&nbsp;<TT>HTML</TT>&nbsp;case</LABEL><BR><INPUT 
+id=JSLINT_ON title=on type=checkbox><LABEL title=on 
+for=JSLINT_ON>Tolerate&nbsp;<TT>HTML</TT>&nbsp;event handlers</LABEL><BR><INPUT 
+id=JSLINT_FRAGMENT title=fragment type=checkbox><LABEL title=fragment 
+for=JSLINT_FRAGMENT>Tolerate&nbsp;<TT>HTML</TT>&nbsp;fragments</LABEL><BR><INPUT 
+id=JSLINT_ESV title=es5 type=checkbox><LABEL title=es5 for=JSLINT_ESV>Tolerate 
+ES5 syntax</LABEL></DIV>
+<DIV class=leftcolumn><INPUT id=JSLINT_GOODPARTS value="The Good Parts" type=button><BR><BR><INPUT id=JSLINT_CLEARALL value="Clear All Options" type=button></DIV>
+<DIV class=leftcolumn><INPUT id=JSLINT_INDENT title=indent size=2 
+autocomplete="off"><LABEL title=indent 
+for=JSLINT_INDENT>Indentation</LABEL><BR><INPUT id=JSLINT_MAXLEN title=maxlen 
+size=2 autocomplete="off"><LABEL title=maxlen for=JSLINT_MAXLEN>Maximum line 
+length</LABEL><BR><INPUT id=JSLINT_MAXERR title=maxerr size=2 
+autocomplete="off"><LABEL title=maxerr for=JSLINT_MAXERR>Maximum number of 
+errors</LABEL><BR><LABEL 
+for=JSLINT_PREDEF>Predefined&nbsp;<SMALL>(&nbsp;<CODE>,</CODE>&nbsp;separated)</SMALL></LABEL>&nbsp;<INPUT 
+id=JSLINT_PREDEF title=predef size=72 autocomplete="off"></DIV><BR clear=all>
+<P id=JSLINT_JSLINTSTRING></P></FIELDSET>
+<P>Copyright 2002&nbsp;<A href="http://www.jslint.com/lint.html">Douglas 
+Crockford.</A>&nbsp;<A href="http://www.crockford.com/" target=_blank>All Rights 
+Reserved Wrrrldwide and Beyond!</A><BR><A 
+href="http://javascript.crockford.com/code.html" target=_blank>Code Conventions 
+for the JavaScript Programming Language.</A><A 
+href="http://tech.groups.yahoo.com/group/jslint_com/" target=_blank>Join the 
+JSLint Group.</A></P>
+<SCRIPT>ADSAFE.id("JSLINT_");</SCRIPT>
+
+<SCRIPT 
+src="JSLint,The%20JavaScript%20Code%20Quality%20Tool_files/init_ui.js"></SCRIPT>
+
+<SCRIPT>ADSAFE.go("JSLINT_",function(dom,lib){"use strict";lib.init_ui(dom);});</SCRIPT>
+</DIV><A href="http://www.jslint.com/"><IMG border=0 
+src="JSLint,The%20JavaScript%20Code%20Quality%20Tool_files/jslintpill.gif" 
+width=36 height=17></A><A 
+href="http://tech.groups.yahoo.com/group/jslint_com/"><IMG border=0 
+src="JSLint,The%20JavaScript%20Code%20Quality%20Tool_files/y.gif" width=31 
+height=17></A><A href="https://github.com/douglascrockford/JSLint"><IMG border=0 
+src="JSLint,The%20JavaScript%20Code%20Quality%20Tool_files/github.gif" width=39 
+height=16></A><A href="http://www.adsafe.org/"><IMG border=0 
+src="JSLint,The%20JavaScript%20Code%20Quality%20Tool_files/adsafepill.gif" 
+width=36 height=17></A><A href="http://www.json.org/"><IMG border=0 
+src="JSLint,The%20JavaScript%20Code%20Quality%20Tool_files/jsonpill.gif" 
+width=36 height=17></A><A href="http://www.1and1.com/?k_id=10219574"><IMG 
+border=0 
+src="JSLint,The%20JavaScript%20Code%20Quality%20Tool_files/1and1pill.gif" 
+width=36 height=17></A></BODY></HTML>
